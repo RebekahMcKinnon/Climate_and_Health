@@ -1,0 +1,15 @@
+---
+title: "Linking Climate and Health Data"
+author: "HEYA Research Group"
+site: bookdown::bookdown_site
+documentclass: book
+#bibliography: ["book.bib"]
+link-citations: yes
+description: "A bookdown template linking to our GitHub project. EDIT THIS LATER"
+---
+
+# Preface {#preface}
+
+Welcome to this bookdown project. You can track issues and tasks here:
+
+- GitHub Project Board: [View on GitHub](https://github.com/RebekahMcKinnon/Climate_and_Health/projects/1)
