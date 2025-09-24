@@ -53,6 +53,70 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
@@ -71,8 +135,37 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
-<li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started with Spatial Data</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#purpose"><i class="fa fa-check"></i><b>1.1.1</b> Purpose</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#required-information"><i class="fa fa-check"></i><b>1.2</b> Required Information</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#publically-available-datasets"><i class="fa fa-check"></i><b>1.2.1</b> Publically available datasets</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#r-packages"><i class="fa fa-check"></i><b>1.2.2</b> R packages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started with Spatial Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#data-access"><i class="fa fa-check"></i><b>2.1</b> Data Access</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#data-preparation"><i class="fa fa-check"></i><b>2.2</b> Data preparation</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="getting-started.html"><a href="getting-started.html#terminology"><i class="fa fa-check"></i><b>2.2.1</b> Terminology</a></li>
+<li class="chapter" data-level="2.2.2" data-path="getting-started.html"><a href="getting-started.html#coordinate-reference-systems-and-projections"><i class="fa fa-check"></i><b>2.2.2</b> Coordinate Reference Systems &amp; Projections</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>3</b> Spatial Data</a></li>
+<li class="chapter" data-level="4" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html"><i class="fa fa-check"></i><b>4</b> Locating &amp; Refining Environmental Data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#wildfires"><i class="fa fa-check"></i><b>4.2</b> Wildfires</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#data-preparation-with-sf-package"><i class="fa fa-check"></i><b>4.2.1</b> Data preparation with sf package</a></li>
+<li class="chapter" data-level="4.2.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#inspect-and-refine-data-structure"><i class="fa fa-check"></i><b>4.2.2</b> Inspect &amp; refine data structure</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -96,11 +189,135 @@
 </div>
 <div id="preface" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This work is supported by current and past members of the HEYA Research Group (www.heyaresearch.ca)</p>
+<p>Authors: Rebekah McKinnon PhD, Ishwar Tiwari PhD, Jayden Chang MSc, Jack McIlraith MSc, Gina Martin PhD</p>
 <p>Welcome to this bookdown project. You can track issues and tasks here:</p>
 <ul>
 <li>GitHub Project Board: <a href="https://github.com/RebekahMcKinnon/Climate_and_Health/projects/1">View on GitHub</a></li>
 </ul>
+<div id="introduction" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="purpose" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Purpose<a href="index.html#purpose" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="required-information" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Required Information<a href="index.html#required-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="publically-available-datasets" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Publically available datasets<a href="index.html#publically-available-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="r-packages" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> R packages<a href="index.html#r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The following R packages are required to run the code in this book:</p>
+<p>Data processing and wrangling:
+- <code>dplyr</code>
+- <code>tidyr</code>
+- <code>lubridate</code>
+- <code>data.table</code>
+- <code>tibble</code>
+- <code>readr</code>
+- <code>purrr</code>
+- <code>stringr</code>
+- <code>readxl</code>
+- <code>writexl</code></p>
+<p>Data visualization and mapping
+- <code>ggplot2</code>
+- <code>maps</code></p>
+<p>Spatial analysis
+- <code>sf</code>
+- <code>geosphere</code></p>
+<p>Specialized tools
+- <code>weathercan</code>
+- <code>furrr</code>
+- <code>tidyverse</code></p>
+<p>The following code installs (if needed) and loads these packages:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="co"># Vector of required packages</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a>  <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;tidyr&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;tibble&quot;</span>,</span>
+<span id="cb1-4"><a href="index.html#cb1-4" tabindex="-1"></a>  <span class="st">&quot;readr&quot;</span>, <span class="st">&quot;purrr&quot;</span>, <span class="st">&quot;stringr&quot;</span>, <span class="st">&quot;readxl&quot;</span>, <span class="st">&quot;writexl&quot;</span>,</span>
+<span id="cb1-5"><a href="index.html#cb1-5" tabindex="-1"></a>  <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;maps&quot;</span>,</span>
+<span id="cb1-6"><a href="index.html#cb1-6" tabindex="-1"></a>  <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;geosphere&quot;</span>,</span>
+<span id="cb1-7"><a href="index.html#cb1-7" tabindex="-1"></a>  <span class="st">&quot;weathercan&quot;</span>, <span class="st">&quot;furrr&quot;</span>, <span class="st">&quot;tidyverse&quot;</span></span>
+<span id="cb1-8"><a href="index.html#cb1-8" tabindex="-1"></a>)</span>
+<span id="cb1-9"><a href="index.html#cb1-9" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="index.html#cb1-10" tabindex="-1"></a><span class="co"># Install any that are missing</span></span>
+<span id="cb1-11"><a href="index.html#cb1-11" tabindex="-1"></a>installed <span class="ot">&lt;-</span> <span class="fu">rownames</span>(<span class="fu">installed.packages</span>())</span>
+<span id="cb1-12"><a href="index.html#cb1-12" tabindex="-1"></a>to_install <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(packages, installed)</span>
+<span id="cb1-13"><a href="index.html#cb1-13" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(to_install) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb1-14"><a href="index.html#cb1-14" tabindex="-1"></a>  <span class="fu">install.packages</span>(to_install)</span>
+<span id="cb1-15"><a href="index.html#cb1-15" tabindex="-1"></a>}</span>
+<span id="cb1-16"><a href="index.html#cb1-16" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="index.html#cb1-17" tabindex="-1"></a><span class="co"># Load all packages</span></span>
+<span id="cb1-18"><a href="index.html#cb1-18" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">lapply</span>(packages, library, <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<pre><code>## Warning: package &#39;data.table&#39; was built under R version 4.4.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;data.table&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:lubridate&#39;:
+## 
+##     hour, isoweek, mday, minute, month, quarter, second, wday, week,
+##     yday, year</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     between, first, last</code></pre>
+<pre><code>## 
+## Attaching package: &#39;purrr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:data.table&#39;:
+## 
+##     transpose</code></pre>
+<pre><code>## Warning: package &#39;readxl&#39; was built under R version 4.4.3</code></pre>
+<pre><code>## Warning: package &#39;writexl&#39; was built under R version 4.4.3</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.4.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;maps&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     map</code></pre>
+<pre><code>## Linking to GEOS 3.13.0, GDAL 3.10.1, PROJ 9.5.1; sf_use_s2() is TRUE</code></pre>
+<pre><code>## As of v0.7.2, the `normals` column in `stations()` reflects whether or not there
+## are *any* normals available (not just the most recent).</code></pre>
+<pre><code>## Warning: package &#39;furrr&#39; was built under R version 4.4.3</code></pre>
+<pre><code>## Loading required package: future</code></pre>
+<pre><code>## Warning: package &#39;future&#39; was built under R version 4.4.3</code></pre>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.4.3</code></pre>
+<pre><code>## Warning: package &#39;forcats&#39; was built under R version 4.4.3</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ─────────────────── tidyverse 2.0.0 ──
+## ✔ forcats 1.0.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+## ✖ data.table::between() masks dplyr::between()
+## ✖ dplyr::filter()       masks stats::filter()
+## ✖ data.table::first()   masks dplyr::first()
+## ✖ data.table::hour()    masks lubridate::hour()
+## ✖ data.table::isoweek() masks lubridate::isoweek()
+## ✖ dplyr::lag()          masks stats::lag()
+## ✖ data.table::last()    masks dplyr::last()
+## ✖ maps::map()           masks purrr::map()
+## ✖ data.table::mday()    masks lubridate::mday()
+## ✖ data.table::minute()  masks lubridate::minute()
+## ✖ data.table::month()   masks lubridate::month()
+## ✖ data.table::quarter() masks lubridate::quarter()
+## ✖ data.table::second()  masks lubridate::second()
+## ✖ purrr::transpose()    masks data.table::transpose()
+## ✖ data.table::wday()    masks lubridate::wday()
+## ✖ data.table::week()    masks lubridate::week()
+## ✖ data.table::yday()    masks lubridate::yday()
+## ✖ data.table::year()    masks lubridate::year()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 
+</div>
+</div>
 </div>
             </section>
 

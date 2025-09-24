@@ -1,0 +1,16 @@
+preface
+introduction
+purpose
+required-information
+publically-available-datasets
+r-packages
+getting-started
+data-access
+data-preparation
+terminology
+coordinate-reference-systems-and-projections
+spatial-data
+locating-and-refining-environmental-data
+wildfires
+data-preparation-with-sf-package
+inspect-and-refine-data-structure

@@ -1,0 +1,83 @@
+# Locating & Refining Environmental Data {#locating-and-refining-environmental-data}
+
+## Introduction {#introduction}
+
+## Wildfires {#wildfires}
+
+### Data preparation with sf package {#data-preparation-with-sf-package}
+
+We read the updated NBAC wildfire polygons (1972–2024) from the .shp file.
+
+- Tip: Shapefiles are a set of files. Ensure the .shp, .shx, .dbf, and (ideally) .prj sit together in the same folder.
+
+```{r}
+poly_fires <- st_read("C:/Users/rebek/Downloads/NBAC_1972to2024_20250506_shp/NBAC_1972to2024_20250506.shp") 
+
+names(poly_fires)
+```
+
+### Inspect & refine data structure {#inspect-and-refine-data-structure}
+
+Check available columns and data types 
+
+```{r}
+names(poly_fires)
+str(poly_fires)
+```
+
+Normalise column names 
+
+```{r}
+names(poly_fires) <- tolower(names(poly_fires)) 
+names(poly_fires)
+```
+
+Given the extremely large size, it's best to reduce the dataset to include only the years you require 
+
+```{r}
+poly_fires <- poly_fires %>% 
+  filter(year >= 2010)
+```
+
+Limit dataset to only the columns you require 
+
+```{r}
+poly_fires <- select(poly_fires, 
+                     nfireid, basrc,
+                     year, 
+                     ag_sdate, # start date as date format
+                     ag_edate, # end date as date format
+                     poly_ha, 
+                     admin_area,
+                     geometry)
+
+head(poly_fires)
+```
+
+Rename columns to align better with your spatial datasets 
+
+```{r}
+poly_fires <- poly_fires %>%
+  mutate(
+    start_day = day(ag_sdate),
+    start_month = month(ag_sdate),
+    start_year = year(ag_sdate),
+    end_day = day(ag_edate),
+    end_month = month(ag_edate),
+    end_year = year(ag_edate),
+    start_date = ag_sdate, 
+    end_date = ag_edate,
+    size = poly_ha) %>%
+  select(-poly_ha)  # remove the original poly_ha column
+
+
+names(poly_fires)
+str(poly_fires)
+```
+
+You may also want to save this newly formed dataset for easier future loading (i.e., to avoid the need to reload the shapefile during your next R session)
+
+```{r}
+write.csv(poly_fires, "wildfire_data.csv", row.names = FALSE)
+```
+

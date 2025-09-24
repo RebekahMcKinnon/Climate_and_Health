@@ -10,6 +10,71 @@ description: "A bookdown template linking to our GitHub project. EDIT THIS LATER
 
 # Preface {#preface}
 
+This work is supported by current and past members of the HEYA Research Group (www.heyaresearch.ca)
+
+Authors:  Rebekah McKinnon PhD, Ishwar Tiwari PhD, Jayden Chang MSc, Jack McIlraith MSc, Gina Martin PhD 
+
 Welcome to this bookdown project. You can track issues and tasks here:
 
 - GitHub Project Board: [View on GitHub](https://github.com/RebekahMcKinnon/Climate_and_Health/projects/1)
+
+## Introduction {#introduction}
+
+### Purpose {#purpose}
+
+## Required Information {#required-information}
+
+### Publically available datasets {#publically-available-datasets}
+
+### R packages {#r-packages}
+
+The following R packages are required to run the code in this book:
+
+Data processing and wrangling:
+  - `dplyr`
+  - `tidyr`
+  - `lubridate`
+  - `data.table`
+  - `tibble`
+  - `readr`
+  - `purrr`
+  - `stringr`
+  - `readxl`
+  - `writexl`
+
+Data visualization and mapping
+  - `ggplot2`
+  - `maps`
+
+Spatial analysis
+  - `sf`
+  - `geosphere`
+
+Specialized tools
+  - `weathercan`
+  - `furrr`
+  - `tidyverse`  
+
+The following code installs (if needed) and loads these packages:
+
+```{r}
+# Vector of required packages
+packages <- c(
+  "dplyr", "tidyr", "lubridate", "data.table", "tibble",
+  "readr", "purrr", "stringr", "readxl", "writexl",
+  "ggplot2", "maps",
+  "sf", "geosphere",
+  "weathercan", "furrr", "tidyverse"
+)
+
+# Install any that are missing
+installed <- rownames(installed.packages())
+to_install <- setdiff(packages, installed)
+if (length(to_install) > 0) {
+  install.packages(to_install)
+}
+
+# Load all packages
+invisible(lapply(packages, library, character.only = TRUE))
+```
+

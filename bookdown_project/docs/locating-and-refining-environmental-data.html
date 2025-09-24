@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Locating &amp; Refining Environmental Data | Linking Climate and Health Data</title>
+  <meta name="description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Locating &amp; Refining Environmental Data | Linking Climate and Health Data" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Locating &amp; Refining Environmental Data | Linking Climate and Health Data" />
+  
+  <meta name="twitter:description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
+  
+
+<meta name="author" content="HEYA Research Group" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="spatial-data.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#purpose"><i class="fa fa-check"></i><b>1.1.1</b> Purpose</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#required-information"><i class="fa fa-check"></i><b>1.2</b> Required Information</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#publically-available-datasets"><i class="fa fa-check"></i><b>1.2.1</b> Publically available datasets</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#r-packages"><i class="fa fa-check"></i><b>1.2.2</b> R packages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started with Spatial Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#data-access"><i class="fa fa-check"></i><b>2.1</b> Data Access</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#data-preparation"><i class="fa fa-check"></i><b>2.2</b> Data preparation</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="getting-started.html"><a href="getting-started.html#terminology"><i class="fa fa-check"></i><b>2.2.1</b> Terminology</a></li>
+<li class="chapter" data-level="2.2.2" data-path="getting-started.html"><a href="getting-started.html#coordinate-reference-systems-and-projections"><i class="fa fa-check"></i><b>2.2.2</b> Coordinate Reference Systems &amp; Projections</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>3</b> Spatial Data</a></li>
+<li class="chapter" data-level="4" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html"><i class="fa fa-check"></i><b>4</b> Locating &amp; Refining Environmental Data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#wildfires"><i class="fa fa-check"></i><b>4.2</b> Wildfires</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#data-preparation-with-sf-package"><i class="fa fa-check"></i><b>4.2.1</b> Data preparation with sf package</a></li>
+<li class="chapter" data-level="4.2.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#inspect-and-refine-data-structure"><i class="fa fa-check"></i><b>4.2.2</b> Inspect &amp; refine data structure</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linking Climate and Health Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="locating-and-refining-environmental-data" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Locating &amp; Refining Environmental Data<a href="locating-and-refining-environmental-data.html#locating-and-refining-environmental-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="wildfires" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Wildfires<a href="locating-and-refining-environmental-data.html#wildfires" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-preparation-with-sf-package" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Data preparation with sf package<a href="locating-and-refining-environmental-data.html#data-preparation-with-sf-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We read the updated NBAC wildfire polygons (1972–2024) from the .shp file.</p>
+<ul>
+<li>Tip: Shapefiles are a set of files. Ensure the .shp, .shx, .dbf, and (ideally) .prj sit together in the same folder.</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="locating-and-refining-environmental-data.html#cb27-1" tabindex="-1"></a>poly_fires <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;C:/Users/rebek/Downloads/NBAC_1972to2024_20250506_shp/NBAC_1972to2024_20250506.shp&quot;</span>) </span></code></pre></div>
+<pre><code>## Reading layer `NBAC_1972to2024_20250506&#39; from data source 
+##   `C:\Users\rebek\Downloads\NBAC_1972to2024_20250506_shp\NBAC_1972to2024_20250506.shp&#39; 
+##   using driver `ESRI Shapefile&#39;
+## Simple feature collection with 50831 features and 21 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -2307185 ymin: -716411.6 xmax: 2981026 ymax: 2764441
+## Projected CRS: Canada_Lambert_Conformal_Conic</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="locating-and-refining-environmental-data.html#cb29-1" tabindex="-1"></a><span class="fu">names</span>(poly_fires)</span></code></pre></div>
+<pre><code>##  [1] &quot;YEAR&quot;       &quot;NFIREID&quot;    &quot;BASRC&quot;      &quot;FIREMAPS&quot;   &quot;FIREMAPM&quot;  
+##  [6] &quot;FIRECAUS&quot;   &quot;HS_SDATE&quot;   &quot;HS_EDATE&quot;   &quot;AG_SDATE&quot;   &quot;AG_EDATE&quot;  
+## [11] &quot;CAPDATE&quot;    &quot;POLY_HA&quot;    &quot;ADJ_HA&quot;     &quot;ADJ_FLAG&quot;   &quot;ADMIN_AREA&quot;
+## [16] &quot;NATPARK&quot;    &quot;PRESCRIBED&quot; &quot;VERSION&quot;    &quot;GID&quot;        &quot;Shape_Leng&quot;
+## [21] &quot;Shape_Area&quot; &quot;geometry&quot;</code></pre>
+</div>
+<div id="inspect-and-refine-data-structure" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Inspect &amp; refine data structure<a href="locating-and-refining-environmental-data.html#inspect-and-refine-data-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Check available columns and data types</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="locating-and-refining-environmental-data.html#cb31-1" tabindex="-1"></a><span class="fu">names</span>(poly_fires)</span></code></pre></div>
+<pre><code>##  [1] &quot;YEAR&quot;       &quot;NFIREID&quot;    &quot;BASRC&quot;      &quot;FIREMAPS&quot;   &quot;FIREMAPM&quot;  
+##  [6] &quot;FIRECAUS&quot;   &quot;HS_SDATE&quot;   &quot;HS_EDATE&quot;   &quot;AG_SDATE&quot;   &quot;AG_EDATE&quot;  
+## [11] &quot;CAPDATE&quot;    &quot;POLY_HA&quot;    &quot;ADJ_HA&quot;     &quot;ADJ_FLAG&quot;   &quot;ADMIN_AREA&quot;
+## [16] &quot;NATPARK&quot;    &quot;PRESCRIBED&quot; &quot;VERSION&quot;    &quot;GID&quot;        &quot;Shape_Leng&quot;
+## [21] &quot;Shape_Area&quot; &quot;geometry&quot;</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="locating-and-refining-environmental-data.html#cb33-1" tabindex="-1"></a><span class="fu">str</span>(poly_fires)</span></code></pre></div>
+<pre><code>## Classes &#39;sf&#39; and &#39;data.frame&#39;:   50831 obs. of  22 variables:
+##  $ YEAR      : num  2024 2024 2024 2024 2024 ...
+##  $ NFIREID   : num  1 2 3 4 5 6 7 8 9 10 ...
+##  $ BASRC     : chr  &quot;MAFiMS&quot; &quot;MAFiMS&quot; &quot;MAFiMS&quot; &quot;MAFiMS&quot; ...
+##  $ FIREMAPS  : chr  &quot;Landsat&quot; &quot;Sentinel-2&quot; &quot;Sentinel-2&quot; &quot;Landsat&quot; ...
+##  $ FIREMAPM  : chr  &quot;Processed imagery&quot; &quot;Processed imagery&quot; &quot;Processed imagery&quot; &quot;Processed imagery&quot; ...
+##  $ FIRECAUS  : chr  &quot;Natural&quot; &quot;Natural&quot; &quot;Natural&quot; &quot;Natural&quot; ...
+##  $ HS_SDATE  : Date, format: &quot;2024-08-12&quot; &quot;2024-06-29&quot; ...
+##  $ HS_EDATE  : Date, format: &quot;2024-09-02&quot; &quot;2024-08-12&quot; ...
+##  $ AG_SDATE  : Date, format: &quot;2024-07-29&quot; &quot;2024-06-28&quot; ...
+##  $ AG_EDATE  : Date, format: &quot;2024-10-04&quot; &quot;2024-10-04&quot; ...
+##  $ CAPDATE   : Date, format: &quot;2024-09-15&quot; &quot;2024-08-22&quot; ...
+##  $ POLY_HA   : num  625.3 185.7 1188.9 3862.6 26.6 ...
+##  $ ADJ_HA    : num  625.3 185.7 1188.9 3862.6 26.6 ...
+##  $ ADJ_FLAG  : chr  NA NA NA NA ...
+##  $ ADMIN_AREA: chr  &quot;NT&quot; &quot;NT&quot; &quot;NT&quot; &quot;NT&quot; ...
+##  $ NATPARK   : chr  NA NA NA NA ...
+##  $ PRESCRIBED: chr  NA NA NA NA ...
+##  $ VERSION   : chr  &quot;20250506&quot; &quot;20250506&quot; &quot;20250506&quot; &quot;20250506&quot; ...
+##  $ GID       : chr  &quot;2024_1&quot; &quot;2024_2&quot; &quot;2024_3&quot; &quot;2024_4&quot; ...
+##  $ Shape_Leng: num  38513 16858 51547 132692 2833 ...
+##  $ Shape_Area: num  5906397 1754145 11207901 36408742 250725 ...
+##  $ geometry  :sfc_MULTIPOLYGON of length 50831; first list element: List of 1
+##   ..$ :List of 4
+##   .. ..$ : num [1:956, 1:2] -1120514 -1120641 -1120656 -1120665 -1120665 ...
+##   .. ..$ : num [1:21, 1:2] -1120364 -1120354 -1120361 -1120352 -1120326 ...
+##   .. ..$ : num [1:11, 1:2] -1121905 -1121888 -1121866 -1121824 -1121817 ...
+##   .. ..$ : num [1:16, 1:2] -1121121 -1121111 -1121061 -1121045 -1121032 ...
+##   ..- attr(*, &quot;class&quot;)= chr [1:3] &quot;XY&quot; &quot;MULTIPOLYGON&quot; &quot;sfg&quot;
+##  - attr(*, &quot;sf_column&quot;)= chr &quot;geometry&quot;
+##  - attr(*, &quot;agr&quot;)= Factor w/ 3 levels &quot;constant&quot;,&quot;aggregate&quot;,..: NA NA NA NA NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;names&quot;)= chr [1:21] &quot;YEAR&quot; &quot;NFIREID&quot; &quot;BASRC&quot; &quot;FIREMAPS&quot; ...</code></pre>
+<p>Normalise column names</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="locating-and-refining-environmental-data.html#cb35-1" tabindex="-1"></a><span class="fu">names</span>(poly_fires) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">names</span>(poly_fires)) </span>
+<span id="cb35-2"><a href="locating-and-refining-environmental-data.html#cb35-2" tabindex="-1"></a><span class="fu">names</span>(poly_fires)</span></code></pre></div>
+<pre><code>##  [1] &quot;year&quot;       &quot;nfireid&quot;    &quot;basrc&quot;      &quot;firemaps&quot;   &quot;firemapm&quot;  
+##  [6] &quot;firecaus&quot;   &quot;hs_sdate&quot;   &quot;hs_edate&quot;   &quot;ag_sdate&quot;   &quot;ag_edate&quot;  
+## [11] &quot;capdate&quot;    &quot;poly_ha&quot;    &quot;adj_ha&quot;     &quot;adj_flag&quot;   &quot;admin_area&quot;
+## [16] &quot;natpark&quot;    &quot;prescribed&quot; &quot;version&quot;    &quot;gid&quot;        &quot;shape_leng&quot;
+## [21] &quot;shape_area&quot; &quot;geometry&quot;</code></pre>
+<p>Given the extremely large size, it’s best to reduce the dataset to include only the years you require</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="locating-and-refining-environmental-data.html#cb37-1" tabindex="-1"></a>poly_fires <span class="ot">&lt;-</span> poly_fires <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="locating-and-refining-environmental-data.html#cb37-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2010</span>)</span></code></pre></div>
+<p>Limit dataset to only the columns you require</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="locating-and-refining-environmental-data.html#cb38-1" tabindex="-1"></a>poly_fires <span class="ot">&lt;-</span> <span class="fu">select</span>(poly_fires, </span>
+<span id="cb38-2"><a href="locating-and-refining-environmental-data.html#cb38-2" tabindex="-1"></a>                     nfireid, basrc,</span>
+<span id="cb38-3"><a href="locating-and-refining-environmental-data.html#cb38-3" tabindex="-1"></a>                     year, </span>
+<span id="cb38-4"><a href="locating-and-refining-environmental-data.html#cb38-4" tabindex="-1"></a>                     ag_sdate, <span class="co"># start date as date format</span></span>
+<span id="cb38-5"><a href="locating-and-refining-environmental-data.html#cb38-5" tabindex="-1"></a>                     ag_edate, <span class="co"># end date as date format</span></span>
+<span id="cb38-6"><a href="locating-and-refining-environmental-data.html#cb38-6" tabindex="-1"></a>                     poly_ha, </span>
+<span id="cb38-7"><a href="locating-and-refining-environmental-data.html#cb38-7" tabindex="-1"></a>                     admin_area,</span>
+<span id="cb38-8"><a href="locating-and-refining-environmental-data.html#cb38-8" tabindex="-1"></a>                     geometry)</span>
+<span id="cb38-9"><a href="locating-and-refining-environmental-data.html#cb38-9" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="locating-and-refining-environmental-data.html#cb38-10" tabindex="-1"></a><span class="fu">head</span>(poly_fires)</span></code></pre></div>
+<pre><code>## Simple feature collection with 6 features and 7 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -1246508 ymin: 1397449 xmax: -844340.2 ymax: 1459866
+## Projected CRS: Canada_Lambert_Conformal_Conic
+##   nfireid  basrc year   ag_sdate   ag_edate    poly_ha admin_area
+## 1       1 MAFiMS 2024 2024-07-29 2024-10-04  625.25831         NT
+## 2       2 MAFiMS 2024 2024-06-28 2024-10-04  185.71593         NT
+## 3       3 MAFiMS 2024 2024-07-17 2024-10-04 1188.87817         NT
+## 4       4 MAFiMS 2024 2024-07-17 2024-10-04 3862.62690         NT
+## 5       5 MAFiMS 2024 2024-07-31 2024-10-04   26.55261         NT
+## 6       6 MAFiMS 2024 2024-07-19 2024-10-04   28.82723         NT
+##                         geometry
+## 1 MULTIPOLYGON (((-1120514 14...
+## 2 MULTIPOLYGON (((-1245606 14...
+## 3 MULTIPOLYGON (((-846230.9 1...
+## 4 MULTIPOLYGON (((-869281.6 1...
+## 5 MULTIPOLYGON (((-1229068 14...
+## 6 MULTIPOLYGON (((-1225697 14...</code></pre>
+<p>Rename columns to align better with your spatial datasets</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="locating-and-refining-environmental-data.html#cb40-1" tabindex="-1"></a>poly_fires <span class="ot">&lt;-</span> poly_fires <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="locating-and-refining-environmental-data.html#cb40-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb40-3"><a href="locating-and-refining-environmental-data.html#cb40-3" tabindex="-1"></a>    <span class="at">start_day =</span> <span class="fu">day</span>(ag_sdate),</span>
+<span id="cb40-4"><a href="locating-and-refining-environmental-data.html#cb40-4" tabindex="-1"></a>    <span class="at">start_month =</span> <span class="fu">month</span>(ag_sdate),</span>
+<span id="cb40-5"><a href="locating-and-refining-environmental-data.html#cb40-5" tabindex="-1"></a>    <span class="at">start_year =</span> <span class="fu">year</span>(ag_sdate),</span>
+<span id="cb40-6"><a href="locating-and-refining-environmental-data.html#cb40-6" tabindex="-1"></a>    <span class="at">end_day =</span> <span class="fu">day</span>(ag_edate),</span>
+<span id="cb40-7"><a href="locating-and-refining-environmental-data.html#cb40-7" tabindex="-1"></a>    <span class="at">end_month =</span> <span class="fu">month</span>(ag_edate),</span>
+<span id="cb40-8"><a href="locating-and-refining-environmental-data.html#cb40-8" tabindex="-1"></a>    <span class="at">end_year =</span> <span class="fu">year</span>(ag_edate),</span>
+<span id="cb40-9"><a href="locating-and-refining-environmental-data.html#cb40-9" tabindex="-1"></a>    <span class="at">start_date =</span> ag_sdate, </span>
+<span id="cb40-10"><a href="locating-and-refining-environmental-data.html#cb40-10" tabindex="-1"></a>    <span class="at">end_date =</span> ag_edate,</span>
+<span id="cb40-11"><a href="locating-and-refining-environmental-data.html#cb40-11" tabindex="-1"></a>    <span class="at">size =</span> poly_ha) <span class="sc">%&gt;%</span></span>
+<span id="cb40-12"><a href="locating-and-refining-environmental-data.html#cb40-12" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>poly_ha)  <span class="co"># remove the original poly_ha column</span></span>
+<span id="cb40-13"><a href="locating-and-refining-environmental-data.html#cb40-13" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="locating-and-refining-environmental-data.html#cb40-14" tabindex="-1"></a></span>
+<span id="cb40-15"><a href="locating-and-refining-environmental-data.html#cb40-15" tabindex="-1"></a><span class="fu">names</span>(poly_fires)</span></code></pre></div>
+<pre><code>##  [1] &quot;nfireid&quot;     &quot;basrc&quot;       &quot;year&quot;        &quot;ag_sdate&quot;    &quot;ag_edate&quot;   
+##  [6] &quot;admin_area&quot;  &quot;start_day&quot;   &quot;start_month&quot; &quot;start_year&quot;  &quot;end_day&quot;    
+## [11] &quot;end_month&quot;   &quot;end_year&quot;    &quot;start_date&quot;  &quot;end_date&quot;    &quot;size&quot;       
+## [16] &quot;geometry&quot;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="locating-and-refining-environmental-data.html#cb42-1" tabindex="-1"></a><span class="fu">str</span>(poly_fires)</span></code></pre></div>
+<pre><code>## Classes &#39;sf&#39; and &#39;data.frame&#39;:   22220 obs. of  16 variables:
+##  $ nfireid    : num  1 2 3 4 5 6 7 8 9 10 ...
+##  $ basrc      : chr  &quot;MAFiMS&quot; &quot;MAFiMS&quot; &quot;MAFiMS&quot; &quot;MAFiMS&quot; ...
+##  $ year       : num  2024 2024 2024 2024 2024 ...
+##  $ ag_sdate   : Date, format: &quot;2024-07-29&quot; &quot;2024-06-28&quot; ...
+##  $ ag_edate   : Date, format: &quot;2024-10-04&quot; &quot;2024-10-04&quot; ...
+##  $ admin_area : chr  &quot;NT&quot; &quot;NT&quot; &quot;NT&quot; &quot;NT&quot; ...
+##  $ start_day  : int  29 28 17 17 31 19 23 18 18 21 ...
+##  $ start_month: int  7 6 7 7 7 7 5 7 7 6 ...
+##  $ start_year : int  2024 2024 2024 2024 2024 2024 2024 2024 2024 2024 ...
+##  $ end_day    : int  4 4 4 4 4 4 4 17 17 14 ...
+##  $ end_month  : int  10 10 10 10 10 10 10 9 9 7 ...
+##  $ end_year   : int  2024 2024 2024 2024 2024 2024 2024 2024 2024 2024 ...
+##  $ start_date : Date, format: &quot;2024-07-29&quot; &quot;2024-06-28&quot; ...
+##  $ end_date   : Date, format: &quot;2024-10-04&quot; &quot;2024-10-04&quot; ...
+##  $ size       : num  625.3 185.7 1188.9 3862.6 26.6 ...
+##  $ geometry   :sfc_MULTIPOLYGON of length 22220; first list element: List of 1
+##   ..$ :List of 4
+##   .. ..$ : num [1:956, 1:2] -1120514 -1120641 -1120656 -1120665 -1120665 ...
+##   .. ..$ : num [1:21, 1:2] -1120364 -1120354 -1120361 -1120352 -1120326 ...
+##   .. ..$ : num [1:11, 1:2] -1121905 -1121888 -1121866 -1121824 -1121817 ...
+##   .. ..$ : num [1:16, 1:2] -1121121 -1121111 -1121061 -1121045 -1121032 ...
+##   ..- attr(*, &quot;class&quot;)= chr [1:3] &quot;XY&quot; &quot;MULTIPOLYGON&quot; &quot;sfg&quot;
+##  - attr(*, &quot;sf_column&quot;)= chr &quot;geometry&quot;
+##  - attr(*, &quot;agr&quot;)= Factor w/ 3 levels &quot;constant&quot;,&quot;aggregate&quot;,..: NA NA NA NA NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;names&quot;)= chr [1:15] &quot;nfireid&quot; &quot;basrc&quot; &quot;year&quot; &quot;ag_sdate&quot; ...</code></pre>
+<p>You may also want to save this newly formed dataset for easier future loading (i.e., to avoid the need to reload the shapefile during your next R session)</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="locating-and-refining-environmental-data.html#cb44-1" tabindex="-1"></a><span class="fu">write.csv</span>(poly_fires, <span class="st">&quot;wildfire_data.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="spatial-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

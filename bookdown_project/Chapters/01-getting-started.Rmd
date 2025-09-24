@@ -1,3 +1,11 @@
 # Getting Started with Spatial Data {#getting-started}
 
-# 2.1 Introduction {#Introduction}
+## Data Access {#data-access}
+
+## Data preparation {#data-preparation}
+
+### Terminology {#terminology}
+
+### Coordinate Reference Systems & Projections {#coordinate-reference-systems-and-projections}
+Coordinate reference systems (CRS) are important for spatial analyses as they define how spatial data align with the Earth’s surface. Transforming (projecting) the data to a different CRS may be necessary when combining multiple datasets or creating visuals for particular areas of interest. It is important to note that transforming spatial data can cause distortions in its area, direction, distance, or shape. The direction and magnitude of these distortions vary depending on the chosen CRS, area of interest, and type of data. 
+
