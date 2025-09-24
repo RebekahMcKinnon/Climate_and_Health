@@ -2,5 +2,6 @@ book_filename: "my_book"
 rmd_files:
   - "index.Rmd"
   - "chapters/01-getting-started.Rmd"
+  - "chapters/02-locating-and-refining-environmental-data.Rmd"
 new_session: false
 output_dir: "docs"
