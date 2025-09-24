@@ -78,6 +78,7 @@ str(poly_fires)
 You may also want to save this newly formed dataset for easier future loading (i.e., to avoid the need to reload the shapefile during your next R session)
 
 ```{r}
-write.csv(poly_fires, "wildfire_data.csv", row.names = FALSE)
+# uncomment to run
+# write.csv(poly_fires, "wildfire_data.csv", row.names = FALSE)
 ```
 
