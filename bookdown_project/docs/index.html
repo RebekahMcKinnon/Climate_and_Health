@@ -143,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#required-information"><i class="fa fa-check"></i><b>1.2</b> Required Information</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#publically-available-datasets"><i class="fa fa-check"></i><b>1.2.1</b> Publically available datasets</a></li>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#datasets"><i class="fa fa-check"></i><b>1.2.1</b> Datasets</a></li>
 <li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#r-packages"><i class="fa fa-check"></i><b>1.2.2</b> R packages</a></li>
 </ul></li>
 </ul></li>
@@ -189,8 +189,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="preface" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This work is supported by current and past members of the HEYA Research Group (www.heyaresearch.ca)</p>
-<p>Authors: Rebekah McKinnon PhD, Ishwar Tiwari PhD, Jayden Chang MSc, Jack McIlraith MSc, Gina Martin PhD</p>
+<p>This work is supported by current and past members of the <a href="www.heyaresearch.ca">HEYA Research Group</a>:</p>
+<p>Rebekah McKinnon PhD, 
+Ishwar Tiwari PhD, 
+Jayden Chang MSc, 
+Jack McIlraith MSc, 
+Gina Martin PhD</p>
 <p>Welcome to this bookdown project. You can track issues and tasks here:</p>
 <ul>
 <li>GitHub Project Board: <a href="https://github.com/RebekahMcKinnon/Climate_and_Health/projects/1">View on GitHub</a></li>
@@ -203,33 +207,105 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="required-information" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> Required Information<a href="index.html#required-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="publically-available-datasets" class="section level3 hasAnchor" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Publically available datasets<a href="index.html#publically-available-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="datasets" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Datasets<a href="index.html#datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This tutorial uses the following <strong>publicly available</strong> datasets:</p>
+<table>
+<colgroup>
+<col width="31%" />
+<col width="42%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data Provider</th>
+<th>Dataset</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Natural Resources Canada (CFS / CWFIS)</td>
+<td>National Burned Area Composite (<strong>NBAC</strong>) wildfire perimeters (1972–2024) (<a href="https://cwfis.cfs.nrcan.gc.ca/datamart/metadata/nbac?utm_source=chatgpt.com" title="NBAC - Canadian Wildland Fire Information System | Metadata">cwfis.cfs.nrcan.gc.ca</a>)</td>
+<td>Polygon (vector)</td>
+</tr>
+<tr class="even">
+<td>Natural Resources Canada (EGS)</td>
+<td><strong>Floods in Canada – Archive</strong> (flood extent products) (<a href="https://open.canada.ca/data/en/dataset/74144824-206e-4cea-9fb9-72925a128189?utm_source=chatgpt.com" title="Floods in Canada - Archive - Open Government Portal">open.canada.ca</a>)</td>
+<td>Polygon (vector)</td>
+</tr>
+<tr class="odd">
+<td>Environment and Climate Change Canada</td>
+<td>Historical climate observations &amp; station metadata (<a href="" title="https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&amp;stationID=%s&amp;Year=%s&amp;Month=1&amp;Day=1&amp;timeframe=2&amp;submit=Download+Data">climate.weather.gc.ca</a>)</td>
+<td>Point + time series</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>This tutorial also uses datasets with <strong>access restrictions</strong>. Access may require institutional access, and/or data-use agreements.</p>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="40%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data Provider</th>
+<th>Dataset</th>
+<th>Access</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Statistics Canada</td>
+<td>Postal Code Conversion File (<strong>PCCF</strong>) v8B</td>
+<td>Licensed</td>
+</tr>
+<tr class="even">
+<td>CANUE (Canadian Urban Environmental Health Research Consortium)</td>
+<td>Local Climate Zones &amp; PM2.5 (smoke) by Postcode</td>
+<td>Request via project creation in CANUE (free)</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="r-packages" class="section level3 hasAnchor" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> R packages<a href="index.html#r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The following R packages are required to run the code in this book:</p>
-<p>Data processing and wrangling:
-- <code>dplyr</code>
-- <code>tidyr</code>
-- <code>lubridate</code>
-- <code>data.table</code>
-- <code>tibble</code>
-- <code>readr</code>
-- <code>purrr</code>
-- <code>stringr</code>
-- <code>readxl</code>
-- <code>writexl</code></p>
-<p>Data visualization and mapping
-- <code>ggplot2</code>
-- <code>maps</code></p>
-<p>Spatial analysis
-- <code>sf</code>
-- <code>geosphere</code></p>
-<p>Specialized tools
-- <code>weathercan</code>
-- <code>furrr</code>
-- <code>tidyverse</code></p>
+<p><strong>Data processing and wrangling</strong></p>
+<ul>
+<li><code>dplyr</code></li>
+<li><code>tidyverse</code><br />
+</li>
+<li><code>tidyr</code></li>
+<li><code>lubridate</code></li>
+<li><code>data.table</code></li>
+<li><code>tibble</code></li>
+<li><code>readr</code></li>
+<li><code>purrr</code></li>
+<li><code>stringr</code></li>
+<li><code>readxl</code></li>
+<li><code>writexl</code></li>
+</ul>
+<p><strong>Data visualization and mapping</strong></p>
+<ul>
+<li><code>ggplot2</code></li>
+<li><code>maps</code></li>
+</ul>
+<p><strong>Spatial analysis</strong></p>
+<ul>
+<li><code>sf</code></li>
+<li><code>geosphere</code></li>
+</ul>
+<p><strong>Data download</strong></p>
+<ul>
+<li><code>weathercan</code></li>
+</ul>
+<p><strong><em>Optional</em></strong></p>
+<ul>
+<li><code>furrr</code> (offers improved processing speeds)</li>
+</ul>
 <p>The following code installs (if needed) and loads these packages:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="co"># Vector of required packages</span></span>
 <span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
@@ -293,9 +369,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning: package &#39;future&#39; was built under R version 4.4.3</code></pre>
 <pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.4.3</code></pre>
 <pre><code>## Warning: package &#39;forcats&#39; was built under R version 4.4.3</code></pre>
-<pre><code>## ── Attaching core tidyverse packages ─────────────────── tidyverse 2.0.0 ──
+<pre><code>## ── Attaching core tidyverse packages ──
 ## ✔ forcats 1.0.0</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Conflicts ──────────────────────────
 ## ✖ data.table::between() masks dplyr::between()
 ## ✖ dplyr::filter()       masks stats::filter()
 ## ✖ data.table::first()   masks dplyr::first()
