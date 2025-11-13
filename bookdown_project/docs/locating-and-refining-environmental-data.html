@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Locating &amp; Refining Environmental Data | Linking Climate and Health Data</title>
   <meta name="description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
-  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Locating &amp; Refining Environmental Data | Linking Climate and Health Data" />
   <meta property="og:type" content="book" />
@@ -159,11 +159,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>3</b> Spatial Data</a></li>
 <li class="chapter" data-level="4" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html"><i class="fa fa-check"></i><b>4</b> Locating &amp; Refining Environmental Data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#introduction-environmental-data"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#wildfires"><i class="fa fa-check"></i><b>4.2</b> Wildfires</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#data-preparation-with-sf-package"><i class="fa fa-check"></i><b>4.2.1</b> Data preparation with sf package</a></li>
 <li class="chapter" data-level="4.2.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#inspect-and-refine-data-structure"><i class="fa fa-check"></i><b>4.2.2</b> Inspect &amp; refine data structure</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes"><i class="fa fa-check"></i><b>4.3</b> Hurricanes</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-sourcing"><i class="fa fa-check"></i><b>4.3.1</b> Data Sourcing</a></li>
+<li class="chapter" data-level="4.3.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-cleaning"><i class="fa fa-check"></i><b>4.3.2</b> Data Cleaning</a></li>
+<li class="chapter" data-level="4.3.3" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-manipulation"><i class="fa fa-check"></i><b>4.3.3</b> Data Manipulation</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -185,43 +191,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="locating-and-refining-environmental-data" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">4</span> Locating &amp; Refining Environmental Data<a href="locating-and-refining-environmental-data.html#locating-and-refining-environmental-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-environmental-data" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Introduction<a href="locating-and-refining-environmental-data.html#introduction-environmental-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
 <div id="wildfires" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Wildfires<a href="locating-and-refining-environmental-data.html#wildfires" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="data-preparation-with-sf-package" class="section level3 hasAnchor" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Data preparation with sf package<a href="locating-and-refining-environmental-data.html#data-preparation-with-sf-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We read the updated NBAC wildfire polygons (1972–2024) from the .shp file.</p>
+<p>We read the updated NBAC wildfire polygons (1972-2024) from the .shp file.</p>
 <ul>
 <li>Tip: Shapefiles are a set of files. Ensure the .shp, .shx, .dbf, and (ideally) .prj sit together in the same folder.</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="locating-and-refining-environmental-data.html#cb27-1" tabindex="-1"></a>poly_fires <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;C:/Users/rebek/Downloads/NBAC_1972to2024_20250506_shp/NBAC_1972to2024_20250506.shp&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="locating-and-refining-environmental-data.html#cb8-1" tabindex="-1"></a>poly_fires <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">matth</span><span class="sc">\\</span><span class="st">OneDrive</span><span class="sc">\\</span><span class="st">GeoKetch</span><span class="sc">\\</span><span class="st">Contracts</span><span class="sc">\\</span><span class="st">ContractTwo_20250812</span><span class="sc">\\</span><span class="st">FireData</span><span class="sc">\\</span><span class="st">NBAC_1972to2024_20250506.shp&quot;</span>) </span></code></pre></div>
 <pre><code>## Reading layer `NBAC_1972to2024_20250506&#39; from data source 
-##   `C:\Users\rebek\Downloads\NBAC_1972to2024_20250506_shp\NBAC_1972to2024_20250506.shp&#39; 
-##   using driver `ESRI Shapefile&#39;
+##   `C:\Users\matth\OneDrive\GeoKetch\Contracts\ContractTwo_20250812\FireData\NBAC_1972to2024_20250506.shp&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 50831 features and 21 fields
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
 ## Bounding box:  xmin: -2307185 ymin: -716411.6 xmax: 2981026 ymax: 2764441
 ## Projected CRS: Canada_Lambert_Conformal_Conic</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="locating-and-refining-environmental-data.html#cb29-1" tabindex="-1"></a><span class="fu">names</span>(poly_fires)</span></code></pre></div>
-<pre><code>##  [1] &quot;YEAR&quot;       &quot;NFIREID&quot;    &quot;BASRC&quot;      &quot;FIREMAPS&quot;   &quot;FIREMAPM&quot;  
-##  [6] &quot;FIRECAUS&quot;   &quot;HS_SDATE&quot;   &quot;HS_EDATE&quot;   &quot;AG_SDATE&quot;   &quot;AG_EDATE&quot;  
-## [11] &quot;CAPDATE&quot;    &quot;POLY_HA&quot;    &quot;ADJ_HA&quot;     &quot;ADJ_FLAG&quot;   &quot;ADMIN_AREA&quot;
-## [16] &quot;NATPARK&quot;    &quot;PRESCRIBED&quot; &quot;VERSION&quot;    &quot;GID&quot;        &quot;Shape_Leng&quot;
-## [21] &quot;Shape_Area&quot; &quot;geometry&quot;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="locating-and-refining-environmental-data.html#cb10-1" tabindex="-1"></a><span class="fu">names</span>(poly_fires)</span></code></pre></div>
+<pre><code>##  [1] &quot;YEAR&quot;       &quot;NFIREID&quot;    &quot;BASRC&quot;      &quot;FIREMAPS&quot;   &quot;FIREMAPM&quot;   &quot;FIRECAUS&quot;   &quot;HS_SDATE&quot;   &quot;HS_EDATE&quot;   &quot;AG_SDATE&quot;  
+## [10] &quot;AG_EDATE&quot;   &quot;CAPDATE&quot;    &quot;POLY_HA&quot;    &quot;ADJ_HA&quot;     &quot;ADJ_FLAG&quot;   &quot;ADMIN_AREA&quot; &quot;NATPARK&quot;    &quot;PRESCRIBED&quot; &quot;VERSION&quot;   
+## [19] &quot;GID&quot;        &quot;Shape_Leng&quot; &quot;Shape_Area&quot; &quot;geometry&quot;</code></pre>
 </div>
 <div id="inspect-and-refine-data-structure" class="section level3 hasAnchor" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Inspect &amp; refine data structure<a href="locating-and-refining-environmental-data.html#inspect-and-refine-data-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Check available columns and data types</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="locating-and-refining-environmental-data.html#cb31-1" tabindex="-1"></a><span class="fu">names</span>(poly_fires)</span></code></pre></div>
-<pre><code>##  [1] &quot;YEAR&quot;       &quot;NFIREID&quot;    &quot;BASRC&quot;      &quot;FIREMAPS&quot;   &quot;FIREMAPM&quot;  
-##  [6] &quot;FIRECAUS&quot;   &quot;HS_SDATE&quot;   &quot;HS_EDATE&quot;   &quot;AG_SDATE&quot;   &quot;AG_EDATE&quot;  
-## [11] &quot;CAPDATE&quot;    &quot;POLY_HA&quot;    &quot;ADJ_HA&quot;     &quot;ADJ_FLAG&quot;   &quot;ADMIN_AREA&quot;
-## [16] &quot;NATPARK&quot;    &quot;PRESCRIBED&quot; &quot;VERSION&quot;    &quot;GID&quot;        &quot;Shape_Leng&quot;
-## [21] &quot;Shape_Area&quot; &quot;geometry&quot;</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="locating-and-refining-environmental-data.html#cb33-1" tabindex="-1"></a><span class="fu">str</span>(poly_fires)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="locating-and-refining-environmental-data.html#cb12-1" tabindex="-1"></a><span class="fu">names</span>(poly_fires)</span></code></pre></div>
+<pre><code>##  [1] &quot;YEAR&quot;       &quot;NFIREID&quot;    &quot;BASRC&quot;      &quot;FIREMAPS&quot;   &quot;FIREMAPM&quot;   &quot;FIRECAUS&quot;   &quot;HS_SDATE&quot;   &quot;HS_EDATE&quot;   &quot;AG_SDATE&quot;  
+## [10] &quot;AG_EDATE&quot;   &quot;CAPDATE&quot;    &quot;POLY_HA&quot;    &quot;ADJ_HA&quot;     &quot;ADJ_FLAG&quot;   &quot;ADMIN_AREA&quot; &quot;NATPARK&quot;    &quot;PRESCRIBED&quot; &quot;VERSION&quot;   
+## [19] &quot;GID&quot;        &quot;Shape_Leng&quot; &quot;Shape_Area&quot; &quot;geometry&quot;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="locating-and-refining-environmental-data.html#cb14-1" tabindex="-1"></a><span class="fu">str</span>(poly_fires)</span></code></pre></div>
 <pre><code>## Classes &#39;sf&#39; and &#39;data.frame&#39;:   50831 obs. of  22 variables:
 ##  $ YEAR      : num  2024 2024 2024 2024 2024 ...
 ##  $ NFIREID   : num  1 2 3 4 5 6 7 8 9 10 ...
@@ -229,11 +230,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ FIREMAPS  : chr  &quot;Landsat&quot; &quot;Sentinel-2&quot; &quot;Sentinel-2&quot; &quot;Landsat&quot; ...
 ##  $ FIREMAPM  : chr  &quot;Processed imagery&quot; &quot;Processed imagery&quot; &quot;Processed imagery&quot; &quot;Processed imagery&quot; ...
 ##  $ FIRECAUS  : chr  &quot;Natural&quot; &quot;Natural&quot; &quot;Natural&quot; &quot;Natural&quot; ...
-##  $ HS_SDATE  : Date, format: &quot;2024-08-12&quot; &quot;2024-06-29&quot; ...
-##  $ HS_EDATE  : Date, format: &quot;2024-09-02&quot; &quot;2024-08-12&quot; ...
-##  $ AG_SDATE  : Date, format: &quot;2024-07-29&quot; &quot;2024-06-28&quot; ...
-##  $ AG_EDATE  : Date, format: &quot;2024-10-04&quot; &quot;2024-10-04&quot; ...
-##  $ CAPDATE   : Date, format: &quot;2024-09-15&quot; &quot;2024-08-22&quot; ...
+##  $ HS_SDATE  : Date, format: &quot;2024-08-12&quot; &quot;2024-06-29&quot; &quot;2024-07-17&quot; &quot;2024-07-17&quot; ...
+##  $ HS_EDATE  : Date, format: &quot;2024-09-02&quot; &quot;2024-08-12&quot; &quot;2024-07-24&quot; &quot;2024-08-13&quot; ...
+##  $ AG_SDATE  : Date, format: &quot;2024-07-29&quot; &quot;2024-06-28&quot; &quot;2024-07-17&quot; &quot;2024-07-17&quot; ...
+##  $ AG_EDATE  : Date, format: &quot;2024-10-04&quot; &quot;2024-10-04&quot; &quot;2024-10-04&quot; &quot;2024-10-04&quot; ...
+##  $ CAPDATE   : Date, format: &quot;2024-09-15&quot; &quot;2024-08-22&quot; &quot;2024-08-08&quot; &quot;2024-08-30&quot; ...
 ##  $ POLY_HA   : num  625.3 185.7 1188.9 3862.6 26.6 ...
 ##  $ ADJ_HA    : num  625.3 185.7 1188.9 3862.6 26.6 ...
 ##  $ ADJ_FLAG  : chr  NA NA NA NA ...
@@ -255,73 +256,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  - attr(*, &quot;agr&quot;)= Factor w/ 3 levels &quot;constant&quot;,&quot;aggregate&quot;,..: NA NA NA NA NA NA NA NA NA NA ...
 ##   ..- attr(*, &quot;names&quot;)= chr [1:21] &quot;YEAR&quot; &quot;NFIREID&quot; &quot;BASRC&quot; &quot;FIREMAPS&quot; ...</code></pre>
 <p>Normalise column names</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="locating-and-refining-environmental-data.html#cb35-1" tabindex="-1"></a><span class="fu">names</span>(poly_fires) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">names</span>(poly_fires)) </span>
-<span id="cb35-2"><a href="locating-and-refining-environmental-data.html#cb35-2" tabindex="-1"></a><span class="fu">names</span>(poly_fires)</span></code></pre></div>
-<pre><code>##  [1] &quot;year&quot;       &quot;nfireid&quot;    &quot;basrc&quot;      &quot;firemaps&quot;   &quot;firemapm&quot;  
-##  [6] &quot;firecaus&quot;   &quot;hs_sdate&quot;   &quot;hs_edate&quot;   &quot;ag_sdate&quot;   &quot;ag_edate&quot;  
-## [11] &quot;capdate&quot;    &quot;poly_ha&quot;    &quot;adj_ha&quot;     &quot;adj_flag&quot;   &quot;admin_area&quot;
-## [16] &quot;natpark&quot;    &quot;prescribed&quot; &quot;version&quot;    &quot;gid&quot;        &quot;shape_leng&quot;
-## [21] &quot;shape_area&quot; &quot;geometry&quot;</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="locating-and-refining-environmental-data.html#cb16-1" tabindex="-1"></a><span class="fu">names</span>(poly_fires) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">names</span>(poly_fires)) </span>
+<span id="cb16-2"><a href="locating-and-refining-environmental-data.html#cb16-2" tabindex="-1"></a><span class="fu">names</span>(poly_fires)</span></code></pre></div>
+<pre><code>##  [1] &quot;year&quot;       &quot;nfireid&quot;    &quot;basrc&quot;      &quot;firemaps&quot;   &quot;firemapm&quot;   &quot;firecaus&quot;   &quot;hs_sdate&quot;   &quot;hs_edate&quot;   &quot;ag_sdate&quot;  
+## [10] &quot;ag_edate&quot;   &quot;capdate&quot;    &quot;poly_ha&quot;    &quot;adj_ha&quot;     &quot;adj_flag&quot;   &quot;admin_area&quot; &quot;natpark&quot;    &quot;prescribed&quot; &quot;version&quot;   
+## [19] &quot;gid&quot;        &quot;shape_leng&quot; &quot;shape_area&quot; &quot;geometry&quot;</code></pre>
 <p>Given the extremely large size, it’s best to reduce the dataset to include only the years you require</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="locating-and-refining-environmental-data.html#cb37-1" tabindex="-1"></a>poly_fires <span class="ot">&lt;-</span> poly_fires <span class="sc">%&gt;%</span> </span>
-<span id="cb37-2"><a href="locating-and-refining-environmental-data.html#cb37-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2010</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="locating-and-refining-environmental-data.html#cb18-1" tabindex="-1"></a>poly_fires <span class="ot">&lt;-</span> poly_fires <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="locating-and-refining-environmental-data.html#cb18-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2010</span>)</span></code></pre></div>
 <p>Limit dataset to only the columns you require</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="locating-and-refining-environmental-data.html#cb38-1" tabindex="-1"></a>poly_fires <span class="ot">&lt;-</span> <span class="fu">select</span>(poly_fires, </span>
-<span id="cb38-2"><a href="locating-and-refining-environmental-data.html#cb38-2" tabindex="-1"></a>                     nfireid, basrc,</span>
-<span id="cb38-3"><a href="locating-and-refining-environmental-data.html#cb38-3" tabindex="-1"></a>                     year, </span>
-<span id="cb38-4"><a href="locating-and-refining-environmental-data.html#cb38-4" tabindex="-1"></a>                     ag_sdate, <span class="co"># start date as date format</span></span>
-<span id="cb38-5"><a href="locating-and-refining-environmental-data.html#cb38-5" tabindex="-1"></a>                     ag_edate, <span class="co"># end date as date format</span></span>
-<span id="cb38-6"><a href="locating-and-refining-environmental-data.html#cb38-6" tabindex="-1"></a>                     poly_ha, </span>
-<span id="cb38-7"><a href="locating-and-refining-environmental-data.html#cb38-7" tabindex="-1"></a>                     admin_area,</span>
-<span id="cb38-8"><a href="locating-and-refining-environmental-data.html#cb38-8" tabindex="-1"></a>                     geometry)</span>
-<span id="cb38-9"><a href="locating-and-refining-environmental-data.html#cb38-9" tabindex="-1"></a></span>
-<span id="cb38-10"><a href="locating-and-refining-environmental-data.html#cb38-10" tabindex="-1"></a><span class="fu">head</span>(poly_fires)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="locating-and-refining-environmental-data.html#cb19-1" tabindex="-1"></a>poly_fires <span class="ot">&lt;-</span> <span class="fu">select</span>(poly_fires, </span>
+<span id="cb19-2"><a href="locating-and-refining-environmental-data.html#cb19-2" tabindex="-1"></a>                     nfireid, basrc,</span>
+<span id="cb19-3"><a href="locating-and-refining-environmental-data.html#cb19-3" tabindex="-1"></a>                     year, </span>
+<span id="cb19-4"><a href="locating-and-refining-environmental-data.html#cb19-4" tabindex="-1"></a>                     ag_sdate, <span class="co"># start date as date format</span></span>
+<span id="cb19-5"><a href="locating-and-refining-environmental-data.html#cb19-5" tabindex="-1"></a>                     ag_edate, <span class="co"># end date as date format</span></span>
+<span id="cb19-6"><a href="locating-and-refining-environmental-data.html#cb19-6" tabindex="-1"></a>                     poly_ha, </span>
+<span id="cb19-7"><a href="locating-and-refining-environmental-data.html#cb19-7" tabindex="-1"></a>                     admin_area,</span>
+<span id="cb19-8"><a href="locating-and-refining-environmental-data.html#cb19-8" tabindex="-1"></a>                     geometry)</span>
+<span id="cb19-9"><a href="locating-and-refining-environmental-data.html#cb19-9" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="locating-and-refining-environmental-data.html#cb19-10" tabindex="-1"></a><span class="fu">head</span>(poly_fires)</span></code></pre></div>
 <pre><code>## Simple feature collection with 6 features and 7 fields
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
 ## Bounding box:  xmin: -1246508 ymin: 1397449 xmax: -844340.2 ymax: 1459866
 ## Projected CRS: Canada_Lambert_Conformal_Conic
-##   nfireid  basrc year   ag_sdate   ag_edate    poly_ha admin_area
-## 1       1 MAFiMS 2024 2024-07-29 2024-10-04  625.25831         NT
-## 2       2 MAFiMS 2024 2024-06-28 2024-10-04  185.71593         NT
-## 3       3 MAFiMS 2024 2024-07-17 2024-10-04 1188.87817         NT
-## 4       4 MAFiMS 2024 2024-07-17 2024-10-04 3862.62690         NT
-## 5       5 MAFiMS 2024 2024-07-31 2024-10-04   26.55261         NT
-## 6       6 MAFiMS 2024 2024-07-19 2024-10-04   28.82723         NT
-##                         geometry
-## 1 MULTIPOLYGON (((-1120514 14...
-## 2 MULTIPOLYGON (((-1245606 14...
-## 3 MULTIPOLYGON (((-846230.9 1...
-## 4 MULTIPOLYGON (((-869281.6 1...
-## 5 MULTIPOLYGON (((-1229068 14...
-## 6 MULTIPOLYGON (((-1225697 14...</code></pre>
+##   nfireid  basrc year   ag_sdate   ag_edate    poly_ha admin_area                       geometry
+## 1       1 MAFiMS 2024 2024-07-29 2024-10-04  625.25831         NT MULTIPOLYGON (((-1120514 14...
+## 2       2 MAFiMS 2024 2024-06-28 2024-10-04  185.71593         NT MULTIPOLYGON (((-1245606 14...
+## 3       3 MAFiMS 2024 2024-07-17 2024-10-04 1188.87817         NT MULTIPOLYGON (((-846230.9 1...
+## 4       4 MAFiMS 2024 2024-07-17 2024-10-04 3862.62690         NT MULTIPOLYGON (((-869281.6 1...
+## 5       5 MAFiMS 2024 2024-07-31 2024-10-04   26.55261         NT MULTIPOLYGON (((-1229068 14...
+## 6       6 MAFiMS 2024 2024-07-19 2024-10-04   28.82723         NT MULTIPOLYGON (((-1225697 14...</code></pre>
 <p>Rename columns to align better with your spatial datasets</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="locating-and-refining-environmental-data.html#cb40-1" tabindex="-1"></a>poly_fires <span class="ot">&lt;-</span> poly_fires <span class="sc">%&gt;%</span></span>
-<span id="cb40-2"><a href="locating-and-refining-environmental-data.html#cb40-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb40-3"><a href="locating-and-refining-environmental-data.html#cb40-3" tabindex="-1"></a>    <span class="at">start_day =</span> <span class="fu">day</span>(ag_sdate),</span>
-<span id="cb40-4"><a href="locating-and-refining-environmental-data.html#cb40-4" tabindex="-1"></a>    <span class="at">start_month =</span> <span class="fu">month</span>(ag_sdate),</span>
-<span id="cb40-5"><a href="locating-and-refining-environmental-data.html#cb40-5" tabindex="-1"></a>    <span class="at">start_year =</span> <span class="fu">year</span>(ag_sdate),</span>
-<span id="cb40-6"><a href="locating-and-refining-environmental-data.html#cb40-6" tabindex="-1"></a>    <span class="at">end_day =</span> <span class="fu">day</span>(ag_edate),</span>
-<span id="cb40-7"><a href="locating-and-refining-environmental-data.html#cb40-7" tabindex="-1"></a>    <span class="at">end_month =</span> <span class="fu">month</span>(ag_edate),</span>
-<span id="cb40-8"><a href="locating-and-refining-environmental-data.html#cb40-8" tabindex="-1"></a>    <span class="at">end_year =</span> <span class="fu">year</span>(ag_edate),</span>
-<span id="cb40-9"><a href="locating-and-refining-environmental-data.html#cb40-9" tabindex="-1"></a>    <span class="at">start_date =</span> ag_sdate, </span>
-<span id="cb40-10"><a href="locating-and-refining-environmental-data.html#cb40-10" tabindex="-1"></a>    <span class="at">end_date =</span> ag_edate,</span>
-<span id="cb40-11"><a href="locating-and-refining-environmental-data.html#cb40-11" tabindex="-1"></a>    <span class="at">size =</span> poly_ha) <span class="sc">%&gt;%</span></span>
-<span id="cb40-12"><a href="locating-and-refining-environmental-data.html#cb40-12" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>poly_ha)  <span class="co"># remove the original poly_ha column</span></span>
-<span id="cb40-13"><a href="locating-and-refining-environmental-data.html#cb40-13" tabindex="-1"></a></span>
-<span id="cb40-14"><a href="locating-and-refining-environmental-data.html#cb40-14" tabindex="-1"></a></span>
-<span id="cb40-15"><a href="locating-and-refining-environmental-data.html#cb40-15" tabindex="-1"></a><span class="fu">names</span>(poly_fires)</span></code></pre></div>
-<pre><code>##  [1] &quot;nfireid&quot;     &quot;basrc&quot;       &quot;year&quot;        &quot;ag_sdate&quot;    &quot;ag_edate&quot;   
-##  [6] &quot;admin_area&quot;  &quot;start_day&quot;   &quot;start_month&quot; &quot;start_year&quot;  &quot;end_day&quot;    
-## [11] &quot;end_month&quot;   &quot;end_year&quot;    &quot;start_date&quot;  &quot;end_date&quot;    &quot;size&quot;       
-## [16] &quot;geometry&quot;</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="locating-and-refining-environmental-data.html#cb42-1" tabindex="-1"></a><span class="fu">str</span>(poly_fires)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="locating-and-refining-environmental-data.html#cb21-1" tabindex="-1"></a>poly_fires <span class="ot">&lt;-</span> poly_fires <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="locating-and-refining-environmental-data.html#cb21-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-3"><a href="locating-and-refining-environmental-data.html#cb21-3" tabindex="-1"></a>    <span class="at">start_day =</span> <span class="fu">day</span>(ag_sdate),</span>
+<span id="cb21-4"><a href="locating-and-refining-environmental-data.html#cb21-4" tabindex="-1"></a>    <span class="at">start_month =</span> <span class="fu">month</span>(ag_sdate),</span>
+<span id="cb21-5"><a href="locating-and-refining-environmental-data.html#cb21-5" tabindex="-1"></a>    <span class="at">start_year =</span> <span class="fu">year</span>(ag_sdate),</span>
+<span id="cb21-6"><a href="locating-and-refining-environmental-data.html#cb21-6" tabindex="-1"></a>    <span class="at">end_day =</span> <span class="fu">day</span>(ag_edate),</span>
+<span id="cb21-7"><a href="locating-and-refining-environmental-data.html#cb21-7" tabindex="-1"></a>    <span class="at">end_month =</span> <span class="fu">month</span>(ag_edate),</span>
+<span id="cb21-8"><a href="locating-and-refining-environmental-data.html#cb21-8" tabindex="-1"></a>    <span class="at">end_year =</span> <span class="fu">year</span>(ag_edate),</span>
+<span id="cb21-9"><a href="locating-and-refining-environmental-data.html#cb21-9" tabindex="-1"></a>    <span class="at">start_date =</span> ag_sdate, </span>
+<span id="cb21-10"><a href="locating-and-refining-environmental-data.html#cb21-10" tabindex="-1"></a>    <span class="at">end_date =</span> ag_edate,</span>
+<span id="cb21-11"><a href="locating-and-refining-environmental-data.html#cb21-11" tabindex="-1"></a>    <span class="at">size =</span> poly_ha) <span class="sc">%&gt;%</span></span>
+<span id="cb21-12"><a href="locating-and-refining-environmental-data.html#cb21-12" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>poly_ha)  <span class="co"># remove the original poly_ha column</span></span>
+<span id="cb21-13"><a href="locating-and-refining-environmental-data.html#cb21-13" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="locating-and-refining-environmental-data.html#cb21-14" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="locating-and-refining-environmental-data.html#cb21-15" tabindex="-1"></a><span class="fu">names</span>(poly_fires)</span></code></pre></div>
+<pre><code>##  [1] &quot;nfireid&quot;     &quot;basrc&quot;       &quot;year&quot;        &quot;ag_sdate&quot;    &quot;ag_edate&quot;    &quot;admin_area&quot;  &quot;start_day&quot;   &quot;start_month&quot; &quot;start_year&quot; 
+## [10] &quot;end_day&quot;     &quot;end_month&quot;   &quot;end_year&quot;    &quot;start_date&quot;  &quot;end_date&quot;    &quot;size&quot;        &quot;geometry&quot;</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="locating-and-refining-environmental-data.html#cb23-1" tabindex="-1"></a><span class="fu">str</span>(poly_fires)</span></code></pre></div>
 <pre><code>## Classes &#39;sf&#39; and &#39;data.frame&#39;:   22220 obs. of  16 variables:
 ##  $ nfireid    : num  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ basrc      : chr  &quot;MAFiMS&quot; &quot;MAFiMS&quot; &quot;MAFiMS&quot; &quot;MAFiMS&quot; ...
 ##  $ year       : num  2024 2024 2024 2024 2024 ...
-##  $ ag_sdate   : Date, format: &quot;2024-07-29&quot; &quot;2024-06-28&quot; ...
-##  $ ag_edate   : Date, format: &quot;2024-10-04&quot; &quot;2024-10-04&quot; ...
+##  $ ag_sdate   : Date, format: &quot;2024-07-29&quot; &quot;2024-06-28&quot; &quot;2024-07-17&quot; &quot;2024-07-17&quot; ...
+##  $ ag_edate   : Date, format: &quot;2024-10-04&quot; &quot;2024-10-04&quot; &quot;2024-10-04&quot; &quot;2024-10-04&quot; ...
 ##  $ admin_area : chr  &quot;NT&quot; &quot;NT&quot; &quot;NT&quot; &quot;NT&quot; ...
 ##  $ start_day  : int  29 28 17 17 31 19 23 18 18 21 ...
 ##  $ start_month: int  7 6 7 7 7 7 5 7 7 6 ...
@@ -329,8 +319,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ end_day    : int  4 4 4 4 4 4 4 17 17 14 ...
 ##  $ end_month  : int  10 10 10 10 10 10 10 9 9 7 ...
 ##  $ end_year   : int  2024 2024 2024 2024 2024 2024 2024 2024 2024 2024 ...
-##  $ start_date : Date, format: &quot;2024-07-29&quot; &quot;2024-06-28&quot; ...
-##  $ end_date   : Date, format: &quot;2024-10-04&quot; &quot;2024-10-04&quot; ...
+##  $ start_date : Date, format: &quot;2024-07-29&quot; &quot;2024-06-28&quot; &quot;2024-07-17&quot; &quot;2024-07-17&quot; ...
+##  $ end_date   : Date, format: &quot;2024-10-04&quot; &quot;2024-10-04&quot; &quot;2024-10-04&quot; &quot;2024-10-04&quot; ...
 ##  $ size       : num  625.3 185.7 1188.9 3862.6 26.6 ...
 ##  $ geometry   :sfc_MULTIPOLYGON of length 22220; first list element: List of 1
 ##   ..$ :List of 4
@@ -343,8 +333,139 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  - attr(*, &quot;agr&quot;)= Factor w/ 3 levels &quot;constant&quot;,&quot;aggregate&quot;,..: NA NA NA NA NA NA NA NA NA NA ...
 ##   ..- attr(*, &quot;names&quot;)= chr [1:15] &quot;nfireid&quot; &quot;basrc&quot; &quot;year&quot; &quot;ag_sdate&quot; ...</code></pre>
 <p>You may also want to save this newly formed dataset for easier future loading (i.e., to avoid the need to reload the shapefile during your next R session)</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="locating-and-refining-environmental-data.html#cb44-1" tabindex="-1"></a><span class="co"># uncomment to run</span></span>
-<span id="cb44-2"><a href="locating-and-refining-environmental-data.html#cb44-2" tabindex="-1"></a><span class="co"># write.csv(poly_fires, &quot;wildfire_data.csv&quot;, row.names = FALSE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="locating-and-refining-environmental-data.html#cb25-1" tabindex="-1"></a><span class="co"># uncomment to run</span></span>
+<span id="cb25-2"><a href="locating-and-refining-environmental-data.html#cb25-2" tabindex="-1"></a><span class="co"># write.csv(poly_fires, &quot;wildfire_data.csv&quot;, row.names = FALSE)</span></span></code></pre></div>
+</div>
+</div>
+<div id="hurricanes" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Hurricanes<a href="locating-and-refining-environmental-data.html#hurricanes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="hurricanes-data-sourcing" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Data Sourcing<a href="locating-and-refining-environmental-data.html#hurricanes-data-sourcing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Hurricane data was sourced from the National Oceanic and Atmospheric Administration (NOAA). Data can be obtained programmatically (as below), or manually for each hurricane of interest from the <a href="https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=" title="Hurricane Best Tracks">NOAA website</a>. Should you choose to download the files yourself, the script is designed to use shapefiles (.shp).</p>
+<ul>
+<li>It is important to note that the following script should be used sparingly</li>
+</ul>
+<p>We first need to specify where we are getting the hurricane data from and for which years.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="locating-and-refining-environmental-data.html#cb26-1" tabindex="-1"></a>base_page <span class="ot">&lt;-</span> <span class="st">&quot;https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=&quot;</span></span>
+<span id="cb26-2"><a href="locating-and-refining-environmental-data.html#cb26-2" tabindex="-1"></a>base_zip  <span class="ot">&lt;-</span> <span class="st">&quot;https://www.nhc.noaa.gov/gis/best_track/&quot;</span></span>
+<span id="cb26-3"><a href="locating-and-refining-environmental-data.html#cb26-3" tabindex="-1"></a>hurricane_years_interest <span class="ot">&lt;-</span> <span class="dv">2008</span><span class="sc">:</span><span class="dv">2025</span> <span class="co">#getting data for all years from 2008 to 2025</span></span></code></pre></div>
+<p>Next, we set up the storage location for the hurricane best track files and create a lookup table for later. It is important to set a viable output directory for the best tracks from the website.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="locating-and-refining-environmental-data.html#cb27-1" tabindex="-1"></a><span class="co">#set an output directory for the data to download into</span></span>
+<span id="cb27-2"><a href="locating-and-refining-environmental-data.html#cb27-2" tabindex="-1"></a>base_shape_dir <span class="ot">&lt;-</span> <span class="st">&quot;./HurricaneRawData/nhc_best_tracks&quot;</span></span>
+<span id="cb27-3"><a href="locating-and-refining-environmental-data.html#cb27-3" tabindex="-1"></a><span class="fu">dir.create</span>(base_shape_dir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb27-4"><a href="locating-and-refining-environmental-data.html#cb27-4" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="locating-and-refining-environmental-data.html#cb27-5" tabindex="-1"></a><span class="co">#create a lookup table for the storms that can be used later to create a connection between the storm name and data</span></span>
+<span id="cb27-6"><a href="locating-and-refining-environmental-data.html#cb27-6" tabindex="-1"></a>storm_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Year =</span> <span class="fu">integer</span>(), <span class="at">Storms =</span> <span class="fu">integer</span>())</span>
+<span id="cb27-7"><a href="locating-and-refining-environmental-data.html#cb27-7" tabindex="-1"></a>storm_lookup  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> <span class="fu">integer</span>(), <span class="at">storm_id =</span> <span class="fu">character</span>(), <span class="at">storm_name =</span> <span class="fu">character</span>())</span></code></pre></div>
+<p>Finally, get the files from the website for each year specified.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="locating-and-refining-environmental-data.html#cb28-1" tabindex="-1"></a><span class="co">#process every year for the year range specified above</span></span>
+<span id="cb28-2"><a href="locating-and-refining-environmental-data.html#cb28-2" tabindex="-1"></a><span class="cf">for</span> (year <span class="cf">in</span> hurricane_years_interest) {</span>
+<span id="cb28-3"><a href="locating-and-refining-environmental-data.html#cb28-3" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;processing&quot;</span>, year, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb28-4"><a href="locating-and-refining-environmental-data.html#cb28-4" tabindex="-1"></a>  </span>
+<span id="cb28-5"><a href="locating-and-refining-environmental-data.html#cb28-5" tabindex="-1"></a>  <span class="co">#read the page, catch if the response is blank</span></span>
+<span id="cb28-6"><a href="locating-and-refining-environmental-data.html#cb28-6" tabindex="-1"></a>  page <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
+<span id="cb28-7"><a href="locating-and-refining-environmental-data.html#cb28-7" tabindex="-1"></a>    <span class="fu">read_html</span>(<span class="fu">paste0</span>(base_page, year))</span>
+<span id="cb28-8"><a href="locating-and-refining-environmental-data.html#cb28-8" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb28-9"><a href="locating-and-refining-environmental-data.html#cb28-9" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;could not read page for&quot;</span>, year, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb28-10"><a href="locating-and-refining-environmental-data.html#cb28-10" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb28-11"><a href="locating-and-refining-environmental-data.html#cb28-11" tabindex="-1"></a>  })</span>
+<span id="cb28-12"><a href="locating-and-refining-environmental-data.html#cb28-12" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(page)) <span class="cf">next</span></span>
+<span id="cb28-13"><a href="locating-and-refining-environmental-data.html#cb28-13" tabindex="-1"></a>  </span>
+<span id="cb28-14"><a href="locating-and-refining-environmental-data.html#cb28-14" tabindex="-1"></a>  <span class="co">#extract all the rows on the page to get the hurricane codes and names from the table for that year</span></span>
+<span id="cb28-15"><a href="locating-and-refining-environmental-data.html#cb28-15" tabindex="-1"></a>  rows <span class="ot">&lt;-</span> <span class="fu">html_nodes</span>(page, <span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb28-16"><a href="locating-and-refining-environmental-data.html#cb28-16" tabindex="-1"></a>  </span>
+<span id="cb28-17"><a href="locating-and-refining-environmental-data.html#cb28-17" tabindex="-1"></a>  <span class="co">#loop through rows to match &quot;al##&quot; and extract name from second column to create lookup table</span></span>
+<span id="cb28-18"><a href="locating-and-refining-environmental-data.html#cb28-18" tabindex="-1"></a>  <span class="cf">for</span> (row <span class="cf">in</span> rows) {</span>
+<span id="cb28-19"><a href="locating-and-refining-environmental-data.html#cb28-19" tabindex="-1"></a>    cols <span class="ot">&lt;-</span> <span class="fu">html_nodes</span>(row, <span class="st">&quot;td&quot;</span>) <span class="co">#get all the td html elements</span></span>
+<span id="cb28-20"><a href="locating-and-refining-environmental-data.html#cb28-20" tabindex="-1"></a>    </span>
+<span id="cb28-21"><a href="locating-and-refining-environmental-data.html#cb28-21" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(cols) <span class="sc">&gt;=</span> <span class="dv">2</span>) {</span>
+<span id="cb28-22"><a href="locating-and-refining-environmental-data.html#cb28-22" tabindex="-1"></a>      id_text <span class="ot">&lt;-</span> <span class="fu">str_trim</span>(<span class="fu">html_text</span>(cols[<span class="dv">1</span>])) <span class="co">#just want the id from the td elements</span></span>
+<span id="cb28-23"><a href="locating-and-refining-environmental-data.html#cb28-23" tabindex="-1"></a>      </span>
+<span id="cb28-24"><a href="locating-and-refining-environmental-data.html#cb28-24" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">str_detect</span>(<span class="fu">tolower</span>(id_text), <span class="st">&quot;^al</span><span class="sc">\\</span><span class="st">d{2}$&quot;</span>)) { <span class="co">#regex to get the atlantic (al) storm and the id number</span></span>
+<span id="cb28-25"><a href="locating-and-refining-environmental-data.html#cb28-25" tabindex="-1"></a>        name_text <span class="ot">&lt;-</span> <span class="fu">str_trim</span>(<span class="fu">html_text</span>(cols[<span class="dv">2</span>])) <span class="co">#get the nominal identifier</span></span>
+<span id="cb28-26"><a href="locating-and-refining-environmental-data.html#cb28-26" tabindex="-1"></a>        storm_lookup <span class="ot">&lt;-</span> <span class="fu">rbind</span>( <span class="co">#collect and add to the storm loookup table</span></span>
+<span id="cb28-27"><a href="locating-and-refining-environmental-data.html#cb28-27" tabindex="-1"></a>          storm_lookup,</span>
+<span id="cb28-28"><a href="locating-and-refining-environmental-data.html#cb28-28" tabindex="-1"></a>          <span class="fu">data.frame</span>( <span class="co">#create a data frame with the year, storm id from the td element, and the storm name</span></span>
+<span id="cb28-29"><a href="locating-and-refining-environmental-data.html#cb28-29" tabindex="-1"></a>            <span class="at">year =</span> year,</span>
+<span id="cb28-30"><a href="locating-and-refining-environmental-data.html#cb28-30" tabindex="-1"></a>            <span class="at">storm_id =</span> <span class="fu">tolower</span>(id_text),</span>
+<span id="cb28-31"><a href="locating-and-refining-environmental-data.html#cb28-31" tabindex="-1"></a>            <span class="at">storm_name =</span> name_text,</span>
+<span id="cb28-32"><a href="locating-and-refining-environmental-data.html#cb28-32" tabindex="-1"></a>            <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb28-33"><a href="locating-and-refining-environmental-data.html#cb28-33" tabindex="-1"></a>          )</span>
+<span id="cb28-34"><a href="locating-and-refining-environmental-data.html#cb28-34" tabindex="-1"></a>        )</span>
+<span id="cb28-35"><a href="locating-and-refining-environmental-data.html#cb28-35" tabindex="-1"></a>      }</span>
+<span id="cb28-36"><a href="locating-and-refining-environmental-data.html#cb28-36" tabindex="-1"></a>    }</span>
+<span id="cb28-37"><a href="locating-and-refining-environmental-data.html#cb28-37" tabindex="-1"></a>  }</span>
+<span id="cb28-38"><a href="locating-and-refining-environmental-data.html#cb28-38" tabindex="-1"></a>  </span>
+<span id="cb28-39"><a href="locating-and-refining-environmental-data.html#cb28-39" tabindex="-1"></a>  <span class="co">#get just the text from all the td html elements</span></span>
+<span id="cb28-40"><a href="locating-and-refining-environmental-data.html#cb28-40" tabindex="-1"></a>  td_text <span class="ot">&lt;-</span> <span class="fu">html_text</span>(<span class="fu">html_nodes</span>(page, <span class="st">&quot;td&quot;</span>), <span class="at">trim =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-41"><a href="locating-and-refining-environmental-data.html#cb28-41" tabindex="-1"></a>  </span>
+<span id="cb28-42"><a href="locating-and-refining-environmental-data.html#cb28-42" tabindex="-1"></a>  <span class="co">#get the strom ids again (for redundancies sake)</span></span>
+<span id="cb28-43"><a href="locating-and-refining-environmental-data.html#cb28-43" tabindex="-1"></a>  storm_ids <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">str_to_lower</span>(<span class="fu">str_subset</span>(td_text, <span class="st">&quot;^al</span><span class="sc">\\</span><span class="st">d{2}&quot;</span>)))</span>
+<span id="cb28-44"><a href="locating-and-refining-environmental-data.html#cb28-44" tabindex="-1"></a>  </span>
+<span id="cb28-45"><a href="locating-and-refining-environmental-data.html#cb28-45" tabindex="-1"></a>  <span class="co">#make sure it&#39;s just the 4 character id with more regex</span></span>
+<span id="cb28-46"><a href="locating-and-refining-environmental-data.html#cb28-46" tabindex="-1"></a>  storm_ids <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">s.*&quot;</span>, <span class="st">&quot;&quot;</span>, storm_ids)</span>
+<span id="cb28-47"><a href="locating-and-refining-environmental-data.html#cb28-47" tabindex="-1"></a>  </span>
+<span id="cb28-48"><a href="locating-and-refining-environmental-data.html#cb28-48" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot; found&quot;</span>, <span class="fu">length</span>(storm_ids), <span class="st">&quot;atlantic storms</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb28-49"><a href="locating-and-refining-environmental-data.html#cb28-49" tabindex="-1"></a>  </span>
+<span id="cb28-50"><a href="locating-and-refining-environmental-data.html#cb28-50" tabindex="-1"></a>  <span class="co">#storm summary for creating storm ids in file names</span></span>
+<span id="cb28-51"><a href="locating-and-refining-environmental-data.html#cb28-51" tabindex="-1"></a>  storm_summary <span class="ot">&lt;-</span> <span class="fu">rbind</span>(storm_summary,</span>
+<span id="cb28-52"><a href="locating-and-refining-environmental-data.html#cb28-52" tabindex="-1"></a>                         <span class="fu">data.frame</span>(<span class="at">Year =</span> year, <span class="at">Storms =</span> <span class="fu">length</span>(storm_ids)))</span>
+<span id="cb28-53"><a href="locating-and-refining-environmental-data.html#cb28-53" tabindex="-1"></a>  </span>
+<span id="cb28-54"><a href="locating-and-refining-environmental-data.html#cb28-54" tabindex="-1"></a>  <span class="co">#file naming system is regular within the website hierarchy, so download all zip shapefiles using the engineered storm names</span></span>
+<span id="cb28-55"><a href="locating-and-refining-environmental-data.html#cb28-55" tabindex="-1"></a>  <span class="cf">for</span> (storm_id <span class="cf">in</span> storm_ids) {</span>
+<span id="cb28-56"><a href="locating-and-refining-environmental-data.html#cb28-56" tabindex="-1"></a>    zip_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(storm_id, year, <span class="st">&quot;_best_track.zip&quot;</span>)</span>
+<span id="cb28-57"><a href="locating-and-refining-environmental-data.html#cb28-57" tabindex="-1"></a>    url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_zip, zip_name)</span>
+<span id="cb28-58"><a href="locating-and-refining-environmental-data.html#cb28-58" tabindex="-1"></a>    dest <span class="ot">&lt;-</span> <span class="fu">file.path</span>(base_shape_dir, zip_name) <span class="co">#set outpath based on string specified earlier</span></span>
+<span id="cb28-59"><a href="locating-and-refining-environmental-data.html#cb28-59" tabindex="-1"></a>    </span>
+<span id="cb28-60"><a href="locating-and-refining-environmental-data.html#cb28-60" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot; downloading:&quot;</span>, zip_name, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb28-61"><a href="locating-and-refining-environmental-data.html#cb28-61" tabindex="-1"></a>    resp <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
+<span id="cb28-62"><a href="locating-and-refining-environmental-data.html#cb28-62" tabindex="-1"></a>      <span class="fu">GET</span>(url, <span class="fu">write_disk</span>(dest, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)) <span class="co">#get zip file from constructed url</span></span>
+<span id="cb28-63"><a href="locating-and-refining-environmental-data.html#cb28-63" tabindex="-1"></a>    }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb28-64"><a href="locating-and-refining-environmental-data.html#cb28-64" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot; failed to download&quot;</span>, zip_name, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="co">#sometimes there are no files to download, especially in earlier years</span></span>
+<span id="cb28-65"><a href="locating-and-refining-environmental-data.html#cb28-65" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb28-66"><a href="locating-and-refining-environmental-data.html#cb28-66" tabindex="-1"></a>    })</span>
+<span id="cb28-67"><a href="locating-and-refining-environmental-data.html#cb28-67" tabindex="-1"></a>    </span>
+<span id="cb28-68"><a href="locating-and-refining-environmental-data.html#cb28-68" tabindex="-1"></a>    <span class="co">#unzip the files too, easier to do now than later</span></span>
+<span id="cb28-69"><a href="locating-and-refining-environmental-data.html#cb28-69" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(resp) <span class="sc">&amp;&amp;</span> <span class="fu">status_code</span>(resp) <span class="sc">==</span> <span class="dv">200</span>) {</span>
+<span id="cb28-70"><a href="locating-and-refining-environmental-data.html#cb28-70" tabindex="-1"></a>      <span class="fu">unzip</span>(dest, <span class="at">exdir =</span> <span class="fu">file.path</span>(base_shape_dir, <span class="fu">paste0</span>(storm_id, <span class="st">&quot;_&quot;</span>, year)))</span>
+<span id="cb28-71"><a href="locating-and-refining-environmental-data.html#cb28-71" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb28-72"><a href="locating-and-refining-environmental-data.html#cb28-72" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot; file not found:&quot;</span>, url, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb28-73"><a href="locating-and-refining-environmental-data.html#cb28-73" tabindex="-1"></a>    }</span>
+<span id="cb28-74"><a href="locating-and-refining-environmental-data.html#cb28-74" tabindex="-1"></a>    <span class="co">#be kind to the server and don&#39;t get banned from scraping</span></span>
+<span id="cb28-75"><a href="locating-and-refining-environmental-data.html#cb28-75" tabindex="-1"></a>    <span class="fu">Sys.sleep</span>(<span class="fl">1.1</span>)</span>
+<span id="cb28-76"><a href="locating-and-refining-environmental-data.html#cb28-76" tabindex="-1"></a>  }</span>
+<span id="cb28-77"><a href="locating-and-refining-environmental-data.html#cb28-77" tabindex="-1"></a>}</span>
+<span id="cb28-78"><a href="locating-and-refining-environmental-data.html#cb28-78" tabindex="-1"></a></span>
+<span id="cb28-79"><a href="locating-and-refining-environmental-data.html#cb28-79" tabindex="-1"></a><span class="fu">write.csv</span>(storm_lookup, r<span class="st">&quot;(./HurricaneRawData/storm_lookup_table.csv)&quot;</span>)</span></code></pre></div>
+</div>
+<div id="hurricanes-data-cleaning" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Data Cleaning<a href="locating-and-refining-environmental-data.html#hurricanes-data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now that the data is downloaded and ready, it is time to clean the data up.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="locating-and-refining-environmental-data.html#cb29-1" tabindex="-1"></a><span class="co">#standardizing naming conventions in files</span></span>
+<span id="cb29-2"><a href="locating-and-refining-environmental-data.html#cb29-2" tabindex="-1"></a>month_map <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb29-3"><a href="locating-and-refining-environmental-data.html#cb29-3" tabindex="-1"></a>  <span class="st">&quot;jan&quot;</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">&quot;january&quot;</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">&quot;01&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb29-4"><a href="locating-and-refining-environmental-data.html#cb29-4" tabindex="-1"></a>  <span class="st">&quot;feb&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;february&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;02&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb29-5"><a href="locating-and-refining-environmental-data.html#cb29-5" tabindex="-1"></a>  <span class="st">&quot;mar&quot;</span> <span class="ot">=</span> <span class="dv">3</span>, <span class="st">&quot;march&quot;</span> <span class="ot">=</span> <span class="dv">3</span>, <span class="st">&quot;03&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb29-6"><a href="locating-and-refining-environmental-data.html#cb29-6" tabindex="-1"></a>  <span class="st">&quot;apr&quot;</span> <span class="ot">=</span> <span class="dv">4</span>, <span class="st">&quot;april&quot;</span> <span class="ot">=</span> <span class="dv">4</span>, <span class="st">&quot;04&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
+<span id="cb29-7"><a href="locating-and-refining-environmental-data.html#cb29-7" tabindex="-1"></a>  <span class="st">&quot;may&quot;</span> <span class="ot">=</span> <span class="dv">5</span>, <span class="st">&quot;05&quot;</span> <span class="ot">=</span> <span class="dv">5</span>,</span>
+<span id="cb29-8"><a href="locating-and-refining-environmental-data.html#cb29-8" tabindex="-1"></a>  <span class="st">&quot;jun&quot;</span> <span class="ot">=</span> <span class="dv">6</span>, <span class="st">&quot;june&quot;</span> <span class="ot">=</span> <span class="dv">6</span>, <span class="st">&quot;06&quot;</span> <span class="ot">=</span> <span class="dv">6</span>,</span>
+<span id="cb29-9"><a href="locating-and-refining-environmental-data.html#cb29-9" tabindex="-1"></a>  <span class="st">&quot;jul&quot;</span> <span class="ot">=</span> <span class="dv">7</span>, <span class="st">&quot;july&quot;</span> <span class="ot">=</span> <span class="dv">7</span>, <span class="st">&quot;07&quot;</span> <span class="ot">=</span> <span class="dv">7</span>,</span>
+<span id="cb29-10"><a href="locating-and-refining-environmental-data.html#cb29-10" tabindex="-1"></a>  <span class="st">&quot;aug&quot;</span> <span class="ot">=</span> <span class="dv">8</span>, <span class="st">&quot;august&quot;</span> <span class="ot">=</span> <span class="dv">8</span>, <span class="st">&quot;08&quot;</span> <span class="ot">=</span> <span class="dv">8</span>,</span>
+<span id="cb29-11"><a href="locating-and-refining-environmental-data.html#cb29-11" tabindex="-1"></a>  <span class="st">&quot;sep&quot;</span> <span class="ot">=</span> <span class="dv">9</span>, <span class="st">&quot;september&quot;</span> <span class="ot">=</span> <span class="dv">9</span>, <span class="st">&quot;09&quot;</span> <span class="ot">=</span> <span class="dv">9</span>,</span>
+<span id="cb29-12"><a href="locating-and-refining-environmental-data.html#cb29-12" tabindex="-1"></a>  <span class="st">&quot;oct&quot;</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">&quot;october&quot;</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">&quot;10&quot;</span> <span class="ot">=</span> <span class="dv">10</span>,</span>
+<span id="cb29-13"><a href="locating-and-refining-environmental-data.html#cb29-13" tabindex="-1"></a>  <span class="st">&quot;nov&quot;</span> <span class="ot">=</span> <span class="dv">11</span>, <span class="st">&quot;november&quot;</span> <span class="ot">=</span> <span class="dv">11</span>, <span class="st">&quot;11&quot;</span> <span class="ot">=</span> <span class="dv">11</span>,</span>
+<span id="cb29-14"><a href="locating-and-refining-environmental-data.html#cb29-14" tabindex="-1"></a>  <span class="st">&quot;dec&quot;</span> <span class="ot">=</span> <span class="dv">12</span>, <span class="st">&quot;december&quot;</span> <span class="ot">=</span> <span class="dv">12</span>, <span class="st">&quot;12&quot;</span> <span class="ot">=</span> <span class="dv">12</span></span>
+<span id="cb29-15"><a href="locating-and-refining-environmental-data.html#cb29-15" tabindex="-1"></a>)</span>
+<span id="cb29-16"><a href="locating-and-refining-environmental-data.html#cb29-16" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="locating-and-refining-environmental-data.html#cb29-17" tabindex="-1"></a><span class="co">#base directory where files are saved</span></span>
+<span id="cb29-18"><a href="locating-and-refining-environmental-data.html#cb29-18" tabindex="-1"></a>base_dir <span class="ot">&lt;-</span> r<span class="st">&quot;(./HurricaneRawData/nhc_best_tracks)&quot;</span></span>
+<span id="cb29-19"><a href="locating-and-refining-environmental-data.html#cb29-19" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="locating-and-refining-environmental-data.html#cb29-20" tabindex="-1"></a><span class="co">#set an ID for all of the files in the pts files and radii files</span></span>
+<span id="cb29-21"><a href="locating-and-refining-environmental-data.html#cb29-21" tabindex="-1"></a><span class="co">#get all shapefiles recursively</span></span>
+<span id="cb29-22"><a href="locating-and-refining-environmental-data.html#cb29-22" tabindex="-1"></a>shp_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(base_dir, <span class="at">pattern =</span> <span class="st">&quot;(_pts</span><span class="sc">\\</span><span class="st">.shp$|_radii</span><span class="sc">\\</span><span class="st">.shp$)&quot;</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="hurricanes-data-manipulation" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Data Manipulation<a href="locating-and-refining-environmental-data.html#hurricanes-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
 </div>
 </div>
@@ -369,42 +490,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

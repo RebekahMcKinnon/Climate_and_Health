@@ -2,5 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+.env
 
 bookdown_project/wildfire_data.csv
+bookdown_project/data/

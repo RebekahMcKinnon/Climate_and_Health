@@ -1,45 +1,47 @@
 # Locating & Refining Environmental Data {#locating-and-refining-environmental-data}
 
-## Introduction {#introduction}
+## Introduction {#introduction-environmental-data}
+
+Sample data is the hospital data.
 
 ## Wildfires {#wildfires}
 
 ### Data preparation with sf package {#data-preparation-with-sf-package}
 
-We read the updated NBAC wildfire polygons (1972–2024) from the .shp file.
+We read the updated NBAC wildfire polygons (1972-2024) from the .shp file.
 
-- Tip: Shapefiles are a set of files. Ensure the .shp, .shx, .dbf, and (ideally) .prj sit together in the same folder.
+-   Tip: Shapefiles are a set of files. Ensure the .shp, .shx, .dbf, and (ideally) .prj sit together in the same folder.
 
 ```{r}
-poly_fires <- st_read("C:/Users/rebek/Downloads/NBAC_1972to2024_20250506_shp/NBAC_1972to2024_20250506.shp") 
+poly_fires <- st_read(r"(../data/FireData/NBAC_1972to2024_20250506.shp)") 
 
 names(poly_fires)
 ```
 
 ### Inspect & refine data structure {#inspect-and-refine-data-structure}
 
-Check available columns and data types 
+Check available columns and data types
 
 ```{r}
 names(poly_fires)
 str(poly_fires)
 ```
 
-Normalise column names 
+Normalise column names
 
 ```{r}
 names(poly_fires) <- tolower(names(poly_fires)) 
 names(poly_fires)
 ```
 
-Given the extremely large size, it's best to reduce the dataset to include only the years you require 
+Given the extremely large size, it's best to reduce the dataset to include only the years you require
 
 ```{r}
 poly_fires <- poly_fires %>% 
   filter(year >= 2010)
 ```
 
-Limit dataset to only the columns you require 
+Limit dataset to only the columns you require
 
 ```{r}
 poly_fires <- select(poly_fires, 
@@ -54,7 +56,7 @@ poly_fires <- select(poly_fires,
 head(poly_fires)
 ```
 
-Rename columns to align better with your spatial datasets 
+Rename columns to align better with your spatial datasets
 
 ```{r}
 poly_fires <- poly_fires %>%
@@ -80,5 +82,586 @@ You may also want to save this newly formed dataset for easier future loading (i
 ```{r}
 # uncomment to run
 # write.csv(poly_fires, "wildfire_data.csv", row.names = FALSE)
+```
+
+## Hurricanes {#hurricanes}
+
+### Data Sourcing {#hurricanes-data-sourcing}
+
+Hurricane data was sourced from the National Oceanic and Atmospheric Administration (NOAA). Data can be obtained programmatically (as below), or manually for each hurricane of interest from the [NOAA website](https://www.nhc.noaa.gov/gis/archive_besttrack.php?year= "Hurricane Best Tracks"). Should you choose to download the files yourself, the script is designed to use shapefiles (.shp).
+
+-   It is important to note that the following script should be used sparingly
+
+We first need to specify where we are getting the hurricane data from and for which years.
+
+```{r}
+base_page <- "https://www.nhc.noaa.gov/gis/archive_besttrack.php?year="
+base_zip  <- "https://www.nhc.noaa.gov/gis/best_track/"
+hurricane_years_interest <- 2008:2025 #getting data for all years from 2008 to 2025
+```
+
+Next, we set up the storage location for the hurricane best track files and create a lookup table for later. It is important to set a viable output directory for the best tracks from the website.
+
+```{r}
+#set an output directory for the data to download into
+base_shape_dir <- "../data/HurricaneRawData/nhc_best_tracks"
+dir.create(base_shape_dir, showWarnings = FALSE)
+
+#create a lookup table for the storms that can be used later to create a connection between the storm name and data
+storm_summary <- data.frame(Year = integer(), Storms = integer())
+storm_lookup  <- data.frame(year = integer(), storm_id = character(), storm_name = character())
+```
+
+Finally, get the files from the website for each year specified. Within this snippet, a lookup table for the file names and actual hurricane name is created and saved as a .csv for later reference. (TODO: add a switch to get just the names list vs. the file and names list)
+
+```{r, eval = FALSE}
+#process every year for the year range specified above
+for (year in hurricane_years_interest) {
+  cat("processing", year, "\n")
+  
+  #read the page, catch if the response is blank
+  page <- tryCatch({
+    read_html(paste0(base_page, year))
+  }, error = function(e) {
+    cat("could not read page for", year, "\n")
+    return(NULL)
+  })
+  if (is.null(page)) next
+  
+  #extract all the rows on the page to get the hurricane codes and names from the table for that year
+  rows <- html_nodes(page, "tr")
+  
+  #loop through rows to match "al##" and extract name from second column to create lookup table
+  for (row in rows) {
+    cols <- html_nodes(row, "td") #get all the td html elements
+    
+    if (length(cols) >= 2) {
+      id_text <- str_trim(html_text(cols[1])) #just want the id from the td elements
+      
+      if (str_detect(tolower(id_text), "^al\\d{2}$")) { #regex to get the atlantic (al) storm and the id number
+        name_text <- str_trim(html_text(cols[2])) #get the nominal identifier
+        storm_lookup <- rbind( #collect and add to the storm loookup table
+          storm_lookup,
+          data.frame( #create a data frame with the year, storm id from the td element, and the storm name
+            year = year,
+            storm_id = tolower(id_text),
+            storm_name = name_text,
+            stringsAsFactors = FALSE
+          )
+        )
+      }
+    }
+  }
+  
+  #get just the text from all the td html elements
+  td_text <- html_text(html_nodes(page, "td"), trim = TRUE)
+  
+  #get the strom ids again (for redundancies sake)
+  storm_ids <- unique(str_to_lower(str_subset(td_text, "^al\\d{2}")))
+  
+  #make sure it's just the 4 character id with more regex
+  storm_ids <- gsub("\\s.*", "", storm_ids)
+  
+  cat(" found", length(storm_ids), "atlantic storms\n")
+  
+  #storm summary for creating storm ids in file names
+  storm_summary <- rbind(storm_summary,
+                         data.frame(Year = year, Storms = length(storm_ids)))
+  
+  #file naming system is regular within the website hierarchy, so download all zip shapefiles using the engineered storm names
+  for (storm_id in storm_ids) {
+    zip_name <- paste0(storm_id, year, "_best_track.zip")
+    url <- paste0(base_zip, zip_name)
+    dest <- file.path(base_shape_dir, zip_name) #set outpath based on string specified earlier
+    
+    cat(" downloading:", zip_name, "\n")
+    resp <- tryCatch({
+      GET(url, write_disk(dest, overwrite = TRUE)) #get zip file from constructed url
+    }, error = function(e) {
+      cat(" failed to download", zip_name, "\n") #sometimes there are no files to download, especially in earlier years
+      return(NULL)
+    })
+    
+    #unzip the files too, easier to do now than later
+    if (!is.null(resp) && status_code(resp) == 200) {
+      unzip(dest, exdir = file.path(base_shape_dir, paste0(storm_id, "_", year)))
+    } else {
+      cat(" file not found:", url, "\n")
+    }
+    #be kind to the server and don't get banned from scraping
+    Sys.sleep(1.1)
+  }
+}
+
+write.csv(storm_lookup, r"(../data/HurricaneRawData/storm_lookup_table.csv)")
+```
+
+### Data Cleaning {#hurricanes-data-cleaning}
+
+Now that the data is downloaded and ready, it is time clean it up. There are two files of interest for the hurricanes, the point files and the polygon (radii) files. These files need to be manipulated so that dates and ids are consistent between the two file sets and between years. 
+
+```{r}
+#standardizing naming conventions in files
+month_map <- c(
+  "jan" = 1, "january" = 1, "01" = 1,
+  "feb" = 2, "february" = 2, "02" = 2,
+  "mar" = 3, "march" = 3, "03" = 3,
+  "apr" = 4, "april" = 4, "04" = 4,
+  "may" = 5, "05" = 5,
+  "jun" = 6, "june" = 6, "06" = 6,
+  "jul" = 7, "july" = 7, "07" = 7,
+  "aug" = 8, "august" = 8, "08" = 8,
+  "sep" = 9, "september" = 9, "09" = 9,
+  "oct" = 10, "october" = 10, "10" = 10,
+  "nov" = 11, "november" = 11, "11" = 11,
+  "dec" = 12, "december" = 12, "12" = 12
+)
+
+#base directory where files are saved
+base_dir <- r"(../data/HurricaneRawData/nhc_best_tracks)"
+
+#set an ID for all of the files in the pts files and radii files
+#get all shapefiles recursively
+shp_files <- list.files(base_dir, pattern = "(_pts\\.shp$|_radii\\.shp$)", recursive = TRUE, full.names = TRUE)
+```
+
+Add the storm ID for each storm to the file names and overwrite the shapefile.
+
+```{r}
+#process the files
+for (shp_path in shp_files) {
+  message("Processing: ", shp_path)
+  
+  #read the shapefile
+  shp <- st_read(shp_path, quiet = TRUE)
+  
+  #extract part before first underscore
+  file_prefix <- sub("_.*", "", basename(shp_path))
+  
+  #add the storm id file
+  shp <- shp %>% mutate(storm_id = file_prefix)
+  
+  #overwrite shapefile
+  st_write(shp, shp_path, delete_dsn = TRUE, quiet = TRUE)
+}
+```
+
+
+Date and time need to be consistent between the point and polygon files.
+
+```{r}
+#Create a new directory for processed files
+output_dir <- file.path(base_dir, "processed")
+
+#processing for just the _pts.shp files to normalize dates and times
+base_dir <- r"(../data/HurricaneRawData/nhc_best_tracks)"
+output_dir <- file.path(base_dir, "processed")
+dir.create(output_dir, showWarnings = FALSE)
+
+#get all the shapefiles recursively
+shp_files <- list.files(base_dir, pattern = "_pts\\.shp$", recursive = TRUE, full.names = TRUE)
+
+#recursively alter the pts files to the normalized date and time fields with ids
+for (shp_path in shp_files) {
+  message("Processing: ", shp_path)
+  
+  shp <- st_read(shp_path, quiet = TRUE)
+  
+  #files had different formats for dates and times, this normalizes them
+  # important step to combine everything for later analysis
+  shp <- shp %>%
+    mutate(
+      mm = str_pad(as.integer(unname(month_map[tolower(MONTH)])), 2, pad = "0"),
+      dd = str_pad(as.integer(DAY), 2, pad = "0"),
+      hh = str_sub(HHMM, 1, 2),
+      event_id = tolower(paste0(storm_id, mm, dd, hh))
+    )
+  
+  #preserve folder structure in output
+  rel_path <- path_rel(shp_path, start = base_dir)
+  out_path <- file.path(output_dir, rel_path)
+  dir_create(dirname(out_path))
+  
+  #write output
+  st_write(shp, out_path, delete_dsn = TRUE, quiet = TRUE)
+}
+```
+
+
+The points files also need to be done in a similar way.
+
+```{r}
+#slightly different process for the _radii file they already have the synoptime field and those just need to be modified
+shp_files <- list.files(base_dir, pattern = "_radii\\.shp$", recursive = TRUE, full.names = TRUE)
+
+#recursively alter the pts files to fie normalized date and time fields with ids
+for (shp_path in shp_files) {
+  message("Processing: ", shp_path)
+  
+  shp <- st_read(shp_path, quiet = TRUE)
+  
+  #create matching event_id to the points fields so they can be related (since they have different kinds of information)
+  shp <- shp %>%
+    mutate(
+      event_id = tolower(
+        paste0(storm_id, substr(SYNOPTIME, 5, nchar(SYNOPTIME))) #this will be storm id, date, and UTC hour in 24 hour format i.e. [al01][20250831][12]
+      )
+    )
+  
+  #different kind of id, radii refers to the range of wind at that knot level i.e. _34 would be 34 knot wind
+  shp <- shp %>%
+    mutate(
+      event_r_id = tolower(
+        paste0(storm_id, substr(SYNOPTIME, 5, nchar(SYNOPTIME)), "_", RADII)#this will be storm id, date, and UTC hour in 24 hour format, and radii distance  i.e. [al01][20250831][12][_34]
+      )
+    )
+  
+  #preserve folder structure
+  rel_path <- path_rel(shp_path, start = base_dir)
+  out_path <- file.path(output_dir, rel_path)
+  dir_create(dirname(out_path))
+  
+  #write output
+  st_write(shp, out_path, delete_dsn = TRUE, quiet = TRUE)
+}
+```
+
+
+### Data Manipulation {#hurricanes-data-manipulation}
+
+Now that the hurricane files are prepared properly, the associated points data of interest, (in this case hospitals), can be used within the files. THe point files in this example have a series of months and years in columns when surveys were conducted, a latitude and longitude column where we can identify
+
+First we define the functions to manipulate the data and set a configuration.
+
+```{r}
+
+Sys.setenv("OGR_GEOMETRY_ACCEPT_UNCLOSED_RING" = "YES")
+CONFIG <- list(
+  website = 'https://www.nhc.noaa.gov/gis/archive_besttrack.php',
+  storms_dir = r"(../data/HurricaneRawData/nhc_best_tracks/processed)",
+  storm_names_dir = r"(../data/HurricaneRawData/storm_lookup_table.csv)",
+  coord_cols = list(long = "long", lat = "lat"),
+  storm_cols = c("geometry", "event_id", "event_r_id", "storm_id"),
+  buffer_distances = c(0), #in metres
+  crs = 4326,
+  lookback_months = 30,
+  history_months = 24
+)
+
+#function to load the storm data from user specified directories
+load_storm_data <- function(storms_dir, cols, crs = CONFIG$crs) {
+  #get all the radii files, since these are the polygon files
+  shp_files <- list.files(storms_dir, pattern = "_radii\\.shp$", 
+                          recursive = TRUE, full.names = TRUE)
+  
+  #load each shapefile separately to avoid corruption
+  storm_list <- lapply(shp_files, function(shp) {
+    st_read(shp, quiet = TRUE) %>% 
+      select(any_of(cols)) %>%
+      st_transform(crs) %>%
+      #this throws OGR warnings for unclosed fans
+      st_make_valid()
+  })
+  
+  # Combine after all are processed
+  all_storms <- do.call(rbind, storm_list)
+  #extract part of the date
+  all_storms$months <- ym(str_sub(all_storms$event_id, 5, 10))
+  
+  all_storms
+}
+
+#load the survey point data from a csv, set as a generic crs unless otherwise specified
+load_survey_data <- function(file_path, long_col, lat_col, crs = CONFIG$crs) {
+  survey_data <- read.csv(file_path)
+  survey_data[survey_data == ""] <- NA
+  
+  valid_data <- survey_data[!is.na(survey_data[[long_col]]) & 
+                             !is.na(survey_data[[lat_col]]), ]
+  
+  #convert survey data to an sf object to compute intersections
+  survey_sf <- st_as_sf(
+    valid_data,
+    coords = c(long_col, lat_col),
+    crs = crs
+  ) %>% st_transform(crs)
+  
+  list(data = valid_data, sf = survey_sf)
+}
+
+#the max and min dates are integers, not date objects
+#TODO handle any date that is passed, extracting the months 
+filter_storms_by_date_range <- function(storms, min_date, max_date, lookback_months) {
+  storms %>% 
+    filter(months >= (min_date - months(lookback_months)) & 
+           months <= max_date)
+}
+
+#create a buffer around the survey data if looking for incidence within a radius
+prepare_survey_buffer <- function(survey_sf, buffer_dist) {
+  #extract attributes before buffering to errors
+  id <- survey_sf$id
+  survey_year <- survey_sf$survey_year
+  survey_month <- survey_sf$survey_month
+  
+  #buffer the survey data
+  survey_buffer <- st_buffer(survey_sf, buffer_dist)
+  
+  #reattach the appropriate attributes
+  survey_buffer$id <- id
+  survey_buffer$survey_year <- survey_year
+  survey_buffer$survey_month <- survey_month
+  survey_buffer$months <- ym(paste0(survey_year, survey_month))
+  survey_buffer$survey_id <- paste(id, survey_month, 
+                                          survey_year, sep = "_")
+  survey_buffer
+}
+
+
+#get the intersections between the buffered survey data and the storms
+compute_storm_intersections <- function(survey_buffer, storms) {
+  #extract attributes to avoid type 29 error
+  ids <- survey_buffer$id
+  survey_dates <- survey_buffer$months
+  storm_ids <- storms$event_r_id
+  
+  #get intersections between survey infomration and storms
+  intersection <- st_intersects(survey_buffer, storms, sparse = TRUE)
+  
+  #there was an error unless the results list was defined like this for the next loop
+  result_list <- vector("list", length(intersection))
+  
+  #loop through the intersections and add the information to the list
+  for (i in seq_along(intersection)) {
+    if (length(intersection[[i]]) > 0) {
+      result_list[[i]] <- data.frame(
+        point_id = ids[i],
+        storm_id = storm_ids[intersection[[i]]],
+        survey_date = survey_dates[i],
+        intersects = 1,
+        stringsAsFactors = FALSE
+      )
+    }
+  }
+  
+  bind_rows(result_list)
+}
+
+#want to know occurrences going back 'x' amount of months in the past
+expand_survey_months <- function(survey_data, history_months) {
+  survey_dt <- as.data.table(survey_data)
+  #surveys not conducted on the same days or sometimes over multiple days so use the last day of every month as the limit for the surveys 
+  survey_dt[, dates := ceiling_date(make_date(survey_year, survey_month, 1), 
+                                    "month") - days(1)]
+  
+  #standardizing the expansion of months into the past
+  expand_months <- function(d, id, survey_month, survey_year) {
+    data.table(
+      id = id,
+      survey_year = survey_year,
+      survey_month = survey_month,
+      offset = 0:history_months,
+      date = format(ceiling_date(d %m-% months(0:history_months), "month") - 
+                    days(1), "%Y%m")
+    )
+  }
+  
+  #when the expansion through months occurs, keep unique entries based on id_number, survey year, and survey month
+  survey_dt[, expand_months(dates, id, survey_month, survey_year), 
+            by = .(id, survey_year, survey_month)]
+}
+
+#intersection information down to the day for the month of intersection
+expand_survey_days <- function(survey_data) {
+  #assume the survey data was collected at the end of the month
+  survey_data$dates <- ceiling_date(
+    make_date(year = survey_data$survey_year, 
+              month = survey_data$survey_month, 
+              day = 1), 
+    "month"
+  ) - days(1)
+  
+  #get the day of intersection for month 0 (the month where intersections happen)
+  survey_data %>%
+    rowwise() %>%
+    mutate(days_in_month = list(seq(from = floor_date(dates, "month"), 
+                                    to = dates, by = "1 day"))) %>%
+    unnest(days_in_month) %>%
+    rename(date = days_in_month) %>% 
+    mutate(date = format(date, "%Y-%m-%d"))
+}
+
+#process the results on a monthly basis
+process_monthly_results <- function(intersection_df, survey_data, 
+                                   storm_lookup_path, history_months) {
+  
+  #put the intersection data into a data.table and isolate only the entries that intersect
+  matrix_dt <- as.data.table(intersection_df)
+  matrix_dt <- matrix_dt[intersects == 1]
+  #the month and year that the survey happened in should be two different columns, make that into a date
+  matrix_dt[, year_month := format(ym(str_sub(storm_id, 5, 10)), "%Y%m")]
+  #get only unique points based on the survey date and id
+  matrix_dt <- unique(matrix_dt, by = c("point_id", "survey_date", "year_month"))
+  
+  #expand the survey data 'x' number of months into the past 
+  survey_expanded <- expand_survey_months(survey_data, history_months)
+  survey_expanded$survey_date <- ym(paste0(survey_expanded$survey_year, 
+                                           survey_expanded$survey_month))
+  
+  #merge the results and filter for only intersections again
+  result <- matrix_dt[survey_expanded, 
+                      on = .(point_id = id, year_month = date)]
+  result[is.na(intersects), intersects := 0]
+  
+  #add storm names for easier reading
+  storm_lookup <- fread(storm_lookup_path)
+  storm_lookup[, storm_id_year := paste0(storm_id, year)]
+  result[, storm_id_year := str_sub(storm_id, 1, 8)]
+  result <- merge(result, storm_lookup[, .(storm_id_year, storm_name)],
+                  by = "storm_id_year", all.x = TRUE)
+  
+  #pivot to wide format
+  result_wide <- dcast(
+    result,
+    id + survey_month + survey_year ~ paste0("month_", offset),
+    value.var = "intersects",
+    fun.aggregate = max
+  )
+  
+  #add spatial information back to the data
+  survey_dt <- as.data.table(survey_data)
+  result_wide <- result_wide[survey_dt, 
+                             on = .(id, survey_year, survey_month),
+                             `:=`(lat = i.lat, long = i.long)]
+  
+  list(long = result, wide = result_wide)
+}
+
+#get month 0 daily results to determine exact date of hurricane intersection
+process_daily_results <- function(intersection_df, survey_data) {
+  #get distinct days and ensure proper date and storm id formatting
+  matrix_daily <- intersection_df %>% 
+    filter(intersects == 1) %>%
+    mutate(year_month_day = ymd(str_sub(storm_id, 5, 12)),
+           storm_id_long = str_sub(storm_id, 0, 12)) %>% 
+    distinct(point_id, year_month_day, .keep_all = TRUE) %>% 
+    mutate(year_month_day = format(year_month_day, "%Y-%m-%d"))
+  
+  #expand to all days in a month
+  expanded_days <- expand_survey_days(survey_data)
+  
+  left_join(expanded_days, matrix_daily, 
+            by = c("date" = "year_month_day", "id" = "point_id"))
+}
+
+```
+
+Load all the storm data from the files stored locally.
+
+```{r}
+
+#load the storm data
+#TODO fix the warnings, can safely supress them
+message("Loading storm data...")
+all_storms <- load_storm_data(CONFIG$storms_dir, CONFIG$storm_cols, CONFIG$crs)
+```
+
+This function ties all the defined functions together into one, processing each survey data file of interest with each of the hurricane data files of interest. 
+
+```{r}
+analyze_hurricanes <- function(survey_dirs, all_storms, years, config = CONFIG) {
+  
+  #define a list of results if multiple surveys are being used
+  results <- list()
+  
+  #outer loop for years of interest for saving the files
+  for (k in seq_along(years)) {
+    message("Processing year: ", years[k])
+    
+    #can set multiple buffer distances in the config, leave at 0 for a simple intersection
+    for (i in seq_along(config$buffer_distances)) {
+      buf <- config$buffer_distances[i]
+      message("  Buffer: ", buf / 1000, " km")
+      
+      #load the survey data for this iteration
+      survey <- load_survey_data(survey_dirs[k], 
+                                 config$coord_cols$long, 
+                                 config$coord_cols$lat, 
+                                 config$crs)
+      
+      #force garbage collection for larger processing times
+      gc()
+      
+      #prepare the survey buffer
+      survey_buffer <- prepare_survey_buffer(survey$sf, buf)
+      
+      #filter storms by date range
+      storms_in_range <- filter_storms_by_date_range(
+        all_storms, 
+        min(survey_buffer$months), 
+        max(survey_buffer$months),
+        config$lookback_months
+      )
+      
+      message("    Determining intersections...")
+      intersection_df <- compute_storm_intersections(survey_buffer, storms_in_range)
+      
+      #drop geometry columns to avoid type 29 errors
+      survey_data_clean <- survey$data
+      
+      message("    Processing monthly results...")
+      monthly <- process_monthly_results(
+        intersection_df, 
+        survey_data_clean, 
+        config$storm_names_dir,
+        config$history_months
+      )
+      
+      message("    Processing daily results...")
+      daily <- process_daily_results(intersection_df, survey_data_clean)
+      
+      #store results in nested lists
+      key <- paste0("result_", buf / 1000, "k_", years[k])
+      results[[key]] <- list(
+        long = monthly$long,
+        wide = monthly$wide,
+        daily = daily,
+        matrix = intersection_df
+      )
+      
+      #clean up spatial objects
+      rm(survey_buffer, storms_in_range)
+      gc()
+    }
+  }
+  
+  results
+}
+```
+
+
+Sample run with some sample data (public hospital information). The survey data was generated randomly using the code in the appendix. 
+
+```{r}
+
+#2023
+survey_dir_2023 <- r"(../data/)"
+
+# Usage Example ----
+# Define your survey directories and years
+survey_dirs <- c(survey_dir_2023, survey_dir_2018, survey_dir_2014)
+years <- c(2023, 2018, 2014)
+
+hurricane_results <- analyze_hurricanes(survey_dirs,all_storms, years)
+```
+
+#Appendix
+
+##Survey Data Generation
+
+```{r}
+#generation of data based on entries in the hospital data 
+# if there are 20 hospitals, make 20 random months for survey between 1 and 12 and random years choosing between 2016 and 2020
+# make sure the latitude and longitude columns exist and that there is an id column as well
 ```
 

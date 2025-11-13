@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Linking Climate and Health Data</title>
   <meta name="description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
-  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Linking Climate and Health Data" />
   <meta property="og:type" content="book" />
@@ -159,11 +159,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>3</b> Spatial Data</a></li>
 <li class="chapter" data-level="4" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html"><i class="fa fa-check"></i><b>4</b> Locating &amp; Refining Environmental Data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#introduction-environmental-data"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#wildfires"><i class="fa fa-check"></i><b>4.2</b> Wildfires</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#data-preparation-with-sf-package"><i class="fa fa-check"></i><b>4.2.1</b> Data preparation with sf package</a></li>
 <li class="chapter" data-level="4.2.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#inspect-and-refine-data-structure"><i class="fa fa-check"></i><b>4.2.2</b> Inspect &amp; refine data structure</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes"><i class="fa fa-check"></i><b>4.3</b> Hurricanes</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-sourcing"><i class="fa fa-check"></i><b>4.3.1</b> Data Sourcing</a></li>
+<li class="chapter" data-level="4.3.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-cleaning"><i class="fa fa-check"></i><b>4.3.2</b> Data Cleaning</a></li>
+<li class="chapter" data-level="4.3.3" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-manipulation"><i class="fa fa-check"></i><b>4.3.3</b> Data Manipulation</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -190,11 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="preface" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This work is supported by current and past members of the <a href="www.heyaresearch.ca">HEYA Research Group</a>:</p>
-<p>Rebekah McKinnon PhD, 
-Ishwar Tiwari PhD, 
-Jayden Chang MSc, 
-Jack McIlraith MSc, 
-Gina Martin PhD</p>
+<p>Rebekah McKinnon PhD,  Ishwar Tiwari PhD,  Jayden Chang MSc,  Jack McIlraith MSc,  Gina Martin PhD</p>
 <p>Welcome to this bookdown project. You can track issues and tasks here:</p>
 <ul>
 <li>GitHub Project Board: <a href="https://github.com/RebekahMcKinnon/Climate_and_Health/projects/1">View on GitHub</a></li>
@@ -213,8 +215,8 @@ Gina Martin PhD</p>
 <table>
 <colgroup>
 <col width="31%" />
-<col width="42%" />
-<col width="25%" />
+<col width="41%" />
+<col width="26%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -226,8 +228,8 @@ Gina Martin PhD</p>
 <tbody>
 <tr class="odd">
 <td>Natural Resources Canada (CFS / CWFIS)</td>
-<td>National Burned Area Composite (<strong>NBAC</strong>) wildfire perimeters (1972–2024) (<a href="https://cwfis.cfs.nrcan.gc.ca/datamart/metadata/nbac?utm_source=chatgpt.com" title="NBAC - Canadian Wildland Fire Information System | Metadata">cwfis.cfs.nrcan.gc.ca</a>)</td>
-<td>Polygon (vector)</td>
+<td>National Burned Area Composite (<strong>NBAC</strong>) wildfire perimeters (1972–2024) ([cwfis.cfs.nrcan.gc.ca](<a href="https://cwfis.cfs.nrcan.gc.ca/datamart/metadata/nbac?utm_source=chatgpt.com" class="uri">https://cwfis.cfs.nrcan.gc.ca/datamart/metadata/nbac?utm_source=chatgpt.com</a> “NBAC - Canadian Wildland Fire Information System</td>
+<td>Metadata”))</td>
 </tr>
 <tr class="even">
 <td>Natural Resources Canada (EGS)</td>
@@ -236,7 +238,7 @@ Gina Martin PhD</p>
 </tr>
 <tr class="odd">
 <td>Environment and Climate Change Canada</td>
-<td>Historical climate observations &amp; station metadata (<a href="" title="https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&amp;stationID=%s&amp;Year=%s&amp;Month=1&amp;Day=1&amp;timeframe=2&amp;submit=Download+Data">climate.weather.gc.ca</a>)</td>
+<td>Historical climate observations &amp; station metadata (<a href="%22https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&amp;stationID=XXX&amp;Year=2024&amp;Month=1&amp;Day=1&amp;timeframe=2&amp;submit=Download+Data%22">climate.weather.gc.ca</a>)</td>
 <td>Point + time series</td>
 </tr>
 </tbody>
@@ -263,7 +265,7 @@ Gina Martin PhD</p>
 <td>Licensed</td>
 </tr>
 <tr class="even">
-<td>CANUE (Canadian Urban Environmental Health Research Consortium)</td>
+<td>Canadian Urban Environmental Health Research Consortium (CANUE)</td>
 <td>Local Climate Zones &amp; PM2.5 (smoke) by Postcode</td>
 <td>Request via project creation in CANUE (free)</td>
 </tr>
@@ -276,8 +278,7 @@ Gina Martin PhD</p>
 <p><strong>Data processing and wrangling</strong></p>
 <ul>
 <li><code>dplyr</code></li>
-<li><code>tidyverse</code><br />
-</li>
+<li><code>tidyverse</code></li>
 <li><code>tidyr</code></li>
 <li><code>lubridate</code></li>
 <li><code>data.table</code></li>
@@ -338,7 +339,6 @@ Gina Martin PhD</p>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     date, intersect, setdiff, union</code></pre>
-<pre><code>## Warning: package &#39;data.table&#39; was built under R version 4.4.3</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;data.table&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:lubridate&#39;:
@@ -353,25 +353,18 @@ Gina Martin PhD</p>
 <pre><code>## The following object is masked from &#39;package:data.table&#39;:
 ## 
 ##     transpose</code></pre>
-<pre><code>## Warning: package &#39;readxl&#39; was built under R version 4.4.3</code></pre>
-<pre><code>## Warning: package &#39;writexl&#39; was built under R version 4.4.3</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.4.3</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;maps&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:purrr&#39;:
 ## 
 ##     map</code></pre>
-<pre><code>## Linking to GEOS 3.13.0, GDAL 3.10.1, PROJ 9.5.1; sf_use_s2() is TRUE</code></pre>
+<pre><code>## Linking to GEOS 3.13.1, GDAL 3.11.4, PROJ 9.7.0; sf_use_s2() is TRUE</code></pre>
 <pre><code>## As of v0.7.2, the `normals` column in `stations()` reflects whether or not there
 ## are *any* normals available (not just the most recent).</code></pre>
-<pre><code>## Warning: package &#39;furrr&#39; was built under R version 4.4.3</code></pre>
 <pre><code>## Loading required package: future</code></pre>
-<pre><code>## Warning: package &#39;future&#39; was built under R version 4.4.3</code></pre>
-<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.4.3</code></pre>
-<pre><code>## Warning: package &#39;forcats&#39; was built under R version 4.4.3</code></pre>
-<pre><code>## ── Attaching core tidyverse packages ──
-## ✔ forcats 1.0.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ forcats 1.0.1     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ data.table::between() masks dplyr::between()
 ## ✖ dplyr::filter()       masks stats::filter()
 ## ✖ data.table::first()   masks dplyr::first()
@@ -415,42 +408,42 @@ Gina Martin PhD</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
