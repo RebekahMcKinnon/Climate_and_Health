@@ -61,6 +61,7 @@ The following R packages are required to run the code in this book:
 -   `writexl`
 -   `rvest`
 -   `httr`
+-   `fs`
 
 **Data visualization and mapping**
 
@@ -88,7 +89,7 @@ packages <- c(
   "dplyr", "tidyr", "lubridate", "data.table", "tibble",
   "readr", "purrr", "stringr", "readxl", "writexl",
   "ggplot2", "maps", "rvest", "httr", 
-  "sf", "geosphere",
+  "sf", "geosphere", "fs",
   "weathercan", "furrr", "tidyverse"
 )
 

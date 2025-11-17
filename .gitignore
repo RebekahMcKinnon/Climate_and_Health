@@ -3,6 +3,7 @@
 .RData
 .Ruserdata
 .env
+.RDataTmp
 
 bookdown_project/wildfire_data.csv
 bookdown_project/data/
