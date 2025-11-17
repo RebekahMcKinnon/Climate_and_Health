@@ -562,9 +562,9 @@ for (k in seq_along(years)){
 ```
 
 
-#Appendix
+# Appendix
 
-##Survey Data Generation
+## Survey Data Generation
 
 ```{r}
 #generation of data based on entries in the hospital data 
@@ -573,10 +573,10 @@ for (k in seq_along(years)){
 # make sure the latitude and longitude columns exist and that there is an id column as well
 set.seed(933)
 odhf <- read.csv("./data/odhf_v1.1.csv")
-odhf$id <- 1:nrow(odhf)
+odhf$hospital_id <- 1:nrow(odhf)
 odhf_valid <- odhf[!is.na(odhf[["latitude"]]) & 
                              !is.na(odhf[["longitude"]]), ]
-odhf_valid <- odhf_valid %>% filter(odhf_facility_type=="Hospitals") %>%  select(c("latitude", "longitude", "facility_name", "odhf_facility_type", "source_facility_type", "id"))
+odhf_valid <- odhf_valid %>% filter(odhf_facility_type=="Hospitals") %>%  select(c("latitude", "longitude", "facility_name", "odhf_facility_type", "source_facility_type", "hospital_id"))
 odhf_valid[[survey_month_col]] <- sample(1:12, size = nrow(odhf_valid), replace = TRUE)
 odhf_valid[[survey_year_col]] <- sample(2018:2021, size=nrow(odhf_valid), replace = TRUE)
 setnames(odhf_valid, c("latitude", "longitude"), c("lat","long"))
