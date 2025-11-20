@@ -1,3 +1,130 @@
+---
+title: "Linking Climate and Health Data"
+author: "HEYA Research Group"
+site: bookdown::bookdown_site
+documentclass: book
+link-citations: yes
+description: A bookdown template linking to our GitHub project. EDIT THIS LATER
+---
+
+# Preface {#preface}
+
+This work is supported by current and past members of the [HEYA Research Group](www.heyaresearch.ca):
+
+Rebekah McKinnon PhD,  Ishwar Tiwari PhD,  Jayden Chang MSc,  Jack McIlraith MSc,  Gina Martin PhD
+
+Welcome to this bookdown project. You can track issues and tasks here:
+
+-   GitHub Project Board: [View on GitHub](https://github.com/RebekahMcKinnon/Climate_and_Health/projects/1)
+
+## Introduction {#introduction}
+
+### Purpose {#purpose}
+
+## Required Information {#required-information}
+
+### Datasets {#datasets}
+
+This tutorial uses the following **publicly available** datasets:
+
+| Data Provider                          | Dataset                                                                                                                                                                                                                              | Type                |
+|-----------------------|------------------------------|-------------------|
+| Natural Resources Canada (CFS / CWFIS) | National Burned Area Composite (**NBAC**) wildfire perimeters (1972--2024) ([cwfis.cfs.nrcan.gc.ca](<https://cwfis.cfs.nrcan.gc.ca/datamart/metadata/nbac?utm_source=chatgpt.com> "NBAC - Canadian Wildland Fire Information System  | Metadata"))         |
+| Natural Resources Canada (EGS)         | **Floods in Canada -- Archive** (flood extent products) ([open.canada.ca](https://open.canada.ca/data/en/dataset/74144824-206e-4cea-9fb9-72925a128189?utm_source=chatgpt.com "Floods in Canada - Archive - Open Government Portal")) | Polygon (vector)    |
+| Environment and Climate Change Canada  | Historical climate observations & station metadata ([climate.weather.gc.ca](%22https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=XXX&Year=2024&Month=1&Day=1&timeframe=2&submit=Download+Data%22))    | Point + time series |
+
+ 
+
+This tutorial also uses datasets with **access restrictions**. Access may require institutional access, and/or data-use agreements.
+
+| Data Provider                                                   | Dataset                                         | Access                                       |
+|-------------------|-----------------------------|------------------------|
+| Statistics Canada                                               | Postal Code Conversion File (**PCCF**) v8B      | Licensed                                     |
+| Canadian Urban Environmental Health Research Consortium (CANUE) | Local Climate Zones & PM2.5 (smoke) by Postcode | Request via project creation in CANUE (free) |
+
+### R packages {#r-packages}
+
+The following R packages are required to run the code in this book:
+
+**Data processing and wrangling**
+
+-   `dplyr`
+-   `tidyverse`
+-   `tidyr`
+-   `lubridate`
+-   `data.table`
+-   `tibble`
+-   `readr`
+-   `purrr`
+-   `stringr`
+-   `readxl`
+-   `writexl`
+-   `rvest`
+-   `httr`
+-   `fs`
+
+**Data visualization and mapping**
+
+-   `ggplot2`
+-   `maps`
+
+**Spatial analysis**
+
+-   `sf`
+-   `geosphere`
+
+**Data download**
+
+-   `weathercan`
+
+***Optional***
+
+-   `furrr` (offers improved processing speeds)
+
+The following code installs (if needed) and loads these packages:
+
+```{r}
+# Vector of required packages
+packages <- c(
+  "dplyr", "tidyr", "lubridate", "data.table", "tibble",
+  "readr", "purrr", "stringr", "readxl", "writexl",
+  "ggplot2", "maps", "rvest", "httr", 
+  "sf", "geosphere", "fs",
+  "weathercan", "furrr", "tidyverse"
+)
+
+# Install any that are missing
+installed <- rownames(installed.packages())
+to_install <- setdiff(packages, installed)
+if (length(to_install) > 0) {
+  install.packages(to_install)
+}
+
+# Load all packages
+invisible(lapply(packages, library, character.only = TRUE))
+```
+
+<!--chapter:end:index.Rmd-->
+
+# Getting Started with Spatial Data {#getting-started}
+
+## Data Access {#data-access}
+
+## Data preparation {#data-preparation}
+
+### Terminology {#terminology}
+
+### Coordinate Reference Systems & Projections {#coordinate-reference-systems-and-projections}
+
+
+
+<!--chapter:end:chapters/01-getting-started.Rmd-->
+
+# Spatial Data {#spatial-data}
+
+
+<!--chapter:end:chapters/02-spatial-data.Rmd-->
+
 # Locating & Refining Environmental Data {#locating-and-refining-environmental-data}
 
 ## Introduction {#introduction-environmental-data}
@@ -589,4 +716,7 @@ odhf_valid[[survey_year_col]] <- sample(2018:2021, size=nrow(odhf_valid), replac
 setnames(odhf_valid, c("latitude", "longitude"), c("lat","long"))
 write.csv(odhf_valid, "./data/odhf_hospitals.csv")
 ```
+
+
+<!--chapter:end:chapters/03-locating-and-refining-environmental-data.Rmd-->
 

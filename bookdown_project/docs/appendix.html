@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Linking Climate and Health Data</title>
+  <title>5 Appendix | Linking Climate and Health Data</title>
   <meta name="description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Linking Climate and Health Data" />
+  <meta property="og:title" content="5 Appendix | Linking Climate and Health Data" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Linking Climate and Health Data" />
+  <meta name="twitter:title" content="5 Appendix | Linking Climate and Health Data" />
   
   <meta name="twitter:description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="locating-and-refining-environmental-data.html"/>
 
-<link rel="next" href="getting-started.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -193,148 +193,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Linking Climate and Health Data</h1>
-<p class="author"><em>HEYA Research Group</em></p>
-</div>
-<div id="preface" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This work is supported by current and past members of the <a href="www.heyaresearch.ca">HEYA Research Group</a>:</p>
-<p>Rebekah McKinnon PhD,  Ishwar Tiwari PhD,  Jayden Chang MSc,  Jack McIlraith MSc,  Gina Martin PhD</p>
-<p>Welcome to this bookdown project. You can track issues and tasks here:</p>
-<ul>
-<li>GitHub Project Board: <a href="https://github.com/RebekahMcKinnon/Climate_and_Health/projects/1">View on GitHub</a></li>
-</ul>
-<div id="introduction" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="purpose" class="section level3 hasAnchor" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> Purpose<a href="index.html#purpose" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-</div>
-<div id="required-information" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Required Information<a href="index.html#required-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="datasets" class="section level3 hasAnchor" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Datasets<a href="index.html#datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This tutorial uses the following <strong>publicly available</strong> datasets:</p>
-<table>
-<colgroup>
-<col width="31%" />
-<col width="41%" />
-<col width="26%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Data Provider</th>
-<th>Dataset</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Natural Resources Canada (CFS / CWFIS)</td>
-<td>National Burned Area Composite (<strong>NBAC</strong>) wildfire perimeters (1972–2024) ([cwfis.cfs.nrcan.gc.ca](<a href="https://cwfis.cfs.nrcan.gc.ca/datamart/metadata/nbac?utm_source=chatgpt.com" class="uri">https://cwfis.cfs.nrcan.gc.ca/datamart/metadata/nbac?utm_source=chatgpt.com</a> “NBAC - Canadian Wildland Fire Information System</td>
-<td>Metadata”))</td>
-</tr>
-<tr class="even">
-<td>Natural Resources Canada (EGS)</td>
-<td><strong>Floods in Canada – Archive</strong> (flood extent products) (<a href="https://open.canada.ca/data/en/dataset/74144824-206e-4cea-9fb9-72925a128189?utm_source=chatgpt.com" title="Floods in Canada - Archive - Open Government Portal">open.canada.ca</a>)</td>
-<td>Polygon (vector)</td>
-</tr>
-<tr class="odd">
-<td>Environment and Climate Change Canada</td>
-<td>Historical climate observations &amp; station metadata (<a href="%22https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&amp;stationID=XXX&amp;Year=2024&amp;Month=1&amp;Day=1&amp;timeframe=2&amp;submit=Download+Data%22">climate.weather.gc.ca</a>)</td>
-<td>Point + time series</td>
-</tr>
-</tbody>
-</table>
-<p> </p>
-<p>This tutorial also uses datasets with <strong>access restrictions</strong>. Access may require institutional access, and/or data-use agreements.</p>
-<table>
-<colgroup>
-<col width="26%" />
-<col width="40%" />
-<col width="33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Data Provider</th>
-<th>Dataset</th>
-<th>Access</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Statistics Canada</td>
-<td>Postal Code Conversion File (<strong>PCCF</strong>) v8B</td>
-<td>Licensed</td>
-</tr>
-<tr class="even">
-<td>Canadian Urban Environmental Health Research Consortium (CANUE)</td>
-<td>Local Climate Zones &amp; PM2.5 (smoke) by Postcode</td>
-<td>Request via project creation in CANUE (free)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="r-packages" class="section level3 hasAnchor" number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> R packages<a href="index.html#r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The following R packages are required to run the code in this book:</p>
-<p><strong>Data processing and wrangling</strong></p>
-<ul>
-<li><code>dplyr</code></li>
-<li><code>tidyverse</code></li>
-<li><code>tidyr</code></li>
-<li><code>lubridate</code></li>
-<li><code>data.table</code></li>
-<li><code>tibble</code></li>
-<li><code>readr</code></li>
-<li><code>purrr</code></li>
-<li><code>stringr</code></li>
-<li><code>readxl</code></li>
-<li><code>writexl</code></li>
-<li><code>rvest</code></li>
-<li><code>httr</code></li>
-<li><code>fs</code></li>
-</ul>
-<p><strong>Data visualization and mapping</strong></p>
-<ul>
-<li><code>ggplot2</code></li>
-<li><code>maps</code></li>
-</ul>
-<p><strong>Spatial analysis</strong></p>
-<ul>
-<li><code>sf</code></li>
-<li><code>geosphere</code></li>
-</ul>
-<p><strong>Data download</strong></p>
-<ul>
-<li><code>weathercan</code></li>
-</ul>
-<p><strong><em>Optional</em></strong></p>
-<ul>
-<li><code>furrr</code> (offers improved processing speeds)</li>
-</ul>
-<p>The following code installs (if needed) and loads these packages:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="co"># Vector of required packages</span></span>
-<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a>  <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;tidyr&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;tibble&quot;</span>,</span>
-<span id="cb1-4"><a href="index.html#cb1-4" tabindex="-1"></a>  <span class="st">&quot;readr&quot;</span>, <span class="st">&quot;purrr&quot;</span>, <span class="st">&quot;stringr&quot;</span>, <span class="st">&quot;readxl&quot;</span>, <span class="st">&quot;writexl&quot;</span>,</span>
-<span id="cb1-5"><a href="index.html#cb1-5" tabindex="-1"></a>  <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;maps&quot;</span>, <span class="st">&quot;rvest&quot;</span>, <span class="st">&quot;httr&quot;</span>, </span>
-<span id="cb1-6"><a href="index.html#cb1-6" tabindex="-1"></a>  <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;geosphere&quot;</span>, <span class="st">&quot;fs&quot;</span>,</span>
-<span id="cb1-7"><a href="index.html#cb1-7" tabindex="-1"></a>  <span class="st">&quot;weathercan&quot;</span>, <span class="st">&quot;furrr&quot;</span>, <span class="st">&quot;tidyverse&quot;</span></span>
-<span id="cb1-8"><a href="index.html#cb1-8" tabindex="-1"></a>)</span>
-<span id="cb1-9"><a href="index.html#cb1-9" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="index.html#cb1-10" tabindex="-1"></a><span class="co"># Install any that are missing</span></span>
-<span id="cb1-11"><a href="index.html#cb1-11" tabindex="-1"></a>installed <span class="ot">&lt;-</span> <span class="fu">rownames</span>(<span class="fu">installed.packages</span>())</span>
-<span id="cb1-12"><a href="index.html#cb1-12" tabindex="-1"></a>to_install <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(packages, installed)</span>
-<span id="cb1-13"><a href="index.html#cb1-13" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(to_install) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb1-14"><a href="index.html#cb1-14" tabindex="-1"></a>  <span class="fu">install.packages</span>(to_install)</span>
-<span id="cb1-15"><a href="index.html#cb1-15" tabindex="-1"></a>}</span>
-<span id="cb1-16"><a href="index.html#cb1-16" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="index.html#cb1-17" tabindex="-1"></a><span class="co"># Load all packages</span></span>
-<span id="cb1-18"><a href="index.html#cb1-18" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">lapply</span>(packages, library, <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div id="appendix" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Appendix<a href="appendix.html#appendix" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="survey-data-generation" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Survey Data Generation<a href="appendix.html#survey-data-generation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="appendix.html#cb702-1" tabindex="-1"></a><span class="co">#generation of data based on entries in the hospital data </span></span>
+<span id="cb702-2"><a href="appendix.html#cb702-2" tabindex="-1"></a><span class="co"># if there are 20 hospitals, make 20 random months for survey between 1 and 12 and random years choosing between 2016 and 2020</span></span>
+<span id="cb702-3"><a href="appendix.html#cb702-3" tabindex="-1"></a><span class="co"># https://www150.statcan.gc.ca/n1/en/pub/13-26-0001/2020001/ODHF_v1.1.zip</span></span>
+<span id="cb702-4"><a href="appendix.html#cb702-4" tabindex="-1"></a><span class="co"># make sure the latitude and longitude columns exist and that there is an id column as well</span></span>
+<span id="cb702-5"><a href="appendix.html#cb702-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">933</span>)</span>
+<span id="cb702-6"><a href="appendix.html#cb702-6" tabindex="-1"></a>odhf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/odhf_v1.1.csv&quot;</span>)</span>
+<span id="cb702-7"><a href="appendix.html#cb702-7" tabindex="-1"></a>odhf<span class="sc">$</span>hospital_id <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(odhf)</span>
+<span id="cb702-8"><a href="appendix.html#cb702-8" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> odhf[<span class="sc">!</span><span class="fu">is.na</span>(odhf[[<span class="st">&quot;latitude&quot;</span>]]) <span class="sc">&amp;</span> </span>
+<span id="cb702-9"><a href="appendix.html#cb702-9" tabindex="-1"></a>                             <span class="sc">!</span><span class="fu">is.na</span>(odhf[[<span class="st">&quot;longitude&quot;</span>]]), ]</span>
+<span id="cb702-10"><a href="appendix.html#cb702-10" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> odhf_valid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(odhf_facility_type<span class="sc">==</span><span class="st">&quot;Hospitals&quot;</span>) <span class="sc">%&gt;%</span>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;facility_name&quot;</span>, <span class="st">&quot;odhf_facility_type&quot;</span>, <span class="st">&quot;source_facility_type&quot;</span>, <span class="st">&quot;hospital_id&quot;</span>))</span>
+<span id="cb702-11"><a href="appendix.html#cb702-11" tabindex="-1"></a>odhf_valid[[survey_month_col]] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">size =</span> <span class="fu">nrow</span>(odhf_valid), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb702-12"><a href="appendix.html#cb702-12" tabindex="-1"></a>odhf_valid[[survey_year_col]] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">2018</span><span class="sc">:</span><span class="dv">2021</span>, <span class="at">size=</span><span class="fu">nrow</span>(odhf_valid), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb702-13"><a href="appendix.html#cb702-13" tabindex="-1"></a><span class="fu">setnames</span>(odhf_valid, <span class="fu">c</span>(<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;lat&quot;</span>,<span class="st">&quot;long&quot;</span>))</span>
+<span id="cb702-14"><a href="appendix.html#cb702-14" tabindex="-1"></a><span class="fu">write.csv</span>(odhf_valid, <span class="st">&quot;./data/odhf_hospitals.csv&quot;</span>)</span></code></pre></div>
 
-</div>
 </div>
 </div>
             </section>
@@ -342,8 +219,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
+<a href="locating-and-refining-environmental-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="getting-started.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

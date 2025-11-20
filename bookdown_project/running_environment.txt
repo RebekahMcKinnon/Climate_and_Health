@@ -1,0 +1,5 @@
+https://www.arcgis.com/home/item.html?id=8eaa8ca8bf114e90aac3b049d7a11ca4 -> healthcare facilities
+
+bookdown::render_book("index.Rmd")
+
+bookdown::render_book("index.Rmd", clean = TRUE)
