@@ -2,7 +2,7 @@
 
 ## Introduction {#introduction-environmental-data}
 
-Sample data is the hospital data.
+Sample data is Canadian public hospital data.
 
 ## Wildfires {#wildfires}
 
@@ -13,6 +13,7 @@ We read the updated NBAC wildfire polygons (1972-2024) from the .shp file.
 -   Tip: Shapefiles are a set of files. Ensure the .shp, .shx, .dbf, and (ideally) .prj sit together in the same folder.
 
 ```{r load-fire-data}
+#TODO create unified language and narrative view in html text throughout
 poly_fires <- st_read(r"(./data/FireData/NBAC_1972to2024_20250506.shp)") 
 
 names(poly_fires)
@@ -20,28 +21,28 @@ names(poly_fires)
 
 ### Inspect & refine data structure {#inspect-and-refine-data-structure}
 
-Check available columns and data types
+Check available columns and data types.
 
 ```{r check-fire-data}
 names(poly_fires)
 str(poly_fires)
 ```
 
-Normalise column names
+Normalise column names.
 
 ```{r normalise-fire-data}
 names(poly_fires) <- tolower(names(poly_fires)) 
 names(poly_fires)
 ```
 
-Given the extremely large size, it's best to reduce the dataset to include only the years you require
+Given the extremely large size, it's best to reduce the dataset to include only the years required.
 
 ```{r filter-fire-data}
 poly_fires <- poly_fires %>% 
   filter(year >= 2010)
 ```
 
-Limit dataset to only the columns you require
+Limit dataset to only the required columns.
 
 ```{r limit-fire-data}
 poly_fires <- select(poly_fires, 
@@ -56,7 +57,7 @@ poly_fires <- select(poly_fires,
 head(poly_fires)
 ```
 
-Rename columns to align better with your spatial datasets
+Rename columns to align better with the spatial datasets.
 
 ```{r rename-fire-data}
 poly_fires <- poly_fires %>%
@@ -77,7 +78,7 @@ names(poly_fires)
 str(poly_fires)
 ```
 
-You may also want to save this newly formed dataset for easier future loading (i.e., to avoid the need to reload the shapefile during your next R session)
+You may want this newly formed dataset saved for easier future loading (i.e., to avoid the need to reload the shapefile during the next R session).
 
 ```{r write-fire-data}
 # uncomment to run
@@ -92,7 +93,7 @@ Hurricane data was sourced from the National Oceanic and Atmospheric Administrat
 
 -   It is important to note that the following script should be used sparingly
 
-We first need to specify where we are getting the hurricane data from and for which years.
+We first need to specify when and where the hurricane data is retrieved from.
 
 ```{r hurricanes-set-data-extraction-range}
 base_page <- "https://www.nhc.noaa.gov/gis/archive_besttrack.php?year="
@@ -112,7 +113,7 @@ storm_summary <- data.frame(Year = integer(), Storms = integer())
 storm_lookup  <- data.frame(year = integer(), storm_id = character(), storm_name = character())
 ```
 
-Finally, get the files from the website for each year specified. Within this snippet, a lookup table for the file names and actual hurricane name is created and saved as a .csv for later reference. (TODO: add a switch to get just the names list vs. the file and names list)
+Finally, we get the files from the website for each year specified. Within this snippet, a lookup table for the file names and actual hurricane name is created and saved as a .csv for later reference. (TODO: add a switch to get just the names list vs. the file and names list)
 
 ```{r hurricanes-scrape-data, eval = FALSE}
 #process every year for the year range specified above
@@ -575,6 +576,7 @@ for (k in seq_along(years)){
 ## Survey Data Generation
 
 ```{r sample-data-generation}
+#TODO incorporate the reference for this data into the index
 #generation of data based on entries in the hospital data 
 # if there are 20 hospitals, make 20 random months for survey between 1 and 12 and random years choosing between 2016 and 2020
 # https://www150.statcan.gc.ca/n1/en/pub/13-26-0001/2020001/ODHF_v1.1.zip
