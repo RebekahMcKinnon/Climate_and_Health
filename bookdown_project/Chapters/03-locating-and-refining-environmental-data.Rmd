@@ -251,7 +251,7 @@ for (shp_path in shp_files) {
 
 Date and time need to be consistent between the point and polygon files.
 
-```{r hurricanes-alter-points-files, message=FALSE, results='hide'}
+```{r hurricanes-alter-points-files, message=FALSE, warning=FALSE, results='hide'}
 #Create a new directory for processed files
 output_dir <- file.path(base_dir, "processed")
 
@@ -281,6 +281,7 @@ for (shp_path in shp_files) {
   
   #preserve folder structure in output
   rel_path <- path_rel(shp_path, start = base_dir)
+  rel_path <- sub("^processed/", "", rel_path)
   out_path <- file.path(output_dir, rel_path)
   dir_create(dirname(out_path))
   
@@ -292,7 +293,7 @@ for (shp_path in shp_files) {
 
 The points files also need to be done in a similar way.
 
-```{r hurricanes-alter-radii-files, message=FALSE, results='hide'}
+```{r hurricanes-alter-radii-files, message=FALSE, warning=FALSE, results='hide'}
 #slightly different process for the _radii file they already have the synoptime field and those just need to be modified
 shp_files <- list.files(base_dir, pattern = "_radii\\.shp$", recursive = TRUE, full.names = TRUE)
 
@@ -331,7 +332,7 @@ for (shp_path in shp_files) {
 
 ### Data Manipulation {#hurricanes-data-manipulation}
 
-Now that the hurricane files are prepared properly, the associated points data of interest, (in this case hospitals), can be used within the files. THe point files in this example have a series of months and years in columns when surveys were conducted, a latitude and longitude column where we can identify
+Now that the hurricane files are prepared properly, the associated points data of interest, (in this case hospitals), can be used within the files. The point files in this example have a series of months and years in columns when surveys were conducted, a latitude and longitude column where we can identify
 
 First we load all the storms.
 
