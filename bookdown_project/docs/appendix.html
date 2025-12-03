@@ -51,6 +51,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -165,11 +167,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#data-preparation-with-sf-package"><i class="fa fa-check"></i><b>4.2.1</b> Data preparation with sf package</a></li>
 <li class="chapter" data-level="4.2.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#inspect-and-refine-data-structure"><i class="fa fa-check"></i><b>4.2.2</b> Inspect &amp; refine data structure</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes"><i class="fa fa-check"></i><b>4.3</b> Hurricanes</a>
+<li class="chapter" data-level="4.3" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#floods"><i class="fa fa-check"></i><b>4.3</b> Floods</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-sourcing"><i class="fa fa-check"></i><b>4.3.1</b> Data Sourcing</a></li>
-<li class="chapter" data-level="4.3.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-cleaning"><i class="fa fa-check"></i><b>4.3.2</b> Data Cleaning</a></li>
-<li class="chapter" data-level="4.3.3" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-manipulation"><i class="fa fa-check"></i><b>4.3.3</b> Data Manipulation</a></li>
+<li class="chapter" data-level="4.3.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#floods-data-sourcing"><i class="fa fa-check"></i><b>4.3.1</b> Data Sourcing</a></li>
+<li class="chapter" data-level="4.3.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#data-cleaning"><i class="fa fa-check"></i><b>4.3.2</b> Data Cleaning</a></li>
+<li class="chapter" data-level="4.3.3" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#floods-data-manipulation"><i class="fa fa-check"></i><b>4.3.3</b> Data Manipulation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes"><i class="fa fa-check"></i><b>4.4</b> Hurricanes</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-sourcing"><i class="fa fa-check"></i><b>4.4.1</b> Data Sourcing</a></li>
+<li class="chapter" data-level="4.4.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-cleaning"><i class="fa fa-check"></i><b>4.4.2</b> Data Cleaning</a></li>
+<li class="chapter" data-level="4.4.3" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-manipulation"><i class="fa fa-check"></i><b>4.4.3</b> Data Manipulation</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>5</b> Appendix</a>
@@ -197,20 +205,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">5</span> Appendix<a href="appendix.html#appendix" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="survey-data-generation" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Survey Data Generation<a href="appendix.html#survey-data-generation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="appendix.html#cb32-1" tabindex="-1"></a><span class="co">#generation of data based on entries in the hospital data </span></span>
-<span id="cb32-2"><a href="appendix.html#cb32-2" tabindex="-1"></a><span class="co"># if there are 20 hospitals, make 20 random months for survey between 1 and 12 and random years choosing between 2016 and 2020</span></span>
-<span id="cb32-3"><a href="appendix.html#cb32-3" tabindex="-1"></a><span class="co"># https://www150.statcan.gc.ca/n1/en/pub/13-26-0001/2020001/ODHF_v1.1.zip</span></span>
-<span id="cb32-4"><a href="appendix.html#cb32-4" tabindex="-1"></a><span class="co"># make sure the latitude and longitude columns exist and that there is an id column as well</span></span>
-<span id="cb32-5"><a href="appendix.html#cb32-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">933</span>)</span>
-<span id="cb32-6"><a href="appendix.html#cb32-6" tabindex="-1"></a>odhf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/odhf_v1.1.csv&quot;</span>)</span>
-<span id="cb32-7"><a href="appendix.html#cb32-7" tabindex="-1"></a>odhf<span class="sc">$</span>hospital_id <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(odhf)</span>
-<span id="cb32-8"><a href="appendix.html#cb32-8" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> odhf[<span class="sc">!</span><span class="fu">is.na</span>(odhf[[<span class="st">&quot;latitude&quot;</span>]]) <span class="sc">&amp;</span> </span>
-<span id="cb32-9"><a href="appendix.html#cb32-9" tabindex="-1"></a>                             <span class="sc">!</span><span class="fu">is.na</span>(odhf[[<span class="st">&quot;longitude&quot;</span>]]), ]</span>
-<span id="cb32-10"><a href="appendix.html#cb32-10" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> odhf_valid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(odhf_facility_type<span class="sc">==</span><span class="st">&quot;Hospitals&quot;</span>) <span class="sc">%&gt;%</span>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;facility_name&quot;</span>, <span class="st">&quot;odhf_facility_type&quot;</span>, <span class="st">&quot;source_facility_type&quot;</span>, <span class="st">&quot;hospital_id&quot;</span>))</span>
-<span id="cb32-11"><a href="appendix.html#cb32-11" tabindex="-1"></a>odhf_valid[[survey_month_col]] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">size =</span> <span class="fu">nrow</span>(odhf_valid), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb32-12"><a href="appendix.html#cb32-12" tabindex="-1"></a>odhf_valid[[survey_year_col]] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">2018</span><span class="sc">:</span><span class="dv">2021</span>, <span class="at">size=</span><span class="fu">nrow</span>(odhf_valid), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb32-13"><a href="appendix.html#cb32-13" tabindex="-1"></a><span class="fu">setnames</span>(odhf_valid, <span class="fu">c</span>(<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;lat&quot;</span>,<span class="st">&quot;long&quot;</span>))</span>
-<span id="cb32-14"><a href="appendix.html#cb32-14" tabindex="-1"></a><span class="fu">write.csv</span>(odhf_valid, <span class="st">&quot;./data/odhf_hospitals.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="appendix.html#cb42-1" tabindex="-1"></a><span class="co">#TODO incorporate the reference for this data into the index</span></span>
+<span id="cb42-2"><a href="appendix.html#cb42-2" tabindex="-1"></a><span class="co">#generation of data based on entries in the hospital data </span></span>
+<span id="cb42-3"><a href="appendix.html#cb42-3" tabindex="-1"></a><span class="co"># if there are 20 hospitals, make 20 random months for survey between 1 and 12 and random years choosing between 2016 and 2020</span></span>
+<span id="cb42-4"><a href="appendix.html#cb42-4" tabindex="-1"></a><span class="co"># https://www150.statcan.gc.ca/n1/en/pub/13-26-0001/2020001/ODHF_v1.1.zip</span></span>
+<span id="cb42-5"><a href="appendix.html#cb42-5" tabindex="-1"></a><span class="co"># make sure the latitude and longitude columns exist and that there is an id column as well</span></span>
+<span id="cb42-6"><a href="appendix.html#cb42-6" tabindex="-1"></a><span class="co">#set a random seed</span></span>
+<span id="cb42-7"><a href="appendix.html#cb42-7" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">933</span>)</span>
+<span id="cb42-8"><a href="appendix.html#cb42-8" tabindex="-1"></a><span class="co">#read in the raw data</span></span>
+<span id="cb42-9"><a href="appendix.html#cb42-9" tabindex="-1"></a>odhf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/odhf_v1.1.csv&quot;</span>)</span>
+<span id="cb42-10"><a href="appendix.html#cb42-10" tabindex="-1"></a><span class="co">#create an id list</span></span>
+<span id="cb42-11"><a href="appendix.html#cb42-11" tabindex="-1"></a>odhf<span class="sc">$</span>hospital_id <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(odhf)</span>
+<span id="cb42-12"><a href="appendix.html#cb42-12" tabindex="-1"></a><span class="co">#can only use valid lat/long locations</span></span>
+<span id="cb42-13"><a href="appendix.html#cb42-13" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> odhf[<span class="sc">!</span><span class="fu">is.na</span>(odhf[[<span class="st">&quot;latitude&quot;</span>]]) <span class="sc">&amp;</span> </span>
+<span id="cb42-14"><a href="appendix.html#cb42-14" tabindex="-1"></a>                             <span class="sc">!</span><span class="fu">is.na</span>(odhf[[<span class="st">&quot;longitude&quot;</span>]]), ]</span>
+<span id="cb42-15"><a href="appendix.html#cb42-15" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> odhf_valid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(odhf_facility_type<span class="sc">==</span><span class="st">&quot;Hospitals&quot;</span>) <span class="sc">%&gt;%</span>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;facility_name&quot;</span>, <span class="st">&quot;odhf_facility_type&quot;</span>, <span class="st">&quot;hospital_id&quot;</span>))</span>
+<span id="cb42-16"><a href="appendix.html#cb42-16" tabindex="-1"></a>odhf_valid[[survey_month_col]] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">size =</span> <span class="fu">nrow</span>(odhf_valid), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb42-17"><a href="appendix.html#cb42-17" tabindex="-1"></a>odhf_valid[[survey_year_col]] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">2018</span><span class="sc">:</span><span class="dv">2021</span>, <span class="at">size=</span><span class="fu">nrow</span>(odhf_valid), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb42-18"><a href="appendix.html#cb42-18" tabindex="-1"></a><span class="fu">setnames</span>(odhf_valid, <span class="fu">c</span>(<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;lat&quot;</span>,<span class="st">&quot;long&quot;</span>))</span>
+<span id="cb42-19"><a href="appendix.html#cb42-19" tabindex="-1"></a><span class="fu">write.csv</span>(odhf_valid, <span class="st">&quot;./data/odhf_hospitals.csv&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

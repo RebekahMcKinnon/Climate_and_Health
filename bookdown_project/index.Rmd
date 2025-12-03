@@ -67,6 +67,8 @@ The following R packages are required to run the code in this book:
 
 -   `ggplot2`
 -   `maps`
+-   `knitr`
+-   `kableExtra`
 
 **Spatial analysis**
 
@@ -89,7 +91,7 @@ packages <- c(
   "dplyr", "tidyr", "lubridate", "data.table", "tibble",
   "readr", "purrr", "stringr", "readxl", "writexl",
   "ggplot2", "maps", "rvest", "httr", 
-  "sf", "geosphere", "fs",
+  "sf", "geosphere", "fs", "knitr", "kableExtra",
   "weathercan", "furrr", "tidyverse"
 )
 

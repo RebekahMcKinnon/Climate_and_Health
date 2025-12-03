@@ -1,3 +1,6 @@
+```{r, setup, include=FALSE}
+knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_project')
+```
 # Locating & Refining Environmental Data {#locating-and-refining-environmental-data}
 
 ## Introduction {#introduction-environmental-data}
@@ -83,6 +86,104 @@ You may want this newly formed dataset saved for easier future loading (i.e., to
 ```{r write-fire-data}
 # uncomment to run
 # write.csv(poly_fires, "wildfire_data.csv", row.names = FALSE)
+```
+
+## Floods {#floods}
+
+### Data Sourcing {#floods-data-sourcing}
+
+See the index.
+
+```{r floods-initial-data, warning=FALSE}
+# load data
+gdb_path <- "./data/EGS_Flood_Product_Archive.gdb"
+st_layers(gdb_path)
+flood_data <- st_read(gdb_path, layer = "EGS_Flood_Product_Archive", options = "METHOD=SKIP")
+kable(head(flood_data), format = "html") %>%
+  kable_styling(full_width = FALSE) %>%
+  scroll_box(height = "300px")
+```
+
+### Data Cleaning
+
+We are interested in floods that happened within 25km of the POI survey data. After converting the survey data to the same coordinate reference system as the flood data we can look at the intersection of the two data points.
+
+```{r floods-survey-data-preprocess}
+# need to make some data to verify
+# names throw an error due to character incompatibility, so remove altogether
+survey_sf <- odhf_valid %>% st_as_sf(coords=c("long", "lat"), crs=st_crs(4326)) %>% select(-facility_name) %>% st_transform(st_crs(flood_data))
+```
+
+### Data Manipulation {#floods-data-manipulation}
+
+Buffer distance is easily customisable for different use cases. This chunk will loop through each of the points of interest to determine flood exposure with the floods dataset. 
+
+```{r floods-main-loop}
+buffer_distance = 25000 # in metres
+
+# create a buffer around each poi
+survey_buffered <- st_buffer(survey_sf, dist = buffer_distance)
+
+# find floods within each poi's buffer
+flood_matches <- st_intersects(survey_buffered, flood_data)
+
+# extract year and month from flood event datetime
+flood_data <- flood_data %>%
+  mutate(flood_year = year(datetime_utc),
+         flood_month = month(datetime_utc))
+
+# initialize an empty data frame to store results
+exposure_matrix <- matrix(0, nrow = nrow(survey_sf), ncol = 25)
+colnames(exposure_matrix) <- paste0("month_", 0:24)  #column names for each month
+
+# loop through each poi and determine flood exposure
+for (i in seq_len(nrow(survey_sf))) {
+  # extract the survey date from the survey related columns
+  survey_year <- survey_sf$survey_year[i]
+  survey_month <- survey_sf$survey_month[i]
+  
+  # compute the 24-month range
+  month_seq <- seq.Date(from = as.Date(sprintf("%d-%02d-01", survey_year, survey_month)) %m-% months(1), 
+                        length.out = 24, by = "-1 month")
+  month_seq_df <- data.frame(year = year(month_seq), month = month(month_seq))
+  
+  # get the indices of intersecting floods for this poi
+  flood_indices <- flood_matches[[i]]
+  
+  if (length(flood_indices) > 0) {  # if floods exist in the buffer
+    flood_events <- flood_data[flood_indices, c("flood_year", "flood_month")]
+    
+    # check for each of the past 24 months if a flood occurred
+    for (j in 1:24) {
+      target_year <- month_seq_df$year[j]
+      target_month <- month_seq_df$month[j]
+      
+      # if a flood occurred in this year-month, set exposure to 1
+      if (any(flood_events$flood_year == target_year & flood_events$flood_month == target_month)) {
+        exposure_matrix[i, j] <- 1
+      }
+    }
+  }
+}
+
+# convert matrix to a data frame and merge with survey data
+exposure_df <- as.data.frame(exposure_matrix)
+# bind in the presence absence matrix
+survey_floods_pa <- cbind(survey_sf, exposure_df)
+
+# summarise based on the number of unique hospitals
+survey_floods_pa %>% summarise(n_unique = n_distinct(hospital_id)) 
+
+# create a summary dataset of hospitals with only flood events for easier viewing
+survey_floods_pa_filtered <- survey_floods_pa %>%
+  filter(if_any(starts_with("month_"), ~ . == 1))
+
+kable(head(survey_floods_pa_filtered),'html') %>%
+  kable_styling(full_width = FALSE) %>%
+  scroll_box(height = "300px")
+
+# write to a directory 
+#write.csv(survey_floods_pa, "flood_presence_absence_2yr.csv", row.names = FALSE)
 ```
 
 ## Hurricanes {#hurricanes}
@@ -570,7 +671,6 @@ for (k in seq_along(years)){
 }
 ```
 
-
 # Appendix
 
 ## Survey Data Generation
@@ -581,12 +681,16 @@ for (k in seq_along(years)){
 # if there are 20 hospitals, make 20 random months for survey between 1 and 12 and random years choosing between 2016 and 2020
 # https://www150.statcan.gc.ca/n1/en/pub/13-26-0001/2020001/ODHF_v1.1.zip
 # make sure the latitude and longitude columns exist and that there is an id column as well
+#set a random seed
 set.seed(933)
+#read in the raw data
 odhf <- read.csv("./data/odhf_v1.1.csv")
+#create an id list
 odhf$hospital_id <- 1:nrow(odhf)
+#can only use valid lat/long locations
 odhf_valid <- odhf[!is.na(odhf[["latitude"]]) & 
                              !is.na(odhf[["longitude"]]), ]
-odhf_valid <- odhf_valid %>% filter(odhf_facility_type=="Hospitals") %>%  select(c("latitude", "longitude", "facility_name", "odhf_facility_type", "source_facility_type", "hospital_id"))
+odhf_valid <- odhf_valid %>% filter(odhf_facility_type=="Hospitals") %>%  select(c("latitude", "longitude", "facility_name", "odhf_facility_type", "hospital_id"))
 odhf_valid[[survey_month_col]] <- sample(1:12, size = nrow(odhf_valid), replace = TRUE)
 odhf_valid[[survey_year_col]] <- sample(2018:2021, size=nrow(odhf_valid), replace = TRUE)
 setnames(odhf_valid, c("latitude", "longitude"), c("lat","long"))

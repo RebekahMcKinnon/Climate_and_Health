@@ -15,6 +15,10 @@ introduction-environmental-data
 wildfires
 data-preparation-with-sf-package
 inspect-and-refine-data-structure
+floods
+floods-data-sourcing
+data-cleaning
+floods-data-manipulation
 hurricanes
 hurricanes-data-sourcing
 hurricanes-data-cleaning
