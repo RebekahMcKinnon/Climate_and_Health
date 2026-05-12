@@ -1,6 +1,7 @@
 ```{r, setup, include=FALSE}
 knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_project')
 ```
+
 # Locating & Refining Environmental Data {#locating-and-refining-environmental-data}
 
 ## Introduction {#introduction-environmental-data}
@@ -88,6 +89,116 @@ You may want this newly formed dataset saved for easier future loading (i.e., to
 # write.csv(poly_fires, "wildfire_data.csv", row.names = FALSE)
 ```
 
+## PM 2.5 {#pm25}
+
+### Data Cleaning
+
+see the index.
+
+```{r pm25-data-cleaning, warning=FALSE}
+
+odhf_pm25 <- odhf_valid %>%
+  mutate(
+    pm25_start = make_date(survey_year - 2, survey_month, 1),  #start 2 years before
+    pm25_end = make_date(survey_year, survey_month, days_in_month(make_date(survey_year, survey_month, 1))))  #last day of the month
+
+head(odhf_pm25)
+
+#define years
+years <- 2015:2018
+
+#define the base path
+base_path <- "./data/pm25/aqsmk_01_2025-07-08_15-34-43_monthly"
+
+#read, standardize, and pivot dataset
+load_pm25_data <- function(year) {
+  #get two-digit suffix
+  suffix <- substr(as.character(year), 3, 4)
+  
+  #construct filename
+  file <- paste0(base_path, "/aqsmk_01_", suffix, ".csv")
+  
+  #read the file
+  df <- read_csv(file)
+  
+  #rename postalcode column to be consistent
+  names(df)[1] <- "postalcode"
+  
+  #pivot to long format
+  df_long <- df %>%
+    pivot_longer(
+      cols = starts_with("aqsmk_01_"),
+      names_to = "month_var",
+      values_to = "pm25") %>%
+    mutate(
+      year = year,
+      #extract month part, e.g., "jan" from "pm25_jan_13"
+      month = str_extract(month_var, "(?<=aqsmk_01_)[a-z]+")) %>%
+    select(postalcode, province, year, month, pm25) #TODO might not need the postalcode column at all, or the year and month
+  
+  return(df_long)
+}
+
+#load and combine all datasets
+pm25_all_years <- map_dfr(years, load_pm25_data)
+
+#turn month into a factor with correct order
+pm25_all_years <- pm25_all_years %>%
+  mutate(month = factor(month, levels = c("jan", "feb", "mar", "apr", "may", "jun",
+                                          "jul", "aug", "sep", "oct", "nov", "dec")))
+
+#rename postcode column to match the school dataset 
+pm25_all_years <- pm25_all_years %>% 
+  rename(postcode = postalcode)#TODO might not need the postalcode column at all
+head(pm25_all_years)
+```
+
+### Data Manipulation {pm25-data-manipulation}
+
+```{r}
+#create a date column in pm25_all_years for joining
+pm25_all_years <- pm25_all_years %>%
+  mutate(
+    month_num = match(month, tolower(month.abb)),  #convert month string to number
+    date = as.Date(paste(year, month_num, 1, sep = "-"))) %>%
+  select(postcode, date, pm25)  #keep only necessary columns
+
+#create lagged months for each poi observation
+odhf_pm25_lags <- odhf_pm25 %>%
+  mutate(
+    #to determine lag, only need the first of the month 
+    survey_date = make_date(survey_year, survey_month, 1),  #first of the survey month
+    start_date = make_date(survey_year - 2, survey_month, 1)  #first of month 2 years prior
+  ) %>%
+  rowwise() %>%
+  mutate(
+    lag_months = list(seq.Date(from = survey_date, to = start_date, by = "-1 month"))
+  ) %>%
+  ungroup() %>%
+  select(-pm25_start, -pm25_end) %>%
+  unnest(lag_months) %>%
+  group_by(across(-lag_months)) %>%
+  mutate(month_lag = paste0("month_", row_number() - 1)) %>%
+  ungroup()
+
+#join with PM2.5 values and replace -9999 with NA (but keep zeros)
+odhf_pm25_with_values <- odhf_pm25_lags %>%
+  left_join(pm25_all_years, by = c("postcode", "lag_months" = "date")) %>% #TODO: fix this join, postcode won't work if postcodes aren't included in the dataset, better to use the id column
+  mutate(pm25 = ifelse(pm25 == -9999, NA, pm25))
+
+#pivot to wide format so each lag is its own column
+odhf_pm25_final <- odhf_pm25_with_values %>%
+  select(-lag_months) %>%
+  pivot_wider(
+    names_from = month_lag,
+    values_from = pm25
+  )
+
+write.csv(odhf_pm25_final, "2018_pm25_presence_absence.csv", row.names = FALSE)
+
+
+```
+
 ## Floods {#floods}
 
 ### Data Sourcing {#floods-data-sourcing}
@@ -116,7 +227,7 @@ survey_sf <- odhf_valid %>% st_as_sf(coords=c("long", "lat"), crs=st_crs(4326)) 
 
 ### Data Manipulation {#floods-data-manipulation}
 
-Buffer distance is easily customisable for different use cases. This chunk will loop through each of the points of interest to determine flood exposure with the floods dataset. 
+Buffer distance is easily customisable for different use cases. This chunk will loop through each of the points of interest to determine flood exposure with the floods dataset.
 
 ```{r floods-main-loop}
 buffer_distance = 25000 # in metres
@@ -300,7 +411,7 @@ write.csv(storm_lookup, r"(./data/HurricaneRawData/storm_lookup_table.csv)")
 
 ### Data Cleaning {#hurricanes-data-cleaning}
 
-Now that the data is downloaded and ready, it is time clean it up. There are two files of interest for the hurricanes, the point files and the polygon (radii) files. These files need to be manipulated so that dates and ids are consistent between the two file sets and between years. 
+Now that the data is downloaded and ready, it is time clean it up. There are two files of interest for the hurricanes, the point files and the polygon (radii) files. These files need to be manipulated so that dates and ids are consistent between the two file sets and between years.
 
 ```{r hurricanes-map-months}
 #standardizing naming conventions in files
@@ -350,7 +461,6 @@ for (shp_path in shp_files) {
 
 ```
 
-
 Date and time need to be consistent between the point and polygon files.
 
 ```{r hurricanes-alter-points-files, message=FALSE, warning=FALSE, results='hide'}
@@ -392,7 +502,6 @@ for (shp_path in shp_files) {
 }
 ```
 
-
 The points files also need to be done in a similar way.
 
 ```{r hurricanes-alter-radii-files, message=FALSE, warning=FALSE, results='hide'}
@@ -431,7 +540,6 @@ for (shp_path in shp_files) {
 }
 ```
 
-
 ### Data Manipulation {#hurricanes-data-manipulation}
 
 Now that the hurricane files are prepared properly, the associated points data of interest, (in this case hospitals), can be used within the files. The point files in this example have a series of months and years in columns when surveys were conducted, a latitude and longitude column where we can identify
@@ -469,10 +577,10 @@ all_storms$months <- ym(str_sub(all_storms$event_id,5,10))
 
 Now that all the data is loaded and ready, the intersection with all the points of interest needs to be performed and a number of data outputs are created.
 
-1. A long table of storms and intersections with schools.
-2. A wide table with the ID's of the surveyed locations and a matrix of 1's and 0's identifying if they were impacted by a storm during the previous 24 months.
-3. A table with daily intersection information for the month the survey was conducted.
-4. A long table with only intersection information
+1.  A long table of storms and intersections with schools.
+2.  A wide table with the ID's of the surveyed locations and a matrix of 1's and 0's identifying if they were impacted by a storm during the previous 24 months.
+3.  A table with daily intersection information for the month the survey was conducted.
+4.  A long table with only intersection information
 
 ```{r hurricanes-main-loop}
 #the website of interest for tracks
@@ -696,4 +804,3 @@ odhf_valid[[survey_year_col]] <- sample(2018:2021, size=nrow(odhf_valid), replac
 setnames(odhf_valid, c("latitude", "longitude"), c("lat","long"))
 write.csv(odhf_valid, "./data/odhf_hospitals.csv")
 ```
-
