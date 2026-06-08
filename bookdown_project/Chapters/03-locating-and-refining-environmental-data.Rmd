@@ -12,7 +12,7 @@ Sample data is Canadian public hospital data.
 
 ### Data preparation with sf package {#data-preparation-with-sf-package}
 
-We read the updated NBAC wildfire polygons (1972-2024) from the .shp file.
+Data can be downloaded for free from the [Canadian Wildland Fire Information System](#../index.Rmd/datasets "Datasets") We read the updated NBAC wildfire polygons (1972-2024) from the .shp file.
 
 -   Tip: Shapefiles are a set of files. Ensure the .shp, .shx, .dbf, and (ideally) .prj sit together in the same folder.
 
@@ -52,8 +52,8 @@ Limit dataset to only the required columns.
 poly_fires <- select(poly_fires, 
                      nfireid, basrc,
                      year, 
-                     ag_sdate, # start date as date format
-                     ag_edate, # end date as date format
+                     ag_sdate, # agency start date as date format
+                     ag_edate, # agency end date as date format
                      poly_ha, 
                      admin_area,
                      geometry)
@@ -61,7 +61,7 @@ poly_fires <- select(poly_fires,
 head(poly_fires)
 ```
 
-Rename columns to align better with the spatial datasets.
+Mutate columns for easier use and understanding.
 
 ```{r rename-fire-data}
 poly_fires <- poly_fires %>%
@@ -84,120 +84,140 @@ str(poly_fires)
 
 You may want this newly formed dataset saved for easier future loading (i.e., to avoid the need to reload the shapefile during the next R session).
 
-```{r write-fire-data}
-# uncomment to run
-# write.csv(poly_fires, "wildfire_data.csv", row.names = FALSE)
+```{r write-fire-data, eval=FALSE}
+st_write_parquet(poly_fires, r"(./data/wildfire_data_sf.parquet)")
 ```
-
-## PM 2.5 {#pm25}
-
-### Data Cleaning
-
-see the index.
-
-```{r pm25-data-cleaning, warning=FALSE}
-
-odhf_pm25 <- odhf_valid %>%
-  mutate(
-    pm25_start = make_date(survey_year - 2, survey_month, 1),  #start 2 years before
-    pm25_end = make_date(survey_year, survey_month, days_in_month(make_date(survey_year, survey_month, 1))))  #last day of the month
-
-head(odhf_pm25)
-
-#define years
-years <- 2015:2018
-
-#define the base path
-base_path <- "./data/pm25/aqsmk_01_2025-07-08_15-34-43_monthly"
-
-#read, standardize, and pivot dataset
-load_pm25_data <- function(year) {
-  #get two-digit suffix
-  suffix <- substr(as.character(year), 3, 4)
-  
-  #construct filename
-  file <- paste0(base_path, "/aqsmk_01_", suffix, ".csv")
-  
-  #read the file
-  df <- read_csv(file)
-  
-  #rename postalcode column to be consistent
-  names(df)[1] <- "postalcode"
-  
-  #pivot to long format
-  df_long <- df %>%
-    pivot_longer(
-      cols = starts_with("aqsmk_01_"),
-      names_to = "month_var",
-      values_to = "pm25") %>%
-    mutate(
-      year = year,
-      #extract month part, e.g., "jan" from "pm25_jan_13"
-      month = str_extract(month_var, "(?<=aqsmk_01_)[a-z]+")) %>%
-    select(postalcode, province, year, month, pm25) #TODO might not need the postalcode column at all, or the year and month
-  
-  return(df_long)
-}
-
-#load and combine all datasets
-pm25_all_years <- map_dfr(years, load_pm25_data)
-
-#turn month into a factor with correct order
-pm25_all_years <- pm25_all_years %>%
-  mutate(month = factor(month, levels = c("jan", "feb", "mar", "apr", "may", "jun",
-                                          "jul", "aug", "sep", "oct", "nov", "dec")))
-
-#rename postcode column to match the school dataset 
-pm25_all_years <- pm25_all_years %>% 
-  rename(postcode = postalcode)#TODO might not need the postalcode column at all
-head(pm25_all_years)
-```
-
-### Data Manipulation {pm25-data-manipulation}
 
 ```{r}
-#create a date column in pm25_all_years for joining
-pm25_all_years <- pm25_all_years %>%
-  mutate(
-    month_num = match(month, tolower(month.abb)),  #convert month string to number
-    date = as.Date(paste(year, month_num, 1, sep = "-"))) %>%
-  select(postcode, date, pm25)  #keep only necessary columns
-
-#create lagged months for each poi observation
-odhf_pm25_lags <- odhf_pm25 %>%
-  mutate(
-    #to determine lag, only need the first of the month 
-    survey_date = make_date(survey_year, survey_month, 1),  #first of the survey month
-    start_date = make_date(survey_year - 2, survey_month, 1)  #first of month 2 years prior
-  ) %>%
-  rowwise() %>%
-  mutate(
-    lag_months = list(seq.Date(from = survey_date, to = start_date, by = "-1 month"))
-  ) %>%
-  ungroup() %>%
-  select(-pm25_start, -pm25_end) %>%
-  unnest(lag_months) %>%
-  group_by(across(-lag_months)) %>%
-  mutate(month_lag = paste0("month_", row_number() - 1)) %>%
-  ungroup()
-
-#join with PM2.5 values and replace -9999 with NA (but keep zeros)
-odhf_pm25_with_values <- odhf_pm25_lags %>%
-  left_join(pm25_all_years, by = c("postcode", "lag_months" = "date")) %>% #TODO: fix this join, postcode won't work if postcodes aren't included in the dataset, better to use the id column
-  mutate(pm25 = ifelse(pm25 == -9999, NA, pm25))
-
-#pivot to wide format so each lag is its own column
-odhf_pm25_final <- odhf_pm25_with_values %>%
-  select(-lag_months) %>%
-  pivot_wider(
-    names_from = month_lag,
-    values_from = pm25
-  )
-
-write.csv(odhf_pm25_final, "2018_pm25_presence_absence.csv", row.names = FALSE)
-
+poly_fires <- st_read_parquet(r"(./data/wildfire_data_sf.parquet)")
 
 ```
+
+```{r}
+min_fire_size <- 200 #in ha, uncomment line below to use
+buffer_distance = 25000 # in metres
+poly_fires <- poly_fires %>% filter(size > min_fire_size) #UNCOMMENT FOR FILTERING FIRES BY SIZE
+
+odhf_fires <- odhf_valid %>% 
+  mutate(long = as.numeric(long)) %>% 
+  filter(!is.na(lat) & !is.na(long))
+
+odhf_fires_sf <- odhf_fires %>% 
+  st_as_sf(coords=c("long", "lat"), crs = st_crs(4326)) #this is different from what Rebekah had, the crs is likely in EPSG 4326 since it is measured in DD not in metres, the poly fire data is measured in metres and the sf package identifies it as lambert (EPSG 3347)
+
+odhf_fires_sf <- st_transform(odhf_fires_sf, st_crs(poly_fires)) #now transform to the correct pcs to be in line with the fire data
+
+#Create X km buffers around each school location
+odhf_buffers <- st_buffer(odhf_fires_sf, dist = buffer_distance) #create the metres based buffer in a metres based pcs
+
+#intersection matrix, the product refers to row indices, not id numbers
+fire_matches <- st_intersects(odhf_buffers, poly_fires) #run st_intersection to get geometries, but takes way longer
+```
+
+
+```{r}
+intersection_df <- map2_dfr(seq_along(fire_matches),  fire_matches,
+  ~ tibble(
+    hospital_id = odhf_fires_sf$hospital_id[.x], #.x indicates it's from the sequence (same order as school_sf_2014) (argument 1)
+    n_fire_id = poly_fires$nfireid[.y], #.y indicates it's from poly_fires (argument 2)
+    survey_year = odhf_fires_sf$survey_year[.x],
+    survey_month = odhf_fires_sf$survey_month[.x],
+    fire_start_date = poly_fires$ag_sdate[.y],
+    fire_end_date = poly_fires$ag_edate[.y],
+    #survey_date = ym(paste0(school_sf_2014$survey_year[.x], school_sf_2014$survey_month[.x])),
+    intersects = 1
+  )
+)
+
+#create relevant date fields
+intersection_df$survey_eom_date <- ymd(paste(intersection_df$survey_year, intersection_df$survey_month, "01", sep = "-")) + months(1) - days(1)
+intersection_df$survey_25_prev <- ymd(paste(intersection_df$survey_year, intersection_df$survey_month, "01", sep = "-")) -months(24)
+intersection_df$fire_start_date <- as.Date(intersection_df$fire_start_date, format="%YYYY-%MM-%DD")
+intersection_df$fire_end_date <- as.Date(intersection_df$fire_end_date, format="%YYYY-%MM-%DD")
+```
+
+```{r}
+#this gets all overlapping dates, treating rows with no fire end date as one day instantaneous events
+intersection_overlap <- intersection_df %>%
+  mutate(
+    #define effective fire range: point if no end date, range otherwise
+    fire_start_eff = fire_start_date,
+    fire_end_eff   = coalesce(fire_end_date, fire_start_date)
+  ) %>%
+  filter(
+    #survey range ovelraps with fire range
+    survey_25_prev <= fire_end_eff,
+    survey_eom_date >= fire_start_eff
+  )
+```
+
+### Date Lag
+
+```{r}
+#expand each survey row into last 24 months (month_0 = survey month, month_1 = survey-1, etc)
+expand_months <- function(d, hospital_id, survey_month, survey_year) {
+  data.table(
+    hospital_id = hospital_id,
+    survey_year = survey_year,
+    survey_month = survey_month,
+    offset = 0:24,
+    date = format(ceiling_date(d %m-% months(0:24), "month") - days(1), "%Y%m")
+  )
+}
+
+#apply the function
+# identifies how many months a given month is offset from the 0th month for that schools survey date
+odhf_fires_sf$dates <- ymd(paste(odhf_fires_sf$survey_year, odhf_fires_sf$survey_month, "01", sep = "-")) + months(1) - days(1)
+# FOR EVERY UNIQUE SCHOOL AND SURVEY DATE COMBINATION <- this is key
+fires_un <- unique(odhf_fires_sf, by = c("hospial_id","dates"))
+fires_un <- as.data.table(fires_un)
+survey_expanded <- fires_un[, expand_months(dates, hospital_id, survey_month, survey_year), by = .(hospital_id, dates)] #expand the months backwards for each school_id/date combo
+survey_expanded <- survey_expanded %>% select(-3) #get rid of the duplicate column
+```
+
+### Detailed Matrix
+
+```{r}
+fires_detailed <- survey_expanded %>%
+  left_join(intersection_df, by = c("hospital_id", "survey_year", "survey_month")) %>% #join the data on year month and id
+  mutate(
+    month_ym = ymd(paste0(date, "01")), #set the date
+    month_start = month_ym, #get the first month as a date
+    month_end = ceiling_date(month_ym, "month") - days(1), #get the last month as a date
+    fire_start_eff = fire_start_date, #all have start date or nothing
+    fire_end_eff = coalesce(fire_end_date, fire_start_date), #coalesce if nothing 
+    intersect = case_when(
+      is.na(fire_start_date) ~ 0,  #fire had no date or there is no fire
+      month_start <= fire_end_eff & month_end >= fire_start_eff ~ 1, 
+      TRUE ~ 0
+    )
+  ) %>%
+  select(hospital_id, survey_year, survey_month, offset, date, 
+         intersect, n_fire_id, fire_start_date, fire_end_date, fire_start_eff, fire_end_eff)
+
+fires_summary_matrix <- fires_detailed %>% 
+  filter(intersect == 1) %>% 
+  group_by(hospital_id, survey_year, survey_month, offset) %>% 
+  slice_head(n=1) %>% 
+  right_join(survey_expanded, by=c("hospital_id", "survey_year", "survey_month", "offset")) %>% 
+  mutate(intersect = replace_na(intersect, 0)) %>% #make sure there are no NAs
+  ungroup() %>% 
+  as.data.table() %>% 
+  dcast(.,
+      hospital_id + survey_month + survey_year ~ paste0("month_", offset),
+      value.var = "intersect",
+      fun.aggregate = max
+    ) %>%
+  setcolorder(c("hospital_id", "survey_month", "survey_year", paste0("month_", 0:24))) #column order makes sense
+fires_summary_matrix[c(12:22), ] %>% 
+  kbl(format = "html", caption = "Fire Summary Matrix") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%")
+
+write_parquet(fires_summary_matrix, r"(./data/fires_presence_absence.parquet)")
+
+```
+
 
 ## Floods {#floods}
 
@@ -294,7 +314,7 @@ kable(head(survey_floods_pa_filtered),'html') %>%
   scroll_box(height = "300px")
 
 # write to a directory 
-#write.csv(survey_floods_pa, "flood_presence_absence_2yr.csv", row.names = FALSE)
+st_write_parquet(survey_floods_pa, r"(./data/flood_presence_absence.parquet)")
 ```
 
 ## Hurricanes {#hurricanes}
@@ -546,33 +566,24 @@ Now that the hurricane files are prepared properly, the associated points data o
 
 First we load all the storms.
 
-```{r hurricanes-load-storms}
+```{r hurricanes-load-storms, warning=FALSE}
 #where all the processed files are
 storms_dir <- r"(./data/HurricaneRawData/nhc_best_tracks/processed)"
 
 #get all the radii shapefiles
 #I settled on radii, because its the reach of the wind
-shp_files <- list.files(storms_dir, pattern = "_radii\\.shp$", recursive = TRUE, full.names = TRUE)
+cols <- c("event_id", "event_r_id", "storm_id")
 
-#read and merge them together
-storms <- lapply(shp_files, function(shp) {
-  suppressWarnings(
-    st_read(shp, quiet = TRUE) %>% 
-      select(any_of(cols)) %>%
-      st_transform(4326) %>%
-      st_make_valid()
-  )
+storms_list <- purrr::map(shp_files, function(x) {
+  st_read(x, quiet = TRUE) %>%
+    select(any_of(cols))
 })
 
-the_storms <- do.call(rbind, storms)
-
-all_storms <- the_storms
-
-#make sure the geometries are valid, often times they were unclosed fan shapes
+all_storms <- dplyr::bind_rows(storms_list)
 all_storms <- st_transform(all_storms, 4326)
 all_storms <- st_make_valid(all_storms)
-#get just the date from the storms
-all_storms$months <- ym(str_sub(all_storms$event_id,5,10))
+
+all_storms$months <- ym(str_sub(all_storms$event_id, 5, 10))
 ```
 
 Now that all the data is loaded and ready, the intersection with all the points of interest needs to be performed and a number of data outputs are created.
@@ -777,6 +788,429 @@ for (k in seq_along(years)){
     )
   }
 }
+
+hurricane_matrix <- hurricane_results[["result_0k_2023"]][["wide"]] %>%
+  relocate(all_of(paste0("month_", 0:24)), .after = last_col())
+
+hurricane_maxtrix[278:290, ]
+
+```
+
+## Heat {#heat}
+
+### Data Sourcing
+
+Heat data was sourced from the `weathercan` R package.
+
+```{r}
+survey_sf <- odhf_valid %>% st_as_sf(coords=c("long", "lat"), crs=st_crs(4326)) %>% select(-facility_name)
+survey_sf <- st_transform(survey_sf, 3978)
+stations_list <- stations() 
+names(stations_list)
+```
+
+In order to collect the relevant weather stations and time frames, the minimum and maximum survey data collection periods needed to be collected from the ODHF data.
+
+```{r}
+survey_sf <- survey_sf %>%
+  mutate(
+    weather_start = make_date(survey_year - 2, survey_month, 1),  # Start date: 2 years before
+    weather_end = make_date(survey_year, survey_month, days_in_month(make_date(survey_year, survey_month, 1))))
+
+min_start_year <- min(year(survey_sf$weather_start), na.rm = TRUE)
+max_end_year <- max(year(survey_sf$weather_end), na.rm = TRUE)
+
+stations_by_day <- filter(stations_list, 
+                                      interval %in% c("hour","day"), 
+                                      # setting the min coverage years for data at the stations
+                                      # is to increase likelihood that the same hospital location will be assigned                                          to the same weather station
+                                      # across survey years 
+                                      # this will reduce noise introduced as a result of pulling data for the same                                         location from different sources 
+                                      # which may have different data available, different frequencies of                                                 collection, etc. 
+                                      start <= min_start_year, 
+                                      end >= max_end_year)
+```
+
+Next, we need to get the nearest distance to stations for evaluation of if they are too close or too far away. In the case of this example, no station will be too far away.
+
+```{r}
+stations_by_day_sf <- st_as_sf(stations_by_day, coords=c("lon", "lat"), crs = 4326)
+stations_by_day_sf <- st_transform(stations_by_day_sf, st_crs(survey_sf))
+nearest_stations <- st_nearest_feature(survey_sf, stations_by_day_sf)
+survey_sf$nearest_dist <- st_distance(survey_sf, stations_by_day_sf[nearest_stations,], by_element = TRUE)
+survey_sf$near_station_id <- stations_by_day_sf[nearest_stations,]$station_id
+survey_sf$station_interval <- stations_by_day_sf[nearest_stations,]$interval
+survey_sf <- survey_sf %>% rename(station_id=near_station_id)
+```
+
+Get the data.
+
+```{r get-weather-data, eval=FALSE}
+hourly_station_ids <- filter(survey_sf, station_interval == "hour") %>% pull(station_id)
+daily_station_ids <- filter(survey_sf, station_interval == "day") %>% pull(station_id)
+daily_weather <- weather_dl(station_ids = daily_station_ids, start=min(survey_sf$weather_start), end=max(survey_sf$weather_end), interval='day')
+hourly_weather <- weather_dl(station_ids = hourly_station_ids, start=min(survey_sf$weather_start), end=max(survey_sf$weather_end), interval='hour')
+```
+
+Group and combine.
+
+```{r}
+hourly_as_daily_weather_original <- hourly_weather %>% 
+  group_by(station_id, date, lat, lon) %>% 
+  summarise(
+    min_temp = min(temp, na.rm = FALSE),
+    max_temp = max(temp, na.rm = FALSE),
+    .groups = "drop"
+  )
+hourly_as_daily_weather <- subset(hourly_as_daily_weather_original, select = -c(lat, lon))
+combined_hourly_daily <- bind_rows(hourly_as_daily_weather, daily_weather) %>%
+  select(any_of(intersect(names(hourly_as_daily_weather), names(daily_weather))))
+write_parquet(combined_hourly_daily, r"(./data/odhf_weather_stations.parquet)")
+```
+
+### Heat ECCC
+
+```{r}
+combined_hourly_daily <- read_parquet(r"(./data/odhf_weather_stations.parquet)")
+eccc_friendly <- st_read(r"(./data/roughEcccMap_final.gpkg)")
+survey_sf_eccc <- st_join(survey_sf, eccc_friendly)
+
+consecutive_days <- 2 #2 days and nights as the criteria.
+
+#test <- left_join(school_sf_eccc, combined_hourly_daily, by='station_id')
+
+heat_flagged_eccc <- survey_sf_eccc %>%
+  left_join(combined_hourly_daily, by='station_id') %>%  #date, station_id, max_temp, min_temp 
+  unique(.,by=c("hospital_id", "survey_month", "survey_year", "date")) %>%  #get unique entries based on survey_id, survey month + year, and date of station data collection
+  arrange(station_id, date) %>% #need dates in order chronologically
+  group_by(station_id, hospital_id, survey_month, survey_year) %>% #station_ids grouped together
+  mutate(
+    hot = max_temp >= day_thresh & min_temp >= nite_thres, #if the max_temp is greater than the day threshold AND the minimum temperature is greater than the nighttime threshold
+    run_id = rleid(hot) # add unique id for runs
+  ) %>% 
+  group_by(hospital_id, survey_month, survey_year, station_id, run_id) %>% #group by station id and the run ids (looking for two or more)
+  mutate(
+    run_len = sum(hot), #sum the number of hot events per run                                    
+    heat_event = hot & run_len >= consecutive_days #only classed as a heat event if two or more days       
+  ) %>%
+  ungroup() %>%
+  select(-run_id, -run_len) %>% 
+  mutate(date = as.Date(date))
+```
+
+#### Date Lag
+
+```{r}
+expand_months <- function(d, hospital_id, survey_month, survey_year, station_id) {
+  data.table(
+    hospital_id = hospital_id,
+    survey_year = survey_year,
+    survey_month = survey_month,
+    station_id = station_id,
+    offset = 0:24,
+    date = format(ceiling_date(d %m-% months(0:24), "month") - days(1), "%Y%m")
+  )
+}
+
+#apply the function
+# identifies how many months a given month is offset from the 0th month for that surveys survey date
+survey_sf$dates <- ymd(paste(survey_sf$survey_year, survey_sf$survey_month, "01", sep = "-")) + months(1) - days(1)
+# FOR EVERY UNIQUE survey AND SURVEY DATE COMBINATION <- this is key
+surveys_un <- unique(survey_sf, by = c("survey_id","dates"))
+surveys_un <- as.data.table(surveys_un)
+survey_expanded <- surveys_un[, expand_months(dates, hospital_id, survey_month, survey_year, station_id), by = .(hospital_id, dates)]
+survey_expanded <- survey_expanded %>% select(-3)
+survey_expanded_heat_days <- survey_expanded %>% rename(year_month = date)
+```
+
+#### Date Join
+
+Create heat event data for all months before narrowing the range and then join with the expanded days.
+
+```{r}
+#arrange the data chronologically once again and setup columns for joining, add another heat classifier since this is being grouped to months (month has_heat)
+heat_monthly_eccc <- heat_flagged_eccc %>%
+  st_drop_geometry() %>% #drop the geometry for faster speeds
+  arrange(station_id, date) %>%
+  mutate(year_month = as.integer(format(date, "%Y%m"))) %>%
+  group_by(hospital_id, year_month) %>%
+  summarise(
+    has_heat = any(heat_event, na.rm = TRUE),                     
+    .groups = "drop"
+  ) %>%
+  mutate(
+    year  = as.integer(year_month / 100), #need a year eventually
+    month = as.integer(year_month %% 100), #need a month eventually
+    year_month = as.character(year_month)
+  )
+  
+
+#join with the survey data
+survey_with_heat_eccc <- survey_expanded_heat_eccc %>% select(-5,-6) %>% 
+  rename(year_month=date) %>% 
+  left_join(heat_monthly_eccc, 
+            by = c("hospital_id", "year_month")) %>%             
+  mutate(
+    heat_flag = as.integer(coalesce(has_heat, FALSE))) #integer based has_heat           
+
+heat_month_zero_daily_eccc <- filter(survey_with_heat_eccc, survey_year==year & survey_month==month) %>% st_drop_geometry()
+
+```
+
+#### Matrix
+
+`survey_with_heat_eccc` has all the interesting information in it.
+
+```{r}
+heat_summary_matrix_eccc <- survey_with_heat_eccc %>% 
+  filter(heat_flag == 1) %>% # only the months with floods in them
+  group_by(hospital_id, survey_year, survey_month, offset) %>% # group by the offsets
+  slice_head(n=1) %>%
+  right_join(survey_expanded_heat_eccc, by=c("hospital_id", "survey_year", "survey_month", "offset")) %>%
+  mutate(heat_flag = replace_na(heat_flag, 0)) %>% #make sure there are no NAs
+  ungroup() %>%
+  as.data.table() %>%
+  left_join(survey_sf %>% select(hospital_id, station_id, nearest_dist), by='hospital_id') %>%
+  dcast(.,
+      hospital_id + survey_month + survey_year + station_id + nearest_dist~ paste0("month_", offset),
+      value.var = "heat_flag",
+      fun.aggregate = max
+    ) %>%
+  setcolorder(c("hospital_id", "survey_month", "survey_year", 'station_id', 'nearest_dist', paste0("month_", 0:24))) 
+
+write_parquet(heat_summary_matrix_eccc, r"(./data/heat_matrix_eccc.parquet)")
+```
+
+### Heat Days
+
+```{r}
+combined_hourly_daily <- read_parquet(r"(./data/odhf_weather_stations.parquet)")
+temp_threshold <- 30
+consecutive_days <- 3
+
+heat_flagged <- combined_hourly_daily %>%
+  arrange(station_id, date) %>% #arrange by station and chronologically
+  unique(.,by=c("station_id", "date")) %>% #filter by only unqiue stations and dates, can't have any duplicates
+  group_by(station_id) %>% #applying only to stations
+  mutate(
+    hot = max_temp >= temp_threshold, #it is hot if it is greater than the arbitrary threshold               
+    run_id = rleid(hot) #group chronological runs together
+  ) %>%
+  group_by(station_id, run_id) %>% #group the runs together
+  mutate(
+    run_len = sum(hot), #sum the number of hot events per run 
+    heat_event = hot & run_len >= consecutive_days    
+  ) %>%
+  ungroup() %>%
+  select(-run_id, -run_len) %>% 
+  mutate(date = as.Date(date))
+
+heat_flagged_arb <- heat_flagged
+```
+
+#### Date Lag
+
+Run the same date lags as with other hazards.
+
+```{r}
+expand_months <- function(d, hospital_id, survey_month, survey_year, station_id) {
+  data.table(
+    hospital_id = hospital_id,
+    survey_year = survey_year,
+    survey_month = survey_month,
+    station_id = station_id,
+    offset = 0:24,
+    date = format(ceiling_date(d %m-% months(0:24), "month") - days(1), "%Y%m")
+  )
+}
+
+#apply the function
+# identifies how many months a given month is offset from the 0th month for that surveys survey date
+survey_sf$dates <- ymd(paste(survey_sf$survey_year, survey_sf$survey_month, "01", sep = "-")) + months(1) - days(1)
+# FOR EVERY UNIQUE survey AND SURVEY DATE COMBINATION <- this is key
+surveys_un <- unique(survey_sf, by = c("survey_id","dates"))
+surveys_un <- as.data.table(surveys_un)
+survey_expanded <- surveys_un[, expand_months(dates, hospital_id, survey_month, survey_year, station_id), by = .(hospital_id, dates)]
+survey_expanded <- survey_expanded %>% select(-3)
+survey_expanded_heat_days <- survey_expanded %>% rename(year_month = date)
+```
+
+#### Date Join
+
+Create heat event data for all months before narrowing the range and then join with the expanded days.
+
+```{r}
+heat_monthly <- heat_flagged %>%
+  arrange(station_id, date) %>% #arrange chronologically
+  mutate(year_month = as.integer(format(date, "%Y%m"))) %>%        
+  group_by(station_id, year_month) %>% #group by year_month and station
+  summarise(
+    has_heat = any(heat_event, na.rm = TRUE), #we only care about any heat event in the month
+    .groups = "drop"
+  ) %>%
+  mutate(
+    year  = as.integer(year_month / 100), #need a year eventually
+    month = as.integer(year_month %% 100), #need a month eventually
+    year_month = as.character(year_month)
+  )
+
+survey_with_heat_days <- survey_expanded_heat_days %>% #join with monthly data
+  left_join(heat_monthly, 
+            by = c("station_id", "year_month")) %>%          
+  mutate(
+    heat_flag = as.integer(coalesce(has_heat, FALSE))) #coalesce to an integer
+  
+heat_flagged_daily_normalized <- heat_flagged %>% #normalized is a misnomer, we are just looking for the month 0 stuff with this one
+  mutate(year_month = as.integer(format(date, "%Y%m"))) %>% 
+  mutate(
+    year  = as.integer(year_month / 100),      
+    month = as.integer(year_month %% 100),
+    year_month = as.character(year_month)
+  ) %>% left_join(survey_expanded_heat_days, by = c("station_id","year_month")) %>% 
+  filter(offset==0, heat_event == TRUE)
+```
+
+#### Matrix
+
+Create the summary matrix of 1's and 0's.
+
+```{r}
+heat_summary_matrix_arb <- survey_with_heat_days %>% 
+  filter(heat_flag == 1) %>% # only the months with floods in them
+  group_by(hospital_id, survey_year, survey_month, offset) %>% # group by the offsets
+  slice_head(n=1) %>%
+  right_join(survey_expanded_heat_days, by=c("hospital_id", "survey_year", "survey_month", "offset")) %>%
+  mutate(heat_flag = replace_na(heat_flag, 0)) %>% #make sure there are no NAs
+  ungroup() %>%
+  as.data.table() %>%
+  left_join(survey_sf %>% select(hospital_id, station_id, nearest_dist), by='hospital_id') %>%
+  dcast(.,
+      hospital_id + survey_month + survey_year + station_id + nearest_dist~ paste0("month_", offset),
+      value.var = "heat_flag",
+      fun.aggregate = max
+    ) %>%
+  setcolorder(c("hospital_id", "survey_month", "survey_year", 'station_id', 'nearest_dist', paste0("month_", 0:24))) 
+
+write_parquet(heat_summary_matrix_arb, r"(./data/heat_matrix_dayCriteria.parquet)")
+```
+
+
+## PM 2.5 {#pm25}
+
+### Data Cleaning
+
+see the index.
+
+```{r pm25-data-cleaning, warning=FALSE}
+
+odhf_pm25 <- odhf_valid %>%
+  mutate(
+    pm25_start = make_date(survey_year - 2, survey_month, 1),  #start 2 years before
+    pm25_end = make_date(survey_year, survey_month, days_in_month(make_date(survey_year, survey_month, 1))))  #last day of the month
+
+head(odhf_pm25)
+
+#define years
+years <- 2015:2018
+
+#define the base path
+base_path <- "./data/pm25/"
+
+#read, standardize, and pivot dataset
+load_pm25_data <- function(year) {
+  suffix <- substr(as.character(year), 3, 4) #get just the year from the year range
+  file   <- file.path(base_path, paste0("aqsmk_avc_", suffix, ".csv")) #the base path of the files + the year
+  df <- read_csv(file, show_col_types = FALSE)
+  names(df)[1] <- "postalcode"                        
+  df_long <- df %>% #pivot the data to long format based on the columns in the data
+    pivot_longer(
+      cols      = starts_with("aqsmk"), #column for the aqsmk data 
+      names_to  = "var",
+      values_to = "pm25"
+    ) %>%
+    mutate(
+      ym_raw = str_extract(var, "\\d{2}_\\d{2}"), #regex
+      year   = 2000 + as.integer(substr(ym_raw, 1, 2)),  
+      month  = as.integer(substr(ym_raw, 4, 5)) #all data points are january     
+    ) %>%
+    select(postalcode, province, year, month, pm25) %>%
+    filter(!is.na(pm25)) %>% rename(postcode=postalcode)
+  
+  df_long
+}
+
+pm25_all_years <- map_dfr(years, load_pm25_data) #load all the csvs
+# 
+# #turn month into a factor with correct order
+# pm25_all_years <- pm25_all_years %>%
+#   mutate(month = factor(month, levels = c("jan", "feb", "mar", "apr", "may", "jun",
+#                                           "jul", "aug", "sep", "oct", "nov", "dec")))
+
+pm25_all_years <- pm25_all_years %>% rename(survey_year=year) %>% rename(survey_month=month)
+
+head(pm25_all_years)
+```
+
+### Date Lag {pm25-date-lag}
+
+```{r}
+expand_months <- function(d, hospital_id, survey_month, survey_year, postalcode) {
+  data.table(
+    hospital_id = hospital_id,
+    survey_year = survey_year,
+    survey_month = survey_month,
+    postcode = postalcode,
+    offset = 0:24,
+    date = format(ceiling_date(d %m-% months(0:24), "month") - days(1), "%Y%m")
+  )
+}
+
+#apply the function
+# identifies how many months a given month is offset from the 0th month for that surveys survey date
+odhf_pm25$dates <- ymd(paste(odhf_pm25$survey_year, odhf_pm25$survey_month, "01", sep = "-")) + months(1) - days(1)
+# FOR EVERY UNIQUE survey AND SURVEY DATE COMBINATION <- this is key
+surveys_un <- unique(odhf_pm25, by = c("survey_id","dates"))
+surveys_un <- as.data.table(surveys_un)
+survey_expanded <- surveys_un[, expand_months(dates, hospital_id, survey_month, survey_year, postalcode), by = .(hospital_id, dates)]
+survey_expanded <- survey_expanded %>% select(-3)
+survey_expanded_pm25 <- survey_expanded %>% rename(year_month = date)
+
+
+```
+
+
+### Data Manipulation {pm25-data-manipulation}
+
+```{r}
+#turn month into a factor with correct order
+pm25_all_years <- pm25_all_years %>%
+  select(postcode, province, survey_year, survey_month, pm25)
+
+
+
+#join with the expanded survey info
+pm25_survey <- survey_expanded_pm25 %>% 
+  left_join(
+    pm25_all_years %>% select(postcode, survey_year, survey_month, pm25),
+    by = c("postcode", "survey_year", "survey_month")
+  ) %>%
+  group_by(hospital_id, survey_year) %>%
+  mutate(pm25 = if (all(is.na(pm25))) NA_real_ else first(na.omit(pm25))) %>%
+  ungroup()
+
+#summarise into the matrix of 1's and 0's
+pm25_summary_matrix <- as.data.table(pm25_survey) %>%
+  dcast(
+    hospital_id + survey_month + survey_year ~ paste0("month_", offset),
+    value.var = "pm25",
+    fun.aggregate = first
+  ) %>%
+  setcolorder(c("hospital_id", "survey_month", "survey_year", paste0("month_", 0:24)))
+
+#tons of NA's in this dataset
+write_parquet(pm25_summary_matrix, "pm25_presence_absence.parquet")
+
+
 ```
 
 # Appendix
@@ -798,7 +1232,9 @@ odhf$hospital_id <- 1:nrow(odhf)
 #can only use valid lat/long locations
 odhf_valid <- odhf[!is.na(odhf[["latitude"]]) & 
                              !is.na(odhf[["longitude"]]), ]
-odhf_valid <- odhf_valid %>% filter(odhf_facility_type=="Hospitals") %>%  select(c("latitude", "longitude", "facility_name", "odhf_facility_type", "hospital_id"))
+odhf_valid <- odhf_valid %>% filter(odhf_facility_type=="Hospitals") %>%  select(c("latitude", "longitude", "facility_name", "odhf_facility_type", "hospital_id", "postal_code"))
+odhf_valid$postal_code <- gsub(" ", "", odhf_valid$postal_code)
+odhf_valid <- odhf_valid %>% rename(postalcode = postal_code)
 odhf_valid[[survey_month_col]] <- sample(1:12, size = nrow(odhf_valid), replace = TRUE)
 odhf_valid[[survey_year_col]] <- sample(2018:2021, size=nrow(odhf_valid), replace = TRUE)
 setnames(odhf_valid, c("latitude", "longitude"), c("lat","long"))
