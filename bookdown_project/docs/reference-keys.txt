@@ -35,8 +35,8 @@ heat-arb-matrix
 heat-map
 pm25
 pm25-data-preparation
-date-lag-pm25-date-lag
-data-manipulation-pm25-data-manipulation
+pm25-date-lag
+pm25-data-manipulation
 appendix
 survey-data-generation
 references

@@ -51,8 +51,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
@@ -66,10 +64,13 @@
 <script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
 <script src="libs/HomeButton-0.0.1/home-button.js"></script>
 <script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
-<link href="libs/Intersecting_Fires-CSS-0.0.1/Intersecting_Fires_home-button.css" rel="stylesheet" />
+<link href="libs/Hospitals-CSS-0.0.1/Hospitals_home-button.css" rel="stylesheet" />
 <script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/Intersecting_Fires-CSS-0.0.1/Intersecting_Fires_home-button.css" rel="stylesheet" />
 <link href="libs/Hospital_Location-CSS-0.0.1/Hospital_Location_home-button.css" rel="stylesheet" />
 <link href="libs/Hospital_Buffer__25km_-CSS-0.0.1/Hospital_Buffer__25km__home-button.css" rel="stylesheet" />
 <link href="libs/Intersecting_Floods-CSS-0.0.1/Intersecting_Floods_home-button.css" rel="stylesheet" />
@@ -212,8 +213,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="06-pm_25.html"><a href="06-pm_25.html"><i class="fa fa-check"></i><b>7</b> PM 2.5</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="06-pm_25.html"><a href="06-pm_25.html#pm25-data-preparation"><i class="fa fa-check"></i><b>7.1</b> Environmental Data Preparation</a></li>
-<li class="chapter" data-level="7.2" data-path="06-pm_25.html"><a href="06-pm_25.html#date-lag-pm25-date-lag"><i class="fa fa-check"></i><b>7.2</b> Date Lag {pm25-date-lag}</a></li>
-<li class="chapter" data-level="7.3" data-path="06-pm_25.html"><a href="06-pm_25.html#data-manipulation-pm25-data-manipulation"><i class="fa fa-check"></i><b>7.3</b> Data Manipulation {pm25-data-manipulation}</a></li>
+<li class="chapter" data-level="7.2" data-path="06-pm_25.html"><a href="06-pm_25.html#pm25-date-lag"><i class="fa fa-check"></i><b>7.2</b> Date Lag</a></li>
+<li class="chapter" data-level="7.3" data-path="06-pm_25.html"><a href="06-pm_25.html#pm25-data-manipulation"><i class="fa fa-check"></i><b>7.3</b> Data Manipulation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="AA-00-appendix.html"><a href="AA-00-appendix.html"><i class="fa fa-check"></i><b>8</b> Appendix</a>
 <ul>
@@ -241,111 +242,112 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">7</span> PM 2.5<a href="06-pm_25.html#pm25" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="pm25-data-preparation" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Environmental Data Preparation<a href="06-pm_25.html#pm25-data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This data is just for checking!</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="06-pm_25.html#cb45-1" tabindex="-1"></a>odhf_pm25 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/odhf_hospitals.csv&quot;</span>, <span class="at">row.names =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb45-2"><a href="06-pm_25.html#cb45-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb45-3"><a href="06-pm_25.html#cb45-3" tabindex="-1"></a>    <span class="at">pm25_start =</span> <span class="fu">make_date</span>(survey_year <span class="sc">-</span> <span class="dv">2</span>, survey_month, <span class="dv">1</span>),  <span class="co">#start 2 years before</span></span>
-<span id="cb45-4"><a href="06-pm_25.html#cb45-4" tabindex="-1"></a>    <span class="at">pm25_end =</span> <span class="fu">make_date</span>(survey_year, survey_month, <span class="fu">days_in_month</span>(<span class="fu">make_date</span>(survey_year, survey_month, <span class="dv">1</span>))))  <span class="co">#last day of the month</span></span>
-<span id="cb45-5"><a href="06-pm_25.html#cb45-5" tabindex="-1"></a></span>
-<span id="cb45-6"><a href="06-pm_25.html#cb45-6" tabindex="-1"></a><span class="fu">head</span>(odhf_pm25)</span>
-<span id="cb45-7"><a href="06-pm_25.html#cb45-7" tabindex="-1"></a></span>
-<span id="cb45-8"><a href="06-pm_25.html#cb45-8" tabindex="-1"></a><span class="co">#define years</span></span>
-<span id="cb45-9"><a href="06-pm_25.html#cb45-9" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">2015</span><span class="sc">:</span><span class="dv">2018</span></span>
-<span id="cb45-10"><a href="06-pm_25.html#cb45-10" tabindex="-1"></a></span>
-<span id="cb45-11"><a href="06-pm_25.html#cb45-11" tabindex="-1"></a><span class="co">#define the base path</span></span>
-<span id="cb45-12"><a href="06-pm_25.html#cb45-12" tabindex="-1"></a>base_path <span class="ot">&lt;-</span> <span class="st">&quot;./data/pm25/&quot;</span></span>
-<span id="cb45-13"><a href="06-pm_25.html#cb45-13" tabindex="-1"></a></span>
-<span id="cb45-14"><a href="06-pm_25.html#cb45-14" tabindex="-1"></a><span class="co">#read, standardize, and pivot dataset</span></span>
-<span id="cb45-15"><a href="06-pm_25.html#cb45-15" tabindex="-1"></a>load_pm25_data <span class="ot">&lt;-</span> <span class="cf">function</span>(year) {</span>
-<span id="cb45-16"><a href="06-pm_25.html#cb45-16" tabindex="-1"></a>  suffix <span class="ot">&lt;-</span> <span class="fu">substr</span>(<span class="fu">as.character</span>(year), <span class="dv">3</span>, <span class="dv">4</span>) <span class="co">#get just the year from the year range</span></span>
-<span id="cb45-17"><a href="06-pm_25.html#cb45-17" tabindex="-1"></a>  file   <span class="ot">&lt;-</span> <span class="fu">file.path</span>(base_path, <span class="fu">paste0</span>(<span class="st">&quot;aqsmk_avc_&quot;</span>, suffix, <span class="st">&quot;.csv&quot;</span>)) <span class="co">#the base path of the files + the year</span></span>
-<span id="cb45-18"><a href="06-pm_25.html#cb45-18" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(file, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb45-19"><a href="06-pm_25.html#cb45-19" tabindex="-1"></a>  <span class="fu">names</span>(df)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;postalcode&quot;</span>                        </span>
-<span id="cb45-20"><a href="06-pm_25.html#cb45-20" tabindex="-1"></a>  df_long <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="co">#pivot the data to long format based on the columns in the data</span></span>
-<span id="cb45-21"><a href="06-pm_25.html#cb45-21" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
-<span id="cb45-22"><a href="06-pm_25.html#cb45-22" tabindex="-1"></a>      <span class="at">cols      =</span> <span class="fu">starts_with</span>(<span class="st">&quot;aqsmk&quot;</span>), <span class="co">#column for the aqsmk data </span></span>
-<span id="cb45-23"><a href="06-pm_25.html#cb45-23" tabindex="-1"></a>      <span class="at">names_to  =</span> <span class="st">&quot;var&quot;</span>,</span>
-<span id="cb45-24"><a href="06-pm_25.html#cb45-24" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">&quot;pm25&quot;</span></span>
-<span id="cb45-25"><a href="06-pm_25.html#cb45-25" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb45-26"><a href="06-pm_25.html#cb45-26" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb45-27"><a href="06-pm_25.html#cb45-27" tabindex="-1"></a>      <span class="at">ym_raw =</span> <span class="fu">str_extract</span>(var, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d{2}_</span><span class="sc">\\</span><span class="st">d{2}&quot;</span>), <span class="co">#regex</span></span>
-<span id="cb45-28"><a href="06-pm_25.html#cb45-28" tabindex="-1"></a>      <span class="at">year   =</span> <span class="dv">2000</span> <span class="sc">+</span> <span class="fu">as.integer</span>(<span class="fu">substr</span>(ym_raw, <span class="dv">1</span>, <span class="dv">2</span>)),  </span>
-<span id="cb45-29"><a href="06-pm_25.html#cb45-29" tabindex="-1"></a>      <span class="at">month  =</span> <span class="fu">as.integer</span>(<span class="fu">substr</span>(ym_raw, <span class="dv">4</span>, <span class="dv">5</span>)) <span class="co">#all data points are january     </span></span>
-<span id="cb45-30"><a href="06-pm_25.html#cb45-30" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb45-31"><a href="06-pm_25.html#cb45-31" tabindex="-1"></a>    <span class="fu">select</span>(postalcode, province, year, month, pm25) <span class="sc">%&gt;%</span></span>
-<span id="cb45-32"><a href="06-pm_25.html#cb45-32" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pm25)) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">postcode=</span>postalcode)</span>
-<span id="cb45-33"><a href="06-pm_25.html#cb45-33" tabindex="-1"></a>  </span>
-<span id="cb45-34"><a href="06-pm_25.html#cb45-34" tabindex="-1"></a>  df_long</span>
-<span id="cb45-35"><a href="06-pm_25.html#cb45-35" tabindex="-1"></a>}</span>
-<span id="cb45-36"><a href="06-pm_25.html#cb45-36" tabindex="-1"></a></span>
-<span id="cb45-37"><a href="06-pm_25.html#cb45-37" tabindex="-1"></a>pm25_all_years <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(years, load_pm25_data) <span class="co">#load all the csvs</span></span>
-<span id="cb45-38"><a href="06-pm_25.html#cb45-38" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb45-39"><a href="06-pm_25.html#cb45-39" tabindex="-1"></a><span class="co">#turn month into a factor with correct order</span></span>
-<span id="cb45-40"><a href="06-pm_25.html#cb45-40" tabindex="-1"></a><span class="co">#pm25_all_years &lt;- pm25_all_years %&gt;%</span></span>
-<span id="cb45-41"><a href="06-pm_25.html#cb45-41" tabindex="-1"></a><span class="co">#  mutate(month = factor(month, levels = c(&quot;jan&quot;, &quot;feb&quot;, &quot;mar&quot;, &quot;apr&quot;, &quot;may&quot;, &quot;jun&quot;,</span></span>
-<span id="cb45-42"><a href="06-pm_25.html#cb45-42" tabindex="-1"></a><span class="co">#                                          &quot;jul&quot;, &quot;aug&quot;, &quot;sep&quot;, &quot;oct&quot;, &quot;nov&quot;, &quot;dec&quot;)))</span></span>
-<span id="cb45-43"><a href="06-pm_25.html#cb45-43" tabindex="-1"></a></span>
-<span id="cb45-44"><a href="06-pm_25.html#cb45-44" tabindex="-1"></a><span class="co">#rename for later actions</span></span>
-<span id="cb45-45"><a href="06-pm_25.html#cb45-45" tabindex="-1"></a>pm25_all_years <span class="ot">&lt;-</span> pm25_all_years <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">survey_year=</span>year) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">survey_month=</span>month)</span></code></pre></div>
+<p>The PM2.5 data can be used for checking the results of other data - mainly the wildfire data. Background pollution levels can be examined using this data, to determine if wildfire events have an effect on overall particulate matter circulating in the environment.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="06-pm_25.html#cb46-1" tabindex="-1"></a>odhf_pm25 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/odhf_hospitals.csv&quot;</span>, <span class="at">row.names =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="06-pm_25.html#cb46-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb46-3"><a href="06-pm_25.html#cb46-3" tabindex="-1"></a>    <span class="at">pm25_start =</span> <span class="fu">make_date</span>(survey_year <span class="sc">-</span> <span class="dv">2</span>, survey_month, <span class="dv">1</span>),  <span class="co">#start 2 years before</span></span>
+<span id="cb46-4"><a href="06-pm_25.html#cb46-4" tabindex="-1"></a>    <span class="at">pm25_end =</span> <span class="fu">make_date</span>(survey_year, survey_month, <span class="fu">days_in_month</span>(<span class="fu">make_date</span>(survey_year, survey_month, <span class="dv">1</span>))))  <span class="co">#last day of the month</span></span>
+<span id="cb46-5"><a href="06-pm_25.html#cb46-5" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="06-pm_25.html#cb46-6" tabindex="-1"></a><span class="fu">head</span>(odhf_pm25)</span>
+<span id="cb46-7"><a href="06-pm_25.html#cb46-7" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="06-pm_25.html#cb46-8" tabindex="-1"></a><span class="co">#define years</span></span>
+<span id="cb46-9"><a href="06-pm_25.html#cb46-9" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">2015</span><span class="sc">:</span><span class="dv">2018</span></span>
+<span id="cb46-10"><a href="06-pm_25.html#cb46-10" tabindex="-1"></a></span>
+<span id="cb46-11"><a href="06-pm_25.html#cb46-11" tabindex="-1"></a><span class="co">#define the base path</span></span>
+<span id="cb46-12"><a href="06-pm_25.html#cb46-12" tabindex="-1"></a>base_path <span class="ot">&lt;-</span> <span class="st">&quot;./data/pm25/&quot;</span></span>
+<span id="cb46-13"><a href="06-pm_25.html#cb46-13" tabindex="-1"></a></span>
+<span id="cb46-14"><a href="06-pm_25.html#cb46-14" tabindex="-1"></a><span class="co">#read, standardize, and pivot dataset</span></span>
+<span id="cb46-15"><a href="06-pm_25.html#cb46-15" tabindex="-1"></a>load_pm25_data <span class="ot">&lt;-</span> <span class="cf">function</span>(year) {</span>
+<span id="cb46-16"><a href="06-pm_25.html#cb46-16" tabindex="-1"></a>  suffix <span class="ot">&lt;-</span> <span class="fu">substr</span>(<span class="fu">as.character</span>(year), <span class="dv">3</span>, <span class="dv">4</span>) <span class="co">#get just the year from the year range</span></span>
+<span id="cb46-17"><a href="06-pm_25.html#cb46-17" tabindex="-1"></a>  file   <span class="ot">&lt;-</span> <span class="fu">file.path</span>(base_path, <span class="fu">paste0</span>(<span class="st">&quot;aqsmk_avc_&quot;</span>, suffix, <span class="st">&quot;.csv&quot;</span>)) <span class="co">#the base path of the files + the year</span></span>
+<span id="cb46-18"><a href="06-pm_25.html#cb46-18" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(file, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb46-19"><a href="06-pm_25.html#cb46-19" tabindex="-1"></a>  <span class="fu">names</span>(df)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;postalcode&quot;</span>                        </span>
+<span id="cb46-20"><a href="06-pm_25.html#cb46-20" tabindex="-1"></a>  df_long <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="co">#pivot the data to long format based on the columns in the data</span></span>
+<span id="cb46-21"><a href="06-pm_25.html#cb46-21" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
+<span id="cb46-22"><a href="06-pm_25.html#cb46-22" tabindex="-1"></a>      <span class="at">cols      =</span> <span class="fu">starts_with</span>(<span class="st">&quot;aqsmk&quot;</span>), <span class="co">#column for the aqsmk data </span></span>
+<span id="cb46-23"><a href="06-pm_25.html#cb46-23" tabindex="-1"></a>      <span class="at">names_to  =</span> <span class="st">&quot;var&quot;</span>,</span>
+<span id="cb46-24"><a href="06-pm_25.html#cb46-24" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">&quot;pm25&quot;</span></span>
+<span id="cb46-25"><a href="06-pm_25.html#cb46-25" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb46-26"><a href="06-pm_25.html#cb46-26" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb46-27"><a href="06-pm_25.html#cb46-27" tabindex="-1"></a>      <span class="at">ym_raw =</span> <span class="fu">str_extract</span>(var, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d{2}_</span><span class="sc">\\</span><span class="st">d{2}&quot;</span>), <span class="co">#regex</span></span>
+<span id="cb46-28"><a href="06-pm_25.html#cb46-28" tabindex="-1"></a>      <span class="at">year   =</span> <span class="dv">2000</span> <span class="sc">+</span> <span class="fu">as.integer</span>(<span class="fu">substr</span>(ym_raw, <span class="dv">1</span>, <span class="dv">2</span>)),  </span>
+<span id="cb46-29"><a href="06-pm_25.html#cb46-29" tabindex="-1"></a>      <span class="at">month  =</span> <span class="fu">as.integer</span>(<span class="fu">substr</span>(ym_raw, <span class="dv">4</span>, <span class="dv">5</span>)) <span class="co">#all data points are january     </span></span>
+<span id="cb46-30"><a href="06-pm_25.html#cb46-30" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb46-31"><a href="06-pm_25.html#cb46-31" tabindex="-1"></a>    <span class="fu">select</span>(postalcode, province, year, month, pm25) <span class="sc">%&gt;%</span></span>
+<span id="cb46-32"><a href="06-pm_25.html#cb46-32" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pm25)) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">postcode=</span>postalcode)</span>
+<span id="cb46-33"><a href="06-pm_25.html#cb46-33" tabindex="-1"></a>  </span>
+<span id="cb46-34"><a href="06-pm_25.html#cb46-34" tabindex="-1"></a>  df_long</span>
+<span id="cb46-35"><a href="06-pm_25.html#cb46-35" tabindex="-1"></a>}</span>
+<span id="cb46-36"><a href="06-pm_25.html#cb46-36" tabindex="-1"></a></span>
+<span id="cb46-37"><a href="06-pm_25.html#cb46-37" tabindex="-1"></a>pm25_all_years <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(years, load_pm25_data) <span class="co">#load all the csvs</span></span>
+<span id="cb46-38"><a href="06-pm_25.html#cb46-38" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb46-39"><a href="06-pm_25.html#cb46-39" tabindex="-1"></a><span class="co">#turn month into a factor with correct order</span></span>
+<span id="cb46-40"><a href="06-pm_25.html#cb46-40" tabindex="-1"></a><span class="co">#pm25_all_years &lt;- pm25_all_years %&gt;%</span></span>
+<span id="cb46-41"><a href="06-pm_25.html#cb46-41" tabindex="-1"></a><span class="co">#  mutate(month = factor(month, levels = c(&quot;jan&quot;, &quot;feb&quot;, &quot;mar&quot;, &quot;apr&quot;, &quot;may&quot;, &quot;jun&quot;,</span></span>
+<span id="cb46-42"><a href="06-pm_25.html#cb46-42" tabindex="-1"></a><span class="co">#                                          &quot;jul&quot;, &quot;aug&quot;, &quot;sep&quot;, &quot;oct&quot;, &quot;nov&quot;, &quot;dec&quot;)))</span></span>
+<span id="cb46-43"><a href="06-pm_25.html#cb46-43" tabindex="-1"></a></span>
+<span id="cb46-44"><a href="06-pm_25.html#cb46-44" tabindex="-1"></a><span class="co">#rename for later actions</span></span>
+<span id="cb46-45"><a href="06-pm_25.html#cb46-45" tabindex="-1"></a>pm25_all_years <span class="ot">&lt;-</span> pm25_all_years <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">survey_year=</span>year) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">survey_month=</span>month)</span></code></pre></div>
 </div>
-<div id="date-lag-pm25-date-lag" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> Date Lag {pm25-date-lag}<a href="06-pm_25.html#date-lag-pm25-date-lag" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pm25-date-lag" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Date Lag<a href="06-pm_25.html#pm25-date-lag" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lag the data in the same way as the other datasets.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="06-pm_25.html#cb46-1" tabindex="-1"></a>expand_months <span class="ot">&lt;-</span> <span class="cf">function</span>(d, hospital_id, survey_month, survey_year, postalcode) {</span>
-<span id="cb46-2"><a href="06-pm_25.html#cb46-2" tabindex="-1"></a>  <span class="fu">data.table</span>(</span>
-<span id="cb46-3"><a href="06-pm_25.html#cb46-3" tabindex="-1"></a>    <span class="at">hospital_id =</span> hospital_id,</span>
-<span id="cb46-4"><a href="06-pm_25.html#cb46-4" tabindex="-1"></a>    <span class="at">survey_year =</span> survey_year,</span>
-<span id="cb46-5"><a href="06-pm_25.html#cb46-5" tabindex="-1"></a>    <span class="at">survey_month =</span> survey_month,</span>
-<span id="cb46-6"><a href="06-pm_25.html#cb46-6" tabindex="-1"></a>    <span class="at">postcode =</span> postalcode,</span>
-<span id="cb46-7"><a href="06-pm_25.html#cb46-7" tabindex="-1"></a>    <span class="at">offset =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>,</span>
-<span id="cb46-8"><a href="06-pm_25.html#cb46-8" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">format</span>(<span class="fu">ceiling_date</span>(d <span class="sc">%m-%</span> <span class="fu">months</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>), <span class="st">&quot;month&quot;</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>), <span class="st">&quot;%Y%m&quot;</span>)</span>
-<span id="cb46-9"><a href="06-pm_25.html#cb46-9" tabindex="-1"></a>  )</span>
-<span id="cb46-10"><a href="06-pm_25.html#cb46-10" tabindex="-1"></a>}</span>
-<span id="cb46-11"><a href="06-pm_25.html#cb46-11" tabindex="-1"></a></span>
-<span id="cb46-12"><a href="06-pm_25.html#cb46-12" tabindex="-1"></a><span class="co">#apply the function</span></span>
-<span id="cb46-13"><a href="06-pm_25.html#cb46-13" tabindex="-1"></a><span class="co">#identifies how many months a given month is offset from the 0th month for that surveys survey date</span></span>
-<span id="cb46-14"><a href="06-pm_25.html#cb46-14" tabindex="-1"></a>odhf_pm25<span class="sc">$</span>dates <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">paste</span>(odhf_pm25<span class="sc">$</span>survey_year, odhf_pm25<span class="sc">$</span>survey_month, <span class="st">&quot;01&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>)) <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
-<span id="cb46-15"><a href="06-pm_25.html#cb46-15" tabindex="-1"></a><span class="co">#FOR EVERY UNIQUE survey AND SURVEY DATE COMBINATION &lt;- this is key</span></span>
-<span id="cb46-16"><a href="06-pm_25.html#cb46-16" tabindex="-1"></a>surveys_un <span class="ot">&lt;-</span> <span class="fu">unique</span>(odhf_pm25, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;survey_id&quot;</span>,<span class="st">&quot;dates&quot;</span>))</span>
-<span id="cb46-17"><a href="06-pm_25.html#cb46-17" tabindex="-1"></a>surveys_un <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(surveys_un)</span>
-<span id="cb46-18"><a href="06-pm_25.html#cb46-18" tabindex="-1"></a>survey_expanded <span class="ot">&lt;-</span> surveys_un[, <span class="fu">expand_months</span>(dates, hospital_id, survey_month, survey_year, postalcode), by <span class="ot">=</span> .(hospital_id, dates)]</span>
-<span id="cb46-19"><a href="06-pm_25.html#cb46-19" tabindex="-1"></a>survey_expanded <span class="ot">&lt;-</span> survey_expanded <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="dv">3</span>)</span>
-<span id="cb46-20"><a href="06-pm_25.html#cb46-20" tabindex="-1"></a>survey_expanded_pm25 <span class="ot">&lt;-</span> survey_expanded <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">year_month =</span> date)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="06-pm_25.html#cb47-1" tabindex="-1"></a>expand_months <span class="ot">&lt;-</span> <span class="cf">function</span>(d, hospital_id, survey_month, survey_year, postalcode) {</span>
+<span id="cb47-2"><a href="06-pm_25.html#cb47-2" tabindex="-1"></a>  <span class="fu">data.table</span>(</span>
+<span id="cb47-3"><a href="06-pm_25.html#cb47-3" tabindex="-1"></a>    <span class="at">hospital_id =</span> hospital_id,</span>
+<span id="cb47-4"><a href="06-pm_25.html#cb47-4" tabindex="-1"></a>    <span class="at">survey_year =</span> survey_year,</span>
+<span id="cb47-5"><a href="06-pm_25.html#cb47-5" tabindex="-1"></a>    <span class="at">survey_month =</span> survey_month,</span>
+<span id="cb47-6"><a href="06-pm_25.html#cb47-6" tabindex="-1"></a>    <span class="at">postcode =</span> postalcode,</span>
+<span id="cb47-7"><a href="06-pm_25.html#cb47-7" tabindex="-1"></a>    <span class="at">offset =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>,</span>
+<span id="cb47-8"><a href="06-pm_25.html#cb47-8" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">format</span>(<span class="fu">ceiling_date</span>(d <span class="sc">%m-%</span> <span class="fu">months</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>), <span class="st">&quot;month&quot;</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>), <span class="st">&quot;%Y%m&quot;</span>)</span>
+<span id="cb47-9"><a href="06-pm_25.html#cb47-9" tabindex="-1"></a>  )</span>
+<span id="cb47-10"><a href="06-pm_25.html#cb47-10" tabindex="-1"></a>}</span>
+<span id="cb47-11"><a href="06-pm_25.html#cb47-11" tabindex="-1"></a></span>
+<span id="cb47-12"><a href="06-pm_25.html#cb47-12" tabindex="-1"></a><span class="co">#apply the function</span></span>
+<span id="cb47-13"><a href="06-pm_25.html#cb47-13" tabindex="-1"></a><span class="co">#identifies how many months a given month is offset from the 0th month for that surveys survey date</span></span>
+<span id="cb47-14"><a href="06-pm_25.html#cb47-14" tabindex="-1"></a>odhf_pm25<span class="sc">$</span>dates <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">paste</span>(odhf_pm25<span class="sc">$</span>survey_year, odhf_pm25<span class="sc">$</span>survey_month, <span class="st">&quot;01&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>)) <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb47-15"><a href="06-pm_25.html#cb47-15" tabindex="-1"></a><span class="co">#FOR EVERY UNIQUE survey AND SURVEY DATE COMBINATION &lt;- this is key</span></span>
+<span id="cb47-16"><a href="06-pm_25.html#cb47-16" tabindex="-1"></a>surveys_un <span class="ot">&lt;-</span> <span class="fu">unique</span>(odhf_pm25, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;survey_id&quot;</span>,<span class="st">&quot;dates&quot;</span>))</span>
+<span id="cb47-17"><a href="06-pm_25.html#cb47-17" tabindex="-1"></a>surveys_un <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(surveys_un)</span>
+<span id="cb47-18"><a href="06-pm_25.html#cb47-18" tabindex="-1"></a>survey_expanded <span class="ot">&lt;-</span> surveys_un[, <span class="fu">expand_months</span>(dates, hospital_id, survey_month, survey_year, postalcode), by <span class="ot">=</span> .(hospital_id, dates)]</span></code></pre></div>
+<pre><code>## Processed 541 groups out of 1047. 52% done. Time elapsed: 3s. ETA: 3s.Processed 750 groups out of 1047. 72% done. Time elapsed: 4s. ETA: 1s.Processed 1047 groups out of 1047. 100% done. Time elapsed: 5s. ETA: 0s.</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="06-pm_25.html#cb49-1" tabindex="-1"></a>survey_expanded <span class="ot">&lt;-</span> survey_expanded <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="dv">3</span>)</span>
+<span id="cb49-2"><a href="06-pm_25.html#cb49-2" tabindex="-1"></a>survey_expanded_pm25 <span class="ot">&lt;-</span> survey_expanded <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">year_month =</span> date)</span></code></pre></div>
 </div>
-<div id="data-manipulation-pm25-data-manipulation" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> Data Manipulation {pm25-data-manipulation}<a href="06-pm_25.html#data-manipulation-pm25-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pm25-data-manipulation" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Data Manipulation<a href="06-pm_25.html#pm25-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Create a summary matrix of all the PM2.5 values for the months. Single year averages are generalized to the entire year.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="06-pm_25.html#cb47-1" tabindex="-1"></a><span class="co">#turn month into a factor with correct order</span></span>
-<span id="cb47-2"><a href="06-pm_25.html#cb47-2" tabindex="-1"></a>pm25_all_years <span class="ot">&lt;-</span> pm25_all_years <span class="sc">%&gt;%</span></span>
-<span id="cb47-3"><a href="06-pm_25.html#cb47-3" tabindex="-1"></a>  <span class="fu">select</span>(postcode, province, survey_year, survey_month, pm25)</span>
-<span id="cb47-4"><a href="06-pm_25.html#cb47-4" tabindex="-1"></a></span>
-<span id="cb47-5"><a href="06-pm_25.html#cb47-5" tabindex="-1"></a></span>
-<span id="cb47-6"><a href="06-pm_25.html#cb47-6" tabindex="-1"></a></span>
-<span id="cb47-7"><a href="06-pm_25.html#cb47-7" tabindex="-1"></a><span class="co">#join with the expanded survey info</span></span>
-<span id="cb47-8"><a href="06-pm_25.html#cb47-8" tabindex="-1"></a>pm25_survey <span class="ot">&lt;-</span> survey_expanded_pm25 <span class="sc">%&gt;%</span> </span>
-<span id="cb47-9"><a href="06-pm_25.html#cb47-9" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb47-10"><a href="06-pm_25.html#cb47-10" tabindex="-1"></a>    pm25_all_years <span class="sc">%&gt;%</span> <span class="fu">select</span>(postcode, survey_year, survey_month, pm25),</span>
-<span id="cb47-11"><a href="06-pm_25.html#cb47-11" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;postcode&quot;</span>, <span class="st">&quot;survey_year&quot;</span>, <span class="st">&quot;survey_month&quot;</span>)</span>
-<span id="cb47-12"><a href="06-pm_25.html#cb47-12" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb47-13"><a href="06-pm_25.html#cb47-13" tabindex="-1"></a>  <span class="fu">group_by</span>(hospital_id, survey_year) <span class="sc">%&gt;%</span></span>
-<span id="cb47-14"><a href="06-pm_25.html#cb47-14" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pm25 =</span> <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">is.na</span>(pm25))) <span class="cn">NA_real_</span> <span class="cf">else</span> <span class="fu">first</span>(<span class="fu">na.omit</span>(pm25))) <span class="sc">%&gt;%</span></span>
-<span id="cb47-15"><a href="06-pm_25.html#cb47-15" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb47-16"><a href="06-pm_25.html#cb47-16" tabindex="-1"></a></span>
-<span id="cb47-17"><a href="06-pm_25.html#cb47-17" tabindex="-1"></a><span class="co">#summarise into the matrix of 1&#39;s and 0&#39;s</span></span>
-<span id="cb47-18"><a href="06-pm_25.html#cb47-18" tabindex="-1"></a>pm25_summary_matrix <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(pm25_survey) <span class="sc">%&gt;%</span></span>
-<span id="cb47-19"><a href="06-pm_25.html#cb47-19" tabindex="-1"></a>  <span class="fu">dcast</span>(</span>
-<span id="cb47-20"><a href="06-pm_25.html#cb47-20" tabindex="-1"></a>    hospital_id <span class="sc">+</span> survey_month <span class="sc">+</span> survey_year <span class="sc">~</span> <span class="fu">paste0</span>(<span class="st">&quot;month_&quot;</span>, offset),</span>
-<span id="cb47-21"><a href="06-pm_25.html#cb47-21" tabindex="-1"></a>    <span class="at">value.var =</span> <span class="st">&quot;pm25&quot;</span>,</span>
-<span id="cb47-22"><a href="06-pm_25.html#cb47-22" tabindex="-1"></a>    <span class="at">fun.aggregate =</span> first</span>
-<span id="cb47-23"><a href="06-pm_25.html#cb47-23" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb47-24"><a href="06-pm_25.html#cb47-24" tabindex="-1"></a>  <span class="fu">setcolorder</span>(<span class="fu">c</span>(<span class="st">&quot;hospital_id&quot;</span>, <span class="st">&quot;survey_month&quot;</span>, <span class="st">&quot;survey_year&quot;</span>, <span class="fu">paste0</span>(<span class="st">&quot;month_&quot;</span>, <span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>)))</span>
-<span id="cb47-25"><a href="06-pm_25.html#cb47-25" tabindex="-1"></a></span>
-<span id="cb47-26"><a href="06-pm_25.html#cb47-26" tabindex="-1"></a><span class="co">#tons of NA&#39;s in this dataset</span></span>
-<span id="cb47-27"><a href="06-pm_25.html#cb47-27" tabindex="-1"></a><span class="fu">write.csv</span>(pm25_summary_matrix, <span class="st">&quot;./data/pm25_presence_absence.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="06-pm_25.html#cb50-1" tabindex="-1"></a><span class="co">#turn month into a factor with correct order</span></span>
+<span id="cb50-2"><a href="06-pm_25.html#cb50-2" tabindex="-1"></a>pm25_all_years <span class="ot">&lt;-</span> pm25_all_years <span class="sc">%&gt;%</span></span>
+<span id="cb50-3"><a href="06-pm_25.html#cb50-3" tabindex="-1"></a>  <span class="fu">select</span>(postcode, province, survey_year, survey_month, pm25)</span>
+<span id="cb50-4"><a href="06-pm_25.html#cb50-4" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="06-pm_25.html#cb50-5" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="06-pm_25.html#cb50-6" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="06-pm_25.html#cb50-7" tabindex="-1"></a><span class="co">#join with the expanded survey info</span></span>
+<span id="cb50-8"><a href="06-pm_25.html#cb50-8" tabindex="-1"></a>pm25_survey <span class="ot">&lt;-</span> survey_expanded_pm25 <span class="sc">%&gt;%</span> </span>
+<span id="cb50-9"><a href="06-pm_25.html#cb50-9" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb50-10"><a href="06-pm_25.html#cb50-10" tabindex="-1"></a>    pm25_all_years <span class="sc">%&gt;%</span> <span class="fu">select</span>(postcode, survey_year, survey_month, pm25),</span>
+<span id="cb50-11"><a href="06-pm_25.html#cb50-11" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;postcode&quot;</span>, <span class="st">&quot;survey_year&quot;</span>, <span class="st">&quot;survey_month&quot;</span>)</span>
+<span id="cb50-12"><a href="06-pm_25.html#cb50-12" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb50-13"><a href="06-pm_25.html#cb50-13" tabindex="-1"></a>  <span class="fu">group_by</span>(hospital_id, survey_year) <span class="sc">%&gt;%</span></span>
+<span id="cb50-14"><a href="06-pm_25.html#cb50-14" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pm25 =</span> <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">is.na</span>(pm25))) <span class="cn">NA_real_</span> <span class="cf">else</span> <span class="fu">first</span>(<span class="fu">na.omit</span>(pm25))) <span class="sc">%&gt;%</span></span>
+<span id="cb50-15"><a href="06-pm_25.html#cb50-15" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb50-16"><a href="06-pm_25.html#cb50-16" tabindex="-1"></a></span>
+<span id="cb50-17"><a href="06-pm_25.html#cb50-17" tabindex="-1"></a><span class="co">#summarise into the matrix of 1&#39;s and 0&#39;s</span></span>
+<span id="cb50-18"><a href="06-pm_25.html#cb50-18" tabindex="-1"></a>pm25_summary_matrix <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(pm25_survey) <span class="sc">%&gt;%</span></span>
+<span id="cb50-19"><a href="06-pm_25.html#cb50-19" tabindex="-1"></a>  <span class="fu">dcast</span>(</span>
+<span id="cb50-20"><a href="06-pm_25.html#cb50-20" tabindex="-1"></a>    hospital_id <span class="sc">+</span> survey_month <span class="sc">+</span> survey_year <span class="sc">~</span> <span class="fu">paste0</span>(<span class="st">&quot;month_&quot;</span>, offset),</span>
+<span id="cb50-21"><a href="06-pm_25.html#cb50-21" tabindex="-1"></a>    <span class="at">value.var =</span> <span class="st">&quot;pm25&quot;</span>,</span>
+<span id="cb50-22"><a href="06-pm_25.html#cb50-22" tabindex="-1"></a>    <span class="at">fun.aggregate =</span> first</span>
+<span id="cb50-23"><a href="06-pm_25.html#cb50-23" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb50-24"><a href="06-pm_25.html#cb50-24" tabindex="-1"></a>  <span class="fu">setcolorder</span>(<span class="fu">c</span>(<span class="st">&quot;hospital_id&quot;</span>, <span class="st">&quot;survey_month&quot;</span>, <span class="st">&quot;survey_year&quot;</span>, <span class="fu">paste0</span>(<span class="st">&quot;month_&quot;</span>, <span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>)))</span>
+<span id="cb50-25"><a href="06-pm_25.html#cb50-25" tabindex="-1"></a></span>
+<span id="cb50-26"><a href="06-pm_25.html#cb50-26" tabindex="-1"></a><span class="co">#tons of NA&#39;s in this dataset</span></span>
+<span id="cb50-27"><a href="06-pm_25.html#cb50-27" tabindex="-1"></a><span class="fu">write.csv</span>(pm25_summary_matrix, <span class="st">&quot;./data/pm25_presence_absence.csv&quot;</span>)</span></code></pre></div>
 <p>Show a snippet of the PM2.5 summary matrix.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="06-pm_25.html#cb48-1" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(pm25_summary_matrix),<span class="st">&#39;html&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb48-2"><a href="06-pm_25.html#cb48-2" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb48-3"><a href="06-pm_25.html#cb48-3" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">&quot;300px&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="06-pm_25.html#cb51-1" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(pm25_summary_matrix),<span class="st">&#39;html&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a href="06-pm_25.html#cb51-2" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-3"><a href="06-pm_25.html#cb51-3" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">&quot;300px&quot;</span>)</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; ">
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
