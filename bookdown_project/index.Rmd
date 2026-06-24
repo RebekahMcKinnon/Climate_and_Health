@@ -7,7 +7,7 @@ link-citations: yes
 description: A bookdown template linking to our GitHub project. EDIT THIS LATER
 ---
 
-# Preface {#preface}
+# About {#preface .unlisted .unnumbered}
 
 This work is supported by current and past members of the [HEYA Research Group](www.heyaresearch.ca):
 
@@ -17,9 +17,13 @@ Welcome to this bookdown project. You can track issues and tasks here:
 
 -   GitHub Project Board: [View on GitHub](https://github.com/RebekahMcKinnon/Climate_and_Health/projects/1)
 
-## Introduction {#introduction}
+# Introduction {#introduction}
 
-### Purpose {#purpose}
+Introduce the project. 
+
+## Purpose {#purpose}
+
+Tutorial to replicate what was done using an alternate format...
 
 ## Required Information {#required-information}
 
@@ -29,9 +33,10 @@ This tutorial uses the following **publicly available** datasets:
 
 | Data Provider | Dataset | Type |
 |-----------------------|------------------------------|-------------------|
-| Natural Resources Canada (CFS / CWFIS) | National Burned Area Composite (**NBAC**) wildfire perimeters (1972--2024) ([cwfis.cfs.nrcan.gc.ca](<https://cwfis.cfs.nrcan.gc.ca/datamart/metadata/nbac?utm_source=chatgpt.com> "NBAC - Canadian Wildland Fire Information System | Metadata")) |
-| Natural Resources Canada (EGS) | **Floods in Canada -- Archive** (flood extent products) ([open.canada.ca](https://open.canada.ca/data/en/dataset/74144824-206e-4cea-9fb9-72925a128189?utm_source=chatgpt.com "Floods in Canada - Archive - Open Government Portal")) | Polygon (vector) |
-| Environment and Climate Change Canada | Historical climate observations & station metadata ([climate.weather.gc.ca](%22https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=XXX&Year=2024&Month=1&Day=1&timeframe=2&submit=Download+Data%22)) | Point + time series |
+| Natural Resources Canada (CFS / CWFIS) | National Burned Area Composite (**NBAC**) wildfire perimeters (1972--2024) ([cwfis.cfs.nrcan.gc.ca](https://cwfis.cfs.nrcan.gc.ca/en/catalogue/results/537a1fd0-698e-4a7b-85a1-e02581ae78b2 "NBAC - Canadian Wildland Fire Information System")) | Polygon (vector) |
+| Natural Resources Canada (EGS) | **Floods in Canada - Archive** (flood extent products) ([open.canada.ca](https://open.canada.ca/data/en/dataset/74144824-206e-4cea-9fb9-72925a128189 "Floods in Canada - Archive - Open Government Portal")) | Polygon (vector) |
+| Environment and Climate Change Canada | Historical climate observations & station metadata ([climate.weather.gc.ca](%22https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=XXX&Year=2024&Month=1&Day=1&timeframe=2&submit=Download+Data%22)) | Point (vector) |
+| Statistics Canada | Open Database of Hospital Facilities ([open.canada.ca](https://open.canada.ca/data/en/dataset/a1bcd4ee-8e57-499b-9c6f-94f6902fdf32)) | Point (vector) |
 
  
 

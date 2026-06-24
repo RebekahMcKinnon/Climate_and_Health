@@ -1,0 +1,249 @@
+```{r setup-fires, include=FALSE}
+knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_project')
+```
+
+# Wildfires
+
+Wildfires can have strong impacts on an environment that are disproportionate to the footprint size of the fires themselves. Smoke from fires has been recorded to stretch thousands of kilometres #REF#. Wildfires are widely studied in environmental exposure impact analysis...
+
+## Environmental Data Preparation {#fire-data-preparation}
+
+Data can be downloaded for free from the [Canadian Wildland Fire Information System](#../index.Rmd/datasets "Datasets"). To begin with the wildfire data, we read the NBAC wildfire polygons (1972-2024) from the .shp file available from CWFIS.
+
+-   Tip: Shapefiles are a set of files. Ensure the .shp, .shx, .dbf, and (ideally) .prj sit together in the same folder.
+
+```{r fire-load-and-limit-data, eval=FALSE}
+#read in the NBAC data
+poly_fires <- st_read(r"(./data/FireData/NBAC_1972to2024_20250506.shp)") 
+
+#look at the data
+str(poly_fires)
+
+#normalise column names
+names(poly_fires) <- tolower(names(poly_fires)) 
+
+#Given the extremely large size, it's best to reduce the dataset to include only the years required
+poly_fires <- poly_fires %>% 
+  filter(year >= 2015)
+
+#limit to a selection of columns that are relevant
+poly_fires <- select(poly_fires, 
+                     nfireid, basrc,
+                     year, 
+                     ag_sdate, #agency start date as date format
+                     ag_edate, #agency end date as date format
+                     poly_ha, 
+                     admin_area,
+                     geometry)
+
+#rename columns for easier understanding
+poly_fires <- poly_fires %>%
+  mutate(
+    start_day = day(ag_sdate),
+    start_month = month(ag_sdate),
+    start_year = year(ag_sdate),
+    end_day = day(ag_edate),
+    end_month = month(ag_edate),
+    end_year = year(ag_edate),
+    start_date = ag_sdate, 
+    end_date = ag_edate,
+    size = poly_ha) %>%
+  select(-poly_ha)  #remove the original poly_ha column
+
+#write the newly formed dataset to memory, it will be loaded and used in this example
+st_write_parquet(poly_fires, r"(./data/wildfire_data_sf.parquet)")
+
+names(poly_fires)
+```
+```{r fire-data-pickup, include = FALSE}
+#read the fire data snippet for reduced memory constraints
+poly_fires <- st_read_parquet(r"(./data/wildfire_data_sf.parquet)")
+```
+
+## Compute Intersections {#fire-intersections}
+
+Here, we load the hospital data for computing intersections. We are going to add a 25km buffer around each hospital to help identify fires with a perimeter that approached the hospitals.
+
+```{r load-hospital-data}
+buffer_distance = 25000 #in metres
+
+#load hospital data
+odhf_data <- read.csv("./data/odhf_hospitals.csv", row.names = 1)
+
+# get ready to convert hospital data
+odhf_fires <- odhf_data %>% 
+  mutate(long = as.numeric(long)) %>% 
+  filter(!is.na(lat) & !is.na(long)) #filter out na points
+
+odhf_fires_sf <- odhf_fires %>% 
+  st_as_sf(coords=c("long", "lat"), crs = st_crs(4326))
+
+#transform to a metres pcs
+odhf_fires_sf <- st_transform(odhf_fires_sf, st_crs(poly_fires)) 
+
+#Create buffer around each location
+odhf_buffers <- st_buffer(odhf_fires_sf, dist = buffer_distance) #buffer in metres
+```
+
+We need to compute the intersections between the fires and buffered hospitals. To streamline this example, we select only fires greater than 200 hectares for computing intersections using EPSG 3978. 
+
+```{r fire-odhf-intersection}
+min_fire_size <- 200 #in ha
+
+#filter fires by size
+poly_fires <- poly_fires %>% filter(size > min_fire_size)
+
+#intersection matrix, the product refers to row indices, not id numbers
+fire_matches <- st_intersects(odhf_buffers, poly_fires) #run st_intersection to get geometries, but takes way longer
+```
+
+Now that we have found the indexes of the intersections in `fire_matches`, we need to link this information back to the original, more detailed dataframe. 
+
+```{r fire-link-intersections}
+#create the intersection dataframe from the intersection matrix
+intersection_df <- map2_dfr(seq_along(fire_matches),  fire_matches,
+  ~ tibble(
+    hospital_id = odhf_fires_sf$hospital_id[.x], #.x indicates it's from the sequence (argument 1)
+    n_fire_id = poly_fires$nfireid[.y], #.y indicates it's from the fires (argument 2)
+    survey_year = odhf_fires_sf$survey_year[.x],
+    survey_month = odhf_fires_sf$survey_month[.x],
+    fire_start_date = poly_fires$ag_sdate[.y],
+    fire_end_date = poly_fires$ag_edate[.y],
+    geometry = poly_fires$geometry[.y],
+    intersects = 1
+  )
+)
+
+#create useful date fields for the 24-month date lag
+intersection_df$survey_eom_date <- ymd(paste(intersection_df$survey_year, intersection_df$survey_month, "01", sep = "-")) + months(1) - days(1)
+intersection_df$survey_25_prev <- ymd(paste(intersection_df$survey_year, intersection_df$survey_month, "01", sep = "-")) -months(24)
+intersection_df$fire_start_date <- as.Date(intersection_df$fire_start_date, format="%YYYY-%MM-%DD")#make into a date
+intersection_df$fire_end_date <- as.Date(intersection_df$fire_end_date, format="%YYYY-%MM-%DD")#make into a date
+```
+
+We also need to deal with extraneous cases like rows with no fire end dates and those that were recorded as instantaneous (same start and end date).
+
+```{r fire-date-range-coverage}
+#this gets all overlapping dates, treating rows with no fire end date as one day instantaneous events
+intersection_overlap <- intersection_df %>%
+  mutate(
+    #define effective fire range: point if no end date, range otherwise
+    fire_start_eff = fire_start_date,
+    fire_end_eff   = coalesce(fire_end_date, fire_start_date)
+  ) %>%
+  filter(
+    #survey range overlaps with fire range
+    survey_25_prev <= fire_end_eff,
+    survey_eom_date >= fire_start_eff
+  )
+```
+
+## Date Lag {#fire-date-lag}
+
+As part of the exposure determination, we are interested in the 24 months prior to each survey date at the hospitals. Hospitals were surveyed at different times, so the date of the survey will be recorded along with each month from the 0th to 24th month prior (survey month, survey month - 1, survey month - 2, etc.).
+
+```{r fire-date-lag, message=FALSE}
+#expand each survey row into last 24 months
+expand_months <- function(d, hospital_id, survey_month, survey_year) {
+  data.table(
+    hospital_id = hospital_id,
+    survey_year = survey_year,
+    survey_month = survey_month,
+    offset = 0:24,
+    date = format(ceiling_date(d %m-% months(0:24), "month") - days(1), "%Y%m")
+  )
+}
+
+#apply the function
+#identifies how many months a given month is offset from the 0th month for that hospitals survey date
+odhf_fires_sf$dates <- ymd(paste(odhf_fires_sf$survey_year, odhf_fires_sf$survey_month, "01", sep = "-")) + months(1) - days(1)
+#for unique examples (one hospital-survey combo)
+fires_un <- unique(odhf_fires_sf, by = c("hospial_id","dates"))
+fires_un <- as.data.table(fires_un)
+survey_expanded <- fires_un[, expand_months(dates, hospital_id, survey_month, survey_year), by = .(hospital_id, dates)] #expand the months backwards for each unique hospital_id/date
+survey_expanded <- survey_expanded %>% select(-3) #get rid of the duplicate column
+```
+
+## Binary Matrix {#fire-summary-matrix}
+
+Create a binary matrix for each hospital-survey date combination for each of the 24 months.
+
+```{r fire-summary-matrix, warning=FALSE}
+#create a detailed data frame of all intersections and non-intersections, regardless of date, as an intermediary product 
+fires_detailed <- survey_expanded %>%
+  left_join(intersection_df, by = c("hospital_id", "survey_year", "survey_month")) %>% #join the data on year month and id
+  mutate(
+    month_ym = ymd(paste0(date, "01")), #set the date
+    month_start = month_ym, #get the first month as a date
+    month_end = ceiling_date(month_ym, "month") - days(1), #get the last month as a date
+    fire_start_eff = fire_start_date, #all have start date or nothing
+    fire_end_eff = coalesce(fire_end_date, fire_start_date), #coalesce if nothing 
+    intersect = case_when(
+      is.na(fire_start_date) ~ 0,  #fire had no date or there is no fire
+      month_start <= fire_end_eff & month_end >= fire_start_eff ~ 1, 
+      TRUE ~ 0
+    )
+  ) %>%
+  select(hospital_id, survey_year, survey_month, offset, date, #select these columns
+         intersect, n_fire_id, fire_start_date, fire_end_date, fire_start_eff, fire_end_eff, geometry)
+
+#create binary matrix of occurrences
+fires_summary_matrix <- fires_detailed %>% 
+  #filter(intersect == 1) %>% #if only interested in the results that have intersections
+  group_by(hospital_id, survey_year, survey_month, offset) %>%  #group by hospital id
+  right_join(survey_expanded, by=c("hospital_id", "survey_year", "survey_month", "offset")) %>% #join
+  mutate(intersect = replace_na(intersect, 0)) %>% #make sure there are no NAs
+  ungroup() %>%
+  as.data.table() %>% #convert to data table for some easier mutability
+  dcast(., #reshape data to wide format based on preceding months
+      hospital_id + survey_month + survey_year ~ paste0("month_", offset),
+      value.var = "intersect",
+      fun.aggregate = max
+    ) %>%
+  setcolorder(c("hospital_id", "survey_month", "survey_year", paste0("month_", 0:24))) #column order makes sense 
+  
+  
+#create an output sample to display
+fires_summary_matrix[c(120:130), ] %>% 
+  kbl(format = "html", caption = "Fire Summary Matrix") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%")
+
+#write csv result
+write.csv(fires_summary_matrix, r"(./data/fires_presence_absence.csv)")
+
+```
+
+## Map {#fire-map}
+
+The South Okanagan General Hospital in British Columbia experiences every exposure illustrated in this bookdown project except for hurricane events. Below is a visual depiction of how wildfire events interact with the hospital and the areas near it. 
+
+```{r fire-map}
+fires_summary_matrix <- read.csv(r"(./data/fires_presence_absence.csv)", row.names=1)
+
+#join matrix back with hospital ids
+fires_summary_map <- fires_summary_matrix %>% 
+  left_join(odhf_fires_sf %>% select(hospital_id, geometry), by = "hospital_id")
+
+#get intersecting fires
+hospital_509 <- fires_detailed %>% 
+  filter(hospital_id == 509, intersect == 1)
+
+#display map elements
+mapview(st_as_sf(hospital_509), layer.name="Intersecting Fires") + mapview(filter(odhf_fires_sf, hospital_id == 509), col.regions='red', cex=6, layer.name = "Hospital Location") + 
+mapview(
+  st_buffer(filter(odhf_fires_sf, hospital_id == 509), buffer_distance),
+  col.regions = "green",
+  alpha.regions = 0.1,
+  layer.name = "Hospital Buffer (25km)"
+)
+
+```
+
+
+
+
+
+
+
+

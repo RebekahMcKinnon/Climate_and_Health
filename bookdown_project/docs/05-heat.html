@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Heat | Linking Climate and Health Data</title>
+  <meta name="description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Heat | Linking Climate and Health Data" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Heat | Linking Climate and Health Data" />
+  
+  <meta name="twitter:description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
+  
+
+<meta name="author" content="HEYA Research Group" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="04-hurricanes.html"/>
+<link rel="next" href="06-pm_25.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/Intersecting_Fires-CSS-0.0.1/Intersecting_Fires_home-button.css" rel="stylesheet" />
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<link href="libs/Hospital_Location-CSS-0.0.1/Hospital_Location_home-button.css" rel="stylesheet" />
+<link href="libs/Hospital_Buffer__25km_-CSS-0.0.1/Hospital_Buffer__25km__home-button.css" rel="stylesheet" />
+<link href="libs/Intersecting_Floods-CSS-0.0.1/Intersecting_Floods_home-button.css" rel="stylesheet" />
+<link href="libs/Intersecting_Hurricane__Michael_-CSS-0.0.1/Intersecting_Hurricane__Michael__home-button.css" rel="stylesheet" />
+<link href="libs/Closest_Station-CSS-0.0.1/Closest_Station_home-button.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#purpose"><i class="fa fa-check"></i><b>1.1</b> Purpose</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#required-information"><i class="fa fa-check"></i><b>1.2</b> Required Information</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#datasets"><i class="fa fa-check"></i><b>1.2.1</b> Datasets</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#r-packages"><i class="fa fa-check"></i><b>1.2.2</b> R packages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="01-introduction.html"><a href="01-introduction.html"><i class="fa fa-check"></i><b>2</b> Case Study</a></li>
+<li class="chapter" data-level="3" data-path="02-wildfires.html"><a href="02-wildfires.html"><i class="fa fa-check"></i><b>3</b> Wildfires</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-data-preparation"><i class="fa fa-check"></i><b>3.1</b> Environmental Data Preparation</a></li>
+<li class="chapter" data-level="3.2" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-intersections"><i class="fa fa-check"></i><b>3.2</b> Compute Intersections</a></li>
+<li class="chapter" data-level="3.3" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-date-lag"><i class="fa fa-check"></i><b>3.3</b> Date Lag</a></li>
+<li class="chapter" data-level="3.4" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-summary-matrix"><i class="fa fa-check"></i><b>3.4</b> Binary Matrix</a></li>
+<li class="chapter" data-level="3.5" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-map"><i class="fa fa-check"></i><b>3.5</b> Map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="03-floods.html"><a href="03-floods.html"><i class="fa fa-check"></i><b>4</b> Floods</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="03-floods.html"><a href="03-floods.html#floods-data-preparation"><i class="fa fa-check"></i><b>4.1</b> Environmental Data Preparation</a></li>
+<li class="chapter" data-level="4.2" data-path="03-floods.html"><a href="03-floods.html#floods-data-cleaning"><i class="fa fa-check"></i><b>4.2</b> Data Preparation</a></li>
+<li class="chapter" data-level="4.3" data-path="03-floods.html"><a href="03-floods.html#floods-data-manipulation"><i class="fa fa-check"></i><b>4.3</b> Compute Intersections</a></li>
+<li class="chapter" data-level="4.4" data-path="03-floods.html"><a href="03-floods.html#floods-map"><i class="fa fa-check"></i><b>4.4</b> Map</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="04-hurricanes.html"><a href="04-hurricanes.html"><i class="fa fa-check"></i><b>5</b> Hurricanes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="04-hurricanes.html"><a href="04-hurricanes.html#hurricanes-data-retreival"><i class="fa fa-check"></i><b>5.1</b> Environmental Data Retreival</a></li>
+<li class="chapter" data-level="5.2" data-path="04-hurricanes.html"><a href="04-hurricanes.html#hurricanes-data-preparation"><i class="fa fa-check"></i><b>5.2</b> Data Preparation</a></li>
+<li class="chapter" data-level="5.3" data-path="04-hurricanes.html"><a href="04-hurricanes.html#hurricanes-intersections"><i class="fa fa-check"></i><b>5.3</b> Compute Intersections</a></li>
+<li class="chapter" data-level="5.4" data-path="04-hurricanes.html"><a href="04-hurricanes.html#hurricanes-map"><i class="fa fa-check"></i><b>5.4</b> Map</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="05-heat.html"><a href="05-heat.html"><i class="fa fa-check"></i><b>6</b> Heat</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="05-heat.html"><a href="05-heat.html#heat-data-preparation"><i class="fa fa-check"></i><b>6.1</b> Environmental Data Preparation</a></li>
+<li class="chapter" data-level="6.2" data-path="05-heat.html"><a href="05-heat.html#heat-daily-eccc"><i class="fa fa-check"></i><b>6.2</b> Heat ECCC</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="05-heat.html"><a href="05-heat.html#heat-eccc-date-lag"><i class="fa fa-check"></i><b>6.2.1</b> Date Lag</a></li>
+<li class="chapter" data-level="6.2.2" data-path="05-heat.html"><a href="05-heat.html#heat-eccc-date-join"><i class="fa fa-check"></i><b>6.2.2</b> Date Join</a></li>
+<li class="chapter" data-level="6.2.3" data-path="05-heat.html"><a href="05-heat.html#heat-matrix-eccc"><i class="fa fa-check"></i><b>6.2.3</b> Matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="05-heat.html"><a href="05-heat.html#heat-daily-arb"><i class="fa fa-check"></i><b>6.3</b> Heat Days</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="05-heat.html"><a href="05-heat.html#heat-arb-date-lag"><i class="fa fa-check"></i><b>6.3.1</b> Date Lag</a></li>
+<li class="chapter" data-level="6.3.2" data-path="05-heat.html"><a href="05-heat.html#heat-arb-date-join"><i class="fa fa-check"></i><b>6.3.2</b> Date Join</a></li>
+<li class="chapter" data-level="6.3.3" data-path="05-heat.html"><a href="05-heat.html#heat-arb-matrix"><i class="fa fa-check"></i><b>6.3.3</b> Matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="05-heat.html"><a href="05-heat.html#heat-map"><i class="fa fa-check"></i><b>6.4</b> Map</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="06-pm_25.html"><a href="06-pm_25.html"><i class="fa fa-check"></i><b>7</b> PM 2.5</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="06-pm_25.html"><a href="06-pm_25.html#pm25-data-preparation"><i class="fa fa-check"></i><b>7.1</b> Environmental Data Preparation</a></li>
+<li class="chapter" data-level="7.2" data-path="06-pm_25.html"><a href="06-pm_25.html#date-lag-pm25-date-lag"><i class="fa fa-check"></i><b>7.2</b> Date Lag {pm25-date-lag}</a></li>
+<li class="chapter" data-level="7.3" data-path="06-pm_25.html"><a href="06-pm_25.html#data-manipulation-pm25-data-manipulation"><i class="fa fa-check"></i><b>7.3</b> Data Manipulation {pm25-data-manipulation}</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="AA-00-appendix.html"><a href="AA-00-appendix.html"><i class="fa fa-check"></i><b>8</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="AA-00-appendix.html"><a href="AA-00-appendix.html#survey-data-generation"><i class="fa fa-check"></i><b>8.1</b> Survey Data Generation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="AA-01-references.html"><a href="AA-01-references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linking Climate and Health Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="heat" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Heat<a href="05-heat.html#heat" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Huge swings in temperature are becoming more and more common when comparing seasonal highs and lows. It is much harder to stay cool in heat…</p>
+<div id="heat-data-preparation" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Environmental Data Preparation<a href="05-heat.html#heat-data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Our first step is to load and transform the hospital data. Temperature data was sourced from the <code>weathercan</code> R package.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="05-heat.html#cb29-1" tabindex="-1"></a><span class="co">#load the data</span></span>
+<span id="cb29-2"><a href="05-heat.html#cb29-2" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/odhf_hospitals.csv&quot;</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb29-3"><a href="05-heat.html#cb29-3" tabindex="-1"></a>survey_sf <span class="ot">&lt;-</span> odhf_valid <span class="sc">%&gt;%</span> <span class="fu">st_as_sf</span>(<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;long&quot;</span>, <span class="st">&quot;lat&quot;</span>), <span class="at">crs=</span><span class="fu">st_crs</span>(<span class="dv">4326</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>facility_name)</span>
+<span id="cb29-4"><a href="05-heat.html#cb29-4" tabindex="-1"></a>survey_sf <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(survey_sf, <span class="dv">3978</span>)</span>
+<span id="cb29-5"><a href="05-heat.html#cb29-5" tabindex="-1"></a>stations_list <span class="ot">&lt;-</span> <span class="fu">stations</span>() </span>
+<span id="cb29-6"><a href="05-heat.html#cb29-6" tabindex="-1"></a><span class="fu">names</span>(stations_list)</span></code></pre></div>
+<p>In order to collect the relevant weather stations and time frames, the minimum and maximum survey data collection periods needed to be collected from the ODHF data.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="05-heat.html#cb30-1" tabindex="-1"></a><span class="co">#identify the date range</span></span>
+<span id="cb30-2"><a href="05-heat.html#cb30-2" tabindex="-1"></a>survey_sf <span class="ot">&lt;-</span> survey_sf <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="05-heat.html#cb30-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb30-4"><a href="05-heat.html#cb30-4" tabindex="-1"></a>    <span class="at">weather_start =</span> <span class="fu">make_date</span>(survey_year <span class="sc">-</span> <span class="dv">2</span>, survey_month, <span class="dv">1</span>),  <span class="co">#Start date: 2 years before</span></span>
+<span id="cb30-5"><a href="05-heat.html#cb30-5" tabindex="-1"></a>    <span class="at">weather_end =</span> <span class="fu">make_date</span>(survey_year, survey_month, <span class="fu">days_in_month</span>(<span class="fu">make_date</span>(survey_year, survey_month, <span class="dv">1</span>))))</span>
+<span id="cb30-6"><a href="05-heat.html#cb30-6" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="05-heat.html#cb30-7" tabindex="-1"></a>min_start_year <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">year</span>(survey_sf<span class="sc">$</span>weather_start), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-8"><a href="05-heat.html#cb30-8" tabindex="-1"></a>max_end_year <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">year</span>(survey_sf<span class="sc">$</span>weather_end), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-9"><a href="05-heat.html#cb30-9" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="05-heat.html#cb30-10" tabindex="-1"></a>stations_by_day <span class="ot">&lt;-</span> <span class="fu">filter</span>(stations_list, </span>
+<span id="cb30-11"><a href="05-heat.html#cb30-11" tabindex="-1"></a>                                      interval <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;hour&quot;</span>,<span class="st">&quot;day&quot;</span>), </span>
+<span id="cb30-12"><a href="05-heat.html#cb30-12" tabindex="-1"></a>                                      <span class="co">#setting the min coverage years for data at the stations</span></span>
+<span id="cb30-13"><a href="05-heat.html#cb30-13" tabindex="-1"></a>                                      <span class="co">#is to increase likelihood that the same hospital location will be assigned                                          to the same weather station</span></span>
+<span id="cb30-14"><a href="05-heat.html#cb30-14" tabindex="-1"></a>                                      <span class="co">#across survey years </span></span>
+<span id="cb30-15"><a href="05-heat.html#cb30-15" tabindex="-1"></a>                                      <span class="co">#this will reduce noise introduced as a result of pulling data for the same                                         location from different sources </span></span>
+<span id="cb30-16"><a href="05-heat.html#cb30-16" tabindex="-1"></a>                                      <span class="co">#which may have different data available, different frequencies of                                                 collection, etc. </span></span>
+<span id="cb30-17"><a href="05-heat.html#cb30-17" tabindex="-1"></a>                                      start <span class="sc">&lt;=</span> min_start_year, </span>
+<span id="cb30-18"><a href="05-heat.html#cb30-18" tabindex="-1"></a>                                      end <span class="sc">&gt;=</span> max_end_year)</span></code></pre></div>
+<p>Next, we need to get the nearest distance to stations for evaluation of if they are too close or too far away. In the case of this example, no station will be too far away.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="05-heat.html#cb31-1" tabindex="-1"></a><span class="co">#get the stations by day</span></span>
+<span id="cb31-2"><a href="05-heat.html#cb31-2" tabindex="-1"></a>stations_by_day_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(stations_by_day, <span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;lon&quot;</span>, <span class="st">&quot;lat&quot;</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb31-3"><a href="05-heat.html#cb31-3" tabindex="-1"></a>stations_by_day_sf <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(stations_by_day_sf, <span class="fu">st_crs</span>(survey_sf))</span>
+<span id="cb31-4"><a href="05-heat.html#cb31-4" tabindex="-1"></a><span class="co">#get the nearest feature</span></span>
+<span id="cb31-5"><a href="05-heat.html#cb31-5" tabindex="-1"></a>nearest_stations <span class="ot">&lt;-</span> <span class="fu">st_nearest_feature</span>(survey_sf, stations_by_day_sf)</span>
+<span id="cb31-6"><a href="05-heat.html#cb31-6" tabindex="-1"></a><span class="co">#get the nearest distances and ids of the stations for each hospital</span></span>
+<span id="cb31-7"><a href="05-heat.html#cb31-7" tabindex="-1"></a>survey_sf<span class="sc">$</span>nearest_dist <span class="ot">&lt;-</span> <span class="fu">st_distance</span>(survey_sf, stations_by_day_sf[nearest_stations,], <span class="at">by_element =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-8"><a href="05-heat.html#cb31-8" tabindex="-1"></a>survey_sf<span class="sc">$</span>near_station_id <span class="ot">&lt;-</span> stations_by_day_sf[nearest_stations,]<span class="sc">$</span>station_id</span>
+<span id="cb31-9"><a href="05-heat.html#cb31-9" tabindex="-1"></a>survey_sf<span class="sc">$</span>station_interval <span class="ot">&lt;-</span> stations_by_day_sf[nearest_stations,]<span class="sc">$</span>interval</span>
+<span id="cb31-10"><a href="05-heat.html#cb31-10" tabindex="-1"></a>survey_sf <span class="ot">&lt;-</span> survey_sf <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">station_id=</span>near_station_id)</span></code></pre></div>
+<p>Here, we get the data from the <code>weathercan</code> package.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="05-heat.html#cb32-1" tabindex="-1"></a><span class="co">#query the package for every station that was identified</span></span>
+<span id="cb32-2"><a href="05-heat.html#cb32-2" tabindex="-1"></a>hourly_station_ids <span class="ot">&lt;-</span> <span class="fu">filter</span>(survey_sf, station_interval <span class="sc">==</span> <span class="st">&quot;hour&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(station_id)</span>
+<span id="cb32-3"><a href="05-heat.html#cb32-3" tabindex="-1"></a>daily_station_ids <span class="ot">&lt;-</span> <span class="fu">filter</span>(survey_sf, station_interval <span class="sc">==</span> <span class="st">&quot;day&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(station_id)</span>
+<span id="cb32-4"><a href="05-heat.html#cb32-4" tabindex="-1"></a>daily_weather <span class="ot">&lt;-</span> <span class="fu">weather_dl</span>(<span class="at">station_ids =</span> daily_station_ids, <span class="at">start=</span><span class="fu">min</span>(survey_sf<span class="sc">$</span>weather_start), <span class="at">end=</span><span class="fu">max</span>(survey_sf<span class="sc">$</span>weather_end), <span class="at">interval=</span><span class="st">&#39;day&#39;</span>)</span>
+<span id="cb32-5"><a href="05-heat.html#cb32-5" tabindex="-1"></a>hourly_weather <span class="ot">&lt;-</span> <span class="fu">weather_dl</span>(<span class="at">station_ids =</span> hourly_station_ids, <span class="at">start=</span><span class="fu">min</span>(survey_sf<span class="sc">$</span>weather_start), <span class="at">end=</span><span class="fu">max</span>(survey_sf<span class="sc">$</span>weather_end), <span class="at">interval=</span><span class="st">&#39;hour&#39;</span>)</span></code></pre></div>
+<p>Then, we group and combine the hourly with the daily so a comprehensive dataset is created.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="05-heat.html#cb33-1" tabindex="-1"></a><span class="co">#summarize from hourly to daily and combine</span></span>
+<span id="cb33-2"><a href="05-heat.html#cb33-2" tabindex="-1"></a>hourly_as_daily_weather_original <span class="ot">&lt;-</span> hourly_weather <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="05-heat.html#cb33-3" tabindex="-1"></a>  <span class="fu">group_by</span>(station_id, date, lat, lon) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-4"><a href="05-heat.html#cb33-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb33-5"><a href="05-heat.html#cb33-5" tabindex="-1"></a>    <span class="at">min_temp =</span> <span class="fu">min</span>(temp, <span class="at">na.rm =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb33-6"><a href="05-heat.html#cb33-6" tabindex="-1"></a>    <span class="at">max_temp =</span> <span class="fu">max</span>(temp, <span class="at">na.rm =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb33-7"><a href="05-heat.html#cb33-7" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb33-8"><a href="05-heat.html#cb33-8" tabindex="-1"></a>  )</span>
+<span id="cb33-9"><a href="05-heat.html#cb33-9" tabindex="-1"></a>hourly_as_daily_weather <span class="ot">&lt;-</span> <span class="fu">subset</span>(hourly_as_daily_weather_original, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(lat, lon))</span>
+<span id="cb33-10"><a href="05-heat.html#cb33-10" tabindex="-1"></a>combined_hourly_daily <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(hourly_as_daily_weather, daily_weather) <span class="sc">%&gt;%</span></span>
+<span id="cb33-11"><a href="05-heat.html#cb33-11" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">any_of</span>(<span class="fu">intersect</span>(<span class="fu">names</span>(hourly_as_daily_weather), <span class="fu">names</span>(daily_weather))))</span>
+<span id="cb33-12"><a href="05-heat.html#cb33-12" tabindex="-1"></a><span class="fu">write_parquet</span>(combined_hourly_daily, r<span class="st">&quot;(./data/odhf_weather_stations.parquet)&quot;</span>)</span></code></pre></div>
+</div>
+<div id="heat-daily-eccc" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Heat ECCC<a href="05-heat.html#heat-daily-eccc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Environment and Climate Change Canada has their own criteria for extreme heat events around the country. Using a rough sketch of the <a href="http://www.canada.ca/en/environment-climate-change/services/environmental-indicators/extreme-heat-events.html">criteria map</a>, we can relate the hospital data to the temperature data.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="05-heat.html#cb34-1" tabindex="-1"></a>combined_hourly_daily <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(r<span class="st">&quot;(./data/odhf_weather_stations.parquet)&quot;</span>)</span>
+<span id="cb34-2"><a href="05-heat.html#cb34-2" tabindex="-1"></a>eccc_friendly <span class="ot">&lt;-</span> <span class="fu">st_read</span>(r<span class="st">&quot;(./data/roughEcccMap_final.gpkg)&quot;</span>)</span>
+<span id="cb34-3"><a href="05-heat.html#cb34-3" tabindex="-1"></a>survey_sf_eccc <span class="ot">&lt;-</span> <span class="fu">st_join</span>(survey_sf, eccc_friendly)</span>
+<span id="cb34-4"><a href="05-heat.html#cb34-4" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="05-heat.html#cb34-5" tabindex="-1"></a>consecutive_days <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co">#2 days and nights as the criteria.</span></span>
+<span id="cb34-6"><a href="05-heat.html#cb34-6" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="05-heat.html#cb34-7" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="05-heat.html#cb34-8" tabindex="-1"></a><span class="co">#identify days of consecutive heat</span></span>
+<span id="cb34-9"><a href="05-heat.html#cb34-9" tabindex="-1"></a>heat_flagged_eccc <span class="ot">&lt;-</span> survey_sf_eccc <span class="sc">%&gt;%</span></span>
+<span id="cb34-10"><a href="05-heat.html#cb34-10" tabindex="-1"></a>  <span class="fu">left_join</span>(combined_hourly_daily, <span class="at">by=</span><span class="st">&#39;station_id&#39;</span>) <span class="sc">%&gt;%</span>  <span class="co">#date, station_id, max_temp, min_temp </span></span>
+<span id="cb34-11"><a href="05-heat.html#cb34-11" tabindex="-1"></a>  <span class="fu">unique</span>(.,<span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;hospital_id&quot;</span>, <span class="st">&quot;survey_month&quot;</span>, <span class="st">&quot;survey_year&quot;</span>, <span class="st">&quot;date&quot;</span>)) <span class="sc">%&gt;%</span>  <span class="co">#get unique entries based on survey_id, survey month + year, and date of station data collection</span></span>
+<span id="cb34-12"><a href="05-heat.html#cb34-12" tabindex="-1"></a>  <span class="fu">arrange</span>(station_id, date) <span class="sc">%&gt;%</span> <span class="co">#need dates in order chronologically</span></span>
+<span id="cb34-13"><a href="05-heat.html#cb34-13" tabindex="-1"></a>  <span class="fu">group_by</span>(station_id, hospital_id, survey_month, survey_year) <span class="sc">%&gt;%</span> <span class="co">#station_ids grouped together</span></span>
+<span id="cb34-14"><a href="05-heat.html#cb34-14" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb34-15"><a href="05-heat.html#cb34-15" tabindex="-1"></a>    <span class="at">hot =</span> max_temp <span class="sc">&gt;=</span> day_thresh <span class="sc">&amp;</span> min_temp <span class="sc">&gt;=</span> nite_thres, <span class="co">#if the max_temp is greater than the day threshold AND the minimum temperature is greater than the nighttime threshold</span></span>
+<span id="cb34-16"><a href="05-heat.html#cb34-16" tabindex="-1"></a>    <span class="at">run_id =</span> <span class="fu">rleid</span>(hot) <span class="co">#add unique id for runs</span></span>
+<span id="cb34-17"><a href="05-heat.html#cb34-17" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-18"><a href="05-heat.html#cb34-18" tabindex="-1"></a>  <span class="fu">group_by</span>(hospital_id, survey_month, survey_year, station_id, run_id) <span class="sc">%&gt;%</span> <span class="co">#group by station id and the run ids (looking for two or more)</span></span>
+<span id="cb34-19"><a href="05-heat.html#cb34-19" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb34-20"><a href="05-heat.html#cb34-20" tabindex="-1"></a>    <span class="at">run_len =</span> <span class="fu">sum</span>(hot), <span class="co">#sum the number of hot events per run                                    </span></span>
+<span id="cb34-21"><a href="05-heat.html#cb34-21" tabindex="-1"></a>    <span class="at">heat_event =</span> hot <span class="sc">&amp;</span> run_len <span class="sc">&gt;=</span> consecutive_days <span class="co">#only classed as a heat event if two or more days       </span></span>
+<span id="cb34-22"><a href="05-heat.html#cb34-22" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb34-23"><a href="05-heat.html#cb34-23" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb34-24"><a href="05-heat.html#cb34-24" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>run_id, <span class="sc">-</span>run_len) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-25"><a href="05-heat.html#cb34-25" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date))</span></code></pre></div>
+<div id="heat-eccc-date-lag" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Date Lag<a href="05-heat.html#heat-eccc-date-lag" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As part of the exposure determination, we are interested in the 24 months prior to each survey date at the hospitals. Hospitals were surveyed at different times, so the date of the survey will be recorded along with each month from the 0th to 24th month prior (survey month, survey month - 1, survey month - 2, etc.).</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="05-heat.html#cb35-1" tabindex="-1"></a>expand_months <span class="ot">&lt;-</span> <span class="cf">function</span>(d, hospital_id, survey_month, survey_year, station_id) {</span>
+<span id="cb35-2"><a href="05-heat.html#cb35-2" tabindex="-1"></a>  <span class="fu">data.table</span>(</span>
+<span id="cb35-3"><a href="05-heat.html#cb35-3" tabindex="-1"></a>    <span class="at">hospital_id =</span> hospital_id,</span>
+<span id="cb35-4"><a href="05-heat.html#cb35-4" tabindex="-1"></a>    <span class="at">survey_year =</span> survey_year,</span>
+<span id="cb35-5"><a href="05-heat.html#cb35-5" tabindex="-1"></a>    <span class="at">survey_month =</span> survey_month,</span>
+<span id="cb35-6"><a href="05-heat.html#cb35-6" tabindex="-1"></a>    <span class="at">station_id =</span> station_id,</span>
+<span id="cb35-7"><a href="05-heat.html#cb35-7" tabindex="-1"></a>    <span class="at">offset =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>,</span>
+<span id="cb35-8"><a href="05-heat.html#cb35-8" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">format</span>(<span class="fu">ceiling_date</span>(d <span class="sc">%m-%</span> <span class="fu">months</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>), <span class="st">&quot;month&quot;</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>), <span class="st">&quot;%Y%m&quot;</span>)</span>
+<span id="cb35-9"><a href="05-heat.html#cb35-9" tabindex="-1"></a>  )</span>
+<span id="cb35-10"><a href="05-heat.html#cb35-10" tabindex="-1"></a>}</span>
+<span id="cb35-11"><a href="05-heat.html#cb35-11" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="05-heat.html#cb35-12" tabindex="-1"></a><span class="co">#apply the function</span></span>
+<span id="cb35-13"><a href="05-heat.html#cb35-13" tabindex="-1"></a><span class="co">#identifies how many months a given month is offset from the 0th month for that surveys survey date</span></span>
+<span id="cb35-14"><a href="05-heat.html#cb35-14" tabindex="-1"></a>survey_sf<span class="sc">$</span>dates <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">paste</span>(survey_sf<span class="sc">$</span>survey_year, survey_sf<span class="sc">$</span>survey_month, <span class="st">&quot;01&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>)) <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb35-15"><a href="05-heat.html#cb35-15" tabindex="-1"></a><span class="co">#FOR EVERY UNIQUE survey AND SURVEY DATE COMBINATION &lt;- this is key</span></span>
+<span id="cb35-16"><a href="05-heat.html#cb35-16" tabindex="-1"></a>surveys_un <span class="ot">&lt;-</span> <span class="fu">unique</span>(survey_sf, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;survey_id&quot;</span>,<span class="st">&quot;dates&quot;</span>))</span>
+<span id="cb35-17"><a href="05-heat.html#cb35-17" tabindex="-1"></a>surveys_un <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(surveys_un)</span>
+<span id="cb35-18"><a href="05-heat.html#cb35-18" tabindex="-1"></a>survey_expanded <span class="ot">&lt;-</span> surveys_un[, <span class="fu">expand_months</span>(dates, hospital_id, survey_month, survey_year, station_id), by <span class="ot">=</span> .(hospital_id, dates)]</span>
+<span id="cb35-19"><a href="05-heat.html#cb35-19" tabindex="-1"></a>survey_expanded <span class="ot">&lt;-</span> survey_expanded <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="dv">3</span>)</span>
+<span id="cb35-20"><a href="05-heat.html#cb35-20" tabindex="-1"></a>survey_expanded_heat_eccc <span class="ot">&lt;-</span> survey_expanded <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">year_month =</span> date)</span></code></pre></div>
+</div>
+<div id="heat-eccc-date-join" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Date Join<a href="05-heat.html#heat-eccc-date-join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Create heat event data for all months before narrowing the range and then join with the expanded days.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="05-heat.html#cb36-1" tabindex="-1"></a><span class="co">#arrange the data chronologically once again and setup columns for joining, add another heat classifier since this is being grouped to months (month has_heat)</span></span>
+<span id="cb36-2"><a href="05-heat.html#cb36-2" tabindex="-1"></a>heat_monthly_eccc <span class="ot">&lt;-</span> heat_flagged_eccc <span class="sc">%&gt;%</span></span>
+<span id="cb36-3"><a href="05-heat.html#cb36-3" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> <span class="co">#drop the geometry for faster speeds</span></span>
+<span id="cb36-4"><a href="05-heat.html#cb36-4" tabindex="-1"></a>  <span class="fu">arrange</span>(station_id, date) <span class="sc">%&gt;%</span></span>
+<span id="cb36-5"><a href="05-heat.html#cb36-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year_month =</span> <span class="fu">as.integer</span>(<span class="fu">format</span>(date, <span class="st">&quot;%Y%m&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb36-6"><a href="05-heat.html#cb36-6" tabindex="-1"></a>  <span class="fu">group_by</span>(hospital_id, year_month) <span class="sc">%&gt;%</span></span>
+<span id="cb36-7"><a href="05-heat.html#cb36-7" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb36-8"><a href="05-heat.html#cb36-8" tabindex="-1"></a>    <span class="at">has_heat =</span> <span class="fu">any</span>(heat_event, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),                     </span>
+<span id="cb36-9"><a href="05-heat.html#cb36-9" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb36-10"><a href="05-heat.html#cb36-10" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb36-11"><a href="05-heat.html#cb36-11" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb36-12"><a href="05-heat.html#cb36-12" tabindex="-1"></a>    <span class="at">year  =</span> <span class="fu">as.integer</span>(year_month <span class="sc">/</span> <span class="dv">100</span>), <span class="co">#need a year eventually</span></span>
+<span id="cb36-13"><a href="05-heat.html#cb36-13" tabindex="-1"></a>    <span class="at">month =</span> <span class="fu">as.integer</span>(year_month <span class="sc">%%</span> <span class="dv">100</span>), <span class="co">#need a month eventually</span></span>
+<span id="cb36-14"><a href="05-heat.html#cb36-14" tabindex="-1"></a>    <span class="at">year_month =</span> <span class="fu">as.character</span>(year_month)</span>
+<span id="cb36-15"><a href="05-heat.html#cb36-15" tabindex="-1"></a>  )</span>
+<span id="cb36-16"><a href="05-heat.html#cb36-16" tabindex="-1"></a>  </span>
+<span id="cb36-17"><a href="05-heat.html#cb36-17" tabindex="-1"></a></span>
+<span id="cb36-18"><a href="05-heat.html#cb36-18" tabindex="-1"></a><span class="co">#join with the survey data</span></span>
+<span id="cb36-19"><a href="05-heat.html#cb36-19" tabindex="-1"></a>survey_with_heat_eccc <span class="ot">&lt;-</span> survey_expanded_heat_eccc <span class="sc">%&gt;%</span> <span class="co">#select(-5,-6) %&gt;% </span></span>
+<span id="cb36-20"><a href="05-heat.html#cb36-20" tabindex="-1"></a>  <span class="fu">left_join</span>(heat_monthly_eccc, </span>
+<span id="cb36-21"><a href="05-heat.html#cb36-21" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;hospital_id&quot;</span>, <span class="st">&quot;year_month&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-22"><a href="05-heat.html#cb36-22" tabindex="-1"></a>  <span class="co">#rename(year_month=dates) %&gt;% </span></span>
+<span id="cb36-23"><a href="05-heat.html#cb36-23" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb36-24"><a href="05-heat.html#cb36-24" tabindex="-1"></a>    <span class="at">heat_flag =</span> <span class="fu">as.integer</span>(<span class="fu">coalesce</span>(has_heat, <span class="cn">FALSE</span>))) <span class="co">#integer based has_heat           </span></span>
+<span id="cb36-25"><a href="05-heat.html#cb36-25" tabindex="-1"></a></span>
+<span id="cb36-26"><a href="05-heat.html#cb36-26" tabindex="-1"></a>heat_month_zero_daily_eccc <span class="ot">&lt;-</span> <span class="fu">filter</span>(survey_with_heat_eccc, survey_year<span class="sc">==</span>year <span class="sc">&amp;</span> survey_month<span class="sc">==</span>month) <span class="sc">%&gt;%</span> <span class="fu">st_drop_geometry</span>()</span></code></pre></div>
+</div>
+<div id="heat-matrix-eccc" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Matrix<a href="05-heat.html#heat-matrix-eccc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>survey_with_heat_eccc</code> has all the interesting information in it about the matrix of heat.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="05-heat.html#cb37-1" tabindex="-1"></a><span class="co">#create the summary matrix of 1&#39;s and 0&#39;s for the months</span></span>
+<span id="cb37-2"><a href="05-heat.html#cb37-2" tabindex="-1"></a>heat_summary_matrix_eccc <span class="ot">&lt;-</span> survey_with_heat_eccc <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="05-heat.html#cb37-3" tabindex="-1"></a>  <span class="fu">filter</span>(heat_flag <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#only the months with floods in them</span></span>
+<span id="cb37-4"><a href="05-heat.html#cb37-4" tabindex="-1"></a>  <span class="fu">group_by</span>(hospital_id, survey_year, survey_month, offset) <span class="sc">%&gt;%</span> <span class="co">#group by the offsets</span></span>
+<span id="cb37-5"><a href="05-heat.html#cb37-5" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-6"><a href="05-heat.html#cb37-6" tabindex="-1"></a>  <span class="fu">right_join</span>(survey_expanded_heat_eccc, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;hospital_id&quot;</span>, <span class="st">&quot;survey_year&quot;</span>, <span class="st">&quot;survey_month&quot;</span>, <span class="st">&quot;offset&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-7"><a href="05-heat.html#cb37-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">heat_flag =</span> <span class="fu">replace_na</span>(heat_flag, <span class="dv">0</span>)) <span class="sc">%&gt;%</span> <span class="co">#make sure there are no NAs</span></span>
+<span id="cb37-8"><a href="05-heat.html#cb37-8" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb37-9"><a href="05-heat.html#cb37-9" tabindex="-1"></a>  <span class="fu">as.data.table</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb37-10"><a href="05-heat.html#cb37-10" tabindex="-1"></a>  <span class="fu">left_join</span>(survey_sf <span class="sc">%&gt;%</span> <span class="fu">select</span>(hospital_id, station_id, nearest_dist), <span class="at">by=</span><span class="st">&#39;hospital_id&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-11"><a href="05-heat.html#cb37-11" tabindex="-1"></a>  <span class="fu">dcast</span>(.,</span>
+<span id="cb37-12"><a href="05-heat.html#cb37-12" tabindex="-1"></a>      hospital_id <span class="sc">+</span> survey_month <span class="sc">+</span> survey_year <span class="sc">+</span> station_id <span class="sc">+</span> nearest_dist<span class="sc">~</span> <span class="fu">paste0</span>(<span class="st">&quot;month_&quot;</span>, offset),</span>
+<span id="cb37-13"><a href="05-heat.html#cb37-13" tabindex="-1"></a>      <span class="at">value.var =</span> <span class="st">&quot;heat_flag&quot;</span>,</span>
+<span id="cb37-14"><a href="05-heat.html#cb37-14" tabindex="-1"></a>      <span class="at">fun.aggregate =</span> max</span>
+<span id="cb37-15"><a href="05-heat.html#cb37-15" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb37-16"><a href="05-heat.html#cb37-16" tabindex="-1"></a>  <span class="fu">setcolorder</span>(<span class="fu">c</span>(<span class="st">&quot;hospital_id&quot;</span>, <span class="st">&quot;survey_month&quot;</span>, <span class="st">&quot;survey_year&quot;</span>, <span class="st">&#39;station_id&#39;</span>, <span class="st">&#39;nearest_dist&#39;</span>, <span class="fu">paste0</span>(<span class="st">&quot;month_&quot;</span>, <span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>))) </span>
+<span id="cb37-17"><a href="05-heat.html#cb37-17" tabindex="-1"></a></span>
+<span id="cb37-18"><a href="05-heat.html#cb37-18" tabindex="-1"></a><span class="fu">write.csv</span>(heat_summary_matrix_eccc, r<span class="st">&quot;(./data/heat_matrix_eccc.csv)&quot;</span>)</span></code></pre></div>
+<p>Display a snippet of the ECCC summary matrix.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="05-heat.html#cb38-1" tabindex="-1"></a><span class="co">#display a snippet</span></span>
+<span id="cb38-2"><a href="05-heat.html#cb38-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(heat_summary_matrix_eccc),<span class="st">&#39;html&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="05-heat.html#cb38-3" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-4"><a href="05-heat.html#cb38-4" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">&quot;300px&quot;</span>)</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; ">
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+hospital_id
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+survey_month
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+survey_year
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+station_id
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+nearest_dist
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_0
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_1
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_2
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_3
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_4
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_5
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_6
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_7
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_8
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_9
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_10
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_11
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_12
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_13
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_14
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_15
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_16
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_17
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_18
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_19
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_20
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_21
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_22
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_23
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_24
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:right;">
+9010
+</td>
+<td style="text-align:right;">
+5014.012 [m]
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:right;">
+27793
+</td>
+<td style="text-align:right;">
+9143.100 [m]
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:right;">
+32453
+</td>
+<td style="text-align:right;">
+11226.723 [m]
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:right;">
+402
+</td>
+<td style="text-align:right;">
+1111.603 [m]
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:right;">
+31067
+</td>
+<td style="text-align:right;">
+2911.284 [m]
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:right;">
+6839
+</td>
+<td style="text-align:right;">
+1904.546 [m]
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="heat-daily-arb" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Heat Days<a href="05-heat.html#heat-daily-arb" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You can set any threshold temperature as an arbitrary</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="05-heat.html#cb39-1" tabindex="-1"></a>combined_hourly_daily <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(r<span class="st">&quot;(./data/odhf_weather_stations.parquet)&quot;</span>)</span>
+<span id="cb39-2"><a href="05-heat.html#cb39-2" tabindex="-1"></a>temp_threshold <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb39-3"><a href="05-heat.html#cb39-3" tabindex="-1"></a>consecutive_days <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb39-4"><a href="05-heat.html#cb39-4" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="05-heat.html#cb39-5" tabindex="-1"></a><span class="co">#identify days of consecutive heat</span></span>
+<span id="cb39-6"><a href="05-heat.html#cb39-6" tabindex="-1"></a>heat_flagged <span class="ot">&lt;-</span> combined_hourly_daily <span class="sc">%&gt;%</span></span>
+<span id="cb39-7"><a href="05-heat.html#cb39-7" tabindex="-1"></a>  <span class="fu">arrange</span>(station_id, date) <span class="sc">%&gt;%</span> <span class="co">#arrange by station and chronologically</span></span>
+<span id="cb39-8"><a href="05-heat.html#cb39-8" tabindex="-1"></a>  <span class="fu">unique</span>(.,<span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;station_id&quot;</span>, <span class="st">&quot;date&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co">#filter by only unqiue stations and dates, can&#39;t have any duplicates</span></span>
+<span id="cb39-9"><a href="05-heat.html#cb39-9" tabindex="-1"></a>  <span class="fu">group_by</span>(station_id) <span class="sc">%&gt;%</span> <span class="co">#applying only to stations</span></span>
+<span id="cb39-10"><a href="05-heat.html#cb39-10" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb39-11"><a href="05-heat.html#cb39-11" tabindex="-1"></a>    <span class="at">hot =</span> max_temp <span class="sc">&gt;=</span> temp_threshold, <span class="co">#it is hot if it is greater than the arbitrary threshold               </span></span>
+<span id="cb39-12"><a href="05-heat.html#cb39-12" tabindex="-1"></a>    <span class="at">run_id =</span> <span class="fu">rleid</span>(hot) <span class="co">#group chronological runs together</span></span>
+<span id="cb39-13"><a href="05-heat.html#cb39-13" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb39-14"><a href="05-heat.html#cb39-14" tabindex="-1"></a>  <span class="fu">group_by</span>(station_id, run_id) <span class="sc">%&gt;%</span> <span class="co">#group the runs together</span></span>
+<span id="cb39-15"><a href="05-heat.html#cb39-15" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb39-16"><a href="05-heat.html#cb39-16" tabindex="-1"></a>    <span class="at">run_len =</span> <span class="fu">sum</span>(hot), <span class="co">#sum the number of hot events per run </span></span>
+<span id="cb39-17"><a href="05-heat.html#cb39-17" tabindex="-1"></a>    <span class="at">heat_event =</span> hot <span class="sc">&amp;</span> run_len <span class="sc">&gt;=</span> consecutive_days    </span>
+<span id="cb39-18"><a href="05-heat.html#cb39-18" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb39-19"><a href="05-heat.html#cb39-19" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb39-20"><a href="05-heat.html#cb39-20" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>run_id, <span class="sc">-</span>run_len) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-21"><a href="05-heat.html#cb39-21" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date))</span>
+<span id="cb39-22"><a href="05-heat.html#cb39-22" tabindex="-1"></a></span>
+<span id="cb39-23"><a href="05-heat.html#cb39-23" tabindex="-1"></a>heat_flagged_arb <span class="ot">&lt;-</span> heat_flagged</span></code></pre></div>
+<div id="heat-arb-date-lag" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Date Lag<a href="05-heat.html#heat-arb-date-lag" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Run the same date lags as above.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="05-heat.html#cb40-1" tabindex="-1"></a>expand_months <span class="ot">&lt;-</span> <span class="cf">function</span>(d, hospital_id, survey_month, survey_year, station_id) {</span>
+<span id="cb40-2"><a href="05-heat.html#cb40-2" tabindex="-1"></a>  <span class="fu">data.table</span>(</span>
+<span id="cb40-3"><a href="05-heat.html#cb40-3" tabindex="-1"></a>    <span class="at">hospital_id =</span> hospital_id,</span>
+<span id="cb40-4"><a href="05-heat.html#cb40-4" tabindex="-1"></a>    <span class="at">survey_year =</span> survey_year,</span>
+<span id="cb40-5"><a href="05-heat.html#cb40-5" tabindex="-1"></a>    <span class="at">survey_month =</span> survey_month,</span>
+<span id="cb40-6"><a href="05-heat.html#cb40-6" tabindex="-1"></a>    <span class="at">station_id =</span> station_id,</span>
+<span id="cb40-7"><a href="05-heat.html#cb40-7" tabindex="-1"></a>    <span class="at">offset =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>,</span>
+<span id="cb40-8"><a href="05-heat.html#cb40-8" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">format</span>(<span class="fu">ceiling_date</span>(d <span class="sc">%m-%</span> <span class="fu">months</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>), <span class="st">&quot;month&quot;</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>), <span class="st">&quot;%Y%m&quot;</span>)</span>
+<span id="cb40-9"><a href="05-heat.html#cb40-9" tabindex="-1"></a>  )</span>
+<span id="cb40-10"><a href="05-heat.html#cb40-10" tabindex="-1"></a>}</span>
+<span id="cb40-11"><a href="05-heat.html#cb40-11" tabindex="-1"></a></span>
+<span id="cb40-12"><a href="05-heat.html#cb40-12" tabindex="-1"></a><span class="co">#apply the function</span></span>
+<span id="cb40-13"><a href="05-heat.html#cb40-13" tabindex="-1"></a><span class="co">#identifies how many months a given month is offset from the 0th month for that surveys survey date</span></span>
+<span id="cb40-14"><a href="05-heat.html#cb40-14" tabindex="-1"></a>survey_sf<span class="sc">$</span>dates <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">paste</span>(survey_sf<span class="sc">$</span>survey_year, survey_sf<span class="sc">$</span>survey_month, <span class="st">&quot;01&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>)) <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb40-15"><a href="05-heat.html#cb40-15" tabindex="-1"></a><span class="co">#FOR EVERY UNIQUE SURVEY DATE COMBINATION &lt;- this is key</span></span>
+<span id="cb40-16"><a href="05-heat.html#cb40-16" tabindex="-1"></a>surveys_un <span class="ot">&lt;-</span> <span class="fu">unique</span>(survey_sf, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;survey_id&quot;</span>,<span class="st">&quot;dates&quot;</span>))</span>
+<span id="cb40-17"><a href="05-heat.html#cb40-17" tabindex="-1"></a>surveys_un <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(surveys_un)</span>
+<span id="cb40-18"><a href="05-heat.html#cb40-18" tabindex="-1"></a>survey_expanded <span class="ot">&lt;-</span> surveys_un[, <span class="fu">expand_months</span>(dates, hospital_id, survey_month, survey_year, station_id), by <span class="ot">=</span> .(hospital_id, dates)]</span>
+<span id="cb40-19"><a href="05-heat.html#cb40-19" tabindex="-1"></a>survey_expanded <span class="ot">&lt;-</span> survey_expanded <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="dv">3</span>)</span>
+<span id="cb40-20"><a href="05-heat.html#cb40-20" tabindex="-1"></a>survey_expanded_heat_days <span class="ot">&lt;-</span> survey_expanded <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">year_month =</span> date)</span></code></pre></div>
+</div>
+<div id="heat-arb-date-join" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Date Join<a href="05-heat.html#heat-arb-date-join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Create heat event data for all months before narrowing the range and then join with the expanded days.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="05-heat.html#cb41-1" tabindex="-1"></a><span class="co">#create the monthly heat summary</span></span>
+<span id="cb41-2"><a href="05-heat.html#cb41-2" tabindex="-1"></a>heat_monthly <span class="ot">&lt;-</span> heat_flagged <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="05-heat.html#cb41-3" tabindex="-1"></a>  <span class="fu">arrange</span>(station_id, date) <span class="sc">%&gt;%</span> <span class="co">#arrange chronologically</span></span>
+<span id="cb41-4"><a href="05-heat.html#cb41-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year_month =</span> <span class="fu">as.integer</span>(<span class="fu">format</span>(date, <span class="st">&quot;%Y%m&quot;</span>))) <span class="sc">%&gt;%</span>        </span>
+<span id="cb41-5"><a href="05-heat.html#cb41-5" tabindex="-1"></a>  <span class="fu">group_by</span>(station_id, year_month) <span class="sc">%&gt;%</span> <span class="co">#group by year_month and station</span></span>
+<span id="cb41-6"><a href="05-heat.html#cb41-6" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb41-7"><a href="05-heat.html#cb41-7" tabindex="-1"></a>    <span class="at">has_heat =</span> <span class="fu">any</span>(heat_event, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co">#we only care about any heat event in the month</span></span>
+<span id="cb41-8"><a href="05-heat.html#cb41-8" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb41-9"><a href="05-heat.html#cb41-9" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb41-10"><a href="05-heat.html#cb41-10" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-11"><a href="05-heat.html#cb41-11" tabindex="-1"></a>    <span class="at">year  =</span> <span class="fu">as.integer</span>(year_month <span class="sc">/</span> <span class="dv">100</span>), <span class="co">#need a year eventually</span></span>
+<span id="cb41-12"><a href="05-heat.html#cb41-12" tabindex="-1"></a>    <span class="at">month =</span> <span class="fu">as.integer</span>(year_month <span class="sc">%%</span> <span class="dv">100</span>), <span class="co">#need a month eventually</span></span>
+<span id="cb41-13"><a href="05-heat.html#cb41-13" tabindex="-1"></a>    <span class="at">year_month =</span> <span class="fu">as.character</span>(year_month)</span>
+<span id="cb41-14"><a href="05-heat.html#cb41-14" tabindex="-1"></a>  )</span>
+<span id="cb41-15"><a href="05-heat.html#cb41-15" tabindex="-1"></a></span>
+<span id="cb41-16"><a href="05-heat.html#cb41-16" tabindex="-1"></a>survey_with_heat_days <span class="ot">&lt;-</span> survey_expanded_heat_days <span class="sc">%&gt;%</span> <span class="co">#join with monthly data</span></span>
+<span id="cb41-17"><a href="05-heat.html#cb41-17" tabindex="-1"></a>  <span class="fu">left_join</span>(heat_monthly, </span>
+<span id="cb41-18"><a href="05-heat.html#cb41-18" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;station_id&quot;</span>, <span class="st">&quot;year_month&quot;</span>)) <span class="sc">%&gt;%</span>          </span>
+<span id="cb41-19"><a href="05-heat.html#cb41-19" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-20"><a href="05-heat.html#cb41-20" tabindex="-1"></a>    <span class="at">heat_flag =</span> <span class="fu">as.integer</span>(<span class="fu">coalesce</span>(has_heat, <span class="cn">FALSE</span>))) <span class="co">#coalesce to an integer</span></span>
+<span id="cb41-21"><a href="05-heat.html#cb41-21" tabindex="-1"></a>  </span>
+<span id="cb41-22"><a href="05-heat.html#cb41-22" tabindex="-1"></a>heat_flagged_daily_normalized <span class="ot">&lt;-</span> heat_flagged <span class="sc">%&gt;%</span> <span class="co">#normalized is a misnomer, we are just looking for the month 0 stuff with this one</span></span>
+<span id="cb41-23"><a href="05-heat.html#cb41-23" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year_month =</span> <span class="fu">as.integer</span>(<span class="fu">format</span>(date, <span class="st">&quot;%Y%m&quot;</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-24"><a href="05-heat.html#cb41-24" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-25"><a href="05-heat.html#cb41-25" tabindex="-1"></a>    <span class="at">year  =</span> <span class="fu">as.integer</span>(year_month <span class="sc">/</span> <span class="dv">100</span>),      </span>
+<span id="cb41-26"><a href="05-heat.html#cb41-26" tabindex="-1"></a>    <span class="at">month =</span> <span class="fu">as.integer</span>(year_month <span class="sc">%%</span> <span class="dv">100</span>),</span>
+<span id="cb41-27"><a href="05-heat.html#cb41-27" tabindex="-1"></a>    <span class="at">year_month =</span> <span class="fu">as.character</span>(year_month)</span>
+<span id="cb41-28"><a href="05-heat.html#cb41-28" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(survey_expanded_heat_days, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;station_id&quot;</span>,<span class="st">&quot;year_month&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-29"><a href="05-heat.html#cb41-29" tabindex="-1"></a>  <span class="fu">filter</span>(offset<span class="sc">==</span><span class="dv">0</span>, heat_event <span class="sc">==</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="heat-arb-matrix" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> Matrix<a href="05-heat.html#heat-arb-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Create the summary matrix of 1’s and 0’s.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="05-heat.html#cb42-1" tabindex="-1"></a><span class="co">#create the summary matrix of 1&#39;s and 0&#39;s for the months</span></span>
+<span id="cb42-2"><a href="05-heat.html#cb42-2" tabindex="-1"></a>heat_summary_matrix_arb <span class="ot">&lt;-</span> survey_with_heat_days <span class="sc">%&gt;%</span> </span>
+<span id="cb42-3"><a href="05-heat.html#cb42-3" tabindex="-1"></a>  <span class="fu">filter</span>(heat_flag <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#only the months with heat in them</span></span>
+<span id="cb42-4"><a href="05-heat.html#cb42-4" tabindex="-1"></a>  <span class="fu">group_by</span>(hospital_id, survey_year, survey_month, offset) <span class="sc">%&gt;%</span> <span class="co">#group by the offsets</span></span>
+<span id="cb42-5"><a href="05-heat.html#cb42-5" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-6"><a href="05-heat.html#cb42-6" tabindex="-1"></a>  <span class="fu">right_join</span>(survey_expanded_heat_days, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;hospital_id&quot;</span>, <span class="st">&quot;survey_year&quot;</span>, <span class="st">&quot;survey_month&quot;</span>, <span class="st">&quot;offset&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb42-7"><a href="05-heat.html#cb42-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">heat_flag =</span> <span class="fu">replace_na</span>(heat_flag, <span class="dv">0</span>)) <span class="sc">%&gt;%</span> <span class="co">#make sure there are no NAs</span></span>
+<span id="cb42-8"><a href="05-heat.html#cb42-8" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-9"><a href="05-heat.html#cb42-9" tabindex="-1"></a>  <span class="fu">as.data.table</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-10"><a href="05-heat.html#cb42-10" tabindex="-1"></a>  <span class="fu">left_join</span>(survey_sf <span class="sc">%&gt;%</span> <span class="fu">select</span>(hospital_id, station_id, nearest_dist), <span class="at">by=</span><span class="st">&#39;hospital_id&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-11"><a href="05-heat.html#cb42-11" tabindex="-1"></a>  <span class="fu">dcast</span>(.,</span>
+<span id="cb42-12"><a href="05-heat.html#cb42-12" tabindex="-1"></a>      hospital_id <span class="sc">+</span> survey_month <span class="sc">+</span> survey_year <span class="sc">+</span> station_id <span class="sc">+</span> nearest_dist<span class="sc">~</span> <span class="fu">paste0</span>(<span class="st">&quot;month_&quot;</span>, offset),</span>
+<span id="cb42-13"><a href="05-heat.html#cb42-13" tabindex="-1"></a>      <span class="at">value.var =</span> <span class="st">&quot;heat_flag&quot;</span>,</span>
+<span id="cb42-14"><a href="05-heat.html#cb42-14" tabindex="-1"></a>      <span class="at">fun.aggregate =</span> max</span>
+<span id="cb42-15"><a href="05-heat.html#cb42-15" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb42-16"><a href="05-heat.html#cb42-16" tabindex="-1"></a>  <span class="fu">setcolorder</span>(<span class="fu">c</span>(<span class="st">&quot;hospital_id&quot;</span>, <span class="st">&quot;survey_month&quot;</span>, <span class="st">&quot;survey_year&quot;</span>, <span class="st">&#39;station_id&#39;</span>, <span class="st">&#39;nearest_dist&#39;</span>, <span class="fu">paste0</span>(<span class="st">&quot;month_&quot;</span>, <span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>))) </span>
+<span id="cb42-17"><a href="05-heat.html#cb42-17" tabindex="-1"></a></span>
+<span id="cb42-18"><a href="05-heat.html#cb42-18" tabindex="-1"></a><span class="fu">write.csv</span>(heat_summary_matrix_arb, r<span class="st">&quot;(./data/heat_matrix_dayCriteria.csv)&quot;</span>)</span></code></pre></div>
+<p>Display a snippet of the arbitrary heat summary matrix.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="05-heat.html#cb43-1" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(heat_summary_matrix_arb),<span class="st">&#39;html&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="05-heat.html#cb43-2" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="05-heat.html#cb43-3" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">&quot;300px&quot;</span>)</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; ">
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+hospital_id
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+survey_month
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+survey_year
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+station_id
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+nearest_dist
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_0
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_1
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_2
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_3
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_4
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_5
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_6
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_7
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_8
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_9
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_10
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_11
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_12
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_13
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_14
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_15
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_16
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_17
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_18
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_19
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_20
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_21
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_22
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_23
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+month_24
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:right;">
+9010
+</td>
+<td style="text-align:right;">
+5014.012 [m]
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:right;">
+27793
+</td>
+<td style="text-align:right;">
+9143.100 [m]
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:right;">
+32453
+</td>
+<td style="text-align:right;">
+11226.723 [m]
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:right;">
+402
+</td>
+<td style="text-align:right;">
+1111.603 [m]
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:right;">
+31067
+</td>
+<td style="text-align:right;">
+2911.284 [m]
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:right;">
+6839
+</td>
+<td style="text-align:right;">
+1904.546 [m]
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="heat-map" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Map<a href="05-heat.html#heat-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The South Okanagan General Hospital in British Columbia experienced a heat event, as defined by Environment and Climate Change Canada, in the 18th month prior to the survey administration month. The Hospital is located in the Southeastern British Columbia zone, where the daytime max temperature threshold is 35C and the nighttime minimum threshold temperature is 18C. The weather station and hospital locations are presented below.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="05-heat.html#cb44-1" tabindex="-1"></a><span class="co">#get hospital 509, heat event in month 18</span></span>
+<span id="cb44-2"><a href="05-heat.html#cb44-2" tabindex="-1"></a>hospital_509 <span class="ot">&lt;-</span> <span class="fu">filter</span>(survey_sf_eccc, hospital_id <span class="sc">==</span> <span class="dv">509</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-3"><a href="05-heat.html#cb44-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">heat_event =</span> <span class="st">&quot;Month 18&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">st_transform</span>(<span class="at">crs=</span><span class="fu">st_crs</span>(<span class="dv">4326</span>))</span>
+<span id="cb44-4"><a href="05-heat.html#cb44-4" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="05-heat.html#cb44-5" tabindex="-1"></a><span class="co">#get station 1039 since it is the close one</span></span>
+<span id="cb44-6"><a href="05-heat.html#cb44-6" tabindex="-1"></a>station_of_interest <span class="ot">&lt;-</span> <span class="fu">weather_dl</span>(<span class="at">station_id =</span> <span class="fu">c</span>(<span class="dv">1039</span>), <span class="at">interval=</span><span class="st">&#39;day&#39;</span>, <span class="at">start=</span><span class="st">&#39;2018-01-01&#39;</span>, <span class="at">end=</span><span class="st">&#39;2020-01-31&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-7"><a href="05-heat.html#cb44-7" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb44-8"><a href="05-heat.html#cb44-8" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;lon&quot;</span>,<span class="st">&quot;lat&quot;</span>), <span class="at">crs=</span><span class="fu">st_crs</span>(<span class="dv">4326</span>)) <span class="sc">%&gt;%</span> <span class="fu">st_transform</span>(<span class="at">crs=</span><span class="fu">st_crs</span>(<span class="dv">4326</span>))</span>
+<span id="cb44-9"><a href="05-heat.html#cb44-9" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="05-heat.html#cb44-10" tabindex="-1"></a><span class="co">#create the map elements</span></span>
+<span id="cb44-11"><a href="05-heat.html#cb44-11" tabindex="-1"></a><span class="fu">mapview</span>(</span>
+<span id="cb44-12"><a href="05-heat.html#cb44-12" tabindex="-1"></a>  <span class="fu">filter</span>(hospital_509),</span>
+<span id="cb44-13"><a href="05-heat.html#cb44-13" tabindex="-1"></a>  <span class="at">col.regions =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb44-14"><a href="05-heat.html#cb44-14" tabindex="-1"></a>  <span class="at">cex =</span> <span class="dv">6</span>,</span>
+<span id="cb44-15"><a href="05-heat.html#cb44-15" tabindex="-1"></a>  <span class="at">layer.name =</span> <span class="st">&quot;Hospital Location&quot;</span>,</span>
+<span id="cb44-16"><a href="05-heat.html#cb44-16" tabindex="-1"></a>  <span class="at">popup =</span> leafpop<span class="sc">::</span><span class="fu">popupTable</span>(</span>
+<span id="cb44-17"><a href="05-heat.html#cb44-17" tabindex="-1"></a>    hospital_509,</span>
+<span id="cb44-18"><a href="05-heat.html#cb44-18" tabindex="-1"></a>    <span class="at">zcol =</span> <span class="fu">c</span>(<span class="st">&quot;odhf_facility_type&quot;</span>, <span class="st">&quot;hospital_id&quot;</span>, <span class="st">&quot;postalcode&quot;</span>, <span class="st">&quot;survey_year&quot;</span>, <span class="st">&quot;survey_month&quot;</span>, <span class="st">&quot;heat_event&quot;</span>)</span>
+<span id="cb44-19"><a href="05-heat.html#cb44-19" tabindex="-1"></a>  )</span>
+<span id="cb44-20"><a href="05-heat.html#cb44-20" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb44-21"><a href="05-heat.html#cb44-21" tabindex="-1"></a><span class="fu">mapview</span>(</span>
+<span id="cb44-22"><a href="05-heat.html#cb44-22" tabindex="-1"></a>  station_of_interest,</span>
+<span id="cb44-23"><a href="05-heat.html#cb44-23" tabindex="-1"></a>  <span class="at">col.regions =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb44-24"><a href="05-heat.html#cb44-24" tabindex="-1"></a>  <span class="at">alpha.regions =</span> <span class="dv">1</span>,</span>
+<span id="cb44-25"><a href="05-heat.html#cb44-25" tabindex="-1"></a>  <span class="at">layer.name =</span> <span class="st">&quot;Closest Station&quot;</span>,</span>
+<span id="cb44-26"><a href="05-heat.html#cb44-26" tabindex="-1"></a>  <span class="at">popup =</span> leafpop<span class="sc">::</span><span class="fu">popupTable</span>(</span>
+<span id="cb44-27"><a href="05-heat.html#cb44-27" tabindex="-1"></a>    station_of_interest,</span>
+<span id="cb44-28"><a href="05-heat.html#cb44-28" tabindex="-1"></a>    <span class="at">zcol =</span> <span class="fu">c</span>(<span class="st">&quot;station_name&quot;</span>, <span class="st">&quot;station_id&quot;</span>)</span>
+<span id="cb44-29"><a href="05-heat.html#cb44-29" tabindex="-1"></a>    )</span>
+<span id="cb44-30"><a href="05-heat.html#cb44-30" tabindex="-1"></a>)</span></code></pre></div>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-5463fa8088fd4bba1117" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-5463fa8088fd4bba1117">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["point",440]},{"method":"addCircleMarkers","args":[49.18368170000001,-119.5395697,6,null,"Hospital Location",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"point","stroke":true,"color":"#333333","weight":1,"opacity":0.9,"fill":true,"fillColor":"#FF0000","fillOpacity":0.6},null,null,"<div class='scrollableContainer'><table class= id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>odhf_facility_type&emsp;<\/th><td>Hospitals&emsp;<\/td><\/tr><tr><td>2<\/td><th>hospital_id&emsp;<\/th><td>509&emsp;<\/td><\/tr><tr><td>3<\/td><th>postalcode&emsp;<\/th><td>V0H1T0&emsp;<\/td><\/tr><tr><td>4<\/td><th>survey_year&emsp;<\/th><td>2020&emsp;<\/td><\/tr><tr><td>5<\/td><th>survey_month&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>6<\/td><th>heat_event&emsp;<\/th><td>Month 18&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"1",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-119.5395697,49.18368170000001,-119.5395697,49.18368170000001,true,"Hospital_Location","Zoom to Hospital_Location","<strong> Hospital_Location <\/strong>","bottomright"]},{"method":"addLegend","args":[{"colors":["#FF0000"],"labels":["Hospital Location"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"Hospital Location"}]},{"method":"addCircleMarkers","args":[49.18,-119.54,6,null,"Closest Station",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"point","stroke":true,"color":"#333333","weight":1,"opacity":0.9,"fill":true,"fillColor":"#0000FF","fillOpacity":1},null,null,"<div class='scrollableContainer'><table class= id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>station_name&emsp;<\/th><td>OLIVER STP&emsp;<\/td><\/tr><tr><td>2<\/td><th>station_id&emsp;<\/th><td>1039&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"1",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addHomeButton","args":[-119.54,49.18,-119.54,49.18,true,"Closest_Station","Zoom to Closest_Station","<strong> Closest_Station <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],["Hospital Location","Closest Station"],{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#0000FF"],"labels":["Closest Station"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"Closest Station"}]},{"method":"addHomeButton","args":[-119.54,49.18,-119.5395697,49.18368170000001,true,null,"Zoom to full extent","<strong>Zoom full<\/strong>","bottomleft"]}],"limits":{"lat":[49.18368170000001,49.18368170000001],"lng":[-119.5395697,-119.5395697]},"fitBounds":[49.18,-119.54,49.18368170000001,-119.5395697,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\"position\":\"relative\",\"bottomleft\":\"0px\",\"background-color\":\"rgba(255, 255, 255, 0.7)\",\"box-shadow\":\"0 0 2px #bbb\",\"background-clip\":\"padding-box\",\"margin\":\"0\",\"padding-left\":\"5px\",\"padding-right\":\"5px\",\"color\":\"#333\",\"font-size\":\"9px\",\"font-family\":\"\\\"Helvetica Neue\\\", Arial, Helvetica, sans-serif\",\"text-align\":\"left\",\"z-index\":\"700\"});\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="04-hurricanes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="06-pm_25.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

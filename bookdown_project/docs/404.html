@@ -53,9 +53,32 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/Intersecting_Fires-CSS-0.0.1/Intersecting_Fires_home-button.css" rel="stylesheet" />
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<link href="libs/Hospital_Location-CSS-0.0.1/Hospital_Location_home-button.css" rel="stylesheet" />
+<link href="libs/Hospital_Buffer__25km_-CSS-0.0.1/Hospital_Buffer__25km__home-button.css" rel="stylesheet" />
+<link href="libs/Intersecting_Floods-CSS-0.0.1/Intersecting_Floods_home-button.css" rel="stylesheet" />
+<link href="libs/Intersecting_Hurricane__Michael_-CSS-0.0.1/Intersecting_Hurricane__Michael__home-button.css" rel="stylesheet" />
+<link href="libs/Closest_Station-CSS-0.0.1/Closest_Station_home-button.css" rel="stylesheet" />
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -137,53 +160,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a>
-<ul>
-<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#purpose"><i class="fa fa-check"></i><b>1.1.1</b> Purpose</a></li>
-</ul></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#purpose"><i class="fa fa-check"></i><b>1.1</b> Purpose</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#required-information"><i class="fa fa-check"></i><b>1.2</b> Required Information</a>
 <ul>
 <li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#datasets"><i class="fa fa-check"></i><b>1.2.1</b> Datasets</a></li>
 <li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#r-packages"><i class="fa fa-check"></i><b>1.2.2</b> R packages</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started with Spatial Data</a>
+<li class="chapter" data-level="2" data-path="01-introduction.html"><a href="01-introduction.html"><i class="fa fa-check"></i><b>2</b> Case Study</a></li>
+<li class="chapter" data-level="3" data-path="02-wildfires.html"><a href="02-wildfires.html"><i class="fa fa-check"></i><b>3</b> Wildfires</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#data-access"><i class="fa fa-check"></i><b>2.1</b> Data Access</a></li>
-<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#data-preparation"><i class="fa fa-check"></i><b>2.2</b> Data preparation</a>
+<li class="chapter" data-level="3.1" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-data-preparation"><i class="fa fa-check"></i><b>3.1</b> Environmental Data Preparation</a></li>
+<li class="chapter" data-level="3.2" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-intersections"><i class="fa fa-check"></i><b>3.2</b> Compute Intersections</a></li>
+<li class="chapter" data-level="3.3" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-date-lag"><i class="fa fa-check"></i><b>3.3</b> Date Lag</a></li>
+<li class="chapter" data-level="3.4" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-summary-matrix"><i class="fa fa-check"></i><b>3.4</b> Binary Matrix</a></li>
+<li class="chapter" data-level="3.5" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-map"><i class="fa fa-check"></i><b>3.5</b> Map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="03-floods.html"><a href="03-floods.html"><i class="fa fa-check"></i><b>4</b> Floods</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="getting-started.html"><a href="getting-started.html#terminology"><i class="fa fa-check"></i><b>2.2.1</b> Terminology</a></li>
-<li class="chapter" data-level="2.2.2" data-path="getting-started.html"><a href="getting-started.html#coordinate-reference-systems-and-projections"><i class="fa fa-check"></i><b>2.2.2</b> Coordinate Reference Systems &amp; Projections</a></li>
+<li class="chapter" data-level="4.1" data-path="03-floods.html"><a href="03-floods.html#floods-data-preparation"><i class="fa fa-check"></i><b>4.1</b> Environmental Data Preparation</a></li>
+<li class="chapter" data-level="4.2" data-path="03-floods.html"><a href="03-floods.html#floods-data-cleaning"><i class="fa fa-check"></i><b>4.2</b> Data Preparation</a></li>
+<li class="chapter" data-level="4.3" data-path="03-floods.html"><a href="03-floods.html#floods-data-manipulation"><i class="fa fa-check"></i><b>4.3</b> Compute Intersections</a></li>
+<li class="chapter" data-level="4.4" data-path="03-floods.html"><a href="03-floods.html#floods-map"><i class="fa fa-check"></i><b>4.4</b> Map</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="spatial-data.html"><a href="spatial-data.html"><i class="fa fa-check"></i><b>3</b> Spatial Data</a></li>
-<li class="chapter" data-level="4" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html"><i class="fa fa-check"></i><b>4</b> Locating &amp; Refining Environmental Data</a>
+<li class="chapter" data-level="5" data-path="04-hurricanes.html"><a href="04-hurricanes.html"><i class="fa fa-check"></i><b>5</b> Hurricanes</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#introduction-environmental-data"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#wildfires"><i class="fa fa-check"></i><b>4.2</b> Wildfires</a>
+<li class="chapter" data-level="5.1" data-path="04-hurricanes.html"><a href="04-hurricanes.html#hurricanes-data-retreival"><i class="fa fa-check"></i><b>5.1</b> Environmental Data Retreival</a></li>
+<li class="chapter" data-level="5.2" data-path="04-hurricanes.html"><a href="04-hurricanes.html#hurricanes-data-preparation"><i class="fa fa-check"></i><b>5.2</b> Data Preparation</a></li>
+<li class="chapter" data-level="5.3" data-path="04-hurricanes.html"><a href="04-hurricanes.html#hurricanes-intersections"><i class="fa fa-check"></i><b>5.3</b> Compute Intersections</a></li>
+<li class="chapter" data-level="5.4" data-path="04-hurricanes.html"><a href="04-hurricanes.html#hurricanes-map"><i class="fa fa-check"></i><b>5.4</b> Map</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="05-heat.html"><a href="05-heat.html"><i class="fa fa-check"></i><b>6</b> Heat</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#data-preparation-with-sf-package"><i class="fa fa-check"></i><b>4.2.1</b> Data preparation with sf package</a></li>
-<li class="chapter" data-level="4.2.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#inspect-and-refine-data-structure"><i class="fa fa-check"></i><b>4.2.2</b> Inspect &amp; refine data structure</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#floods"><i class="fa fa-check"></i><b>4.3</b> Floods</a>
+<li class="chapter" data-level="6.1" data-path="05-heat.html"><a href="05-heat.html#heat-data-preparation"><i class="fa fa-check"></i><b>6.1</b> Environmental Data Preparation</a></li>
+<li class="chapter" data-level="6.2" data-path="05-heat.html"><a href="05-heat.html#heat-daily-eccc"><i class="fa fa-check"></i><b>6.2</b> Heat ECCC</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#floods-data-sourcing"><i class="fa fa-check"></i><b>4.3.1</b> Data Sourcing</a></li>
-<li class="chapter" data-level="4.3.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#data-cleaning"><i class="fa fa-check"></i><b>4.3.2</b> Data Cleaning</a></li>
-<li class="chapter" data-level="4.3.3" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#floods-data-manipulation"><i class="fa fa-check"></i><b>4.3.3</b> Data Manipulation</a></li>
+<li class="chapter" data-level="6.2.1" data-path="05-heat.html"><a href="05-heat.html#heat-eccc-date-lag"><i class="fa fa-check"></i><b>6.2.1</b> Date Lag</a></li>
+<li class="chapter" data-level="6.2.2" data-path="05-heat.html"><a href="05-heat.html#heat-eccc-date-join"><i class="fa fa-check"></i><b>6.2.2</b> Date Join</a></li>
+<li class="chapter" data-level="6.2.3" data-path="05-heat.html"><a href="05-heat.html#heat-matrix-eccc"><i class="fa fa-check"></i><b>6.2.3</b> Matrix</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes"><i class="fa fa-check"></i><b>4.4</b> Hurricanes</a>
+<li class="chapter" data-level="6.3" data-path="05-heat.html"><a href="05-heat.html#heat-daily-arb"><i class="fa fa-check"></i><b>6.3</b> Heat Days</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-sourcing"><i class="fa fa-check"></i><b>4.4.1</b> Data Sourcing</a></li>
-<li class="chapter" data-level="4.4.2" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-cleaning"><i class="fa fa-check"></i><b>4.4.2</b> Data Cleaning</a></li>
-<li class="chapter" data-level="4.4.3" data-path="locating-and-refining-environmental-data.html"><a href="locating-and-refining-environmental-data.html#hurricanes-data-manipulation"><i class="fa fa-check"></i><b>4.4.3</b> Data Manipulation</a></li>
+<li class="chapter" data-level="6.3.1" data-path="05-heat.html"><a href="05-heat.html#heat-arb-date-lag"><i class="fa fa-check"></i><b>6.3.1</b> Date Lag</a></li>
+<li class="chapter" data-level="6.3.2" data-path="05-heat.html"><a href="05-heat.html#heat-arb-date-join"><i class="fa fa-check"></i><b>6.3.2</b> Date Join</a></li>
+<li class="chapter" data-level="6.3.3" data-path="05-heat.html"><a href="05-heat.html#heat-arb-matrix"><i class="fa fa-check"></i><b>6.3.3</b> Matrix</a></li>
 </ul></li>
+<li class="chapter" data-level="6.4" data-path="05-heat.html"><a href="05-heat.html#heat-map"><i class="fa fa-check"></i><b>6.4</b> Map</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>5</b> Appendix</a>
+<li class="chapter" data-level="7" data-path="06-pm_25.html"><a href="06-pm_25.html"><i class="fa fa-check"></i><b>7</b> PM 2.5</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="appendix.html"><a href="appendix.html#survey-data-generation"><i class="fa fa-check"></i><b>5.1</b> Survey Data Generation</a></li>
+<li class="chapter" data-level="7.1" data-path="06-pm_25.html"><a href="06-pm_25.html#pm25-data-preparation"><i class="fa fa-check"></i><b>7.1</b> Environmental Data Preparation</a></li>
+<li class="chapter" data-level="7.2" data-path="06-pm_25.html"><a href="06-pm_25.html#date-lag-pm25-date-lag"><i class="fa fa-check"></i><b>7.2</b> Date Lag {pm25-date-lag}</a></li>
+<li class="chapter" data-level="7.3" data-path="06-pm_25.html"><a href="06-pm_25.html#data-manipulation-pm25-data-manipulation"><i class="fa fa-check"></i><b>7.3</b> Data Manipulation {pm25-data-manipulation}</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="AA-00-appendix.html"><a href="AA-00-appendix.html"><i class="fa fa-check"></i><b>8</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="AA-00-appendix.html"><a href="AA-00-appendix.html#survey-data-generation"><i class="fa fa-check"></i><b>8.1</b> Survey Data Generation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="AA-01-references.html"><a href="AA-01-references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 </ul>
 
       </nav>
@@ -261,7 +297,7 @@ gitbook.start({
     "options": null
   },
   "toc": {
-    "collapse": "subsection"
+    "collapse": "section"
   }
 });
 });

@@ -1,0 +1,152 @@
+```{r setup-floods, include=FALSE}
+knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_project')
+```
+
+# Floods {#floods}
+
+Floods are a common environmental hazard in Canada. Numerous flooding events have been reported in popular media and studied in literature...
+
+## Environmental Data Preparation {#floods-data-preparation}
+
+Natural Resources Canada provides a flood archive data set through [Open Canada](#../index.Rmd/datasets "Datasets"). The data is provided in bulk as a .gdb file with several layers. We are specifically interested in the 'EGS_Flood_Product_Archive' layer.
+
+```{r floods-initial-data, warning=FALSE, results='hide'}
+#load raw flood data
+gdb_path <- "./data/EGS_Flood_Product_Archive.gdb"
+st_layers(gdb_path)
+flood_data <- st_read(gdb_path, layer = "EGS_Flood_Product_Archive", options = "METHOD=SKIP")
+```
+
+## Data Preparation {#floods-data-cleaning}
+
+Before any analysis can proceed with the flood data, the hospital data needs to be loaded and converted to an appropriate coordinate reference system that aligns with the flood data. 
+
+```{r floods-survey-data-preprocess}
+#load the hospital data
+odhf_data <- read.csv("./data/odhf_hospitals.csv", row.names = 1)
+#need to make some data to verify
+#names throw an error due to character incompatibility, so remove altogether
+odhf_valid <- odhf_data
+survey_sf <- odhf_valid %>% st_as_sf(coords=c("long", "lat"), crs=st_crs(4326)) %>% select(-facility_name) %>% st_transform(st_crs(flood_data))
+```
+
+## Compute Intersections {#floods-data-manipulation}
+
+The following code loops through each hospital to determine flood exposure for the 24 months leading up to the month the survey was conducted at each location. We will use a 25km buffer to encapsulate floods that occurred in areas near to the hospitals. 
+
+```{r floods-main-loop, message=FALSE, results='hide'}
+buffer_distance = 25000 #in metres
+
+#create a buffer around each poi
+survey_buffered <- st_buffer(survey_sf, dist = buffer_distance)
+
+#find floods within each poi's buffer
+flood_matches <- st_intersects(survey_buffered, flood_data)
+
+#extract year and month from flood event datetime
+flood_data <- flood_data %>%
+  mutate(flood_year = year(datetime_utc),
+         flood_month = month(datetime_utc))
+
+#initialize an empty data frame to store results
+exposure_matrix <- matrix(0, nrow = nrow(survey_sf), ncol = 25)
+colnames(exposure_matrix) <- paste0("month_", 0:24)  #column names for each month
+
+#loop through each poi and determine flood exposure
+for (i in seq_len(nrow(survey_sf))) {
+  #extract the survey date from the survey related columns
+  survey_year <- survey_sf$survey_year[i]
+  survey_month <- survey_sf$survey_month[i]
+  
+  #compute the 24-month range
+  month_seq <- seq.Date(from = as.Date(sprintf("%d-%02d-01", survey_year, survey_month)) %m-% months(1), 
+                        length.out = 24, by = "-1 month")
+  month_seq_df <- data.frame(year = year(month_seq), month = month(month_seq))
+  
+  #get the indices of intersecting floods for this poi
+  flood_indices <- flood_matches[[i]]
+  
+  if (length(flood_indices) > 0) {  #if floods exist within the buffer
+    flood_events <- flood_data[flood_indices, c("flood_year", "flood_month")]
+    
+    #check for each of the past 24 months if a flood occurred
+    for (j in 1:24) {
+      target_year <- month_seq_df$year[j]
+      target_month <- month_seq_df$month[j]
+      
+      #if a flood occurred in this year-month, set exposure to 1
+      if (any(flood_events$flood_year == target_year & flood_events$flood_month == target_month)) {
+        exposure_matrix[i, j] <- 1
+      }
+    }
+  }
+}
+
+#convert matrix to a data frame and merge with survey data
+exposure_df <- as.data.frame(exposure_matrix)
+
+#bind to the presence absence matrix
+survey_floods_pa <- cbind(survey_sf, exposure_df)
+
+#summarise based on the number of unique hospitals
+survey_floods_pa %>% summarise(n_unique = n_distinct(hospital_id)) 
+
+#create a summary dataset of hospitals with only flood events for easier viewing
+survey_floods_pa_filtered <- survey_floods_pa %>%
+  filter(if_any(starts_with("month_"), ~ . == 1))
+
+#write to a directory 
+write.csv(survey_floods_pa, r"(./data/flood_presence_absence.csv)")
+```
+Display a snippet of the floods matrix.
+
+```{r floods-matrix-snippet}
+#print a selection of data
+kable(head(survey_floods_pa_filtered),'html') %>%
+  kable_styling(full_width = FALSE) %>%
+  scroll_box(height = "300px")
+```
+
+## Map {#floods-map}
+
+The South Okanagan General Hospital in British Columbia borders the Okanagan River, which is prone to flooding. Below is a visual depiction of flooding events in the area adjacent to the hospital. 
+
+``` {r floods-map, warning=FALSE}
+floods_summary_matrix <- read.csv(r"(./data/flood_presence_absence.csv)", row.names=1)
+
+survey_sf$hospital_id <- as.character(survey_sf$hospital_id)
+floods_summary_matrix$hospital_id <- as.character(floods_summary_matrix$hospital_id)
+
+#South Okanagan General Hospital
+floods_summary_map <- floods_summary_matrix %>% 
+  left_join(survey_sf %>% select(hospital_id, geometry), by = "hospital_id")
+
+#get the associated floods
+hospital_509 <- survey_floods_pa %>% 
+  filter(hospital_id == 509)
+
+#get the intersecting floods
+flood_509 <- st_intersection(st_buffer(hospital_509, dist = buffer_distance), flood_data)
+
+#generate the map elements
+mapview(
+  flood_509,
+  layer.name = "Intersecting Floods",
+  popup = leafpop::popupTable(
+    flood_509,
+    zcol = c("swath_id", "product_file_name")
+  )
+) +
+mapview(
+  filter(survey_sf, hospital_id == 509),
+  col.regions = "red",
+  cex = 6,
+  layer.name = "Hospital Location"
+) +
+mapview(
+  st_buffer(filter(survey_sf, hospital_id == 509), buffer_distance),
+  col.regions = "green",
+  alpha.regions = 0.1,
+  layer.name = "Hospital Buffer (25km)"
+)
+```

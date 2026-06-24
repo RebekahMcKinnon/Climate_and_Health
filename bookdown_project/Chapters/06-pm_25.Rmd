@@ -1,0 +1,132 @@
+```{r setup-pm25, include=FALSE}
+knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_project')
+```
+
+# PM 2.5 {#pm25}
+
+## Environmental Data Preparation {#pm25-data-preparation}
+
+The PM2.5 data can be used for checking the results of other data - mainly the wildfire data. Background pollution levels can be examined using this data, to determine if wildfire events have an effect on overall particulate matter circulating in the environment. 
+
+```{r pm25-data-cleaning, warning=FALSE, results='hide'}
+
+odhf_pm25 <- read.csv("./data/odhf_hospitals.csv", row.names = 1) %>%
+  mutate(
+    pm25_start = make_date(survey_year - 2, survey_month, 1),  #start 2 years before
+    pm25_end = make_date(survey_year, survey_month, days_in_month(make_date(survey_year, survey_month, 1))))  #last day of the month
+
+head(odhf_pm25)
+
+#define years
+years <- 2015:2018
+
+#define the base path
+base_path <- "./data/pm25/"
+
+#read, standardize, and pivot dataset
+load_pm25_data <- function(year) {
+  suffix <- substr(as.character(year), 3, 4) #get just the year from the year range
+  file   <- file.path(base_path, paste0("aqsmk_avc_", suffix, ".csv")) #the base path of the files + the year
+  df <- read_csv(file, show_col_types = FALSE)
+  names(df)[1] <- "postalcode"                        
+  df_long <- df %>% #pivot the data to long format based on the columns in the data
+    pivot_longer(
+      cols      = starts_with("aqsmk"), #column for the aqsmk data 
+      names_to  = "var",
+      values_to = "pm25"
+    ) %>%
+    mutate(
+      ym_raw = str_extract(var, "\\d{2}_\\d{2}"), #regex
+      year   = 2000 + as.integer(substr(ym_raw, 1, 2)),  
+      month  = as.integer(substr(ym_raw, 4, 5)) #all data points are january     
+    ) %>%
+    select(postalcode, province, year, month, pm25) %>%
+    filter(!is.na(pm25)) %>% rename(postcode=postalcode)
+  
+  df_long
+}
+
+pm25_all_years <- map_dfr(years, load_pm25_data) #load all the csvs
+#
+#turn month into a factor with correct order
+#pm25_all_years <- pm25_all_years %>%
+#  mutate(month = factor(month, levels = c("jan", "feb", "mar", "apr", "may", "jun",
+#                                          "jul", "aug", "sep", "oct", "nov", "dec")))
+
+#rename for later actions
+pm25_all_years <- pm25_all_years %>% rename(survey_year=year) %>% rename(survey_month=month)
+```
+
+## Date Lag {#pm25-date-lag}
+
+Lag the data in the same way as the other datasets.
+
+```{r pm-date-lag}
+expand_months <- function(d, hospital_id, survey_month, survey_year, postalcode) {
+  data.table(
+    hospital_id = hospital_id,
+    survey_year = survey_year,
+    survey_month = survey_month,
+    postcode = postalcode,
+    offset = 0:24,
+    date = format(ceiling_date(d %m-% months(0:24), "month") - days(1), "%Y%m")
+  )
+}
+
+#apply the function
+#identifies how many months a given month is offset from the 0th month for that surveys survey date
+odhf_pm25$dates <- ymd(paste(odhf_pm25$survey_year, odhf_pm25$survey_month, "01", sep = "-")) + months(1) - days(1)
+#FOR EVERY UNIQUE survey AND SURVEY DATE COMBINATION <- this is key
+surveys_un <- unique(odhf_pm25, by = c("survey_id","dates"))
+surveys_un <- as.data.table(surveys_un)
+survey_expanded <- surveys_un[, expand_months(dates, hospital_id, survey_month, survey_year, postalcode), by = .(hospital_id, dates)]
+survey_expanded <- survey_expanded %>% select(-3)
+survey_expanded_pm25 <- survey_expanded %>% rename(year_month = date)
+
+
+```
+
+
+## Data Manipulation {#pm25-data-manipulation}
+
+Create a summary matrix of all the PM2.5 values for the months. Single year averages are generalized to the entire year. 
+
+```{r pm25-data-manipulation, warning=FALSE, results='hide'}
+#turn month into a factor with correct order
+pm25_all_years <- pm25_all_years %>%
+  select(postcode, province, survey_year, survey_month, pm25)
+
+
+
+#join with the expanded survey info
+pm25_survey <- survey_expanded_pm25 %>% 
+  left_join(
+    pm25_all_years %>% select(postcode, survey_year, survey_month, pm25),
+    by = c("postcode", "survey_year", "survey_month")
+  ) %>%
+  group_by(hospital_id, survey_year) %>%
+  mutate(pm25 = if (all(is.na(pm25))) NA_real_ else first(na.omit(pm25))) %>%
+  ungroup()
+
+#summarise into the matrix of 1's and 0's
+pm25_summary_matrix <- as.data.table(pm25_survey) %>%
+  dcast(
+    hospital_id + survey_month + survey_year ~ paste0("month_", offset),
+    value.var = "pm25",
+    fun.aggregate = first
+  ) %>%
+  setcolorder(c("hospital_id", "survey_month", "survey_year", paste0("month_", 0:24)))
+
+#tons of NA's in this dataset
+write.csv(pm25_summary_matrix, "./data/pm25_presence_absence.csv")
+
+```
+
+Show a snippet of the PM2.5 summary matrix.
+
+```{r pm25-summary-matrix}
+kable(head(pm25_summary_matrix),'html') %>%
+  kable_styling(full_width = FALSE) %>%
+  scroll_box(height = "300px")
+```
+

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Linking Climate and Health Data</title>
+  <title>2 Case Study | Linking Climate and Health Data</title>
   <meta name="description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Linking Climate and Health Data" />
+  <meta property="og:title" content="2 Case Study | Linking Climate and Health Data" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Linking Climate and Health Data" />
+  <meta name="twitter:title" content="2 Case Study | Linking Climate and Health Data" />
   
   <meta name="twitter:description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="01-introduction.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="02-wildfires.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -237,174 +237,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Linking Climate and Health Data</h1>
-<p class="author"><em>HEYA Research Group</em></p>
-</div>
-<div id="preface" class="section level1 unlisted unnumbered hasAnchor">
-<h1>About<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This work is supported by current and past members of the <a href="www.heyaresearch.ca">HEYA Research Group</a>:</p>
-<p>Rebekah McKinnon PhD,  Ishwar Tiwari PhD,  Jayden Chang MSc,  Jack McIlraith MSc,  Gina Martin PhD</p>
-<p>Welcome to this bookdown project. You can track issues and tasks here:</p>
-<ul>
-<li>GitHub Project Board: <a href="https://github.com/RebekahMcKinnon/Climate_and_Health/projects/1">View on GitHub</a></li>
-</ul>
-</div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Introduce the project.</p>
-<div id="purpose" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Purpose<a href="index.html#purpose" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Tutorial to replicate what was done using an alternate format…</p>
-</div>
-<div id="required-information" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Required Information<a href="index.html#required-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="datasets" class="section level3 hasAnchor" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Datasets<a href="index.html#datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This tutorial uses the following <strong>publicly available</strong> datasets:</p>
-<table>
-<colgroup>
-<col width="31%" />
-<col width="41%" />
-<col width="26%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Data Provider</th>
-<th>Dataset</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Natural Resources Canada (CFS / CWFIS)</td>
-<td>National Burned Area Composite (<strong>NBAC</strong>) wildfire perimeters (1972–2024) (<a href="https://cwfis.cfs.nrcan.gc.ca/en/catalogue/results/537a1fd0-698e-4a7b-85a1-e02581ae78b2" title="NBAC - Canadian Wildland Fire Information System">cwfis.cfs.nrcan.gc.ca</a>)</td>
-<td>Polygon (vector)</td>
-</tr>
-<tr class="even">
-<td>Natural Resources Canada (EGS)</td>
-<td><strong>Floods in Canada - Archive</strong> (flood extent products) (<a href="https://open.canada.ca/data/en/dataset/74144824-206e-4cea-9fb9-72925a128189" title="Floods in Canada - Archive - Open Government Portal">open.canada.ca</a>)</td>
-<td>Polygon (vector)</td>
-</tr>
-<tr class="odd">
-<td>Environment and Climate Change Canada</td>
-<td>Historical climate observations &amp; station metadata (<a href="%22https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&amp;stationID=XXX&amp;Year=2024&amp;Month=1&amp;Day=1&amp;timeframe=2&amp;submit=Download+Data%22">climate.weather.gc.ca</a>)</td>
-<td>Point (vector)</td>
-</tr>
-<tr class="even">
-<td>Statistics Canada</td>
-<td>Open Database of Hospital Facilities (<a href="https://open.canada.ca/data/en/dataset/a1bcd4ee-8e57-499b-9c6f-94f6902fdf32">open.canada.ca</a>)</td>
-<td>Point (vector)</td>
-</tr>
-</tbody>
-</table>
-<p> </p>
-<p>This tutorial also uses datasets with <strong>access restrictions</strong>. Access may require institutional access, and/or data-use agreements.</p>
-<table>
-<colgroup>
-<col width="26%" />
-<col width="40%" />
-<col width="33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Data Provider</th>
-<th>Dataset</th>
-<th>Access</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Statistics Canada</td>
-<td>Postal Code Conversion File (<strong>PCCF</strong>) v8B</td>
-<td>Licensed</td>
-</tr>
-<tr class="even">
-<td>Canadian Urban Environmental Health Research Consortium (CANUE)</td>
-<td>Local Climate Zones &amp; PM2.5 (smoke) by Postcode</td>
-<td>Request via project creation in CANUE (free)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="r-packages" class="section level3 hasAnchor" number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> R packages<a href="index.html#r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The following R packages are required to run the code in this book:</p>
-<p><strong>Data processing and wrangling</strong></p>
-<ul>
-<li><code>dplyr</code></li>
-<li><code>tidyverse</code></li>
-<li><code>tidyr</code></li>
-<li><code>lubridate</code></li>
-<li><code>data.table</code></li>
-<li><code>tibble</code></li>
-<li><code>readr</code></li>
-<li><code>purrr</code></li>
-<li><code>stringr</code></li>
-<li><code>readxl</code></li>
-<li><code>writexl</code></li>
-<li><code>rvest</code></li>
-<li><code>httr</code></li>
-<li><code>fs</code></li>
-<li><code>tm</code></li>
-<li><code>SnowballC</code></li>
-<li><code>proxy</code></li>
-<li><code>cmdstanr</code></li>
-<li><code>arrow</code></li>
-<li><code>sfarrow</code></li>
-</ul>
-<p><strong>Data visualization and mapping</strong></p>
-<ul>
-<li><code>ggplot2</code></li>
-<li><code>maps</code></li>
-<li><code>knitr</code></li>
-<li><code>kableExtra</code></li>
-<li><code>terra</code></li>
-</ul>
-<p><strong>Spatial analysis</strong></p>
-<ul>
-<li><code>sf</code></li>
-<li><code>geosphere</code></li>
-<li><code>mapview</code></li>
-</ul>
-<p><strong>Data download</strong></p>
-<ul>
-<li><code>weathercan</code></li>
-</ul>
-<p><strong><em>Optional</em></strong></p>
-<ul>
-<li><code>furrr</code> (offers improved processing speeds)</li>
-</ul>
-<p>The following code installs (if needed) and loads these packages:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="co"># Vector of required packages</span></span>
-<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a>  <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;tidyr&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;tibble&quot;</span>,</span>
-<span id="cb1-4"><a href="index.html#cb1-4" tabindex="-1"></a>  <span class="st">&quot;readr&quot;</span>, <span class="st">&quot;purrr&quot;</span>, <span class="st">&quot;furrr&quot;</span>, <span class="st">&quot;stringr&quot;</span>, <span class="st">&quot;readxl&quot;</span>, <span class="st">&quot;writexl&quot;</span>,</span>
-<span id="cb1-5"><a href="index.html#cb1-5" tabindex="-1"></a>  <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;maps&quot;</span>, <span class="st">&quot;rvest&quot;</span>, <span class="st">&quot;httr&quot;</span>, <span class="st">&quot;tm&quot;</span>, <span class="st">&quot;SnowballC&quot;</span>, <span class="st">&quot;proxy&quot;</span>, <span class="st">&quot;cmdstanr&quot;</span>,</span>
-<span id="cb1-6"><a href="index.html#cb1-6" tabindex="-1"></a>  <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;geosphere&quot;</span>, <span class="st">&quot;fs&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;kableExtra&quot;</span>, <span class="st">&quot;arrow&quot;</span>, <span class="st">&quot;sfarrow&quot;</span>,</span>
-<span id="cb1-7"><a href="index.html#cb1-7" tabindex="-1"></a>  <span class="st">&quot;weathercan&quot;</span>, <span class="st">&quot;furrr&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;terra&quot;</span>, <span class="st">&quot;mapview&quot;</span></span>
-<span id="cb1-8"><a href="index.html#cb1-8" tabindex="-1"></a>)</span>
-<span id="cb1-9"><a href="index.html#cb1-9" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="index.html#cb1-10" tabindex="-1"></a><span class="co"># Install any that are missing</span></span>
-<span id="cb1-11"><a href="index.html#cb1-11" tabindex="-1"></a>installed <span class="ot">&lt;-</span> <span class="fu">rownames</span>(<span class="fu">installed.packages</span>())</span>
-<span id="cb1-12"><a href="index.html#cb1-12" tabindex="-1"></a>to_install <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(packages, installed)</span>
-<span id="cb1-13"><a href="index.html#cb1-13" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(to_install) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb1-14"><a href="index.html#cb1-14" tabindex="-1"></a>  <span class="fu">install.packages</span>(to_install)</span>
-<span id="cb1-15"><a href="index.html#cb1-15" tabindex="-1"></a>}</span>
-<span id="cb1-16"><a href="index.html#cb1-16" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="index.html#cb1-17" tabindex="-1"></a><span class="co"># Load all packages</span></span>
-<span id="cb1-18"><a href="index.html#cb1-18" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">lapply</span>(packages, library, <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div id="case-study" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Case Study<a href="01-introduction.html#case-study" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the following examples, we will be using a random selection of hospitals from the <a href="#id_../index.Rmd/datasets" title="Datasets">Open Database of Hospital Facilities in Canada</a>. Hospitals frequently house at-risk populations of individuals, and are an interesting point to make a case study demonstrating this workflow.</p>
+<p>We are imagining that the hospital administration delivered a survey to all employees that had worked at each location for a minimum of two years. This data is then being analyzed by us, to determine the impact of environmental exposures in the past two years.</p>
 
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="01-introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="02-wildfires.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

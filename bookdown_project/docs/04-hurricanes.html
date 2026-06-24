@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Hurricanes | Linking Climate and Health Data</title>
+  <meta name="description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Hurricanes | Linking Climate and Health Data" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Hurricanes | Linking Climate and Health Data" />
+  
+  <meta name="twitter:description" content="A bookdown template linking to our GitHub project. EDIT THIS LATER" />
+  
+
+<meta name="author" content="HEYA Research Group" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="03-floods.html"/>
+<link rel="next" href="05-heat.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/Intersecting_Fires-CSS-0.0.1/Intersecting_Fires_home-button.css" rel="stylesheet" />
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<link href="libs/Hospital_Location-CSS-0.0.1/Hospital_Location_home-button.css" rel="stylesheet" />
+<link href="libs/Hospital_Buffer__25km_-CSS-0.0.1/Hospital_Buffer__25km__home-button.css" rel="stylesheet" />
+<link href="libs/Intersecting_Floods-CSS-0.0.1/Intersecting_Floods_home-button.css" rel="stylesheet" />
+<link href="libs/Intersecting_Hurricane__Michael_-CSS-0.0.1/Intersecting_Hurricane__Michael__home-button.css" rel="stylesheet" />
+<link href="libs/Closest_Station-CSS-0.0.1/Closest_Station_home-button.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#purpose"><i class="fa fa-check"></i><b>1.1</b> Purpose</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#required-information"><i class="fa fa-check"></i><b>1.2</b> Required Information</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#datasets"><i class="fa fa-check"></i><b>1.2.1</b> Datasets</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#r-packages"><i class="fa fa-check"></i><b>1.2.2</b> R packages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="01-introduction.html"><a href="01-introduction.html"><i class="fa fa-check"></i><b>2</b> Case Study</a></li>
+<li class="chapter" data-level="3" data-path="02-wildfires.html"><a href="02-wildfires.html"><i class="fa fa-check"></i><b>3</b> Wildfires</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-data-preparation"><i class="fa fa-check"></i><b>3.1</b> Environmental Data Preparation</a></li>
+<li class="chapter" data-level="3.2" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-intersections"><i class="fa fa-check"></i><b>3.2</b> Compute Intersections</a></li>
+<li class="chapter" data-level="3.3" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-date-lag"><i class="fa fa-check"></i><b>3.3</b> Date Lag</a></li>
+<li class="chapter" data-level="3.4" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-summary-matrix"><i class="fa fa-check"></i><b>3.4</b> Binary Matrix</a></li>
+<li class="chapter" data-level="3.5" data-path="02-wildfires.html"><a href="02-wildfires.html#fire-map"><i class="fa fa-check"></i><b>3.5</b> Map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="03-floods.html"><a href="03-floods.html"><i class="fa fa-check"></i><b>4</b> Floods</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="03-floods.html"><a href="03-floods.html#floods-data-preparation"><i class="fa fa-check"></i><b>4.1</b> Environmental Data Preparation</a></li>
+<li class="chapter" data-level="4.2" data-path="03-floods.html"><a href="03-floods.html#floods-data-cleaning"><i class="fa fa-check"></i><b>4.2</b> Data Preparation</a></li>
+<li class="chapter" data-level="4.3" data-path="03-floods.html"><a href="03-floods.html#floods-data-manipulation"><i class="fa fa-check"></i><b>4.3</b> Compute Intersections</a></li>
+<li class="chapter" data-level="4.4" data-path="03-floods.html"><a href="03-floods.html#floods-map"><i class="fa fa-check"></i><b>4.4</b> Map</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="04-hurricanes.html"><a href="04-hurricanes.html"><i class="fa fa-check"></i><b>5</b> Hurricanes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="04-hurricanes.html"><a href="04-hurricanes.html#hurricanes-data-retreival"><i class="fa fa-check"></i><b>5.1</b> Environmental Data Retreival</a></li>
+<li class="chapter" data-level="5.2" data-path="04-hurricanes.html"><a href="04-hurricanes.html#hurricanes-data-preparation"><i class="fa fa-check"></i><b>5.2</b> Data Preparation</a></li>
+<li class="chapter" data-level="5.3" data-path="04-hurricanes.html"><a href="04-hurricanes.html#hurricanes-intersections"><i class="fa fa-check"></i><b>5.3</b> Compute Intersections</a></li>
+<li class="chapter" data-level="5.4" data-path="04-hurricanes.html"><a href="04-hurricanes.html#hurricanes-map"><i class="fa fa-check"></i><b>5.4</b> Map</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="05-heat.html"><a href="05-heat.html"><i class="fa fa-check"></i><b>6</b> Heat</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="05-heat.html"><a href="05-heat.html#heat-data-preparation"><i class="fa fa-check"></i><b>6.1</b> Environmental Data Preparation</a></li>
+<li class="chapter" data-level="6.2" data-path="05-heat.html"><a href="05-heat.html#heat-daily-eccc"><i class="fa fa-check"></i><b>6.2</b> Heat ECCC</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="05-heat.html"><a href="05-heat.html#heat-eccc-date-lag"><i class="fa fa-check"></i><b>6.2.1</b> Date Lag</a></li>
+<li class="chapter" data-level="6.2.2" data-path="05-heat.html"><a href="05-heat.html#heat-eccc-date-join"><i class="fa fa-check"></i><b>6.2.2</b> Date Join</a></li>
+<li class="chapter" data-level="6.2.3" data-path="05-heat.html"><a href="05-heat.html#heat-matrix-eccc"><i class="fa fa-check"></i><b>6.2.3</b> Matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="05-heat.html"><a href="05-heat.html#heat-daily-arb"><i class="fa fa-check"></i><b>6.3</b> Heat Days</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="05-heat.html"><a href="05-heat.html#heat-arb-date-lag"><i class="fa fa-check"></i><b>6.3.1</b> Date Lag</a></li>
+<li class="chapter" data-level="6.3.2" data-path="05-heat.html"><a href="05-heat.html#heat-arb-date-join"><i class="fa fa-check"></i><b>6.3.2</b> Date Join</a></li>
+<li class="chapter" data-level="6.3.3" data-path="05-heat.html"><a href="05-heat.html#heat-arb-matrix"><i class="fa fa-check"></i><b>6.3.3</b> Matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="05-heat.html"><a href="05-heat.html#heat-map"><i class="fa fa-check"></i><b>6.4</b> Map</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="06-pm_25.html"><a href="06-pm_25.html"><i class="fa fa-check"></i><b>7</b> PM 2.5</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="06-pm_25.html"><a href="06-pm_25.html#pm25-data-preparation"><i class="fa fa-check"></i><b>7.1</b> Environmental Data Preparation</a></li>
+<li class="chapter" data-level="7.2" data-path="06-pm_25.html"><a href="06-pm_25.html#date-lag-pm25-date-lag"><i class="fa fa-check"></i><b>7.2</b> Date Lag {pm25-date-lag}</a></li>
+<li class="chapter" data-level="7.3" data-path="06-pm_25.html"><a href="06-pm_25.html#data-manipulation-pm25-data-manipulation"><i class="fa fa-check"></i><b>7.3</b> Data Manipulation {pm25-data-manipulation}</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="AA-00-appendix.html"><a href="AA-00-appendix.html"><i class="fa fa-check"></i><b>8</b> Appendix</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="AA-00-appendix.html"><a href="AA-00-appendix.html#survey-data-generation"><i class="fa fa-check"></i><b>8.1</b> Survey Data Generation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="AA-01-references.html"><a href="AA-01-references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linking Climate and Health Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hurricanes" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Hurricanes<a href="04-hurricanes.html#hurricanes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Hurricanes are a consistent coastal threat that is increasingly exacerbated by climate change…</p>
+<div id="hurricanes-data-retreival" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Environmental Data Retreival<a href="04-hurricanes.html#hurricanes-data-retreival" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hurricane data was sourced from the National Oceanic and Atmospheric Administration (NOAA). Data can be obtained programmatically (as below), or manually for each hurricane of interest from the <a href="https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=" title="Hurricane Best Tracks">NOAA website</a>. Should you choose to download the files yourself, the script is designed to use shapefiles (.shp).</p>
+<ul>
+<li>It is important to note that the following chunks should be run sparingly to avoid overloading the target.</li>
+</ul>
+<p>We first need to specify when and where the hurricane data is retrieved from.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="04-hurricanes.html#cb18-1" tabindex="-1"></a>base_page <span class="ot">&lt;-</span> <span class="st">&quot;https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=&quot;</span></span>
+<span id="cb18-2"><a href="04-hurricanes.html#cb18-2" tabindex="-1"></a>base_zip  <span class="ot">&lt;-</span> <span class="st">&quot;https://www.nhc.noaa.gov/gis/best_track/&quot;</span></span>
+<span id="cb18-3"><a href="04-hurricanes.html#cb18-3" tabindex="-1"></a>hurricane_years_interest <span class="ot">&lt;-</span> <span class="dv">2008</span><span class="sc">:</span><span class="dv">2025</span> <span class="co">#getting data for all years from 2008 to 2025</span></span></code></pre></div>
+<p>Next, we set up the storage location for the hurricane best track files and create a lookup table for later. It is important to set a viable output directory for the best tracks from the website.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="04-hurricanes.html#cb19-1" tabindex="-1"></a><span class="co">#set an output directory for the data to download into</span></span>
+<span id="cb19-2"><a href="04-hurricanes.html#cb19-2" tabindex="-1"></a>base_shape_dir <span class="ot">&lt;-</span> <span class="st">&quot;./data/HurricaneRawData/nhc_best_tracks&quot;</span></span>
+<span id="cb19-3"><a href="04-hurricanes.html#cb19-3" tabindex="-1"></a><span class="fu">dir.create</span>(base_shape_dir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb19-4"><a href="04-hurricanes.html#cb19-4" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="04-hurricanes.html#cb19-5" tabindex="-1"></a><span class="co">#create a lookup table for the storms that can be used later to create a connection between the storm name and data</span></span>
+<span id="cb19-6"><a href="04-hurricanes.html#cb19-6" tabindex="-1"></a>storm_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Year =</span> <span class="fu">integer</span>(), <span class="at">Storms =</span> <span class="fu">integer</span>())</span>
+<span id="cb19-7"><a href="04-hurricanes.html#cb19-7" tabindex="-1"></a>storm_lookup  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> <span class="fu">integer</span>(), <span class="at">storm_id =</span> <span class="fu">character</span>(), <span class="at">storm_name =</span> <span class="fu">character</span>())</span></code></pre></div>
+<p>Finally, we get the files from the website for each year specified. Within this snippet, a look-up table for the file names and actual hurricane name is created and saved as a .csv for later reference.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="04-hurricanes.html#cb20-1" tabindex="-1"></a><span class="co">#process every year for the year range specified above</span></span>
+<span id="cb20-2"><a href="04-hurricanes.html#cb20-2" tabindex="-1"></a><span class="cf">for</span> (year <span class="cf">in</span> hurricane_years_interest) {</span>
+<span id="cb20-3"><a href="04-hurricanes.html#cb20-3" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;processing&quot;</span>, year, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb20-4"><a href="04-hurricanes.html#cb20-4" tabindex="-1"></a>  </span>
+<span id="cb20-5"><a href="04-hurricanes.html#cb20-5" tabindex="-1"></a>  <span class="co">#read the page, catch if the response is blank</span></span>
+<span id="cb20-6"><a href="04-hurricanes.html#cb20-6" tabindex="-1"></a>  page <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
+<span id="cb20-7"><a href="04-hurricanes.html#cb20-7" tabindex="-1"></a>    <span class="fu">read_html</span>(<span class="fu">paste0</span>(base_page, year))</span>
+<span id="cb20-8"><a href="04-hurricanes.html#cb20-8" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb20-9"><a href="04-hurricanes.html#cb20-9" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;could not read page for&quot;</span>, year, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb20-10"><a href="04-hurricanes.html#cb20-10" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb20-11"><a href="04-hurricanes.html#cb20-11" tabindex="-1"></a>  })</span>
+<span id="cb20-12"><a href="04-hurricanes.html#cb20-12" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(page)) <span class="cf">next</span></span>
+<span id="cb20-13"><a href="04-hurricanes.html#cb20-13" tabindex="-1"></a>  </span>
+<span id="cb20-14"><a href="04-hurricanes.html#cb20-14" tabindex="-1"></a>  <span class="co">#extract all the rows on the page to get the hurricane codes and names from the table for that year</span></span>
+<span id="cb20-15"><a href="04-hurricanes.html#cb20-15" tabindex="-1"></a>  rows <span class="ot">&lt;-</span> <span class="fu">html_nodes</span>(page, <span class="st">&quot;tr&quot;</span>)</span>
+<span id="cb20-16"><a href="04-hurricanes.html#cb20-16" tabindex="-1"></a>  </span>
+<span id="cb20-17"><a href="04-hurricanes.html#cb20-17" tabindex="-1"></a>  <span class="co">#loop through rows to match &quot;al##&quot; and extract name from second column to create lookup table</span></span>
+<span id="cb20-18"><a href="04-hurricanes.html#cb20-18" tabindex="-1"></a>  <span class="cf">for</span> (row <span class="cf">in</span> rows) {</span>
+<span id="cb20-19"><a href="04-hurricanes.html#cb20-19" tabindex="-1"></a>    cols <span class="ot">&lt;-</span> <span class="fu">html_nodes</span>(row, <span class="st">&quot;td&quot;</span>) <span class="co">#get all the td html elements</span></span>
+<span id="cb20-20"><a href="04-hurricanes.html#cb20-20" tabindex="-1"></a>    </span>
+<span id="cb20-21"><a href="04-hurricanes.html#cb20-21" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(cols) <span class="sc">&gt;=</span> <span class="dv">2</span>) {</span>
+<span id="cb20-22"><a href="04-hurricanes.html#cb20-22" tabindex="-1"></a>      id_text <span class="ot">&lt;-</span> <span class="fu">str_trim</span>(<span class="fu">html_text</span>(cols[<span class="dv">1</span>])) <span class="co">#just want the id from the td elements</span></span>
+<span id="cb20-23"><a href="04-hurricanes.html#cb20-23" tabindex="-1"></a>      </span>
+<span id="cb20-24"><a href="04-hurricanes.html#cb20-24" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">str_detect</span>(<span class="fu">tolower</span>(id_text), <span class="st">&quot;^al</span><span class="sc">\\</span><span class="st">d{2}$&quot;</span>)) { <span class="co">#regex to get the atlantic (al) storm and the id number</span></span>
+<span id="cb20-25"><a href="04-hurricanes.html#cb20-25" tabindex="-1"></a>        name_text <span class="ot">&lt;-</span> <span class="fu">str_trim</span>(<span class="fu">html_text</span>(cols[<span class="dv">2</span>])) <span class="co">#get the nominal identifier</span></span>
+<span id="cb20-26"><a href="04-hurricanes.html#cb20-26" tabindex="-1"></a>        storm_lookup <span class="ot">&lt;-</span> <span class="fu">rbind</span>( <span class="co">#collect and add to the storm loookup table</span></span>
+<span id="cb20-27"><a href="04-hurricanes.html#cb20-27" tabindex="-1"></a>          storm_lookup,</span>
+<span id="cb20-28"><a href="04-hurricanes.html#cb20-28" tabindex="-1"></a>          <span class="fu">data.frame</span>( <span class="co">#create a data frame with the year, storm id from the td element, and the storm name</span></span>
+<span id="cb20-29"><a href="04-hurricanes.html#cb20-29" tabindex="-1"></a>            <span class="at">year =</span> year,</span>
+<span id="cb20-30"><a href="04-hurricanes.html#cb20-30" tabindex="-1"></a>            <span class="at">storm_id =</span> <span class="fu">tolower</span>(id_text),</span>
+<span id="cb20-31"><a href="04-hurricanes.html#cb20-31" tabindex="-1"></a>            <span class="at">storm_name =</span> name_text,</span>
+<span id="cb20-32"><a href="04-hurricanes.html#cb20-32" tabindex="-1"></a>            <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb20-33"><a href="04-hurricanes.html#cb20-33" tabindex="-1"></a>          )</span>
+<span id="cb20-34"><a href="04-hurricanes.html#cb20-34" tabindex="-1"></a>        )</span>
+<span id="cb20-35"><a href="04-hurricanes.html#cb20-35" tabindex="-1"></a>      }</span>
+<span id="cb20-36"><a href="04-hurricanes.html#cb20-36" tabindex="-1"></a>    }</span>
+<span id="cb20-37"><a href="04-hurricanes.html#cb20-37" tabindex="-1"></a>  }</span>
+<span id="cb20-38"><a href="04-hurricanes.html#cb20-38" tabindex="-1"></a>  </span>
+<span id="cb20-39"><a href="04-hurricanes.html#cb20-39" tabindex="-1"></a>  <span class="co">#get just the text from all the td html elements</span></span>
+<span id="cb20-40"><a href="04-hurricanes.html#cb20-40" tabindex="-1"></a>  td_text <span class="ot">&lt;-</span> <span class="fu">html_text</span>(<span class="fu">html_nodes</span>(page, <span class="st">&quot;td&quot;</span>), <span class="at">trim =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-41"><a href="04-hurricanes.html#cb20-41" tabindex="-1"></a>  </span>
+<span id="cb20-42"><a href="04-hurricanes.html#cb20-42" tabindex="-1"></a>  <span class="co">#get the strom ids again (for redundancies sake)</span></span>
+<span id="cb20-43"><a href="04-hurricanes.html#cb20-43" tabindex="-1"></a>  storm_ids <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">str_to_lower</span>(<span class="fu">str_subset</span>(td_text, <span class="st">&quot;^al</span><span class="sc">\\</span><span class="st">d{2}&quot;</span>)))</span>
+<span id="cb20-44"><a href="04-hurricanes.html#cb20-44" tabindex="-1"></a>  </span>
+<span id="cb20-45"><a href="04-hurricanes.html#cb20-45" tabindex="-1"></a>  <span class="co">#make sure it&#39;s just the 4 character id with more regex</span></span>
+<span id="cb20-46"><a href="04-hurricanes.html#cb20-46" tabindex="-1"></a>  storm_ids <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">s.*&quot;</span>, <span class="st">&quot;&quot;</span>, storm_ids)</span>
+<span id="cb20-47"><a href="04-hurricanes.html#cb20-47" tabindex="-1"></a>  </span>
+<span id="cb20-48"><a href="04-hurricanes.html#cb20-48" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot; found&quot;</span>, <span class="fu">length</span>(storm_ids), <span class="st">&quot;atlantic storms</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb20-49"><a href="04-hurricanes.html#cb20-49" tabindex="-1"></a>  </span>
+<span id="cb20-50"><a href="04-hurricanes.html#cb20-50" tabindex="-1"></a>  <span class="co">#storm summary for creating storm ids in file names</span></span>
+<span id="cb20-51"><a href="04-hurricanes.html#cb20-51" tabindex="-1"></a>  storm_summary <span class="ot">&lt;-</span> <span class="fu">rbind</span>(storm_summary,</span>
+<span id="cb20-52"><a href="04-hurricanes.html#cb20-52" tabindex="-1"></a>                         <span class="fu">data.frame</span>(<span class="at">Year =</span> year, <span class="at">Storms =</span> <span class="fu">length</span>(storm_ids)))</span>
+<span id="cb20-53"><a href="04-hurricanes.html#cb20-53" tabindex="-1"></a>  </span>
+<span id="cb20-54"><a href="04-hurricanes.html#cb20-54" tabindex="-1"></a>  <span class="co">#file naming system is regular within the website hierarchy, so download all zip shapefiles using the engineered storm names</span></span>
+<span id="cb20-55"><a href="04-hurricanes.html#cb20-55" tabindex="-1"></a>  <span class="cf">for</span> (storm_id <span class="cf">in</span> storm_ids) {</span>
+<span id="cb20-56"><a href="04-hurricanes.html#cb20-56" tabindex="-1"></a>    zip_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(storm_id, year, <span class="st">&quot;_best_track.zip&quot;</span>)</span>
+<span id="cb20-57"><a href="04-hurricanes.html#cb20-57" tabindex="-1"></a>    url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_zip, zip_name)</span>
+<span id="cb20-58"><a href="04-hurricanes.html#cb20-58" tabindex="-1"></a>    dest <span class="ot">&lt;-</span> <span class="fu">file.path</span>(base_shape_dir, zip_name) <span class="co">#set outpath based on string specified earlier</span></span>
+<span id="cb20-59"><a href="04-hurricanes.html#cb20-59" tabindex="-1"></a>    </span>
+<span id="cb20-60"><a href="04-hurricanes.html#cb20-60" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot; downloading:&quot;</span>, zip_name, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb20-61"><a href="04-hurricanes.html#cb20-61" tabindex="-1"></a>    resp <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
+<span id="cb20-62"><a href="04-hurricanes.html#cb20-62" tabindex="-1"></a>      <span class="fu">GET</span>(url, <span class="fu">write_disk</span>(dest, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)) <span class="co">#get zip file from constructed url</span></span>
+<span id="cb20-63"><a href="04-hurricanes.html#cb20-63" tabindex="-1"></a>    }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb20-64"><a href="04-hurricanes.html#cb20-64" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot; failed to download&quot;</span>, zip_name, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="co">#sometimes there are no files to download, especially in earlier years</span></span>
+<span id="cb20-65"><a href="04-hurricanes.html#cb20-65" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb20-66"><a href="04-hurricanes.html#cb20-66" tabindex="-1"></a>    })</span>
+<span id="cb20-67"><a href="04-hurricanes.html#cb20-67" tabindex="-1"></a>    </span>
+<span id="cb20-68"><a href="04-hurricanes.html#cb20-68" tabindex="-1"></a>    <span class="co">#unzip the files too, easier to do now than later</span></span>
+<span id="cb20-69"><a href="04-hurricanes.html#cb20-69" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(resp) <span class="sc">&amp;&amp;</span> <span class="fu">status_code</span>(resp) <span class="sc">==</span> <span class="dv">200</span>) {</span>
+<span id="cb20-70"><a href="04-hurricanes.html#cb20-70" tabindex="-1"></a>      <span class="fu">unzip</span>(dest, <span class="at">exdir =</span> <span class="fu">file.path</span>(base_shape_dir, <span class="fu">paste0</span>(storm_id, <span class="st">&quot;_&quot;</span>, year)))</span>
+<span id="cb20-71"><a href="04-hurricanes.html#cb20-71" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb20-72"><a href="04-hurricanes.html#cb20-72" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot; file not found:&quot;</span>, url, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb20-73"><a href="04-hurricanes.html#cb20-73" tabindex="-1"></a>    }</span>
+<span id="cb20-74"><a href="04-hurricanes.html#cb20-74" tabindex="-1"></a>    <span class="co">#be kind to the server and don&#39;t get banned from scraping</span></span>
+<span id="cb20-75"><a href="04-hurricanes.html#cb20-75" tabindex="-1"></a>    <span class="fu">Sys.sleep</span>(<span class="fl">1.1</span>)</span>
+<span id="cb20-76"><a href="04-hurricanes.html#cb20-76" tabindex="-1"></a>  }</span>
+<span id="cb20-77"><a href="04-hurricanes.html#cb20-77" tabindex="-1"></a>}</span>
+<span id="cb20-78"><a href="04-hurricanes.html#cb20-78" tabindex="-1"></a></span>
+<span id="cb20-79"><a href="04-hurricanes.html#cb20-79" tabindex="-1"></a><span class="fu">write.csv</span>(storm_lookup, r<span class="st">&quot;(./data/HurricaneRawData/storm_lookup_table.csv)&quot;</span>)</span></code></pre></div>
+</div>
+<div id="hurricanes-data-preparation" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Data Preparation<a href="04-hurricanes.html#hurricanes-data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that the data is downloaded and ready, it is time clean it up. There are two files of interest for the hurricanes, the point files and the polygon (radii) files. These files need to be manipulated so that dates and ids are consistent between the two file sets and between years.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="04-hurricanes.html#cb21-1" tabindex="-1"></a><span class="co">#standardizing naming conventions in files</span></span>
+<span id="cb21-2"><a href="04-hurricanes.html#cb21-2" tabindex="-1"></a>month_map <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb21-3"><a href="04-hurricanes.html#cb21-3" tabindex="-1"></a>  <span class="st">&quot;jan&quot;</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">&quot;january&quot;</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">&quot;01&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb21-4"><a href="04-hurricanes.html#cb21-4" tabindex="-1"></a>  <span class="st">&quot;feb&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;february&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;02&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb21-5"><a href="04-hurricanes.html#cb21-5" tabindex="-1"></a>  <span class="st">&quot;mar&quot;</span> <span class="ot">=</span> <span class="dv">3</span>, <span class="st">&quot;march&quot;</span> <span class="ot">=</span> <span class="dv">3</span>, <span class="st">&quot;03&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb21-6"><a href="04-hurricanes.html#cb21-6" tabindex="-1"></a>  <span class="st">&quot;apr&quot;</span> <span class="ot">=</span> <span class="dv">4</span>, <span class="st">&quot;april&quot;</span> <span class="ot">=</span> <span class="dv">4</span>, <span class="st">&quot;04&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
+<span id="cb21-7"><a href="04-hurricanes.html#cb21-7" tabindex="-1"></a>  <span class="st">&quot;may&quot;</span> <span class="ot">=</span> <span class="dv">5</span>, <span class="st">&quot;05&quot;</span> <span class="ot">=</span> <span class="dv">5</span>,</span>
+<span id="cb21-8"><a href="04-hurricanes.html#cb21-8" tabindex="-1"></a>  <span class="st">&quot;jun&quot;</span> <span class="ot">=</span> <span class="dv">6</span>, <span class="st">&quot;june&quot;</span> <span class="ot">=</span> <span class="dv">6</span>, <span class="st">&quot;06&quot;</span> <span class="ot">=</span> <span class="dv">6</span>,</span>
+<span id="cb21-9"><a href="04-hurricanes.html#cb21-9" tabindex="-1"></a>  <span class="st">&quot;jul&quot;</span> <span class="ot">=</span> <span class="dv">7</span>, <span class="st">&quot;july&quot;</span> <span class="ot">=</span> <span class="dv">7</span>, <span class="st">&quot;07&quot;</span> <span class="ot">=</span> <span class="dv">7</span>,</span>
+<span id="cb21-10"><a href="04-hurricanes.html#cb21-10" tabindex="-1"></a>  <span class="st">&quot;aug&quot;</span> <span class="ot">=</span> <span class="dv">8</span>, <span class="st">&quot;august&quot;</span> <span class="ot">=</span> <span class="dv">8</span>, <span class="st">&quot;08&quot;</span> <span class="ot">=</span> <span class="dv">8</span>,</span>
+<span id="cb21-11"><a href="04-hurricanes.html#cb21-11" tabindex="-1"></a>  <span class="st">&quot;sep&quot;</span> <span class="ot">=</span> <span class="dv">9</span>, <span class="st">&quot;september&quot;</span> <span class="ot">=</span> <span class="dv">9</span>, <span class="st">&quot;09&quot;</span> <span class="ot">=</span> <span class="dv">9</span>,</span>
+<span id="cb21-12"><a href="04-hurricanes.html#cb21-12" tabindex="-1"></a>  <span class="st">&quot;oct&quot;</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">&quot;october&quot;</span> <span class="ot">=</span> <span class="dv">10</span>, <span class="st">&quot;10&quot;</span> <span class="ot">=</span> <span class="dv">10</span>,</span>
+<span id="cb21-13"><a href="04-hurricanes.html#cb21-13" tabindex="-1"></a>  <span class="st">&quot;nov&quot;</span> <span class="ot">=</span> <span class="dv">11</span>, <span class="st">&quot;november&quot;</span> <span class="ot">=</span> <span class="dv">11</span>, <span class="st">&quot;11&quot;</span> <span class="ot">=</span> <span class="dv">11</span>,</span>
+<span id="cb21-14"><a href="04-hurricanes.html#cb21-14" tabindex="-1"></a>  <span class="st">&quot;dec&quot;</span> <span class="ot">=</span> <span class="dv">12</span>, <span class="st">&quot;december&quot;</span> <span class="ot">=</span> <span class="dv">12</span>, <span class="st">&quot;12&quot;</span> <span class="ot">=</span> <span class="dv">12</span></span>
+<span id="cb21-15"><a href="04-hurricanes.html#cb21-15" tabindex="-1"></a>)</span>
+<span id="cb21-16"><a href="04-hurricanes.html#cb21-16" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="04-hurricanes.html#cb21-17" tabindex="-1"></a><span class="co">#base directory where files are saved</span></span>
+<span id="cb21-18"><a href="04-hurricanes.html#cb21-18" tabindex="-1"></a>base_dir <span class="ot">&lt;-</span> r<span class="st">&quot;(./data/HurricaneRawData/nhc_best_tracks)&quot;</span></span>
+<span id="cb21-19"><a href="04-hurricanes.html#cb21-19" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="04-hurricanes.html#cb21-20" tabindex="-1"></a><span class="co">#set an ID for all of the files in the pts files and radii files</span></span>
+<span id="cb21-21"><a href="04-hurricanes.html#cb21-21" tabindex="-1"></a><span class="co">#get all shapefiles recursively</span></span>
+<span id="cb21-22"><a href="04-hurricanes.html#cb21-22" tabindex="-1"></a>shp_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(base_dir, <span class="at">pattern =</span> <span class="st">&quot;(_pts</span><span class="sc">\\</span><span class="st">.shp$|_radii</span><span class="sc">\\</span><span class="st">.shp$)&quot;</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Add the storm ID for each storm to the file names and overwrite the shapefile with the new information.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="04-hurricanes.html#cb22-1" tabindex="-1"></a><span class="co">#process the files</span></span>
+<span id="cb22-2"><a href="04-hurricanes.html#cb22-2" tabindex="-1"></a><span class="cf">for</span> (shp_path <span class="cf">in</span> shp_files) {</span>
+<span id="cb22-3"><a href="04-hurricanes.html#cb22-3" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Processing: &quot;</span>, shp_path)</span>
+<span id="cb22-4"><a href="04-hurricanes.html#cb22-4" tabindex="-1"></a>  </span>
+<span id="cb22-5"><a href="04-hurricanes.html#cb22-5" tabindex="-1"></a>  <span class="co">#read the shapefile</span></span>
+<span id="cb22-6"><a href="04-hurricanes.html#cb22-6" tabindex="-1"></a>  shp <span class="ot">&lt;-</span> <span class="fu">st_read</span>(shp_path, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-7"><a href="04-hurricanes.html#cb22-7" tabindex="-1"></a>  </span>
+<span id="cb22-8"><a href="04-hurricanes.html#cb22-8" tabindex="-1"></a>  <span class="co">#extract part before first underscore</span></span>
+<span id="cb22-9"><a href="04-hurricanes.html#cb22-9" tabindex="-1"></a>  file_prefix <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;_.*&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">basename</span>(shp_path))</span>
+<span id="cb22-10"><a href="04-hurricanes.html#cb22-10" tabindex="-1"></a>  </span>
+<span id="cb22-11"><a href="04-hurricanes.html#cb22-11" tabindex="-1"></a>  <span class="co">#add the storm id file</span></span>
+<span id="cb22-12"><a href="04-hurricanes.html#cb22-12" tabindex="-1"></a>  shp <span class="ot">&lt;-</span> shp <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">storm_id =</span> file_prefix)</span>
+<span id="cb22-13"><a href="04-hurricanes.html#cb22-13" tabindex="-1"></a>  </span>
+<span id="cb22-14"><a href="04-hurricanes.html#cb22-14" tabindex="-1"></a>  <span class="co">#overwrite shapefile</span></span>
+<span id="cb22-15"><a href="04-hurricanes.html#cb22-15" tabindex="-1"></a>  <span class="fu">st_write</span>(shp, shp_path, <span class="at">delete_dsn =</span> <span class="cn">TRUE</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-16"><a href="04-hurricanes.html#cb22-16" tabindex="-1"></a>}</span></code></pre></div>
+<p>We need to change the date and time formats to be consistent between the point and polygon files for easier comparison. We will start with the points files.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="04-hurricanes.html#cb23-1" tabindex="-1"></a><span class="co">#Create a new directory for processed files</span></span>
+<span id="cb23-2"><a href="04-hurricanes.html#cb23-2" tabindex="-1"></a>output_dir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(base_dir, <span class="st">&quot;processed&quot;</span>)</span>
+<span id="cb23-3"><a href="04-hurricanes.html#cb23-3" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="04-hurricanes.html#cb23-4" tabindex="-1"></a><span class="co">#processing for just the _pts.shp files to normalize dates and times</span></span>
+<span id="cb23-5"><a href="04-hurricanes.html#cb23-5" tabindex="-1"></a>base_dir <span class="ot">&lt;-</span> r<span class="st">&quot;(./data/HurricaneRawData/nhc_best_tracks)&quot;</span></span>
+<span id="cb23-6"><a href="04-hurricanes.html#cb23-6" tabindex="-1"></a>output_dir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(base_dir, <span class="st">&quot;processed&quot;</span>)</span>
+<span id="cb23-7"><a href="04-hurricanes.html#cb23-7" tabindex="-1"></a><span class="fu">dir.create</span>(output_dir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-8"><a href="04-hurricanes.html#cb23-8" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="04-hurricanes.html#cb23-9" tabindex="-1"></a><span class="co">#get all the shapefiles recursively</span></span>
+<span id="cb23-10"><a href="04-hurricanes.html#cb23-10" tabindex="-1"></a>shp_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(base_dir, <span class="at">pattern =</span> <span class="st">&quot;_pts</span><span class="sc">\\</span><span class="st">.shp$&quot;</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-11"><a href="04-hurricanes.html#cb23-11" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="04-hurricanes.html#cb23-12" tabindex="-1"></a><span class="co">#recursively alter the pts files to the normalized date and time fields with ids</span></span>
+<span id="cb23-13"><a href="04-hurricanes.html#cb23-13" tabindex="-1"></a><span class="cf">for</span> (shp_path <span class="cf">in</span> shp_files) {</span>
+<span id="cb23-14"><a href="04-hurricanes.html#cb23-14" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Processing: &quot;</span>, shp_path)</span>
+<span id="cb23-15"><a href="04-hurricanes.html#cb23-15" tabindex="-1"></a>  </span>
+<span id="cb23-16"><a href="04-hurricanes.html#cb23-16" tabindex="-1"></a>  shp <span class="ot">&lt;-</span> <span class="fu">st_read</span>(shp_path, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-17"><a href="04-hurricanes.html#cb23-17" tabindex="-1"></a>  </span>
+<span id="cb23-18"><a href="04-hurricanes.html#cb23-18" tabindex="-1"></a>  <span class="co">#files had different formats for dates and times, this normalizes them</span></span>
+<span id="cb23-19"><a href="04-hurricanes.html#cb23-19" tabindex="-1"></a>  <span class="co">#important step to combine everything for later analysis</span></span>
+<span id="cb23-20"><a href="04-hurricanes.html#cb23-20" tabindex="-1"></a>  shp <span class="ot">&lt;-</span> shp <span class="sc">%&gt;%</span></span>
+<span id="cb23-21"><a href="04-hurricanes.html#cb23-21" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb23-22"><a href="04-hurricanes.html#cb23-22" tabindex="-1"></a>      <span class="at">mm =</span> <span class="fu">str_pad</span>(<span class="fu">as.integer</span>(<span class="fu">unname</span>(month_map[<span class="fu">tolower</span>(MONTH)])), <span class="dv">2</span>, <span class="at">pad =</span> <span class="st">&quot;0&quot;</span>),</span>
+<span id="cb23-23"><a href="04-hurricanes.html#cb23-23" tabindex="-1"></a>      <span class="at">dd =</span> <span class="fu">str_pad</span>(<span class="fu">as.integer</span>(DAY), <span class="dv">2</span>, <span class="at">pad =</span> <span class="st">&quot;0&quot;</span>),</span>
+<span id="cb23-24"><a href="04-hurricanes.html#cb23-24" tabindex="-1"></a>      <span class="at">hh =</span> <span class="fu">str_sub</span>(HHMM, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb23-25"><a href="04-hurricanes.html#cb23-25" tabindex="-1"></a>      <span class="at">event_id =</span> <span class="fu">tolower</span>(<span class="fu">paste0</span>(storm_id, mm, dd, hh))</span>
+<span id="cb23-26"><a href="04-hurricanes.html#cb23-26" tabindex="-1"></a>    )</span>
+<span id="cb23-27"><a href="04-hurricanes.html#cb23-27" tabindex="-1"></a>  </span>
+<span id="cb23-28"><a href="04-hurricanes.html#cb23-28" tabindex="-1"></a>  <span class="co">#preserve folder structure in output</span></span>
+<span id="cb23-29"><a href="04-hurricanes.html#cb23-29" tabindex="-1"></a>  rel_path <span class="ot">&lt;-</span> <span class="fu">path_rel</span>(shp_path, <span class="at">start =</span> base_dir)</span>
+<span id="cb23-30"><a href="04-hurricanes.html#cb23-30" tabindex="-1"></a>  rel_path <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;^processed/&quot;</span>, <span class="st">&quot;&quot;</span>, rel_path)</span>
+<span id="cb23-31"><a href="04-hurricanes.html#cb23-31" tabindex="-1"></a>  out_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(output_dir, rel_path)</span>
+<span id="cb23-32"><a href="04-hurricanes.html#cb23-32" tabindex="-1"></a>  <span class="fu">dir_create</span>(<span class="fu">dirname</span>(out_path))</span>
+<span id="cb23-33"><a href="04-hurricanes.html#cb23-33" tabindex="-1"></a>  </span>
+<span id="cb23-34"><a href="04-hurricanes.html#cb23-34" tabindex="-1"></a>  <span class="co">#write output</span></span>
+<span id="cb23-35"><a href="04-hurricanes.html#cb23-35" tabindex="-1"></a>  <span class="fu">st_write</span>(shp, out_path, <span class="at">delete_dsn =</span> <span class="cn">TRUE</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-36"><a href="04-hurricanes.html#cb23-36" tabindex="-1"></a>}</span></code></pre></div>
+<p>The radii (polygon) files also need to be changed in a similar way to the points files.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="04-hurricanes.html#cb24-1" tabindex="-1"></a><span class="co">#slightly different process for the _radii file they already have the synoptime field and those just need to be modified</span></span>
+<span id="cb24-2"><a href="04-hurricanes.html#cb24-2" tabindex="-1"></a>shp_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(base_dir, <span class="at">pattern =</span> <span class="st">&quot;_radii</span><span class="sc">\\</span><span class="st">.shp$&quot;</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-3"><a href="04-hurricanes.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="04-hurricanes.html#cb24-4" tabindex="-1"></a><span class="co">#recursively alter the pts files to fie normalized date and time fields with ids</span></span>
+<span id="cb24-5"><a href="04-hurricanes.html#cb24-5" tabindex="-1"></a><span class="cf">for</span> (shp_path <span class="cf">in</span> shp_files) {</span>
+<span id="cb24-6"><a href="04-hurricanes.html#cb24-6" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Processing: &quot;</span>, shp_path)</span>
+<span id="cb24-7"><a href="04-hurricanes.html#cb24-7" tabindex="-1"></a>  </span>
+<span id="cb24-8"><a href="04-hurricanes.html#cb24-8" tabindex="-1"></a>  shp <span class="ot">&lt;-</span> <span class="fu">st_read</span>(shp_path, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-9"><a href="04-hurricanes.html#cb24-9" tabindex="-1"></a>  </span>
+<span id="cb24-10"><a href="04-hurricanes.html#cb24-10" tabindex="-1"></a>  <span class="co">#create matching event_id to the points fields so they can be related (since they have different kinds of information)</span></span>
+<span id="cb24-11"><a href="04-hurricanes.html#cb24-11" tabindex="-1"></a>  shp <span class="ot">&lt;-</span> shp <span class="sc">%&gt;%</span></span>
+<span id="cb24-12"><a href="04-hurricanes.html#cb24-12" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb24-13"><a href="04-hurricanes.html#cb24-13" tabindex="-1"></a>      <span class="at">event_id =</span> <span class="fu">tolower</span>(</span>
+<span id="cb24-14"><a href="04-hurricanes.html#cb24-14" tabindex="-1"></a>        <span class="fu">paste0</span>(storm_id, <span class="fu">substr</span>(SYNOPTIME, <span class="dv">5</span>, <span class="fu">nchar</span>(SYNOPTIME))) <span class="co">#this will be storm id, date, and UTC hour in 24 hour format i.e. [al01][20250831][12]</span></span>
+<span id="cb24-15"><a href="04-hurricanes.html#cb24-15" tabindex="-1"></a>      )</span>
+<span id="cb24-16"><a href="04-hurricanes.html#cb24-16" tabindex="-1"></a>    )</span>
+<span id="cb24-17"><a href="04-hurricanes.html#cb24-17" tabindex="-1"></a>  </span>
+<span id="cb24-18"><a href="04-hurricanes.html#cb24-18" tabindex="-1"></a>  <span class="co">#different kind of id, radii refers to the range of wind at that knot level i.e. _34 would be 34 knot wind</span></span>
+<span id="cb24-19"><a href="04-hurricanes.html#cb24-19" tabindex="-1"></a>  shp <span class="ot">&lt;-</span> shp <span class="sc">%&gt;%</span></span>
+<span id="cb24-20"><a href="04-hurricanes.html#cb24-20" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb24-21"><a href="04-hurricanes.html#cb24-21" tabindex="-1"></a>      <span class="at">event_r_id =</span> <span class="fu">tolower</span>(</span>
+<span id="cb24-22"><a href="04-hurricanes.html#cb24-22" tabindex="-1"></a>        <span class="fu">paste0</span>(storm_id, <span class="fu">substr</span>(SYNOPTIME, <span class="dv">5</span>, <span class="fu">nchar</span>(SYNOPTIME)), <span class="st">&quot;_&quot;</span>, RADII)<span class="co">#this will be storm id, date, and UTC hour in 24 hour format, and radii distance  i.e. [al01][20250831][12][_34]</span></span>
+<span id="cb24-23"><a href="04-hurricanes.html#cb24-23" tabindex="-1"></a>      )</span>
+<span id="cb24-24"><a href="04-hurricanes.html#cb24-24" tabindex="-1"></a>    )</span>
+<span id="cb24-25"><a href="04-hurricanes.html#cb24-25" tabindex="-1"></a>  </span>
+<span id="cb24-26"><a href="04-hurricanes.html#cb24-26" tabindex="-1"></a>  <span class="co">#preserve folder structure</span></span>
+<span id="cb24-27"><a href="04-hurricanes.html#cb24-27" tabindex="-1"></a>  rel_path <span class="ot">&lt;-</span> <span class="fu">path_rel</span>(shp_path, <span class="at">start =</span> base_dir)</span>
+<span id="cb24-28"><a href="04-hurricanes.html#cb24-28" tabindex="-1"></a>  out_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(output_dir, rel_path)</span>
+<span id="cb24-29"><a href="04-hurricanes.html#cb24-29" tabindex="-1"></a>  <span class="fu">dir_create</span>(<span class="fu">dirname</span>(out_path))</span>
+<span id="cb24-30"><a href="04-hurricanes.html#cb24-30" tabindex="-1"></a>  </span>
+<span id="cb24-31"><a href="04-hurricanes.html#cb24-31" tabindex="-1"></a>  <span class="co">#write output</span></span>
+<span id="cb24-32"><a href="04-hurricanes.html#cb24-32" tabindex="-1"></a>  <span class="fu">st_write</span>(shp, out_path, <span class="at">delete_dsn =</span> <span class="cn">TRUE</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-33"><a href="04-hurricanes.html#cb24-33" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="hurricanes-intersections" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Compute Intersections<a href="04-hurricanes.html#hurricanes-intersections" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that the hurricane files are prepared properly, the associated points data of interest, (in this case hospitals), can be used within the files. The point files in this example have a series of months and years in columns when surveys were conducted, a latitude and longitude column where we can identify</p>
+<p>First we load all the storms.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="04-hurricanes.html#cb25-1" tabindex="-1"></a><span class="co">#where all the processed files are</span></span>
+<span id="cb25-2"><a href="04-hurricanes.html#cb25-2" tabindex="-1"></a>storms_dir <span class="ot">&lt;-</span> r<span class="st">&quot;(./data/HurricaneRawData/nhc_best_tracks/processed)&quot;</span></span>
+<span id="cb25-3"><a href="04-hurricanes.html#cb25-3" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&#39;C:/Users/matth/Climate_and_Health/bookdown_project&#39;</span>)</span>
+<span id="cb25-4"><a href="04-hurricanes.html#cb25-4" tabindex="-1"></a><span class="co">#get all the radii shapefiles</span></span>
+<span id="cb25-5"><a href="04-hurricanes.html#cb25-5" tabindex="-1"></a><span class="co">#I settled on radii, because its the reach of the wind</span></span>
+<span id="cb25-6"><a href="04-hurricanes.html#cb25-6" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;event_id&quot;</span>, <span class="st">&quot;event_r_id&quot;</span>, <span class="st">&quot;storm_id&quot;</span>)</span>
+<span id="cb25-7"><a href="04-hurricanes.html#cb25-7" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="04-hurricanes.html#cb25-8" tabindex="-1"></a>storms_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(shp_files, <span class="cf">function</span>(x) {</span>
+<span id="cb25-9"><a href="04-hurricanes.html#cb25-9" tabindex="-1"></a>  <span class="fu">st_read</span>(x, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-10"><a href="04-hurricanes.html#cb25-10" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">any_of</span>(cols))</span>
+<span id="cb25-11"><a href="04-hurricanes.html#cb25-11" tabindex="-1"></a>})</span>
+<span id="cb25-12"><a href="04-hurricanes.html#cb25-12" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="04-hurricanes.html#cb25-13" tabindex="-1"></a><span class="co">#get all the storms</span></span>
+<span id="cb25-14"><a href="04-hurricanes.html#cb25-14" tabindex="-1"></a>all_storms <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(storms_list)</span>
+<span id="cb25-15"><a href="04-hurricanes.html#cb25-15" tabindex="-1"></a>all_storms <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(all_storms, <span class="dv">4326</span>)</span>
+<span id="cb25-16"><a href="04-hurricanes.html#cb25-16" tabindex="-1"></a>all_storms <span class="ot">&lt;-</span> <span class="fu">st_make_valid</span>(all_storms)</span>
+<span id="cb25-17"><a href="04-hurricanes.html#cb25-17" tabindex="-1"></a>all_storms <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(all_storms, <span class="dv">3978</span>)</span>
+<span id="cb25-18"><a href="04-hurricanes.html#cb25-18" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="04-hurricanes.html#cb25-19" tabindex="-1"></a>all_storms<span class="sc">$</span>months <span class="ot">&lt;-</span> <span class="fu">ym</span>(<span class="fu">str_sub</span>(all_storms<span class="sc">$</span>event_id, <span class="dv">5</span>, <span class="dv">10</span>))</span></code></pre></div>
+<p>Now that all the data is loaded and ready, the intersection with all the points of interest needs to be performed and a number of data outputs are created.</p>
+<ol style="list-style-type: decimal">
+<li>A long table of storms and intersections with hospitals.</li>
+<li>A wide table with the ID’s of the surveyed locations and a matrix of 1’s and 0’s identifying if they were impacted by a storm during the previous 24 months.</li>
+<li>A table with daily intersection information for the month the survey was conducted.</li>
+<li>A long table with only intersection information.</li>
+</ol>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="04-hurricanes.html#cb26-1" tabindex="-1"></a><span class="co">#the website of interest for tracks</span></span>
+<span id="cb26-2"><a href="04-hurricanes.html#cb26-2" tabindex="-1"></a>website <span class="ot">&lt;-</span> <span class="st">&#39;https://www.nhc.noaa.gov/gis/archive_besttrack.php&#39;</span></span>
+<span id="cb26-3"><a href="04-hurricanes.html#cb26-3" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="04-hurricanes.html#cb26-4" tabindex="-1"></a><span class="co">#lookup table with names that was created in an earlier step</span></span>
+<span id="cb26-5"><a href="04-hurricanes.html#cb26-5" tabindex="-1"></a>storm_names_dir <span class="ot">&lt;-</span> r<span class="st">&quot;(./data/HurricaneRawData/storm_lookup_table.csv)&quot;</span></span>
+<span id="cb26-6"><a href="04-hurricanes.html#cb26-6" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="04-hurricanes.html#cb26-7" tabindex="-1"></a><span class="co">#common columns</span></span>
+<span id="cb26-8"><a href="04-hurricanes.html#cb26-8" tabindex="-1"></a>long_col <span class="ot">&lt;-</span> <span class="st">&quot;long&quot;</span></span>
+<span id="cb26-9"><a href="04-hurricanes.html#cb26-9" tabindex="-1"></a>lat_col <span class="ot">&lt;-</span> <span class="st">&quot;lat&quot;</span></span>
+<span id="cb26-10"><a href="04-hurricanes.html#cb26-10" tabindex="-1"></a>survey_id_col <span class="ot">&lt;-</span> <span class="st">&quot;hospital_id&quot;</span></span>
+<span id="cb26-11"><a href="04-hurricanes.html#cb26-11" tabindex="-1"></a>survey_year_col <span class="ot">&lt;-</span> <span class="st">&quot;survey_year&quot;</span></span>
+<span id="cb26-12"><a href="04-hurricanes.html#cb26-12" tabindex="-1"></a>survey_month_col <span class="ot">&lt;-</span> <span class="st">&quot;survey_month&quot;</span></span>
+<span id="cb26-13"><a href="04-hurricanes.html#cb26-13" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="04-hurricanes.html#cb26-14" tabindex="-1"></a><span class="co">#to keep</span></span>
+<span id="cb26-15"><a href="04-hurricanes.html#cb26-15" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;geometry&quot;</span>, <span class="st">&quot;event_id&quot;</span>, <span class="st">&quot;event_r_id&quot;</span>, <span class="st">&quot;storm_id&quot;</span>)</span>
+<span id="cb26-16"><a href="04-hurricanes.html#cb26-16" tabindex="-1"></a><span class="co">#buffer distances in metres to go around point of interest</span></span>
+<span id="cb26-17"><a href="04-hurricanes.html#cb26-17" tabindex="-1"></a>bufs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25000</span>)<span class="co">#, 0, 50000, 100000)</span></span>
+<span id="cb26-18"><a href="04-hurricanes.html#cb26-18" tabindex="-1"></a><span class="co">#years of survey date batches for naming conventions (only one batch in this tutorial)</span></span>
+<span id="cb26-19"><a href="04-hurricanes.html#cb26-19" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;all&#39;</span>)</span>
+<span id="cb26-20"><a href="04-hurricanes.html#cb26-20" tabindex="-1"></a><span class="co">#this is paried with the above years, should match up!</span></span>
+<span id="cb26-21"><a href="04-hurricanes.html#cb26-21" tabindex="-1"></a>survey_hospitals <span class="ot">&lt;-</span> r<span class="st">&quot;(./data/odhf_hospitals.csv)&quot;</span></span>
+<span id="cb26-22"><a href="04-hurricanes.html#cb26-22" tabindex="-1"></a>dirs <span class="ot">&lt;-</span> <span class="fu">c</span>(survey_hospitals)</span>
+<span id="cb26-23"><a href="04-hurricanes.html#cb26-23" tabindex="-1"></a><span class="co">#results storage</span></span>
+<span id="cb26-24"><a href="04-hurricanes.html#cb26-24" tabindex="-1"></a>hurricane_results <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb26-25"><a href="04-hurricanes.html#cb26-25" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="04-hurricanes.html#cb26-26" tabindex="-1"></a><span class="co">#this is a double loop, the first one goes through each survey year of interest </span></span>
+<span id="cb26-27"><a href="04-hurricanes.html#cb26-27" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="fu">seq_along</span>(years)){</span>
+<span id="cb26-28"><a href="04-hurricanes.html#cb26-28" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Naming suffix: &quot;</span>, years[k])</span>
+<span id="cb26-29"><a href="04-hurricanes.html#cb26-29" tabindex="-1"></a>  <span class="co">#the second loop applies the buffer size to the survey data for intersection analysis </span></span>
+<span id="cb26-30"><a href="04-hurricanes.html#cb26-30" tabindex="-1"></a>  <span class="co">#between storm pathway and survey data</span></span>
+<span id="cb26-31"><a href="04-hurricanes.html#cb26-31" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(bufs)){</span>
+<span id="cb26-32"><a href="04-hurricanes.html#cb26-32" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;Point buffer extent: &quot;</span>, bufs[i]<span class="sc">/</span><span class="dv">1000</span>, <span class="st">&quot; km&quot;</span>)</span>
+<span id="cb26-33"><a href="04-hurricanes.html#cb26-33" tabindex="-1"></a>    <span class="co">#read the survey data</span></span>
+<span id="cb26-34"><a href="04-hurricanes.html#cb26-34" tabindex="-1"></a>    survey_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(dirs[k])</span>
+<span id="cb26-35"><a href="04-hurricanes.html#cb26-35" tabindex="-1"></a>    <span class="co">#convert the survey data to an sf object for the intersection</span></span>
+<span id="cb26-36"><a href="04-hurricanes.html#cb26-36" tabindex="-1"></a>    survey_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(</span>
+<span id="cb26-37"><a href="04-hurricanes.html#cb26-37" tabindex="-1"></a>      <span class="co">#eliminate the Nas</span></span>
+<span id="cb26-38"><a href="04-hurricanes.html#cb26-38" tabindex="-1"></a>      survey_data[<span class="sc">!</span><span class="fu">is.na</span>(survey_data[[long_col]]) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(survey_data[[lat_col]]), ],</span>
+<span id="cb26-39"><a href="04-hurricanes.html#cb26-39" tabindex="-1"></a>      <span class="at">coords =</span> <span class="fu">c</span>(long_col, lat_col),</span>
+<span id="cb26-40"><a href="04-hurricanes.html#cb26-40" tabindex="-1"></a>      <span class="at">crs =</span> <span class="dv">4326</span></span>
+<span id="cb26-41"><a href="04-hurricanes.html#cb26-41" tabindex="-1"></a>    )</span>
+<span id="cb26-42"><a href="04-hurricanes.html#cb26-42" tabindex="-1"></a>    <span class="co">#make sure its the appropriate crs</span></span>
+<span id="cb26-43"><a href="04-hurricanes.html#cb26-43" tabindex="-1"></a>    <span class="co">#survey_sf &lt;- st_transform(survey_sf, 4326)</span></span>
+<span id="cb26-44"><a href="04-hurricanes.html#cb26-44" tabindex="-1"></a>    survey_sf <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(survey_sf, <span class="dv">3978</span>)</span>
+<span id="cb26-45"><a href="04-hurricanes.html#cb26-45" tabindex="-1"></a>    <span class="co">#apply the buffer to the survey points</span></span>
+<span id="cb26-46"><a href="04-hurricanes.html#cb26-46" tabindex="-1"></a>    survey_buffer <span class="ot">&lt;-</span> <span class="fu">st_buffer</span>(survey_sf, bufs[i])</span>
+<span id="cb26-47"><a href="04-hurricanes.html#cb26-47" tabindex="-1"></a>    <span class="co">#create a date type column from the survey year and survey month columns</span></span>
+<span id="cb26-48"><a href="04-hurricanes.html#cb26-48" tabindex="-1"></a>    survey_buffer<span class="sc">$</span>months <span class="ot">&lt;-</span> <span class="fu">ym</span>(<span class="fu">paste0</span>(survey_buffer[[survey_year_col]], survey_buffer[[survey_month_col]]))</span>
+<span id="cb26-49"><a href="04-hurricanes.html#cb26-49" tabindex="-1"></a>    survey_buffer<span class="sc">$</span>survey_id <span class="ot">&lt;-</span> <span class="fu">paste</span>(survey_buffer[[survey_id_col]], survey_buffer[[survey_month_col]], survey_buffer[[survey_year_col]], <span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb26-50"><a href="04-hurricanes.html#cb26-50" tabindex="-1"></a>    <span class="co">#get all storms that happen within 30 months of the earliest survey date and the latest survey month of that year</span></span>
+<span id="cb26-51"><a href="04-hurricanes.html#cb26-51" tabindex="-1"></a>    <span class="co">#this could be a pretty variable range of dates</span></span>
+<span id="cb26-52"><a href="04-hurricanes.html#cb26-52" tabindex="-1"></a>    all_storms_within_range <span class="ot">&lt;-</span> all_storms <span class="sc">%&gt;%</span> <span class="fu">filter</span>(months <span class="sc">&gt;=</span> (<span class="fu">min</span>(survey_buffer<span class="sc">$</span>months)<span class="sc">-</span><span class="fu">months</span>(<span class="dv">30</span>)) <span class="sc">&amp;</span> months <span class="sc">&lt;=</span> <span class="fu">max</span>(survey_buffer<span class="sc">$</span>months))</span>
+<span id="cb26-53"><a href="04-hurricanes.html#cb26-53" tabindex="-1"></a>    <span class="co">#do the intersection between the surveys and all of those storms</span></span>
+<span id="cb26-54"><a href="04-hurricanes.html#cb26-54" tabindex="-1"></a>    intersection <span class="ot">&lt;-</span> <span class="fu">st_intersects</span>(survey_buffer, all_storms_within_range, <span class="at">sparse =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-55"><a href="04-hurricanes.html#cb26-55" tabindex="-1"></a>    </span>
+<span id="cb26-56"><a href="04-hurricanes.html#cb26-56" tabindex="-1"></a>    <span class="co">#build the dataframe</span></span>
+<span id="cb26-57"><a href="04-hurricanes.html#cb26-57" tabindex="-1"></a>    intersection_df <span class="ot">&lt;-</span> <span class="fu">map2_dfr</span>(</span>
+<span id="cb26-58"><a href="04-hurricanes.html#cb26-58" tabindex="-1"></a>      <span class="co">#for each intersection</span></span>
+<span id="cb26-59"><a href="04-hurricanes.html#cb26-59" tabindex="-1"></a>      <span class="fu">seq_along</span>(intersection),</span>
+<span id="cb26-60"><a href="04-hurricanes.html#cb26-60" tabindex="-1"></a>      <span class="co">#create a little tibble of point, storm, survey, and if it intersects</span></span>
+<span id="cb26-61"><a href="04-hurricanes.html#cb26-61" tabindex="-1"></a>      <span class="co">#creates an association between each poi and storm intersect event and attaches the date of the survey</span></span>
+<span id="cb26-62"><a href="04-hurricanes.html#cb26-62" tabindex="-1"></a>      intersection,</span>
+<span id="cb26-63"><a href="04-hurricanes.html#cb26-63" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">tibble</span>(</span>
+<span id="cb26-64"><a href="04-hurricanes.html#cb26-64" tabindex="-1"></a>        <span class="at">point_id =</span> survey_sf[[survey_id_col]][.x],</span>
+<span id="cb26-65"><a href="04-hurricanes.html#cb26-65" tabindex="-1"></a>        <span class="at">storm_id =</span> all_storms_within_range<span class="sc">$</span>event_r_id[.y],</span>
+<span id="cb26-66"><a href="04-hurricanes.html#cb26-66" tabindex="-1"></a>        <span class="at">survey_date =</span> survey_buffer<span class="sc">$</span>months[.x],</span>
+<span id="cb26-67"><a href="04-hurricanes.html#cb26-67" tabindex="-1"></a>        <span class="at">intersects =</span> <span class="dv">1</span></span>
+<span id="cb26-68"><a href="04-hurricanes.html#cb26-68" tabindex="-1"></a>      )</span>
+<span id="cb26-69"><a href="04-hurricanes.html#cb26-69" tabindex="-1"></a>    )</span>
+<span id="cb26-70"><a href="04-hurricanes.html#cb26-70" tabindex="-1"></a>    </span>
+<span id="cb26-71"><a href="04-hurricanes.html#cb26-71" tabindex="-1"></a>    <span class="co">#get the storm names</span></span>
+<span id="cb26-72"><a href="04-hurricanes.html#cb26-72" tabindex="-1"></a>    storm_lookup <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(storm_names_dir, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb26-73"><a href="04-hurricanes.html#cb26-73" tabindex="-1"></a>    </span>
+<span id="cb26-74"><a href="04-hurricanes.html#cb26-74" tabindex="-1"></a>    <span class="co">#preserve the intersection dataframe</span></span>
+<span id="cb26-75"><a href="04-hurricanes.html#cb26-75" tabindex="-1"></a>    matrix_df <span class="ot">&lt;-</span> intersection_df</span>
+<span id="cb26-76"><a href="04-hurricanes.html#cb26-76" tabindex="-1"></a>    <span class="co">#get the survey data anew</span></span>
+<span id="cb26-77"><a href="04-hurricanes.html#cb26-77" tabindex="-1"></a>    survey_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(dirs[k])</span>
+<span id="cb26-78"><a href="04-hurricanes.html#cb26-78" tabindex="-1"></a>    <span class="co">#set blanks to na&#39;s</span></span>
+<span id="cb26-79"><a href="04-hurricanes.html#cb26-79" tabindex="-1"></a>    survey_data[survey_data <span class="sc">==</span> <span class="st">&quot;&quot;</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb26-80"><a href="04-hurricanes.html#cb26-80" tabindex="-1"></a>    <span class="co">#only keep non na points</span></span>
+<span id="cb26-81"><a href="04-hurricanes.html#cb26-81" tabindex="-1"></a>    survey_data <span class="ot">&lt;-</span> survey_data[<span class="sc">!</span><span class="fu">is.na</span>(survey_data[[long_col]]) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(survey_data[[lat_col]]), ]</span>
+<span id="cb26-82"><a href="04-hurricanes.html#cb26-82" tabindex="-1"></a>    <span class="co">#convert to data.table</span></span>
+<span id="cb26-83"><a href="04-hurricanes.html#cb26-83" tabindex="-1"></a>    survey_data <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(survey_data)</span>
+<span id="cb26-84"><a href="04-hurricanes.html#cb26-84" tabindex="-1"></a>    <span class="co">#organize dates</span></span>
+<span id="cb26-85"><a href="04-hurricanes.html#cb26-85" tabindex="-1"></a>    survey_data[, dates <span class="sc">:=</span> <span class="fu">ceiling_date</span>(<span class="fu">make_date</span>(survey_year, survey_month, <span class="dv">1</span>), <span class="st">&quot;month&quot;</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>)]</span>
+<span id="cb26-86"><a href="04-hurricanes.html#cb26-86" tabindex="-1"></a>    </span>
+<span id="cb26-87"><a href="04-hurricanes.html#cb26-87" tabindex="-1"></a>    <span class="co">#convert to data.table</span></span>
+<span id="cb26-88"><a href="04-hurricanes.html#cb26-88" tabindex="-1"></a>    matrix_df <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(matrix_df)</span>
+<span id="cb26-89"><a href="04-hurricanes.html#cb26-89" tabindex="-1"></a>    <span class="co">#only interested in the intersections, there shouldn&#39;t be any misses, but just in case</span></span>
+<span id="cb26-90"><a href="04-hurricanes.html#cb26-90" tabindex="-1"></a>    matrix_df <span class="ot">&lt;-</span> matrix_df[intersects <span class="sc">==</span> <span class="dv">1</span>]</span>
+<span id="cb26-91"><a href="04-hurricanes.html#cb26-91" tabindex="-1"></a>    <span class="co">#set the date column in the matrix_df data frame</span></span>
+<span id="cb26-92"><a href="04-hurricanes.html#cb26-92" tabindex="-1"></a>    matrix_df[, year_month <span class="sc">:=</span> <span class="fu">format</span>(<span class="fu">ym</span>(<span class="fu">str_sub</span>(storm_id, <span class="dv">5</span>, <span class="dv">10</span>)), <span class="st">&quot;%Y%m&quot;</span>)]</span>
+<span id="cb26-93"><a href="04-hurricanes.html#cb26-93" tabindex="-1"></a>    <span class="co">#only need to know if there is an intersection on that month, </span></span>
+<span id="cb26-94"><a href="04-hurricanes.html#cb26-94" tabindex="-1"></a>    <span class="co">#so get unique entries for each poi and month combination</span></span>
+<span id="cb26-95"><a href="04-hurricanes.html#cb26-95" tabindex="-1"></a>    matrix_df <span class="ot">&lt;-</span> <span class="fu">unique</span>(matrix_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;point_id&quot;</span>,<span class="st">&quot;survey_date&quot;</span>, <span class="st">&quot;year_month&quot;</span>))</span>
+<span id="cb26-96"><a href="04-hurricanes.html#cb26-96" tabindex="-1"></a>    </span>
+<span id="cb26-97"><a href="04-hurricanes.html#cb26-97" tabindex="-1"></a>    <span class="co">#expand each survey row into last 24 months (month_0 = survey month, month_1 = survey-1, etc)</span></span>
+<span id="cb26-98"><a href="04-hurricanes.html#cb26-98" tabindex="-1"></a>    expand_months <span class="ot">&lt;-</span> <span class="cf">function</span>(d, s_id, survey_month, survey_year) {</span>
+<span id="cb26-99"><a href="04-hurricanes.html#cb26-99" tabindex="-1"></a>      <span class="fu">data.table</span>(</span>
+<span id="cb26-100"><a href="04-hurricanes.html#cb26-100" tabindex="-1"></a>        <span class="at">survey_id =</span> s_id,</span>
+<span id="cb26-101"><a href="04-hurricanes.html#cb26-101" tabindex="-1"></a>        <span class="at">survey_year =</span> survey_year,</span>
+<span id="cb26-102"><a href="04-hurricanes.html#cb26-102" tabindex="-1"></a>        <span class="at">survey_month =</span> survey_month,</span>
+<span id="cb26-103"><a href="04-hurricanes.html#cb26-103" tabindex="-1"></a>        <span class="at">offset =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>,</span>
+<span id="cb26-104"><a href="04-hurricanes.html#cb26-104" tabindex="-1"></a>        <span class="at">date =</span> <span class="fu">format</span>(<span class="fu">ceiling_date</span>(d <span class="sc">%m-%</span> <span class="fu">months</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>), <span class="st">&quot;month&quot;</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>), <span class="st">&quot;%Y%m&quot;</span>)</span>
+<span id="cb26-105"><a href="04-hurricanes.html#cb26-105" tabindex="-1"></a>      )</span>
+<span id="cb26-106"><a href="04-hurricanes.html#cb26-106" tabindex="-1"></a>    }</span>
+<span id="cb26-107"><a href="04-hurricanes.html#cb26-107" tabindex="-1"></a>    </span>
+<span id="cb26-108"><a href="04-hurricanes.html#cb26-108" tabindex="-1"></a>    <span class="co">#apply the function</span></span>
+<span id="cb26-109"><a href="04-hurricanes.html#cb26-109" tabindex="-1"></a>    <span class="co">#identifies how many months a given month is offset from the 0th month for that poi&#39;s survey date</span></span>
+<span id="cb26-110"><a href="04-hurricanes.html#cb26-110" tabindex="-1"></a>    survey_expanded <span class="ot">&lt;-</span> survey_data[, <span class="fu">expand_months</span>(dates, <span class="fu">get</span>(survey_id_col), survey_month, survey_year), by <span class="ot">=</span> <span class="fu">c</span>(survey_id_col, survey_year_col, survey_month_col)]</span>
+<span id="cb26-111"><a href="04-hurricanes.html#cb26-111" tabindex="-1"></a>    survey_expanded<span class="sc">$</span>survey_date <span class="ot">&lt;-</span> <span class="fu">ym</span>(<span class="fu">paste0</span>(survey_expanded[[survey_year_col]], survey_expanded[[survey_month_col]]))</span>
+<span id="cb26-112"><a href="04-hurricanes.html#cb26-112" tabindex="-1"></a></span>
+<span id="cb26-113"><a href="04-hurricanes.html#cb26-113" tabindex="-1"></a>    <span class="co">#join the storms on survey id and the date at year_month</span></span>
+<span id="cb26-114"><a href="04-hurricanes.html#cb26-114" tabindex="-1"></a>    result <span class="ot">&lt;-</span> matrix_df[survey_expanded, </span>
+<span id="cb26-115"><a href="04-hurricanes.html#cb26-115" tabindex="-1"></a>                        on <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;point_id&quot;</span> <span class="ot">=</span> survey_id_col, <span class="st">&quot;year_month&quot;</span> <span class="ot">=</span> <span class="st">&quot;date&quot;</span>)]</span>
+<span id="cb26-116"><a href="04-hurricanes.html#cb26-116" tabindex="-1"></a>    </span>
+<span id="cb26-117"><a href="04-hurricanes.html#cb26-117" tabindex="-1"></a>    <span class="co">#add 0&#39;s to the matrix of 1&#39;s and 0&#39;s</span></span>
+<span id="cb26-118"><a href="04-hurricanes.html#cb26-118" tabindex="-1"></a>    result[<span class="fu">is.na</span>(intersects), intersects <span class="sc">:=</span> <span class="dv">0</span>]</span>
+<span id="cb26-119"><a href="04-hurricanes.html#cb26-119" tabindex="-1"></a>    </span>
+<span id="cb26-120"><a href="04-hurricanes.html#cb26-120" tabindex="-1"></a>    <span class="co">#join storm names for easier identification</span></span>
+<span id="cb26-121"><a href="04-hurricanes.html#cb26-121" tabindex="-1"></a>    storm_lookup <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(storm_lookup)</span>
+<span id="cb26-122"><a href="04-hurricanes.html#cb26-122" tabindex="-1"></a>    <span class="co">#storm id and year to cross reference with metadata</span></span>
+<span id="cb26-123"><a href="04-hurricanes.html#cb26-123" tabindex="-1"></a>    storm_lookup[, storm_id_year <span class="sc">:=</span> <span class="fu">paste0</span>(storm_id, year)]</span>
+<span id="cb26-124"><a href="04-hurricanes.html#cb26-124" tabindex="-1"></a>    result[, storm_id_year <span class="sc">:=</span> <span class="fu">str_sub</span>(storm_id, <span class="dv">1</span>, <span class="dv">8</span>)]</span>
+<span id="cb26-125"><a href="04-hurricanes.html#cb26-125" tabindex="-1"></a>    result <span class="ot">&lt;-</span> <span class="fu">merge</span>(</span>
+<span id="cb26-126"><a href="04-hurricanes.html#cb26-126" tabindex="-1"></a>      result,</span>
+<span id="cb26-127"><a href="04-hurricanes.html#cb26-127" tabindex="-1"></a>      storm_lookup[, .(storm_id_year, storm_name)],</span>
+<span id="cb26-128"><a href="04-hurricanes.html#cb26-128" tabindex="-1"></a>      <span class="at">by =</span> <span class="st">&quot;storm_id_year&quot;</span>,</span>
+<span id="cb26-129"><a href="04-hurricanes.html#cb26-129" tabindex="-1"></a>      <span class="at">all.x =</span> <span class="cn">TRUE</span></span>
+<span id="cb26-130"><a href="04-hurricanes.html#cb26-130" tabindex="-1"></a>    )</span>
+<span id="cb26-131"><a href="04-hurricanes.html#cb26-131" tabindex="-1"></a>    </span>
+<span id="cb26-132"><a href="04-hurricanes.html#cb26-132" tabindex="-1"></a>    <span class="co">#pivot to one row per id and columns month_0 to 24</span></span>
+<span id="cb26-133"><a href="04-hurricanes.html#cb26-133" tabindex="-1"></a>    formula_str <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;survey_id + survey_month + survey_year ~ paste0(&#39;month_&#39;, offset)&quot;</span>)</span>
+<span id="cb26-134"><a href="04-hurricanes.html#cb26-134" tabindex="-1"></a>    result_months <span class="ot">&lt;-</span> <span class="fu">dcast</span>(</span>
+<span id="cb26-135"><a href="04-hurricanes.html#cb26-135" tabindex="-1"></a>      result,</span>
+<span id="cb26-136"><a href="04-hurricanes.html#cb26-136" tabindex="-1"></a>      <span class="fu">as.formula</span>(formula_str),</span>
+<span id="cb26-137"><a href="04-hurricanes.html#cb26-137" tabindex="-1"></a>      <span class="at">value.var =</span> <span class="st">&quot;intersects&quot;</span>,</span>
+<span id="cb26-138"><a href="04-hurricanes.html#cb26-138" tabindex="-1"></a>      <span class="at">fun.aggregate =</span> max</span>
+<span id="cb26-139"><a href="04-hurricanes.html#cb26-139" tabindex="-1"></a>    )</span>
+<span id="cb26-140"><a href="04-hurricanes.html#cb26-140" tabindex="-1"></a>    </span>
+<span id="cb26-141"><a href="04-hurricanes.html#cb26-141" tabindex="-1"></a>    <span class="co">#join the lat and long from the original dataset back for joining later</span></span>
+<span id="cb26-142"><a href="04-hurricanes.html#cb26-142" tabindex="-1"></a>    on_vec <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">c</span>(survey_id_col, <span class="st">&quot;survey_year&quot;</span>, <span class="st">&quot;survey_month&quot;</span>), </span>
+<span id="cb26-143"><a href="04-hurricanes.html#cb26-143" tabindex="-1"></a>                   <span class="fu">c</span>(<span class="st">&quot;survey_id&quot;</span>, <span class="st">&quot;survey_year&quot;</span>, <span class="st">&quot;survey_month&quot;</span>))</span>
+<span id="cb26-144"><a href="04-hurricanes.html#cb26-144" tabindex="-1"></a></span>
+<span id="cb26-145"><a href="04-hurricanes.html#cb26-145" tabindex="-1"></a>    result_months[survey_data, </span>
+<span id="cb26-146"><a href="04-hurricanes.html#cb26-146" tabindex="-1"></a>                  on <span class="ot">=</span> on_vec,</span>
+<span id="cb26-147"><a href="04-hurricanes.html#cb26-147" tabindex="-1"></a>                  <span class="st">`</span><span class="at">:=</span><span class="st">`</span>(<span class="at">lat =</span> i.lat, <span class="at">long =</span> i.long)]</span>
+<span id="cb26-148"><a href="04-hurricanes.html#cb26-148" tabindex="-1"></a>    </span>
+<span id="cb26-149"><a href="04-hurricanes.html#cb26-149" tabindex="-1"></a>    <span class="do">###################month 0 information day by day###############################</span></span>
+<span id="cb26-150"><a href="04-hurricanes.html#cb26-150" tabindex="-1"></a>    matrix_df <span class="ot">&lt;-</span> intersection_df</span>
+<span id="cb26-151"><a href="04-hurricanes.html#cb26-151" tabindex="-1"></a>    matrix_df <span class="ot">&lt;-</span> matrix_df <span class="sc">%&gt;%</span> </span>
+<span id="cb26-152"><a href="04-hurricanes.html#cb26-152" tabindex="-1"></a>      <span class="co">#only intersections</span></span>
+<span id="cb26-153"><a href="04-hurricanes.html#cb26-153" tabindex="-1"></a>      <span class="fu">filter</span>(intersects <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-154"><a href="04-hurricanes.html#cb26-154" tabindex="-1"></a>      <span class="co">#get date to the day of the storm</span></span>
+<span id="cb26-155"><a href="04-hurricanes.html#cb26-155" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">year_month_day =</span> <span class="fu">ymd</span>(<span class="fu">str_sub</span>(storm_id, <span class="dv">5</span>, <span class="dv">12</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-156"><a href="04-hurricanes.html#cb26-156" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">storm_id_long =</span> <span class="fu">str_sub</span>(storm_id, <span class="dv">0</span>, <span class="dv">12</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-157"><a href="04-hurricanes.html#cb26-157" tabindex="-1"></a>      <span class="co">#one row per day, doesn&#39;t matter the wind speed</span></span>
+<span id="cb26-158"><a href="04-hurricanes.html#cb26-158" tabindex="-1"></a>      <span class="fu">distinct</span>(., point_id, year_month_day,<span class="at">.keep_all=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-159"><a href="04-hurricanes.html#cb26-159" tabindex="-1"></a>      <span class="co">#format date as a date again</span></span>
+<span id="cb26-160"><a href="04-hurricanes.html#cb26-160" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">year_month_day =</span> <span class="fu">format</span>(year_month_day, <span class="st">&quot;%Y-%m-%d&quot;</span>))</span>
+<span id="cb26-161"><a href="04-hurricanes.html#cb26-161" tabindex="-1"></a>    </span>
+<span id="cb26-162"><a href="04-hurricanes.html#cb26-162" tabindex="-1"></a>    <span class="co">#get survey data  </span></span>
+<span id="cb26-163"><a href="04-hurricanes.html#cb26-163" tabindex="-1"></a>    survey_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(dirs[k])</span>
+<span id="cb26-164"><a href="04-hurricanes.html#cb26-164" tabindex="-1"></a>    <span class="co">#set blanks to na&#39;s</span></span>
+<span id="cb26-165"><a href="04-hurricanes.html#cb26-165" tabindex="-1"></a>    survey_data[survey_data <span class="sc">==</span> <span class="st">&quot;&quot;</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb26-166"><a href="04-hurricanes.html#cb26-166" tabindex="-1"></a>    <span class="co">#only keep non na points</span></span>
+<span id="cb26-167"><a href="04-hurricanes.html#cb26-167" tabindex="-1"></a>    survey_data <span class="ot">&lt;-</span> survey_data[<span class="sc">!</span><span class="fu">is.na</span>(survey_data[[long_col]]) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(survey_data[[lat_col]]), ]</span>
+<span id="cb26-168"><a href="04-hurricanes.html#cb26-168" tabindex="-1"></a>    <span class="co">#assume survey was conducted on the final day of the month, so check every day of the month</span></span>
+<span id="cb26-169"><a href="04-hurricanes.html#cb26-169" tabindex="-1"></a>    survey_data<span class="sc">$</span>dates <span class="ot">&lt;-</span> <span class="fu">ceiling_date</span>(<span class="fu">make_date</span>(<span class="at">year=</span>survey_data[[survey_year_col]], <span class="at">month =</span> survey_data[[survey_month_col]], <span class="at">day =</span> <span class="dv">1</span>), <span class="st">&quot;month&quot;</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb26-170"><a href="04-hurricanes.html#cb26-170" tabindex="-1"></a>    </span>
+<span id="cb26-171"><a href="04-hurricanes.html#cb26-171" tabindex="-1"></a>    <span class="co">#expand to every day of the month</span></span>
+<span id="cb26-172"><a href="04-hurricanes.html#cb26-172" tabindex="-1"></a>    expand_survey_data <span class="ot">&lt;-</span> survey_data <span class="sc">%&gt;%</span></span>
+<span id="cb26-173"><a href="04-hurricanes.html#cb26-173" tabindex="-1"></a>      <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-174"><a href="04-hurricanes.html#cb26-174" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">days_in_month =</span> <span class="fu">list</span>(<span class="fu">seq</span>(<span class="at">from =</span> <span class="fu">floor_date</span>(dates, <span class="st">&quot;month&quot;</span>), <span class="at">to =</span> dates, <span class="at">by =</span> <span class="st">&quot;1 day&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb26-175"><a href="04-hurricanes.html#cb26-175" tabindex="-1"></a>      <span class="fu">unnest</span>(days_in_month) <span class="sc">%&gt;%</span></span>
+<span id="cb26-176"><a href="04-hurricanes.html#cb26-176" tabindex="-1"></a>      <span class="fu">rename</span>(<span class="at">date =</span> days_in_month) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-177"><a href="04-hurricanes.html#cb26-177" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">format</span>(date,<span class="st">&quot;%Y-%m-%d&quot;</span>))</span>
+<span id="cb26-178"><a href="04-hurricanes.html#cb26-178" tabindex="-1"></a>    </span>
+<span id="cb26-179"><a href="04-hurricanes.html#cb26-179" tabindex="-1"></a>    <span class="co">#join the two datasets of storm data and survey data</span></span>
+<span id="cb26-180"><a href="04-hurricanes.html#cb26-180" tabindex="-1"></a>    result_days <span class="ot">&lt;-</span> <span class="fu">left_join</span>(expand_survey_data, matrix_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;date&quot;</span> <span class="ot">=</span> <span class="st">&quot;year_month_day&quot;</span>, <span class="fu">setNames</span>(<span class="st">&quot;point_id&quot;</span>, survey_id_col)))</span>
+<span id="cb26-181"><a href="04-hurricanes.html#cb26-181" tabindex="-1"></a>    </span>
+<span id="cb26-182"><a href="04-hurricanes.html#cb26-182" tabindex="-1"></a>    <span class="co">#add to final dataframe of dataframes</span></span>
+<span id="cb26-183"><a href="04-hurricanes.html#cb26-183" tabindex="-1"></a>    key <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;result_&quot;</span>, bufs[i]<span class="sc">/</span><span class="dv">1000</span>, <span class="st">&quot;k_&quot;</span>, years[k])</span>
+<span id="cb26-184"><a href="04-hurricanes.html#cb26-184" tabindex="-1"></a>    hurricane_results[[key]] <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb26-185"><a href="04-hurricanes.html#cb26-185" tabindex="-1"></a>      <span class="at">long =</span> result,</span>
+<span id="cb26-186"><a href="04-hurricanes.html#cb26-186" tabindex="-1"></a>      <span class="at">wide =</span> result_months,</span>
+<span id="cb26-187"><a href="04-hurricanes.html#cb26-187" tabindex="-1"></a>      <span class="at">daily =</span> result_days,</span>
+<span id="cb26-188"><a href="04-hurricanes.html#cb26-188" tabindex="-1"></a>      <span class="at">matrix =</span> matrix_df</span>
+<span id="cb26-189"><a href="04-hurricanes.html#cb26-189" tabindex="-1"></a>    )</span>
+<span id="cb26-190"><a href="04-hurricanes.html#cb26-190" tabindex="-1"></a>  }</span>
+<span id="cb26-191"><a href="04-hurricanes.html#cb26-191" tabindex="-1"></a>}</span>
+<span id="cb26-192"><a href="04-hurricanes.html#cb26-192" tabindex="-1"></a></span>
+<span id="cb26-193"><a href="04-hurricanes.html#cb26-193" tabindex="-1"></a><span class="co">#get the hurricane matrix wide data</span></span>
+<span id="cb26-194"><a href="04-hurricanes.html#cb26-194" tabindex="-1"></a>hurricane_matrix <span class="ot">&lt;-</span> hurricane_results[[<span class="st">&quot;result_25k_all&quot;</span>]][[<span class="st">&quot;wide&quot;</span>]] <span class="sc">%&gt;%</span></span>
+<span id="cb26-195"><a href="04-hurricanes.html#cb26-195" tabindex="-1"></a>  <span class="fu">relocate</span>(<span class="fu">all_of</span>(<span class="fu">paste0</span>(<span class="st">&quot;month_&quot;</span>, <span class="dv">0</span><span class="sc">:</span><span class="dv">24</span>)), <span class="at">.after =</span> <span class="fu">last_col</span>())</span>
+<span id="cb26-196"><a href="04-hurricanes.html#cb26-196" tabindex="-1"></a></span>
+<span id="cb26-197"><a href="04-hurricanes.html#cb26-197" tabindex="-1"></a><span class="co">#write the matrix</span></span>
+<span id="cb26-198"><a href="04-hurricanes.html#cb26-198" tabindex="-1"></a><span class="fu">write.csv</span>(hurricane_matrix, r<span class="st">&quot;(./data/hurricane_presence_absence.csv)&quot;</span>)</span></code></pre></div>
+<p>Display a snippet of the hurricane matrix.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="04-hurricanes.html#cb27-1" tabindex="-1"></a><span class="co">#display</span></span>
+<span id="cb27-2"><a href="04-hurricanes.html#cb27-2" tabindex="-1"></a>hurricane_matrix[<span class="fu">c</span>(<span class="dv">278</span><span class="sc">:</span><span class="dv">290</span>), ] <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="04-hurricanes.html#cb27-3" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">format =</span> <span class="st">&quot;html&quot;</span>, <span class="at">caption =</span> <span class="st">&quot;Hurricane Summary Matrix&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="04-hurricanes.html#cb27-4" tabindex="-1"></a>  <span class="fu">kable_styling</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb27-5"><a href="04-hurricanes.html#cb27-5" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&quot;100%&quot;</span>)</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+<table class="table" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:hurricane-matrix-snippet">Table 5.1: </span>Hurricane Summary Matrix
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+survey_id
+</th>
+<th style="text-align:right;">
+survey_month
+</th>
+<th style="text-align:right;">
+survey_year
+</th>
+<th style="text-align:right;">
+lat
+</th>
+<th style="text-align:right;">
+long
+</th>
+<th style="text-align:right;">
+month_0
+</th>
+<th style="text-align:right;">
+month_1
+</th>
+<th style="text-align:right;">
+month_2
+</th>
+<th style="text-align:right;">
+month_3
+</th>
+<th style="text-align:right;">
+month_4
+</th>
+<th style="text-align:right;">
+month_5
+</th>
+<th style="text-align:right;">
+month_6
+</th>
+<th style="text-align:right;">
+month_7
+</th>
+<th style="text-align:right;">
+month_8
+</th>
+<th style="text-align:right;">
+month_9
+</th>
+<th style="text-align:right;">
+month_10
+</th>
+<th style="text-align:right;">
+month_11
+</th>
+<th style="text-align:right;">
+month_12
+</th>
+<th style="text-align:right;">
+month_13
+</th>
+<th style="text-align:right;">
+month_14
+</th>
+<th style="text-align:right;">
+month_15
+</th>
+<th style="text-align:right;">
+month_16
+</th>
+<th style="text-align:right;">
+month_17
+</th>
+<th style="text-align:right;">
+month_18
+</th>
+<th style="text-align:right;">
+month_19
+</th>
+<th style="text-align:right;">
+month_20
+</th>
+<th style="text-align:right;">
+month_21
+</th>
+<th style="text-align:right;">
+month_22
+</th>
+<th style="text-align:right;">
+month_23
+</th>
+<th style="text-align:right;">
+month_24
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1207
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:right;">
+44.63972
+</td>
+<td style="text-align:right;">
+-63.58216
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1221
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:right;">
+44.64578
+</td>
+<td style="text-align:right;">
+-63.58639
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1222
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:right;">
+44.63840
+</td>
+<td style="text-align:right;">
+-63.58040
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1224
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:right;">
+44.63842
+</td>
+<td style="text-align:right;">
+-63.58134
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1226
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:right;">
+44.03765
+</td>
+<td style="text-align:right;">
+-64.70559
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1233
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:right;">
+43.74952
+</td>
+<td style="text-align:right;">
+-65.31035
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1236
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:right;">
+46.62347
+</td>
+<td style="text-align:right;">
+-61.01510
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1246
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:right;">
+44.88258
+</td>
+<td style="text-align:right;">
+-65.15699
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1247
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:right;">
+45.40920
+</td>
+<td style="text-align:right;">
+-64.32597
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1248
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:right;">
+44.38317
+</td>
+<td style="text-align:right;">
+-64.51060
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1251
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:right;">
+45.62795
+</td>
+<td style="text-align:right;">
+-61.98007
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1252
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:right;">
+45.14781
+</td>
+<td style="text-align:right;">
+-61.98193
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1254
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:right;">
+45.61708
+</td>
+<td style="text-align:right;">
+-61.22293
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="hurricanes-map" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Map<a href="04-hurricanes.html#hurricanes-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The South Okanagan General Hospital in Biritsh Columbia, used in the other examples in this document, does not experience any hurricanes. The east coast of Canada frequently experiences hurricane events, so, the South Shore Regional Hospital in Bridgewater, Nova Scotia is used as an example below.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="04-hurricanes.html#cb28-1" tabindex="-1"></a><span class="co">#get the event_r_id from the hurricane results matrix</span></span>
+<span id="cb28-2"><a href="04-hurricanes.html#cb28-2" tabindex="-1"></a>intersecting_storm <span class="ot">&lt;-</span> <span class="fu">filter</span>(all_storms_within_range, event_r_id <span class="sc">==</span> <span class="st">&quot;al142018101306_34&quot;</span>)</span>
+<span id="cb28-3"><a href="04-hurricanes.html#cb28-3" tabindex="-1"></a><span class="co">#go with one of the hospitals that interesects</span></span>
+<span id="cb28-4"><a href="04-hurricanes.html#cb28-4" tabindex="-1"></a>hospital_of_interest <span class="ot">&lt;-</span> (<span class="fu">filter</span>(hurricane_matrix, survey_id<span class="sc">==</span><span class="dv">1248</span>)) <span class="sc">%&gt;%</span> <span class="fu">st_as_sf</span>(<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;long&quot;</span>, <span class="st">&quot;lat&quot;</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span>
+<span id="cb28-5"><a href="04-hurricanes.html#cb28-5" tabindex="-1"></a><span class="co">#display the intersecting buffer</span></span>
+<span id="cb28-6"><a href="04-hurricanes.html#cb28-6" tabindex="-1"></a>hospital_buffer <span class="ot">&lt;-</span> <span class="fu">st_buffer</span>(hospital_of_interest, <span class="dv">25000</span>)</span>
+<span id="cb28-7"><a href="04-hurricanes.html#cb28-7" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="04-hurricanes.html#cb28-8" tabindex="-1"></a><span class="co">#create the map elements</span></span>
+<span id="cb28-9"><a href="04-hurricanes.html#cb28-9" tabindex="-1"></a><span class="fu">mapview</span>(</span>
+<span id="cb28-10"><a href="04-hurricanes.html#cb28-10" tabindex="-1"></a>  intersecting_storm,</span>
+<span id="cb28-11"><a href="04-hurricanes.html#cb28-11" tabindex="-1"></a>  <span class="at">layer.name =</span> <span class="st">&quot;Intersecting Hurricane (Michael)&quot;</span>,</span>
+<span id="cb28-12"><a href="04-hurricanes.html#cb28-12" tabindex="-1"></a>  <span class="at">popup =</span> leafpop<span class="sc">::</span><span class="fu">popupTable</span>(</span>
+<span id="cb28-13"><a href="04-hurricanes.html#cb28-13" tabindex="-1"></a>    intersecting_storm,</span>
+<span id="cb28-14"><a href="04-hurricanes.html#cb28-14" tabindex="-1"></a>    <span class="at">zcol =</span> <span class="fu">c</span>(<span class="st">&quot;storm_id&quot;</span>)</span>
+<span id="cb28-15"><a href="04-hurricanes.html#cb28-15" tabindex="-1"></a>  )</span>
+<span id="cb28-16"><a href="04-hurricanes.html#cb28-16" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb28-17"><a href="04-hurricanes.html#cb28-17" tabindex="-1"></a><span class="fu">mapview</span>(</span>
+<span id="cb28-18"><a href="04-hurricanes.html#cb28-18" tabindex="-1"></a>  <span class="fu">filter</span>(hospital_of_interest),</span>
+<span id="cb28-19"><a href="04-hurricanes.html#cb28-19" tabindex="-1"></a>  <span class="at">col.regions =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb28-20"><a href="04-hurricanes.html#cb28-20" tabindex="-1"></a>  <span class="at">cex =</span> <span class="dv">6</span>,</span>
+<span id="cb28-21"><a href="04-hurricanes.html#cb28-21" tabindex="-1"></a>  <span class="at">layer.name =</span> <span class="st">&quot;Hospital Location&quot;</span></span>
+<span id="cb28-22"><a href="04-hurricanes.html#cb28-22" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb28-23"><a href="04-hurricanes.html#cb28-23" tabindex="-1"></a><span class="fu">mapview</span>(</span>
+<span id="cb28-24"><a href="04-hurricanes.html#cb28-24" tabindex="-1"></a>  hospital_buffer,</span>
+<span id="cb28-25"><a href="04-hurricanes.html#cb28-25" tabindex="-1"></a>  <span class="at">col.regions =</span> <span class="st">&quot;green&quot;</span>,</span>
+<span id="cb28-26"><a href="04-hurricanes.html#cb28-26" tabindex="-1"></a>  <span class="at">alpha.regions =</span> <span class="fl">0.1</span>,</span>
+<span id="cb28-27"><a href="04-hurricanes.html#cb28-27" tabindex="-1"></a>  <span class="at">layer.name =</span> <span class="st">&quot;Hospital Buffer (25km)&quot;</span></span>
+<span id="cb28-28"><a href="04-hurricanes.html#cb28-28" tabindex="-1"></a>)</span></code></pre></div>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-bfce970c78be64a35597" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-bfce970c78be64a35597">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-55.7125015,-55.7374878,-55.76245879999999,-55.7874069,-55.8123322,-55.83721920000001,-55.8620605,-55.8868561,-55.9115829,-55.9362488,-55.96083829999999,-55.98534009999999,-56.0097542,-56.0340652,-56.0582733,-56.08236309999999,-56.1063309,-56.1301727,-56.15387339999999,-56.1774254,-56.2008286,-56.22407150000001,-56.2471466,-56.2700462,-56.29276280000001,-56.3152924,-56.33762360000001,-56.35975269999999,-56.38166810000001,-56.4033699,-56.4248466,-56.4460907,-56.4670982,-56.4878616,-56.5083733,-56.5286293,-56.5486221,-56.56834410000001,-56.5877914,-56.6069565,-56.62583540000001,-56.6444206,-56.66270450000002,-56.6806831,-56.69835279999999,-56.71570970000001,-56.7327461,-56.7494545,-56.76583100000001,-56.7818718,-56.79757310000001,-56.8129272,-56.8279343,-56.8425827,-56.85687639999999,-56.87080380000001,-56.8843651,-56.89755630000001,-56.91037370000001,-56.92280959999999,-56.934864,-56.9465332,-56.9578133,-56.9687004,-56.9791946,-56.9892883,-56.99898150000001,-57.00827030000001,-57.0171585,-57.025631,-57.0336952,-57.04134750000001,-57.048584,-57.0554047,-57.06180190000001,-57.06778339999999,-57.0733414,-57.0784798,-57.0831909,-57.0874786,-57.0913353,-57.09476850000001,-57.0977745,-57.1003532,-57.1025009,-57.10421750000001,-57.10551069999999,-57.10636900000001,-57.1068039,-57.1068077,-64.5656128,-64.546257,-64.5243378,-64.49986269999998,-64.47286219999999,-64.44335939999998,-64.4113693,-64.3769302,-64.34003450000002,-64.30073550000002,-64.25904080000001,-64.21497339999999,-64.1685562,-64.1198349,-64.06880190000001,-64.01551060000001,-63.95996480000001,-63.90220260000001,-63.8422394,-63.7801208,-63.715847,-63.64946370000001,-63.58098980000001,-63.5104561,-63.43789289999999,-63.3633194,-63.28676609999999,-63.2082596,-63.1278343,-63.04550930000002,-62.9613228,-62.8752975,-62.78746030000001,-62.69784159999999,-62.60647199999999,-62.5133858,-62.41860200000001,-62.32215120000002,-62.22407149999999,-62.12438580000001,-62.0231209,-61.920311,-61.8159943,-61.71018220000001,-61.6029205,-61.49423220000001,-61.3841476,-61.27270129999999,-61.15991970000001,-61.04583360000001,-60.9304733,-60.8138733,-60.69606020000001,-60.57706450000001,-60.4569206,-60.3356667,-60.2133179,-60.08990860000001,-59.9654694,-59.8400459,-59.71365360000001,-59.5863266,-59.45810319999999,-59.3290024,-59.1990738,-59.0683289,-58.93680569999999,-58.80454640000001,-58.67156980000002,-58.5379105,-58.4036102,-58.26867679999999,-58.1331673,-57.997097,-57.86050419999999,-57.72341540000001,-57.5858765,-57.44789890000001,-57.30952839999999,-57.1707878,-57.0317192,-56.89234920000001,-56.7527046,-56.61282730000001,-56.47274019999999,-56.3324738,-56.19206999999999,-56.0515556,-55.91095729999999,-55.77031330000001,-55.6263084,-55.4789696,-55.3316841,-55.1844749,-55.0373878,-54.89044570000001,-54.7436829,-54.59713359999999,-54.4508362,-54.3048096,-54.1590996,-54.0137367,-53.8687439,-53.7241669,-53.5800323,-53.43637469999999,-53.2932243,-53.1506157,-53.00857930000001,-52.8671532,-52.7263603,-52.5862465,-52.4468307,-52.3081589,-52.1702538,-52.0331497,-51.8968773,-51.76147839999999,-51.626976,-51.4934082,-51.3608017,-51.22919460000001,-51.09861759999999,-50.969101,-50.84067540000001,-50.71337890000001,-50.5872383,-50.4622879,-50.33856200000001,-50.21609120000002,-50.09490200000001,-49.9750328,-49.85651400000001,-49.7393761,-49.62365340000001,-49.5093689,-49.3965683,-49.28527450000001,-49.1755219,-49.0673332,-48.9607506,-48.85580059999999,-48.7525177,-48.6509247,-48.5510597,-48.45295329999999,-48.35663219999999,-48.2621307,-48.16947560000001,-48.078701,-47.98983759999999,-47.9029083,-47.81794739999999,-47.734993,-47.65406040000001,-47.57518390000001,-47.49839780000001,-47.42372510000001,-47.35120010000001,-47.28084559999999,-47.21269610000001,-47.14677429999999,-47.0831108,-47.0217361,-46.96266939999998,-46.90594859999999,-46.85159300000001,-46.79963299999999,-46.7500954,-46.7030067,-46.6583862,-46.61626820000001,-46.5766678,-46.5396233,-46.5051498,-46.4732704,-46.4440117,-46.4174004,-46.3934517,-46.3721924,-53.5898972,-53.58958819999999,-53.5899162,-53.590889,-53.5925064,-53.59476849999999,-53.5976753,-53.60122680000001,-53.60541920000001,-53.61026,-53.61574549999999,-53.62186809999999,-53.62863540000001,-53.6360435,-53.6440887,-53.65277100000001,-53.6620903,-53.67204280000001,-53.68262480000001,-53.69383620000001,-53.70567699999999,-53.71813960000001,-53.7312202,-53.7449188,-53.7592316,-53.77415079999999,-53.78967669999999,-53.80580519999999,-53.82252879999999,-53.83984760000001,-53.8577538,-53.87624360000001,-53.8953094,-53.91495130000001,-53.935154,-53.95592500000001,-53.97724530000001,-53.99911880000001,-54.0215378,-54.044487,-54.06796650000001,-54.09196850000001,-54.11648939999999,-54.14151380000001,-54.1670418,-54.19306179999999,-54.21957020000001,-54.24655530000001,-54.2740059,-54.3019142,-54.33028030000001,-54.3590889,-54.38832859999999,-54.4179955,-54.44807429999999,-54.47856519999999,-54.5094528,-54.5407219,-54.57237240000001,-54.60438920000001,-54.6367645,-54.66948320000001,-54.70254139999999,-54.73592380000001,-54.76962279999999,-54.8036232,-54.83792109999999,-54.8725014,-54.90735240000001,-54.94245910000001,-54.97781749999999,-55.01340870000001,-55.0492325,-55.08526610000001,-55.12150189999999,-55.15793229999999,-55.1945343,-55.23130419999999,-55.26823040000001,-55.3052979,-55.342495,-55.3798103,-55.41723250000001,-55.45474240000001,-55.49234010000001,-55.5300026,-55.56772230000001,-55.6054878,-55.64328,-55.68109130000001,-55.7125015],"lat":[45.7981758,45.79786679999999,45.7972488,45.79631810000001,45.79508209999999,45.7935371,45.79168320000001,45.7895279,45.787056,45.78428270000001,45.7812042,45.77782440000001,45.77413940000001,45.770153,45.76586529999999,45.7612762,45.7563972,45.75121689999999,45.7457428,45.73997500000002,45.73391340000001,45.7275696,45.72093580000001,45.7140236,45.7068214,45.69934079999998,45.69158170000001,45.683548,45.67523960000001,45.66666790000002,45.65782170000001,45.64871220000001,45.6393394,45.62971499999999,45.61983109999999,45.60969539999999,45.599308,45.58867650000001,45.57780079999999,45.5666885,45.55534360000001,45.5437584,45.53194810000001,45.51991270000002,45.50766369999999,45.4951897,45.4825096,45.46961210000001,45.4565125,45.4432182,45.4297256,45.41603850000001,45.40215680000002,45.38810349999999,45.37385940000001,45.35945130000001,45.34486769999999,45.33012009999999,45.3152084,45.30014420000003,45.2849274,45.2695656,45.25405500000001,45.23841090000001,45.22263340000001,45.20673369999999,45.19070429999999,45.17456050000001,45.15830610000001,45.1419411,45.12547679999999,45.10891339999998,45.09225849999999,45.07551569999999,45.05869290000001,45.04178620000001,45.0248184,45.0077782,44.99068070000002,44.97352599999999,44.9563217,44.9390678,44.92177960000001,44.9044533,44.88709640000001,44.86972049999999,44.85232159999999,44.8349152,44.81749340000001,44.8000717,44.4002953,44.29104999999998,44.1820641,44.0733566,43.9649696,43.85692599999999,43.7492561,43.64199450000001,43.5351677,43.4288139,43.32294849999999,43.21761319999999,43.11283110000001,43.00863270000001,42.9050446,42.8020935,42.69981,42.5982208,42.49735260000001,42.39723969999999,42.29788970000001,42.19935229999999,42.10163120000001,42.00476839999999,41.90878300000001,41.81370540000002,41.7195473,41.6263466,41.5341187,41.4428902,41.352684,41.2635269,41.17543790000001,41.08843609999999,41.00254440000003,40.91778949999998,40.8341904,40.7517662,40.67054369999997,40.59053420000001,40.51175689999999,40.43424220000001,40.35799789999999,40.28304670000001,40.20941539999999,40.13710780000001,40.06614690000001,39.9965553,39.92834090000002,39.86153030000003,39.79613109999999,39.7321663,39.66963960000001,39.6085777,39.54899220000001,39.49089429999999,39.43429950000001,39.37922290000001,39.32567979999999,39.27367779999999,39.22322849999998,39.1743546,39.12704850000001,39.08134080000001,39.03722759999999,38.9947281,38.95384600000001,38.91460419999999,38.87699509999999,38.84103779999999,38.80673599999999,38.77409740000002,38.74313349999999,38.71385190000001,38.68625640000002,38.66035840000001,38.63615419999999,38.61365510000001,38.5928688,38.5737991,38.55644230000001,38.5408134,38.52691650000001,38.51474380000003,38.5043068,38.49560549999999,38.48863980000002,38.48341749999999,38.47993470000002,38.47819140000001,38.14546199999999,38.1472893,38.1509399,38.1564102,38.16370769999998,38.17282489999999,38.1837578,38.19650649999999,38.21107480000001,38.22744369999999,38.24562069999998,38.2656059,38.287384,38.3109512,38.33630749999999,38.36344909999999,38.39236070000003,38.4230423,38.45547870000001,38.48968119999999,38.5256195,38.5632973,38.60269549999999,38.64382169999999,38.68666080000001,38.7311935,38.7774162,38.82532120000003,38.87488560000001,38.92611309999999,38.978981,39.0334816,39.08959960000001,39.14732740000001,39.2066422,39.2675323,39.32999420000001,39.394001,39.45954129999998,39.52659610000001,39.59515760000001,39.66519929999999,39.7367172,39.8096809,39.88408280000001,39.9598961,40.0371094,40.11569980000002,40.1956558,40.276947,40.35956190000002,40.44348139999998,40.52867510000003,40.61513140000002,40.70282749999998,40.79173279999999,40.8818398,40.973114,41.06553650000001,41.15909190000001,41.25374599999999,41.3494759,41.4462662,41.54408650000001,41.6429062,41.74270629999999,41.8434639,41.94514849999997,42.0477371,42.15119929999999,42.25551219999999,42.36064150000001,42.466568,42.5732574,42.68068700000001,42.7888184,42.89764019999999,43.00710680000001,43.1171951,43.2278709,43.3391075,43.45088200000001,43.56315230000002,43.6758919,43.78906629999999,43.90265269999999,44.0166054,44.1309013,44.24550630000002,44.3603897,44.7936401,44.8197632,44.84589769999999,44.8720207,44.89812469999998,44.92420200000002,44.9502487,44.9762573,45.0022202,45.02812580000001,45.05396650000001,45.0797348,45.105423,45.13102720000001,45.15653229999999,45.18193439999997,45.20722960000001,45.2324028,45.2574425,45.2823563,45.30712130000002,45.3317375,45.35619740000001,45.38048930000001,45.40460969999999,45.42854689999999,45.45229719999999,45.4758568,45.49920649999999,45.52234649999999,45.5452652,45.5679665,45.5904312,45.6126556,45.6346321,45.65636060000002,45.67782589999999,45.6990242,45.719944,45.74058530000001,45.76093670000001,45.7810059,45.80076220000001,45.8202171,45.8393555,45.85818099999999,45.8766785,45.8948402,45.91267010000001,45.9301567,45.94729609999999,45.964077,45.9805031,45.99655909999999,46.012249,46.02756499999999,46.04249950000001,46.0570488,46.07120900000001,46.08497620000002,46.09834289999999,46.11130909999999,46.123867,46.13601679999999,46.147747,46.15905379999999,46.16994090000001,46.18040850000002,46.1904335,46.20003510000002,46.20920180000001,46.21791839999999,46.2262039,46.23403929999999,46.24142839999999,46.24836729999998,46.25484849999999,46.26088710000001,46.26646419999999,46.27157589999999,46.27623750000001,46.28043369999999,46.2841682,46.28743739999998,46.2902412,46.2925797,46.29445269999999,46.29585649999999,46.29679489999999,46.2972603,45.7981758]}]]],null,"Intersecting Hurricane (Michael)",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class= id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>storm_id&emsp;<\/th><td>AL142018&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"1",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":1,"opacity":0.9,"fillOpacity":0.84,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-64.5656128,38.14546199999999,-46.3721924,46.2972603,true,"Intersecting_Hurricane__Michael_","Zoom to Intersecting_Hurricane__Michael_","<strong> Intersecting_Hurricane__Michael_ <\/strong>","bottomright"]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["Intersecting Hurricane (Michael)"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"Intersecting Hurricane (Michael)"}]},{"method":"createMapPane","args":["point",440]},{"method":"addCircleMarkers","args":[44.3831672,-64.5105957,6,null,"Hospital Location",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"point","stroke":true,"color":"#333333","weight":1,"opacity":0.9,"fill":true,"fillColor":"#FF0000","fillOpacity":0.6},null,null,"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>survey_id&emsp;<\/th><td>1248&emsp;<\/td><\/tr><tr><td>2<\/td><th>survey_month&emsp;<\/th><td>10&emsp;<\/td><\/tr><tr><td>3<\/td><th>survey_year&emsp;<\/th><td>2018&emsp;<\/td><\/tr><tr><td>4<\/td><th>month_0&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>5<\/td><th>month_1&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>6<\/td><th>month_2&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>7<\/td><th>month_3&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>8<\/td><th>month_4&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>9<\/td><th>month_5&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>10<\/td><th>month_6&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>11<\/td><th>month_7&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>12<\/td><th>month_8&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>13<\/td><th>month_9&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>14<\/td><th>month_10&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>15<\/td><th>month_11&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>16<\/td><th>month_12&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>17<\/td><th>month_13&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>18<\/td><th>month_14&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>19<\/td><th>month_15&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>20<\/td><th>month_16&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>21<\/td><th>month_17&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>22<\/td><th>month_18&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>23<\/td><th>month_19&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>24<\/td><th>month_20&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>25<\/td><th>month_21&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>26<\/td><th>month_22&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>27<\/td><th>month_23&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>28<\/td><th>month_24&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>29<\/td><th>geometry&emsp;<\/th><td>sfc_POINT&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"1",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addHomeButton","args":[-64.5105957,44.3831672,-64.5105957,44.3831672,true,"Hospital_Location","Zoom to Hospital_Location","<strong> Hospital_Location <\/strong>","bottomright"]},{"method":"addLegend","args":[{"colors":["#FF0000"],"labels":["Hospital Location"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"Hospital Location"}]},{"method":"addPolygons","args":[[[[{"lng":[-64.30254370035701,-64.30569503727081,-64.3088464147267,-64.30692031135335,-64.31637519455457,-64.31444939059007,-64.3176012686214,-64.32075318711641,-64.32390514604917,-64.32197964172074,-64.32828401965251,-64.33458855912652,-64.33266352415755,-64.3358160239297,-64.33896856403514,-64.34212114444802,-64.34527376514238,-64.34334919994689,-64.34965490135708,-64.36147852505931,-64.36099759511491,-64.36178586738662,-64.36034303120535,-64.36349627270934,-64.36664955433835,-64.36980287606643,-64.37295623786765,-64.37610963971605,-64.37926308158568,-64.38241656345058,-64.38399331937316,-64.38303200044621,-64.38460880885096,-64.38364748029865,-64.38995498378162,-64.39626264693217,-64.4025704695426,-64.40887845140512,-64.41518659231188,-64.42149489205509,-64.42780335042681,-64.43411196721911,-64.43555189829802,-64.43634045457746,-64.43682039490413,-64.43918604661353,-64.44234028345485,-64.44549455977192,-64.44864887553874,-64.4518032307293,-64.45495762531759,-64.45811205927761,-64.46126653258335,-64.46318484237545,-64.47580244599044,-64.47676118149523,-64.4783383833978,-64.47929702415584,-64.48087419317443,-64.48402856056248,-64.48718296706338,-64.49033741265107,-64.49219405204528,-64.49229262392933,-64.492352512102,-64.49856260710666,-64.50487142976208,-64.50678706595133,-64.5099413647999,-64.5130957025284,-64.51501078872637,-64.52131923882314,-64.52227653291553,-64.52385362693911,-64.52481082625337,-64.52638788721801,-64.5295420381879,-64.53049905722366,-64.53207610446682,-64.53303302872192,-64.53776410016451,-64.5387208441155,-64.54029784447779,-64.54125449364557,-64.54283146088719,-64.545985424295,-64.54694189313311,-64.54851884651417,-64.54947522056652,-64.55420601012165,-64.55587931496736,-64.55627353261825,-64.5565125604939,-64.55927208214428,-64.56242585718695,-64.5643376422537,-64.57064496503361,-64.57255619971561,-64.57570974732958,-64.57762060284914,-64.58077401744603,-64.58265464421918,-64.58270391399097,-64.58273376354389,-64.58583777532186,-64.58679284991398,-64.58836946215047,-64.58932444195744,-64.59090102089603,-64.5940542073503,-64.59596375410754,-64.59911680727788,-64.60102597489548,-64.60417889471007,-64.60608768319895,-64.60924046958604,-64.61114887895712,-64.61430153184496,-64.61620956210926,-64.61936208142612,-64.62126973259463,-64.6244221182688,-64.62632939035257,-64.62948164231238,-64.63138853532249,-64.63454065349632,-64.63644716744382,-64.63740034659318,-64.63897629116737,-64.63992937555906,-64.64150528665608,-64.64293475165759,-64.64372267856788,-64.64419913024587,-64.64656289289886,-64.64846844129039,-64.65161998611173,-64.6544776624238,-64.65605332021245,-64.65700573238919,-64.65858135664193,-64.66048593967527,-64.66363704463892,-64.6655412487287,-64.66649327302846,-64.66806871081361,-64.66902064038551,-64.67059604459394,-64.67249966246717,-64.6756503272109,-64.67945659795271,-64.68260695662525,-64.68450960953676,-64.68641205528087,-64.68956210777522,-64.69336603454747,-64.69651578075668,-64.69841726182786,-64.70031853584844,-64.70346797566576,-64.70917004062569,-64.71231900223553,-64.71421910493858,-64.71611900073472,-64.71801868965072,-64.7211671729208,-64.72496558679545,-64.72876317349042,-64.73191100656396,-64.73380931806606,-64.73570742285848,-64.73760532096794,-64.73950301242124,-64.74140049724512,-64.74454750824948,-64.74644461475032,-64.75403097531152,-64.76066633090453,-64.76223912026643,-64.76318677888656,-64.7647595343786,-64.76665461100268,-64.76854948130142,-64.77044414530158,-64.77233860302987,-64.77423285451303,-64.77612689977778,-64.77802073885081,-64.77991437175889,-64.78180779852869,-64.78370101918696,-64.78559403376038,-64.78245042027081,-64.78434340043273,-64.79191326098338,-64.79947982665978,-64.79633779354782,-64.79822909192011,-64.80012018449115,-64.80201107128762,-64.80390175233619,-64.80579222766349,-64.80265108802682,-64.80454152918711,-64.80832179451551,-64.81210123736527,-64.8089609908584,-64.81085057539838,-64.81273995439359,-64.8146291278707,-64.8114894312765,-64.81715623316538,-64.81411518411922,-64.81417420876402,-64.81407611112917,-64.81590578080991,-64.81779426990778,-64.81968255363719,-64.81654395636784,-64.81843220611457,-64.82220808967379,-64.81907004181674,-64.82095784700199,-64.82284544694174,-64.82049219120617,-64.82096409124146,-64.8201796877855,-64.82348270385955,-64.82536985949719,-64.82223273871942,-64.82411986045823,-64.82600677707434,-64.82287003403781,-64.82475691676865,-64.82664359442492,-64.82350722903723,-64.82539387282178,-64.82382578892702,-64.82476907672122,-64.8257123132615,-64.82414432374865,-64.8260307286485,-64.82791692856992,-64.82478131820297,-64.82666748427972,-64.8285534454261,-64.8254182124311,-64.82730413974633,-64.82573662196999,-64.82667955155772,-64.82511208533514,-64.82605500646393,-64.82794069507919,-64.82558970463096,-64.82606112684343,-64.82527747844271,-64.82857715030914,-64.8254428779024,-64.82732829406714,-64.82576125651877,-64.82670393055071,-64.82513694452018,-64.82607961009795,-64.82984976058366,-64.82671624216012,-64.82860118125946,-64.8254678688135,-64.82735277411979,-64.82441548575125,-64.82453329554841,-64.82433747808774,-64.82610453912849,-64.82453808445489,-64.82548048617721,-64.82391408297856,-64.82485647624947,-64.8267411093412,-64.82360858544659,-64.82549318474281,-64.82392702133005,-64.82486928695791,-64.82330317499868,-64.82612979313411,-64.82299785160617,-64.82488217877382,-64.82175044299575,-64.82363473636546,-64.82128608553752,-64.82175715893081,-64.8209742903682,-64.82238746587298,-64.82082179931081,-64.82176389508392,-64.82019827993982,-64.82114036726031,-64.82302438858737,-64.8198934404914,-64.82177742801814,-64.81864668553023,-64.82053063924869,-64.81740010234073,-64.81928402224298,-64.8165449803907,-64.81678047466055,-64.81638918782082,-64.81992125873234,-64.81522633883182,-64.81616823095887,-64.81460331778047,-64.81742881558644,-64.81273451204396,-64.81367637032844,-64.81211166258933,-64.81493705888789,-64.81024337153512,-64.81118519596123,-64.80962069360528,-64.81244598834897,-64.80775291701765,-64.80869470756957,-64.80713041054075,-64.8099556036821,-64.80526314820405,-64.80620490486599,-64.80464081310821,-64.80746590459988,-64.80160111717503,-64.80183656062299,-64.80144558183287,-64.80309361529766,-64.79996595356309,-64.80184939920753,-64.79872194263224,-64.80060535434197,-64.797478102898,-64.7993614806651,-64.79623443432446,-64.79467092430018,-64.79561266421176,-64.79404920545829,-64.79499093687578,-64.7926458289346,-64.79311670739388,-64.79233501975504,-64.79374761051614,-64.79062100936106,-64.79250445520967,-64.78937805907523,-64.79126147092057,-64.78657219736542,-64.7875139542404,-64.78595092307017,-64.78689267143594,-64.78376672035107,-64.78565023401087,-64.78252448786397,-64.78440796746783,-64.78128242623093,-64.77854760645738,-64.77878306686574,-64.77839238317507,-64.78004053541616,-64.77691523418285,-64.77879881538391,-64.77567371900594,-64.77755726609846,-64.77130751814684,-64.77319120077289,-64.77006654917254,-64.76699075460951,-64.76702019079256,-64.76697136897297,-64.76882575081768,-64.76413914654219,-64.76508110633786,-64.76351896490088,-64.76446091614255,-64.76133674444286,-64.76322066363753,-64.7600966966572,-64.7569727649079,-64.75885681932802,-64.75573309227136,-64.75761711241965,-64.75137010289473,-64.74902751069904,-64.74949860036041,-64.74871775129174,-64.75013097564633,-64.74700772843703,-64.74889201869163,-64.74264596880798,-64.74108447841527,-64.74202675877061,-64.74046531952601,-64.74140759127934,-64.73828482391733,-64.74016938391732,-64.73392429367476,-64.73080180162754,-64.73268666550494,-64.72956437799003,-64.72644212589296,-64.72832712436433,-64.72520507677287,-64.71935133309282,-64.7195870043341,-64.71919676183074,-64.72084638993299,-64.71772461773595,-64.71460288103549,-64.71648831738014,-64.71024528840894,-64.70712382723353,-64.70900956672658,-64.70588830997885,-64.70276708880633,-64.69964590323441,-64.70153194565496,-64.69529001894247,-64.68914576161929,-64.6892047180926,-64.6891071914785,-64.69093474866604,-64.68781407883161,-64.68469344470175,-64.68157284630189,-64.67923242096511,-64.67970417571725,-64.67892404894641,-64.68033926848771,-64.67409858768671,-64.66785805011504,-64.66974550554977,-64.66662545900866,-64.66350544832676,-64.66038547352949,-64.65726553464221,-64.65414563169035,-64.65102576469927,-64.65291402705054,-64.64043559233434,-64.61548045556728,-64.59052763984285,-64.57805210642782,-64.57181455904161,-64.56869584026748,-64.56680304183634,-64.56368419204702,-64.56056537895385,-64.55744660258216,-64.55432786295727,-64.55120916010449,-64.5497887990673,-64.54900909768661,-64.54853560807305,-64.54307768957449,-64.53684020671304,-64.53589287521316,-64.53433348570294,-64.53338606140365,-64.53182663926901,-64.52870782273257,-64.52558904319429,-64.52247030067949,-64.52057471331884,-64.51433700477104,-64.51338896732059,-64.51182952154876,-64.51088139131394,-64.50932191300238,-64.50620298426267,-64.50525467759655,-64.50369518535646,-64.50213570242232,-64.50124654023077,-64.50114907040641,-64.50108979117093,-64.49806823959861,-64.49183030832579,-64.48993277122327,-64.48681369438681,-64.48586476578282,-64.48430519958863,-64.48335617821292,-64.47555827864684,-64.47365966511755,-64.47054040376506,-64.4688788034001,-64.46848888009514,-64.468251493254,-64.46552202827709,-64.46240267495901,-64.46050315224326,-64.45738366950518,-64.45643374812187,-64.4548739791187,-64.45392396496905,-64.4492445892473,-64.44734415741161,-64.44422445379315,-64.44279887075457,-64.44201891944945,-64.44154368915353,-64.43920381811462,-64.43825325664631,-64.43669331271012,-64.43574265847326,-64.43418268227221,-64.43106275827888,-64.42916104632648,-64.4260409933639,-64.4241389103381,-64.42101872847654,-64.41923518373343,-64.41904016385278,-64.41892125383534,-64.41287569103636,-64.40954532095388,-64.40876518576955,-64.40828935711473,-64.40282840459994,-64.39925873537521,-64.39886863272733,-64.3986306266281,-64.39589990658057,-64.39399559691324,-64.39087464313559,-64.38896996232809,-64.38584888014427,-64.38394382818716,-64.3808226176677,-64.37891719455158,-64.37796440630737,-64.37640369044239,-64.37545080940106,-64.37389006148247,-64.37198406266729,-64.36886242904107,-64.36600279728844,-64.36444186994468,-64.36348851540563,-64.36192755604874,-64.36002061019239,-64.35689855382027,-64.35499123670768,-64.3540375014009,-64.35247636275891,-64.35152253463072,-64.3499613640161,-64.3480534709358,-64.34493099217909,-64.34111425865116,-64.33799148555943,-64.33608264507269,-64.33417359977213,-64.33105053245363,-64.3272314942172,-64.32579914359113,-64.32501826835198,-64.32454078212091,-64.32219813980545,-64.32028794190514,-64.31837753905346,-64.31525371709721,-64.31334294275487,-64.30952077902279,-64.30639649668558,-64.30448494074354,-64.30257317971264,-64.30066121356693,-64.29970515356794,-64.29814273574455,-64.29718658283346,-64.29562413321352,-64.29179884212807,-64.28845103904926,-64.28766966184925,-64.28719134254727,-64.28484719451718,-64.28293366414883,-64.2810199284763,-64.27910598747367,-64.27719184111498,-64.2752774893743,-64.27384159077124,-64.27305997371552,-64.27258130476447,-64.27023643723305,-64.2664063736427,-64.26257548809352,-64.25874378037787,-64.25491125028803,-64.25107789761624,-64.24724372215466,-64.24340872369545,-64.23957290203067,-64.23573625695242,-64.23189878825265,-64.22997974497969,-64.23310973688213,-64.23119065418766,-64.22927136548761,-64.22735187075595,-64.22543216996667,-64.22351226309374,-64.22159215011112,-64.21967183099281,-64.222803029204,-64.21512035733062,-64.21668630481551,-64.21572578048236,-64.21729177972148,-64.21633124548535,-64.21441002229658,-64.2124885927974,-64.21056695696174,-64.21291641227901,-64.21243600233133,-64.21321916957645,-64.20985601171292,-64.20601162867709,-64.20914494814144,-64.20722261367681,-64.20530007272683,-64.20337732526549,-64.20651118551589,-64.20458839828837,-64.20074220412786,-64.20387660532407,-64.20195336514674,-64.20002991833512,-64.20238099612183,-64.20190013341103,-64.20268384151348,-64.1993175138507,-64.19739361382771,-64.20052893051766,-64.19860499063689,-64.19668084399882,-64.19981653516746,-64.19404335518935,-64.19717958787007,-64.19525494780933,-64.19760727428678,-64.19712611325463,-64.19791023761135,-64.1964667082415,-64.19261672757581,-64.19575370973241,-64.1938285759922,-64.19676969041168,-64.19664937246831,-64.19684544869061,-64.19504059230502,-64.19311521162869,-64.1962527765497,-64.19432735592146,-64.19240172824475,-64.19553966818823,-64.19361400054386,-64.195183069397,-64.19422019969728,-64.19578932055012,-64.19482644085916,-64.19290052613438,-64.19594096976076,-64.19588078664866,-64.19597886627731,-64.19218693265512,-64.19532583100882,-64.19339962914684,-64.19575395516861,-64.19527240368149,-64.19605719458764,-64.19461249377461,-64.19268604468776,-64.195825526574,-64.19389903748566,-64.19625380121964,-64.19577217792644,-64.19655711474365,-64.19318546210403,-64.19632552775853,-64.19439875135463,-64.19753902530464,-64.19561220889686,-64.1971824449145,-64.19621900078849,-64.19778928889265,-64.19682583476636,-64.19489877095764,-64.1980396289987,-64.19611252517706,-64.19925359162949,-64.19732644780163,-64.19968240012936,-64.19920061315625,-64.19998594618893,-64.19661314754217,-64.1997547984087,-64.19782736706864,-64.20096922646246,-64.19904175511385,-64.20218382306392,-64.20025631171346,-64.2033985882487,-64.20147103690314,-64.20422070916653,-64.20397976898468,-64.20437258448996,-64.20268593071854,-64.20504294721886,-64.2045610483776,-64.20534673614863,-64.20390099319536,-64.205472439302,-64.20450858769296,-64.20608008597304,-64.20511622436928,-64.20668777482646,-64.20572390322882,-64.2072955058667,-64.20633162427602,-64.2079032790982,-64.20693938751535,-64.20851109452548,-64.20754719295125,-64.20911895215296,-64.20815504058825,-64.20972685198512,-64.20876293043074,-64.21033479402645,-64.20937086248324,-64.21094277828138,-64.20997883675021,-64.21155080475441,-64.21058685323611,-64.21215887344998,-64.2111949119454,-64.21276698437258,-64.21180301288256,-64.21337513752667,-64.21241115605204,-64.21398333291671,-64.21301934145833,-64.2145915705472,-64.21362756910591,-64.21598599492512,-64.21550400620352,-64.21629016376367,-64.21484415114277,-64.21720273366172,-64.21672073496185,-64.21750694475706,-64.21606090219844,-64.21910761139493,-64.21904736216923,-64.21914564391571,-64.21727782230867,-64.22042302207855,-64.21849491150927,-64.22164032029917,-64.21971216983607,-64.222857787675,-64.22092959732485,-64.22564835307259,-64.22468430598319,-64.2262572870888,-64.22336495993183,-64.22965749124019,-64.22772934944729,-64.23087584476026,-64.23244910777896,-64.23148508502938,-64.23305840034472,-64.23209436764387,-64.2344544229064,-64.23397241859914,-64.23475911932179,-64.23331305992687,-64.23646001461803,-64.23453192164519,-64.239252682912,-64.2382886846337,-64.23986233427584,-64.23889832605873,-64.24204574021748,-64.24011773606543,-64.24326535953395,-64.24483918661058,-64.2438752327904,-64.24544911219986,-64.24448514845163,-64.24763302216739,-64.2457051070065,-64.25042724696408,-64.24946333768726,-64.25103744690875,-64.25007352771465,-64.25322186107681,-64.25129403507761,-64.2544425778653,-64.25719758632003,-64.25695663294145,-64.25735021076483,-64.2556634644571,-64.25881225755505,-64.25688452088818,-64.2631825668805,-64.26125495928858,-64.26440421221174,-64.26755350593825,-64.26562602751255,-64.27192507482491,-64.26999772565675,-64.2731474792714,-64.27629727363708,-64.27437005381782,-64.28067010247142,-64.27874301209242,-64.28189326640911,-64.28504356142449,-64.28311660057719,-64.28941765059297,-64.29099293850915,-64.29002959120263,-64.29160493153816,-64.29064157439797,-64.29379237007346,-64.29694320636935,-64.2950166739532,-64.29816771996258,-64.30289436508271,-64.30193123214876,-64.30350684309897,-64.30254370035701],"lat":[44.55475788535757,44.55551597244493,44.55627396288079,44.55827550224579,44.56054921379499,44.56255111992355,44.56330893714559,44.56406665767069,44.56482428149351,44.5668265543697,44.56834172530827,44.56985650933628,44.57185925564485,44.57261660924547,44.57337386609309,44.57413102618239,44.57488808950806,44.57689130919462,44.57840535885943,44.58124315844147,44.58174412396826,44.58193326886983,44.58343620296677,44.58419280203422,44.58494930427678,44.58570570968912,44.58646201826597,44.58721823000203,44.58797434489202,44.58873036293063,44.58910833562903,44.59011070606186,44.59048868118713,44.59149108996818,44.5930028548579,44.59451423221992,44.59602522201205,44.59753582419214,44.59904603871805,44.60055586554772,44.6020653046391,44.60357435595021,44.60206946923972,44.60225805343248,44.60175642375914,44.60232212002987,44.60307629689137,44.6038303767963,44.60458435973943,44.60533824571552,44.60609203471937,44.60684572674574,44.6075993217894,44.60559200818715,44.60860499319723,44.60760114149005,44.60797762892979,44.60697376246449,44.60735019908867,44.60810299959012,44.60885570309137,44.60960830958724,44.60766299170522,44.60768650587931,44.60762375432503,44.60910494978054,44.61060927126057,44.60860082447575,44.60935273351812,44.610104545543,44.6080959338414,44.60959905455794,44.60859466036995,44.60897035338405,44.60796594453499,44.6083415867697,44.60909279847412,44.60808832192918,44.60846386487881,44.60745937369128,44.60858577746037,44.60758121861178,44.60795661151253,44.60695203803981,44.60732738017714,44.60807799168563,44.6070733505867,44.60744859345415,44.60644393774954,44.60756944131892,44.60581118336369,44.60590495388265,44.60565377549543,44.60631011509189,44.60706012652935,44.60505052756547,44.60655004748618,44.60454028435169,44.60528979286699,44.60327997155085,44.60402927716022,44.60205080171212,44.60206250721421,44.6020311031893,44.60276850044415,44.60176352570716,44.60213801423208,44.60113302498277,44.60150746279704,44.60225626566724,44.60024616429721,44.60099476434891,44.59898460502293,44.59973300228385,44.5977227850525,44.59847097955032,44.59646070446421,44.59720869622664,44.59519836333635,44.59594615239112,44.59393576174723,44.59468334812206,44.59267289977516,44.59342028349776,44.59140977749843,44.59215695859656,44.59014639499536,44.58914113121348,44.58951460618341,44.58850932801567,44.58888275234425,44.58737481803131,44.58756150130783,44.58705885594912,44.58761884962342,44.58560821907702,44.58635468691118,44.58333867301184,44.583711791421,44.58270645114981,44.58307951894425,44.58106882177774,44.58181477916236,44.57980402470135,44.57879866555101,44.57917152878749,44.57816615532811,44.57853896796959,44.57652820450789,44.57727365166075,44.57325205868921,44.57399719810965,44.57198636867758,44.56997558757055,44.57072041934652,44.56669879147707,44.56744331569653,44.56543246901185,44.5634216707339,44.5641658874848,44.55813346744154,44.55887727157324,44.55686645659845,44.55485569012556,44.55284497216815,44.553588363856,44.54956686320654,44.54554555683615,44.54628843113159,44.54427774572463,44.5422671089417,44.54025652079635,44.53824598130211,44.53623549047251,44.5369777426194,44.53496719543543,44.5269254938879,44.51988964497085,44.52026028862727,44.5192551899183,44.51962578318287,44.51761556993278,44.51560540552315,44.51359528996748,44.51158522327921,44.50957520547185,44.50756523655888,44.50555531655374,44.50354544546992,44.50153562332086,44.49952585012005,44.49751612588092,44.49677606834229,44.49476649782879,44.48672870565911,44.47869169794919,44.47795248621517,44.4759434615979,44.47393448606291,44.47192555962359,44.46991668229336,44.46790785408563,44.46716906899663,44.46516039450407,44.46114319293947,44.45712618802489,44.45638782934179,44.45437950518262,44.45237123021253,44.45036300444491,44.44962486296284,44.44360079443689,44.44288593168904,44.4428231864694,44.44280012497834,44.44085505017944,44.43884727950505,44.43683955808621,44.43610185082652,44.43409428310392,44.43007929547803,44.42934180523968,44.42733448975932,44.42532722357409,44.42477419935056,44.4242724100799,44.42408806317211,44.42057567023057,44.41856865636228,44.41783149563946,44.41582463545358,44.41381782460238,44.4130807764225,44.41107411924922,44.4090675114237,44.40833057577558,44.40632412162351,44.40595566991779,44.40495248742858,44.40394931727954,44.40358089370476,44.40157464258247,44.39956844083409,44.39883173021602,44.39682568213207,44.39481968343508,44.39408308531529,44.39207724027822,44.39170895733727,44.39070607940708,44.39033779852505,44.38933495900848,44.38732931702683,44.38677696798082,44.38627558475105,44.38609146291763,44.38258191238373,44.3818455474712,44.37984026220007,44.37947209586654,44.37846949781922,44.37810133355038,44.37709877391335,44.37308865894565,44.3723525189642,44.37034763983728,44.36961150812318,44.36760678262949,44.36691666971747,44.36679138212042,44.36674537200304,44.36486608732837,44.36449804174008,44.36349580039472,44.3631277568795,44.36212555394001,44.36012118515094,44.35938518247048,44.3573809673015,44.35701298209475,44.35601091909663,44.35564293596713,44.35263689928319,44.35190101737053,44.34989715889226,44.34916128530111,44.34715758042976,44.34660569046613,44.34610479150286,44.34592082271563,44.34441816390175,44.34405024741591,44.34304851636506,44.34268060196581,44.34167890931425,44.33967556111963,44.33893981667332,44.33693662207241,44.33620088598497,44.33419784497345,44.33346211725524,44.33145922982881,44.33081548064184,44.33056513457861,44.33047316605352,44.32671809228665,44.32561464611293,44.32461340055673,44.32424556334427,44.32124197897094,44.32013855801203,44.31913746602353,44.31876963722834,44.31576651355124,44.31466311786904,44.31366217943961,44.31329435908233,44.31029169607543,44.30918832573185,44.30818754085281,44.30781972895406,44.30481752659135,44.30371418164822,44.30271355031088,44.30234574689126,44.29934400514669,44.29796482220576,44.29771470647243,44.29762275062593,44.29587197351919,44.29513636405365,44.29313562636381,44.29240002542218,44.29039944125238,44.28966384884493,44.2876634181908,44.28692783432783,44.28656000658995,44.28555988784368,44.28519206224654,44.28419198187679,44.28364023774412,44.28314022170392,44.28295630156245,44.28145629149774,44.28072062930032,44.27872076319658,44.27798510958878,44.27598539697922,44.27488189368427,44.27388213394971,44.27351427781724,44.27251455645381,44.27177882464962,44.26977952304215,44.2690437998727,44.26704465174222,44.26630893721777,44.26566510877307,44.26541524311547,44.26532326328834,44.26357423669069,44.26283843546285,44.26083969829735,44.26010390574933,44.2581053220436,44.25663365900247,44.25463533277764,44.25389946230909,44.25317499673265,44.25314377650316,44.2531322763304,44.25116542778749,44.25006145650147,44.24906251868092,44.24869450661972,44.24769560715748,44.24695956359888,44.24496190575656,44.2442258709719,44.24348974093382,44.24149234055464,44.24075621931502,44.23875897235293,44.23728665227111,44.23673443404779,44.23623520155225,44.23605112341317,44.23455346394284,44.23381716992436,44.23182043786215,44.23034777235901,44.22997954649625,44.22898132903583,44.22861310539565,44.22761492628182,44.2268784596592,44.22488224248419,44.2234092319091,44.22267258391155,44.22067672824491,44.21994008919283,44.21920335502156,44.21720775679582,44.21647103159449,44.21508941552157,44.21484000661427,44.21474788861592,44.21300205919815,44.21226515281039,44.21152815134668,44.20953317208787,44.20805909217005,44.2073219096309,44.20532729191802,44.2045901184508,44.2038528499509,44.20311548642323,44.20112123027292,44.19964642643035,44.19819429524314,44.19813198844687,44.19810893587854,44.19617745215008,44.19543982188576,44.1947020966419,44.19396427642339,44.19341084893537,44.19291250666064,44.19272802547174,44.19123303659452,44.18975712970097,44.1882808430251,44.18628798422176,44.18554980268319,44.18481152622319,44.18407315484669,44.18333468855864,44.18259612736396,44.18185747126759,44.1798652868243,44.17691013056895,44.17099526473122,44.16507432991023,44.16211158742826,44.16062964755929,44.15988853548534,44.16187790196257,44.16113659063635,44.16039518455291,44.15965368371725,44.15891208813441,44.1581703978094,44.15966206259061,44.15947660560261,44.15997382672976,44.1586754162688,44.15719116333941,44.1581854185989,44.15781427001005,44.15880851123724,44.15843731281244,44.15769484491561,44.15695228229334,44.15620962495068,44.15819777751658,44.15671196936052,44.15770595912222,44.15733442171342,44.15832839739533,44.15795681013292,44.1572135645697,44.15820747380982,44.15783578933064,44.15746408117256,44.15839583296848,44.15837259888823,44.15843471594982,44.15771441041349,44.15622704684278,44.15821450672728,44.15747057811082,44.15846427375902,44.15809224773751,44.15908592924604,44.15722531297784,44.15921245010685,44.15846793303028,44.16020662579596,44.16011354303367,44.16036192908586,44.15971029684386,44.15896548549216,44.16095240434222,44.16020739339333,44.16120081840962,44.16082825119178,44.16182166200186,44.16070373959112,44.16269043986404,44.16194493492411,44.16343491293942,44.16324850222458,44.16374516100527,44.16318587365915,44.16417916085488,44.16380624677858,44.16479951972528,44.1644265557199,44.16368055667039,44.16566698103001,44.16492078224101,44.16690714951317,44.16616075095789,44.1680229153062,44.16797625609514,44.16810040147155,44.16665376967007,44.17012955982354,44.16994282577133,44.1704393726155,44.16913202247358,44.1728558741028,44.17276245620385,44.17301071731094,44.17235673906471,44.17434276277164,44.17359516505638,44.17558113132899,44.1748333336601,44.17681924244881,44.17607124479955,44.17805709605481,44.17905003956445,44.17867592626628,44.17966885537822,44.17929469207068,44.18128053339916,44.18053203042011,44.18351072378044,44.18313635776669,44.18412925302884,44.18375483698669,44.18574061053575,44.18499160201566,44.18697731777914,44.18797019349255,44.18759557465765,44.18858843591033,44.188213767028,44.19019947247829,44.18944995820601,44.19342130076493,44.19267148081416,44.19465711784623,44.19664280231977,44.19589267660484,44.19986397682342,44.20135326327976,44.20116564449486,44.20166207264045,44.20109916092719,44.20308482395645,44.20507053433315,44.20431969126764,44.20630534339936,44.21027678957059,44.20952553483257,44.21151122321645,44.21349695885361,44.2154827417306,44.21647565087986,44.21609980303482,44.21709269756905,44.21671679957315,44.22068839000761,44.22416368642644,44.22397562942033,44.22447210551727,44.22390787906367,44.2258937335957,44.22787963524642,44.22986558400237,44.23185157985007,44.23383762277609,44.23532718585766,44.23513894642578,44.23563546672045,44.23507069295392,44.23904280237053,44.24301509983065,44.24698758522644,44.25096025845003,44.25493311939348,44.25890616794879,44.26287940400792,44.26685282746276,44.27082643820515,44.27480023612689,44.27678720524617,44.27754245067889,44.2795295726837,44.2815167414428,44.28350395694262,44.28549121916963,44.28747852811026,44.28946588375097,44.2914532860782,44.29220917945156,44.30015968030514,44.30053780372783,44.301531695379,44.30190982153874,44.30290375141391,44.30489164613675,44.30687958747829,44.30886757542498,44.30943499896566,44.30993202316476,44.3101211590698,44.31360045651057,44.31757697110597,44.31833385383081,44.32032228731451,44.32231076734898,44.3242992939206,44.32505640032255,44.32704507980245,44.33102257831928,44.33177990846045,44.33376883388654,44.33575780580893,44.33632590039148,44.33682317059125,44.33701253016838,44.34049354947872,44.34248276726995,44.34324043860981,44.34522980932259,44.34721922649074,44.34797701524033,44.35394586483418,44.35470387750816,44.35669369340239,44.3572622200683,44.35775970126646,44.35794920486373,44.35944168583755,44.36342176272495,44.36418001031642,44.36617022489957,44.36688109505664,44.3670054912516,44.36705288002302,44.36891885093851,44.37090926485215,44.37166764083604,44.37365820769755,44.37564882093232,44.3764073144002,44.3783980805872,44.37877734473279,44.37977277186096,44.38015203873037,44.38114750409798,44.38313846960111,44.38387338597472,44.38393560762096,44.38395931320922,44.38787937473286,44.38863811409363,44.39062943186882,44.39119850352503,44.39169636020257,44.39188604544911,44.39337965285215,44.39537116992901,44.39613003767707,44.39812170772795,44.39869087566631,44.39918882041483,44.39937853775203,44.40286427871453,44.40362327484058,44.40561529717076,44.40637430414267,44.40836647945994,44.40874600034495,44.40974213204008,44.41012165563301,44.41111782557627,44.41311020018926,44.41386933551391,44.41586186312266,44.41662100926704,44.41861368987594,44.41918306658231,44.41968126397609,44.41987105089272,44.42335856034693,44.42411783481873,44.4261108677312,44.42687015299657,44.42886333892218,44.4296226349709,44.431615973914,44.43237528073588,44.43436877270081,44.43503318083678,44.43528238226165,44.43537729337833,44.43712173527675,44.43769124052996,44.43818967902462,44.43837950878061,44.43987486163595,44.44025454317782,44.44125148623245,44.44163117045893,44.44262815177253,44.44300783868238,44.44400485825551,44.44438454784743,44.44538160568062,44.44576129795334,44.44675839404714,44.44713808899937,44.44813522335433,44.4485149209848,44.44951209360143,44.44989179390888,44.45088900478775,44.45126870777086,44.45226595691251,44.45264566257004,44.45364294997499,44.45402265830565,44.45501998397446,44.45539969497695,44.45639705891016,44.45677677258323,44.45777417478138,44.45815389112372,44.45915133158734,44.4595310505977,44.46052852932734,44.46090825100443,44.46190576800061,44.46247534550211,44.46297412836178,44.46316398218652,44.46466036814406,44.46522995363475,44.46572877476261,44.46591863124885,44.46741513201174,44.46815084672438,44.46821320472085,44.46823693605527,44.47017005959773,44.47092951617045,44.4729251508961,44.47368461808851,44.47568040590089,44.47643988370272,44.47843582460615,44.4795750211246,44.48057308904134,44.4809527998039,44.48394715309426,44.48546607597964,44.48746258300211,44.48822200687263,44.4886016827063,44.48960003369053,44.48997971215795,44.49097810142169,44.49154761404444,44.49204683304514,44.49223666522554,44.49373435962081,44.49449370826675,44.49649078146402,44.49762978407509,44.49862841815465,44.49900806423395,44.50000673659735,44.50076600991348,44.50276349619833,44.50352277998739,44.50390238574877,44.50490122637678,44.50528083475171,44.50627971366679,44.50703891154783,44.50903681094565,44.5101755872775,44.51117463446665,44.51155420508454,44.51255329056399,44.51331241290461,44.51531072544071,44.51606985818371,44.51673402023497,44.51698383759586,44.51707871353096,44.51882746702353,44.51958651371839,44.52158523941804,44.5231032570816,44.5251022427798,44.52586121372349,44.52662008818685,44.5286193338873,44.53013700694767,44.532136512654,44.53289531122598,44.5336540132775,44.53565377899337,44.53717110708982,44.53917113281886,44.53992975883873,44.54068828829804,44.54268857404387,44.54420555681556,44.54458474214391,44.54558503591404,44.54596422378825,44.54696455586912,44.54772291255576,44.54848117263635,44.55048208519934,44.55124035543199,44.55237757960534,44.55337818677518,44.55375723987162,44.55475788535757]}]]],null,"Hospital Buffer (25km)",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#00FF00","fillOpacity":0.1,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>survey_id&emsp;<\/th><td>1248&emsp;<\/td><\/tr><tr><td>2<\/td><th>survey_month&emsp;<\/th><td>10&emsp;<\/td><\/tr><tr><td>3<\/td><th>survey_year&emsp;<\/th><td>2018&emsp;<\/td><\/tr><tr><td>4<\/td><th>month_0&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>5<\/td><th>month_1&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>6<\/td><th>month_2&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>7<\/td><th>month_3&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>8<\/td><th>month_4&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>9<\/td><th>month_5&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>10<\/td><th>month_6&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>11<\/td><th>month_7&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>12<\/td><th>month_8&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>13<\/td><th>month_9&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>14<\/td><th>month_10&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>15<\/td><th>month_11&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>16<\/td><th>month_12&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>17<\/td><th>month_13&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>18<\/td><th>month_14&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>19<\/td><th>month_15&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>20<\/td><th>month_16&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>21<\/td><th>month_17&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>22<\/td><th>month_18&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>23<\/td><th>month_19&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>24<\/td><th>month_20&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>25<\/td><th>month_21&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>26<\/td><th>month_22&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>27<\/td><th>month_23&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>28<\/td><th>month_24&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>29<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"1",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":1,"opacity":0.9,"fillOpacity":0.14,"bringToFront":false,"sendToBack":false}]},{"method":"addHomeButton","args":[-64.82984976058366,44.15620962495068,-64.19218693265512,44.61060927126057,true,"Hospital_Buffer__25km_","Zoom to Hospital_Buffer__25km_","<strong> Hospital_Buffer__25km_ <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],["Intersecting Hurricane (Michael)","Hospital Location","Hospital Buffer (25km)"],{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#00FF00"],"labels":["Hospital Buffer (25km)"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"Hospital Buffer (25km)"}]},{"method":"addHomeButton","args":[-64.82984976058366,38.14546199999999,-46.3721924,46.2972603,true,null,"Zoom to full extent","<strong>Zoom full<\/strong>","bottomleft"]}],"limits":{"lat":[38.14546199999999,46.2972603],"lng":[-64.5656128,-46.3721924]},"fitBounds":[38.14546199999999,-64.82984976058366,46.2972603,-46.3721924,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\"position\":\"relative\",\"bottomleft\":\"0px\",\"background-color\":\"rgba(255, 255, 255, 0.7)\",\"box-shadow\":\"0 0 2px #bbb\",\"background-clip\":\"padding-box\",\"margin\":\"0\",\"padding-left\":\"5px\",\"padding-right\":\"5px\",\"color\":\"#333\",\"font-size\":\"9px\",\"font-family\":\"\\\"Helvetica Neue\\\", Arial, Helvetica, sans-serif\",\"text-align\":\"left\",\"z-index\":\"700\"});\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="03-floods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="05-heat.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+```{r setup-introduction, include=FALSE}
+knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_project')
+```
+
+
+# Case Study
+
+In the following examples, we will be using a random selection of hospitals from the [Open Database of Hospital Facilities in Canada](#../index.Rmd/datasets "Datasets"). Hospitals frequently house at-risk populations of individuals, and are an interesting point to make a case study demonstrating this workflow. 
+
+We are imagining that the hospital administration delivered a survey to all employees that had worked at each location for a minimum of two years. This data is then being analyzed by us, to determine the impact of environmental exposures in the past two years. 
+
+```{r}
+odhf_valid <- read.csv("./data/odhf_hospitals.csv", row.names = 1)#read in data
+
+odhf_display <- odhf_valid %>% 
+  select("lat","long","facility_name","postalcode","survey_month","survey_year") %>% #select desired columns
+  st_as_sf(coords=c("long", "lat"), crs=st_crs(4326)) %>% #change to sf object
+  mutate(across(where(is.character), ~ iconv(.x, from = "", to = "UTF-8", sub = ""))) #fix encoding problem
+
+odhf_display <- st_transform(odhf_display, 3978)#projected coordinate system
+
+mapview(odhf_display, layer.name="Hospitals")#show on map
+```
+

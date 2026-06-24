@@ -1,8 +1,13 @@
 book_filename: "my_book"
 rmd_files:
   - "index.Rmd"
-  - "chapters/01-getting-started.Rmd"
-  - "chapters/02-spatial-data.Rmd"
-  - "chapters/03-locating-and-refining-environmental-data.Rmd"
+  - "chapters/01-introduction.Rmd"
+  - "chapters/02-wildfires.Rmd"
+  - "chapters/03-floods.Rmd"
+  - "chapters/04-hurricanes.Rmd"
+  - "chapters/05-heat.Rmd"
+  - "chapters/06-pm_25.Rmd"
+  - "chapters/AA-00-appendix.Rmd"
+  - "chapters/AA-01-references.Rmd"
 new_session: false
 output_dir: "docs"
