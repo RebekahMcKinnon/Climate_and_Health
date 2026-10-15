@@ -4,7 +4,7 @@ knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_proj
 
 # Heat {#heat}
 
-Huge swings in temperature are becoming more and more common when comparing seasonal highs and lows. It is much harder to stay cool in heat...
+Significant heat events happen every year across Canada. These heat events have deadly potential and can be disruptive to livelihoods and day-to-day activities.
 
 ## Environmental Data Preparation {#heat-data-preparation}
 
@@ -59,6 +59,10 @@ survey_sf <- survey_sf %>% rename(station_id=near_station_id)
 
 Here, we get the data from the `weathercan` package.
 
+::: {.rmdnote}
+Depending on the date range of the data, this next chunk can take some time to complete.
+:::
+
 ```{r get-weather-data, eval=FALSE}
 #query the package for every station that was identified
 hourly_station_ids <- filter(survey_sf, station_interval == "hour") %>% pull(station_id)
@@ -86,7 +90,7 @@ write_parquet(combined_hourly_daily, r"(./data/odhf_weather_stations.parquet)")
 
 ## Heat ECCC {#heat-daily-eccc}
 
-Environment and Climate Change Canada has their own criteria for extreme heat events around the country. Using a rough sketch of the [criteria map](http://www.canada.ca/en/environment-climate-change/services/environmental-indicators/extreme-heat-events.html), we can relate the hospital data to the temperature data.
+Environment and Climate Change Canada has their own criteria for extreme heat events around the country. Using a rough sketch of the [criteria map](https://www.canada.ca/content/dam/eccc/documents/pdf/cesindicators/extreme-heat-events/2025/extreme-heat-events.pdf "Extreme Heat Events Report"), we can relate the hospital data to the temperature data.
 
 ```{r heat-combined-daily-eccc, results='hide', warning=FALSE, message=FALSE}
 combined_hourly_daily <- read_parquet(r"(./data/odhf_weather_stations.parquet)")
@@ -332,7 +336,7 @@ write.csv(heat_summary_matrix_arb, r"(./data/heat_matrix_dayCriteria.csv)")
 Display a snippet of the arbitrary heat summary matrix.
 
 ```{r arb-summary-matrix}
-kable(head(heat_summary_matrix_arb),'html') %>%
+kable(tail(heat_summary_matrix_arb),'html') %>%
   kable_styling(full_width = FALSE) %>%
   scroll_box(height = "300px")
 ```

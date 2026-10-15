@@ -1,4 +1,3 @@
-tab:fire-summary-matrix
 tab:hurricane-matrix-snippet
 introduction
 purpose

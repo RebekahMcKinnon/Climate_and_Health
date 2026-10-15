@@ -6,11 +6,11 @@ knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_proj
 
 ## Survey Data Generation
 
-From the Open Database of Hospitals, only facilities designated as "Hospitals" were selected to limit the final dataframe size and ease the volume of calculations in later steps. Survey dates were assigned randomly using a set seed for reproducibility. 
+Survey data was generated using the Open Database of Hospitals. Only facilities designated as "Hospitals" were selected to limit the final dataframe size and ease the volume of calculations for each exposure. Survey dates were assigned randomly using a set seed for reproducibility. 
 
 ```{r sample-data-generation, eval=FALSE}
 #generation of data based on entries in the hospital data 
-#if there are 20 hospitals, make 20 random months for survey between 1 and 12 and random years choosing between 2016 and 2020
+#if there are 20 hospitals, make 20 random months for survey between 1 and 12 and random years choosing between 2018 and 2021
 #https://www150.statcan.gc.ca/n1/en/pub/13-26-0001/2020001/ODHF_v1.1.zip
 #make sure the latitude and longitude columns exist and that there is an id column as well
 #set a random seed

@@ -4,20 +4,18 @@ knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_proj
 
 # Hurricanes {#hurricanes}
 
-Hurricanes are a consistent coastal threat that is increasingly exacerbated by climate change...
+Hurricanes are a consistent coastal threat that is increasingly exacerbated by climate change. Hospitals on the east coast of Canada are threatened by exposure to hurricane events that bring damaging wind, power outages, and extreme rain.
 
 ## Environmental Data Retreival {#hurricanes-data-retreival}
 
 Hurricane data was sourced from the National Oceanic and Atmospheric Administration (NOAA). Data can be obtained programmatically (as below), or manually for each hurricane of interest from the [NOAA website](https://www.nhc.noaa.gov/gis/archive_besttrack.php?year= "Hurricane Best Tracks"). Should you choose to download the files yourself, the script is designed to use shapefiles (.shp).
-
--   It is important to note that the following chunks should be run sparingly to avoid overloading the target.
 
 We first need to specify when and where the hurricane data is retrieved from.
 
 ```{r hurricanes-set-data-extraction-range}
 base_page <- "https://www.nhc.noaa.gov/gis/archive_besttrack.php?year="
 base_zip  <- "https://www.nhc.noaa.gov/gis/best_track/"
-hurricane_years_interest <- 2008:2025 #getting data for all years from 2008 to 2025
+hurricane_years_interest <- 2015:2022 #getting data for the years of interest
 ```
 
 Next, we set up the storage location for the hurricane best track files and create a lookup table for later. It is important to set a viable output directory for the best tracks from the website.
@@ -32,9 +30,14 @@ storm_summary <- data.frame(Year = integer(), Storms = integer())
 storm_lookup  <- data.frame(year = integer(), storm_id = character(), storm_name = character())
 ```
 
-Finally, we get the files from the website for each year specified. Within this snippet, a look-up table for the file names and actual hurricane name is created and saved as a .csv for later reference.
+Finally, we get the files from the website for each year specified. Manually download and unzip each hurricane best track `.zip` file for the years of interest.
 
-```{r hurricanes-scrape-data, eval = FALSE}
+::: rmdimportant
+The folder containing files for each storm be in one subdirectory (in this case, called `./data/HurricaneRawData/nhc_best_tracks`) and each storm should have its own directory with a naming convention of <two letter storm location><two digit identifier>\_<four digit year>. For example, Hurricane IDA was the ninth storm recorded by the National Hurricane Center and its files should be located in a folder called 'al09_2021'.
+:::
+
+```{r hurricanes-scrape-data, eval = FALSE, include=FALSE}
+#Within this snippet, a look-up table for the file names and actual hurricane name is created and saved as a .csv for later reference.
 #process every year for the year range specified above
 for (year in hurricane_years_interest) {
   cat("processing", year, "\n")
@@ -494,12 +497,11 @@ hurricane_matrix[c(278:290), ] %>%
   scroll_box(width = "100%")
 ```
 
-
 ## Map {#hurricanes-map}
 
-The South Okanagan General Hospital in Biritsh Columbia, used in the other examples in this document, does not experience any hurricanes. The east coast of Canada frequently experiences hurricane events, so, the South Shore Regional Hospital in Bridgewater, Nova Scotia is used as an example below.  
+The South Okanagan General Hospital in Biritsh Columbia, used in the other examples in this document, does not experience any hurricanes. The east coast of Canada frequently experiences hurricane events, so, the South Shore Regional Hospital in Bridgewater, Nova Scotia is used as an example below.
 
-``` {r hurricanes-map}
+```{r hurricanes-map}
 #get the event_r_id from the hurricane results matrix
 intersecting_storm <- filter(all_storms_within_range, event_r_id == "al142018101306_34")
 #go with one of the hospitals that interesects

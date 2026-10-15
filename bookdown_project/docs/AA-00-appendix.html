@@ -68,11 +68,11 @@
 <script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/Intersecting_Fires-CSS-0.0.1/Intersecting_Fires_home-button.css" rel="stylesheet" />
 <link href="libs/Hospital_Location-CSS-0.0.1/Hospital_Location_home-button.css" rel="stylesheet" />
 <link href="libs/Hospital_Buffer__25km_-CSS-0.0.1/Hospital_Buffer__25km__home-button.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/Intersecting_Floods-CSS-0.0.1/Intersecting_Floods_home-button.css" rel="stylesheet" />
 <link href="libs/Intersecting_Hurricane__Michael_-CSS-0.0.1/Intersecting_Hurricane__Michael__home-button.css" rel="stylesheet" />
 <link href="libs/Closest_Station-CSS-0.0.1/Closest_Station_home-button.css" rel="stylesheet" />
@@ -149,6 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -242,31 +243,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">8</span> Appendix<a href="AA-00-appendix.html#appendix" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="survey-data-generation" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Survey Data Generation<a href="AA-00-appendix.html#survey-data-generation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>From the Open Database of Hospitals, only facilities designated as “Hospitals” were selected to limit the final dataframe size and ease the volume of calculations in later steps. Survey dates were assigned randomly using a set seed for reproducibility.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="AA-00-appendix.html#cb52-1" tabindex="-1"></a><span class="co">#generation of data based on entries in the hospital data </span></span>
-<span id="cb52-2"><a href="AA-00-appendix.html#cb52-2" tabindex="-1"></a><span class="co">#if there are 20 hospitals, make 20 random months for survey between 1 and 12 and random years choosing between 2016 and 2020</span></span>
-<span id="cb52-3"><a href="AA-00-appendix.html#cb52-3" tabindex="-1"></a><span class="co">#https://www150.statcan.gc.ca/n1/en/pub/13-26-0001/2020001/ODHF_v1.1.zip</span></span>
-<span id="cb52-4"><a href="AA-00-appendix.html#cb52-4" tabindex="-1"></a><span class="co">#make sure the latitude and longitude columns exist and that there is an id column as well</span></span>
-<span id="cb52-5"><a href="AA-00-appendix.html#cb52-5" tabindex="-1"></a><span class="co">#set a random seed</span></span>
-<span id="cb52-6"><a href="AA-00-appendix.html#cb52-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">933</span>)</span>
-<span id="cb52-7"><a href="AA-00-appendix.html#cb52-7" tabindex="-1"></a><span class="co">#read in the raw data</span></span>
-<span id="cb52-8"><a href="AA-00-appendix.html#cb52-8" tabindex="-1"></a>odhf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/odhf_v1.1.csv&quot;</span>)</span>
-<span id="cb52-9"><a href="AA-00-appendix.html#cb52-9" tabindex="-1"></a><span class="co">#create an id list</span></span>
-<span id="cb52-10"><a href="AA-00-appendix.html#cb52-10" tabindex="-1"></a>odhf<span class="sc">$</span>hospital_id <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(odhf)</span>
-<span id="cb52-11"><a href="AA-00-appendix.html#cb52-11" tabindex="-1"></a><span class="co">#can only use valid lat/long locations</span></span>
-<span id="cb52-12"><a href="AA-00-appendix.html#cb52-12" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> odhf[<span class="sc">!</span><span class="fu">is.na</span>(odhf[[<span class="st">&quot;latitude&quot;</span>]]) <span class="sc">&amp;</span> </span>
-<span id="cb52-13"><a href="AA-00-appendix.html#cb52-13" tabindex="-1"></a>                             <span class="sc">!</span><span class="fu">is.na</span>(odhf[[<span class="st">&quot;longitude&quot;</span>]]), ]</span>
-<span id="cb52-14"><a href="AA-00-appendix.html#cb52-14" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> odhf_valid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(odhf_facility_type<span class="sc">==</span><span class="st">&quot;Hospitals&quot;</span>) <span class="sc">%&gt;%</span>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;facility_name&quot;</span>, <span class="st">&quot;odhf_facility_type&quot;</span>, <span class="st">&quot;hospital_id&quot;</span>, <span class="st">&quot;postal_code&quot;</span>))</span>
-<span id="cb52-15"><a href="AA-00-appendix.html#cb52-15" tabindex="-1"></a><span class="co">#strip spaces from postal code</span></span>
-<span id="cb52-16"><a href="AA-00-appendix.html#cb52-16" tabindex="-1"></a>odhf_valid<span class="sc">$</span>postal_code <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, odhf_valid<span class="sc">$</span>postal_code)</span>
-<span id="cb52-17"><a href="AA-00-appendix.html#cb52-17" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> odhf_valid <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">postalcode =</span> postal_code)</span>
-<span id="cb52-18"><a href="AA-00-appendix.html#cb52-18" tabindex="-1"></a><span class="co">#randomization</span></span>
-<span id="cb52-19"><a href="AA-00-appendix.html#cb52-19" tabindex="-1"></a>odhf_valid[[survey_month_col]] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">size =</span> <span class="fu">nrow</span>(odhf_valid), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb52-20"><a href="AA-00-appendix.html#cb52-20" tabindex="-1"></a>odhf_valid[[survey_year_col]] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">2018</span><span class="sc">:</span><span class="dv">2021</span>, <span class="at">size=</span><span class="fu">nrow</span>(odhf_valid), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb52-21"><a href="AA-00-appendix.html#cb52-21" tabindex="-1"></a><span class="co">#change names</span></span>
-<span id="cb52-22"><a href="AA-00-appendix.html#cb52-22" tabindex="-1"></a><span class="fu">setnames</span>(odhf_valid, <span class="fu">c</span>(<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;lat&quot;</span>,<span class="st">&quot;long&quot;</span>))</span>
-<span id="cb52-23"><a href="AA-00-appendix.html#cb52-23" tabindex="-1"></a><span class="co">#write for reading in elsewhere</span></span>
-<span id="cb52-24"><a href="AA-00-appendix.html#cb52-24" tabindex="-1"></a><span class="fu">write.csv</span>(odhf_valid, <span class="st">&quot;./data/odhf_hospitals.csv&quot;</span>)</span></code></pre></div>
+<p>Survey data was generated using the Open Database of Hospitals. Only facilities designated as “Hospitals” were selected to limit the final dataframe size and ease the volume of calculations for each exposure. Survey dates were assigned randomly using a set seed for reproducibility.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="AA-00-appendix.html#cb48-1" tabindex="-1"></a><span class="co">#generation of data based on entries in the hospital data </span></span>
+<span id="cb48-2"><a href="AA-00-appendix.html#cb48-2" tabindex="-1"></a><span class="co">#if there are 20 hospitals, make 20 random months for survey between 1 and 12 and random years choosing between 2018 and 2021</span></span>
+<span id="cb48-3"><a href="AA-00-appendix.html#cb48-3" tabindex="-1"></a><span class="co">#https://www150.statcan.gc.ca/n1/en/pub/13-26-0001/2020001/ODHF_v1.1.zip</span></span>
+<span id="cb48-4"><a href="AA-00-appendix.html#cb48-4" tabindex="-1"></a><span class="co">#make sure the latitude and longitude columns exist and that there is an id column as well</span></span>
+<span id="cb48-5"><a href="AA-00-appendix.html#cb48-5" tabindex="-1"></a><span class="co">#set a random seed</span></span>
+<span id="cb48-6"><a href="AA-00-appendix.html#cb48-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">933</span>)</span>
+<span id="cb48-7"><a href="AA-00-appendix.html#cb48-7" tabindex="-1"></a><span class="co">#read in the raw data</span></span>
+<span id="cb48-8"><a href="AA-00-appendix.html#cb48-8" tabindex="-1"></a>odhf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/odhf_v1.1.csv&quot;</span>)</span>
+<span id="cb48-9"><a href="AA-00-appendix.html#cb48-9" tabindex="-1"></a><span class="co">#create an id list</span></span>
+<span id="cb48-10"><a href="AA-00-appendix.html#cb48-10" tabindex="-1"></a>odhf<span class="sc">$</span>hospital_id <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(odhf)</span>
+<span id="cb48-11"><a href="AA-00-appendix.html#cb48-11" tabindex="-1"></a><span class="co">#can only use valid lat/long locations</span></span>
+<span id="cb48-12"><a href="AA-00-appendix.html#cb48-12" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> odhf[<span class="sc">!</span><span class="fu">is.na</span>(odhf[[<span class="st">&quot;latitude&quot;</span>]]) <span class="sc">&amp;</span> </span>
+<span id="cb48-13"><a href="AA-00-appendix.html#cb48-13" tabindex="-1"></a>                             <span class="sc">!</span><span class="fu">is.na</span>(odhf[[<span class="st">&quot;longitude&quot;</span>]]), ]</span>
+<span id="cb48-14"><a href="AA-00-appendix.html#cb48-14" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> odhf_valid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(odhf_facility_type<span class="sc">==</span><span class="st">&quot;Hospitals&quot;</span>) <span class="sc">%&gt;%</span>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;facility_name&quot;</span>, <span class="st">&quot;odhf_facility_type&quot;</span>, <span class="st">&quot;hospital_id&quot;</span>, <span class="st">&quot;postal_code&quot;</span>))</span>
+<span id="cb48-15"><a href="AA-00-appendix.html#cb48-15" tabindex="-1"></a><span class="co">#strip spaces from postal code</span></span>
+<span id="cb48-16"><a href="AA-00-appendix.html#cb48-16" tabindex="-1"></a>odhf_valid<span class="sc">$</span>postal_code <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, odhf_valid<span class="sc">$</span>postal_code)</span>
+<span id="cb48-17"><a href="AA-00-appendix.html#cb48-17" tabindex="-1"></a>odhf_valid <span class="ot">&lt;-</span> odhf_valid <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">postalcode =</span> postal_code)</span>
+<span id="cb48-18"><a href="AA-00-appendix.html#cb48-18" tabindex="-1"></a><span class="co">#randomization</span></span>
+<span id="cb48-19"><a href="AA-00-appendix.html#cb48-19" tabindex="-1"></a>odhf_valid[[survey_month_col]] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">size =</span> <span class="fu">nrow</span>(odhf_valid), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb48-20"><a href="AA-00-appendix.html#cb48-20" tabindex="-1"></a>odhf_valid[[survey_year_col]] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">2018</span><span class="sc">:</span><span class="dv">2021</span>, <span class="at">size=</span><span class="fu">nrow</span>(odhf_valid), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb48-21"><a href="AA-00-appendix.html#cb48-21" tabindex="-1"></a><span class="co">#change names</span></span>
+<span id="cb48-22"><a href="AA-00-appendix.html#cb48-22" tabindex="-1"></a><span class="fu">setnames</span>(odhf_valid, <span class="fu">c</span>(<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;longitude&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;lat&quot;</span>,<span class="st">&quot;long&quot;</span>))</span>
+<span id="cb48-23"><a href="AA-00-appendix.html#cb48-23" tabindex="-1"></a><span class="co">#write for reading in elsewhere</span></span>
+<span id="cb48-24"><a href="AA-00-appendix.html#cb48-24" tabindex="-1"></a><span class="fu">write.csv</span>(odhf_valid, <span class="st">&quot;./data/odhf_hospitals.csv&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

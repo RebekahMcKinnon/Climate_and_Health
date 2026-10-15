@@ -4,13 +4,15 @@ knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_proj
 
 # Wildfires
 
-Wildfires can have strong impacts on an environment that are disproportionate to the footprint size of the fires themselves. Smoke from fires has been recorded to stretch thousands of kilometres #REF#. Wildfires are widely studied in environmental exposure impact analysis...
+Wildfires can have strong impacts on an environment that are disproportionate to the footprint size of the fire itself. Smoke from fires has been recorded to stretch thousands of kilometres, and routinely has an effect on millions of Canadians every year #REF#.
 
 ## Environmental Data Preparation {#fire-data-preparation}
 
 Data can be downloaded for free from the [Canadian Wildland Fire Information System](#../index.Rmd/datasets "Datasets"). To begin with the wildfire data, we read the NBAC wildfire polygons (1972-2024) from the .shp file available from CWFIS.
 
--   Tip: Shapefiles are a set of files. Ensure the .shp, .shx, .dbf, and (ideally) .prj sit together in the same folder.
+::: {.rmdtip}
+Shapefiles are a set of files. Ensure the .shp, .shx, .dbf, and (ideally) .prj sit together in the same folder.
+:::
 
 ```{r fire-load-and-limit-data, eval=FALSE}
 #read in the NBAC data
@@ -168,7 +170,11 @@ survey_expanded <- survey_expanded %>% select(-3) #get rid of the duplicate colu
 
 Create a binary matrix for each hospital-survey date combination for each of the 24 months.
 
-```{r fire-summary-matrix, warning=FALSE}
+::: {.rmdnote}
+Output from each exposure is saved to the tutorial data directory, this should be adjusted to your desired location.
+:::
+
+```{r fire-summary-matrix, warning=FALSE, message=FALSE, results='hide'}
 #create a detailed data frame of all intersections and non-intersections, regardless of date, as an intermediary product 
 fires_detailed <- survey_expanded %>%
   left_join(intersection_df, by = c("hospital_id", "survey_year", "survey_month")) %>% #join the data on year month and id
@@ -221,7 +227,7 @@ The South Okanagan General Hospital in British Columbia experiences every exposu
 ```{r fire-map}
 fires_summary_matrix <- read.csv(r"(./data/fires_presence_absence.csv)", row.names=1)
 
-#join matrix back with hospital ids
+#join matrix back with hospital ids for the South Okanagan General Hospital
 fires_summary_map <- fires_summary_matrix %>% 
   left_join(odhf_fires_sf %>% select(hospital_id, geometry), by = "hospital_id")
 

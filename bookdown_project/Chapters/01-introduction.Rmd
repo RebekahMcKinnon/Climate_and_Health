@@ -9,7 +9,11 @@ In the following examples, we will be using a random selection of hospitals from
 
 We are imagining that the hospital administration delivered a survey to all employees that had worked at each location for a minimum of two years. This data is then being analyzed by us, to determine the impact of environmental exposures in the past two years. 
 
-```{r}
+::: {.rmdnote}
+Throughout this walkthrough, the subdirectory `./data` is referenced. This is where files local to the tutorial are stored, and should be substituted with your local path if you choose to use your own data.
+:::
+
+```{r odhf-data-gen}
 odhf_valid <- read.csv("./data/odhf_hospitals.csv", row.names = 1)#read in data
 
 odhf_display <- odhf_valid %>% 

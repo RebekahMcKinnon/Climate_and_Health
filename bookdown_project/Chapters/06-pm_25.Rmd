@@ -4,9 +4,11 @@ knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_proj
 
 # PM 2.5 {#pm25}
 
+The PM2.5 data can be used for checking the results of other data - mainly the wildfire data. Background pollution levels can be examined using this data, to determine if wildfire events have an effect on overall particulate matter circulating in the environment. 
+
 ## Environmental Data Preparation {#pm25-data-preparation}
 
-The PM2.5 data can be used for checking the results of other data - mainly the wildfire data. Background pollution levels can be examined using this data, to determine if wildfire events have an effect on overall particulate matter circulating in the environment. 
+After downloading the data from [CANUE](index.html#datasets "Datasets"), the first step is to load the data from the files that were downloaded. 
 
 ```{r pm25-data-cleaning, warning=FALSE, results='hide'}
 
@@ -18,7 +20,7 @@ odhf_pm25 <- read.csv("./data/odhf_hospitals.csv", row.names = 1) %>%
 head(odhf_pm25)
 
 #define years
-years <- 2015:2018
+years <- 2017:2021
 
 #define the base path
 base_path <- "./data/pm25/"
@@ -59,9 +61,9 @@ pm25_all_years <- pm25_all_years %>% rename(survey_year=year) %>% rename(survey_
 
 ## Date Lag {#pm25-date-lag}
 
-Lag the data in the same way as the other datasets.
+Lag the data in the same way as in the [wildfires section](wildfires.html#fire-date-lag "Wildfires").
 
-```{r pm-date-lag}
+```{r pm-date-lag, results='hide', message=FALSE, warning=FALSE}
 expand_months <- function(d, hospital_id, survey_month, survey_year, postalcode) {
   data.table(
     hospital_id = hospital_id,
@@ -86,17 +88,14 @@ survey_expanded_pm25 <- survey_expanded %>% rename(year_month = date)
 
 ```
 
-
 ## Data Manipulation {#pm25-data-manipulation}
 
-Create a summary matrix of all the PM2.5 values for the months. Single year averages are generalized to the entire year. 
+Create a summary matrix of all the PM2.5 values for the months. Values are recorded as single-year averages and are generalized to the entire year in this block. This process matches postal codes, so some values may appear as NA if there are no matches.
 
 ```{r pm25-data-manipulation, warning=FALSE, results='hide'}
 #turn month into a factor with correct order
 pm25_all_years <- pm25_all_years %>%
   select(postcode, province, survey_year, survey_month, pm25)
-
-
 
 #join with the expanded survey info
 pm25_survey <- survey_expanded_pm25 %>% 
@@ -125,7 +124,7 @@ write.csv(pm25_summary_matrix, "./data/pm25_presence_absence.csv")
 Show a snippet of the PM2.5 summary matrix.
 
 ```{r pm25-summary-matrix}
-kable(head(pm25_summary_matrix),'html') %>%
+kable((pm25_summary_matrix[978:983,]),'html') %>%
   kable_styling(full_width = FALSE) %>%
   scroll_box(height = "300px")
 ```

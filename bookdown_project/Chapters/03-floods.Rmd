@@ -4,11 +4,15 @@ knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_proj
 
 # Floods {#floods}
 
-Floods are a common environmental hazard in Canada. Numerous flooding events have been reported in popular media and studied in literature...
+Floods are a common environmental hazard in Canada. Numerous flooding events have been reported in popular media and studied in literature.
 
 ## Environmental Data Preparation {#floods-data-preparation}
 
 Natural Resources Canada provides a flood archive data set through [Open Canada](#../index.Rmd/datasets "Datasets"). The data is provided in bulk as a .gdb file with several layers. We are specifically interested in the 'EGS_Flood_Product_Archive' layer.
+
+::: {.rmdnote}
+`.gdb` files are different than `.shp` files, but provide us with the same information in this walkthrough. 
+:::
 
 ```{r floods-initial-data, warning=FALSE, results='hide'}
 #load raw flood data
