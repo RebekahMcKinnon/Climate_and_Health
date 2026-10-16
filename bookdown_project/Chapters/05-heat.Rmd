@@ -1,4 +1,4 @@
-```{r setup-heat, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_project')
 ```
 
@@ -90,7 +90,7 @@ write_parquet(combined_hourly_daily, r"(./data/odhf_weather_stations.parquet)")
 
 ## Heat ECCC {#heat-daily-eccc}
 
-Environment and Climate Change Canada has their own criteria for extreme heat events around the country. Using a rough sketch of the [criteria map](https://www.canada.ca/content/dam/eccc/documents/pdf/cesindicators/extreme-heat-events/2025/extreme-heat-events.pdf "Extreme Heat Events Report"), we can relate the hospital data to the temperature data.
+Environment and Climate Change Canada has their own criteria for extreme heat events around the country. Using a rough sketch of the [criteria map](https://www.canada.ca/content/dam/eccc/documents/pdf/cesindicators/extreme-heat-events/2025/extreme-heat-events.pdf "Extreme Heat Events Report"), we can relate the hospital data to the temperature data. Extreme heat events are defined by ECCC in this document as, "weather events during which daily temperatures have reached heat warning thresholds on 2 or more consecutive days with no relief overnight".
 
 ```{r heat-combined-daily-eccc, results='hide', warning=FALSE, message=FALSE}
 combined_hourly_daily <- read_parquet(r"(./data/odhf_weather_stations.parquet)")
@@ -217,10 +217,10 @@ kable(head(heat_summary_matrix_eccc),'html') %>%
 
 ## Heat Days {#heat-daily-arb}
 
-You can set any threshold temperature as an arbitrary 
+You can set any threshold temperature as an arbitrary number for a set number of days. In this case, we are looking for 30 degrees Celsius temperature for 3 consecutive days.
 
 ```{r heat-combined-daily-arb, results='hide', message=FALSE}
-combined_hourly_daily <- read_parquet(r"(./data/odhf_weather_stations.parquet)")
+combined_hourly_daily <- read_parquet(r"(./data/odhf_weather_stations.parquet)") #read from stored data for speed
 temp_threshold <- 30
 consecutive_days <- 3
 
@@ -344,16 +344,17 @@ kable(tail(heat_summary_matrix_arb),'html') %>%
 
 ## Map {#heat-map}
 
-The South Okanagan General Hospital in British Columbia experienced a heat event, as defined by Environment and Climate Change Canada, in the 18th month prior to the survey administration month. The Hospital is located in the Southeastern British Columbia zone, where the daytime max temperature threshold is 35C and the nighttime minimum threshold temperature is 18C. The weather station and hospital locations are presented below. 
+The South Okanagan General Hospital in British Columbia experienced a heat event, as defined by Environment and Climate Change Canada, in the 18th month prior to the survey administration month. The hospital was surveyed in  January of 2020, and the heat event at the nearest recorded station (#1039) occurred in July of 2018. The Hospital is located in the Southeastern British Columbia zone, where the daytime max temperature threshold is 35C and the nighttime minimum threshold temperature is 18C. The weather station and hospital locations are presented below. 
 
 ```{r heat-map, message=FALSE}
 #get hospital 509, heat event in month 18
 hospital_509 <- filter(survey_sf_eccc, hospital_id == 509) %>% 
-  mutate(heat_event = "Month 18") %>% st_transform(crs=st_crs(4326))
+  mutate(heat_event = "Month 18: July 2018") %>% st_transform(crs=st_crs(4326))
 
 #get station 1039 since it is the close one
 station_of_interest <- weather_dl(station_id = c(1039), interval='day', start='2018-01-01', end='2020-01-31') %>% 
-  slice(1) %>%
+  filter(max_temp>35 & min_temp>18) %>% # yields two consecutive days in July 2018 and 1 day in August 2018 that does not fill the criteria
+  slice(1) %>% #take just the first day for illustrative purposes
   st_as_sf(coords = c("lon","lat"), crs=st_crs(4326)) %>% st_transform(crs=st_crs(4326))
 
 #create the map elements
@@ -363,8 +364,14 @@ mapview(
   cex = 6,
   layer.name = "Hospital Location",
   popup = leafpop::popupTable(
-    hospital_509,
-    zcol = c("odhf_facility_type", "hospital_id", "postalcode", "survey_year", "survey_month", "heat_event")
+    hospital_509 %>% 
+      rename(
+        "Facility Type" = odhf_facility_type,
+        "Survey Year" = survey_year,
+        "Survey Month" = survey_month,
+        "Heat Event" = heat_event
+      ),
+    zcol = c("Facility Type" , "Survey Year", "Survey Month", "Heat Event")
   )
 ) +
 mapview(
@@ -373,8 +380,18 @@ mapview(
   alpha.regions = 1,
   layer.name = "Closest Station",
   popup = leafpop::popupTable(
-    station_of_interest,
-    zcol = c("station_name", "station_id")
+    station_of_interest%>% 
+    rename(
+      "Station Name" = station_name,
+      "Date" = date,
+      "Max Temp" = max_temp,
+      "Min Temp" = min_temp
+    ),
+    zcol = c(
+      "Station Name",
+      "Date",
+      "Max Temp",
+      "Min Temp")
     )
 )
 ```
