@@ -35,9 +35,9 @@ This tutorial uses the following **publicly available** datasets:
 |-----------------------|------------------------------|-------------------|
 | Natural Resources Canada (CFS / CWFIS) | National Burned Area Composite (**NBAC**) wildfire perimeters (1972--2024) ([cwfis.cfs.nrcan.gc.ca](https://cwfis.cfs.nrcan.gc.ca/en/catalogue/results/537a1fd0-698e-4a7b-85a1-e02581ae78b2 "NBAC - Canadian Wildland Fire Information System")) | Polygon (vector) |
 | Natural Resources Canada (EGS) | **Floods in Canada - Archive** (flood extent products) ([open.canada.ca](https://open.canada.ca/data/en/dataset/74144824-206e-4cea-9fb9-72925a128189 "Floods in Canada - Archive - Open Government Portal")) | Polygon (vector) |
-| Environment and Climate Change Canada | Historical climate observations & station metadata ([climate.weather.gc.ca](https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=XXX&Year=2024&Month=1&Day=1&timeframe=2&submit=Download+Data%22)) | Point (vector) |
-| National Oceanic and Atmospheric Administration - National Hurricane Center | NHC GIS Archive ([nhc.noaa.gov](https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=)) | Point & Polygon (vector) |
-| Statistics Canada | Open Database of Hospital Facilities ([open.canada.ca](https://open.canada.ca/data/en/dataset/a1bcd4ee-8e57-499b-9c6f-94f6902fdf32)) | Point (vector) |
+| Environment and Climate Change Canada | Historical climate observations & station metadata ([climate.weather.gc.ca](https://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=XXX&Year=2024&Month=1&Day=1&timeframe=2&submit=Download+Data%22 "Government of Canada Weather and Climate")) | Point (vector) |
+| National Oceanic and Atmospheric Administration - National Hurricane Center | NHC GIS Archive ([nhc.noaa.gov](https://www.nhc.noaa.gov/gis/archive_besttrack.php?year= "NOAA Hurricane Best Tracks")) | Point & Polygon (vector) |
+| Statistics Canada | Open Database of Hospital Facilities ([open.canada.ca](https://open.canada.ca/data/en/dataset/a1bcd4ee-8e57-499b-9c6f-94f6902fdf32 "Open Canada")) | Point (vector) |
 
  
 
@@ -45,7 +45,7 @@ This tutorial also uses datasets with **access restrictions**. Access may requir
 
 | Data Provider | Dataset | Access |
 |-------------------|-----------------------------|------------------------|
-| Statistics Canada | Postal Code Conversion File (**PCCF**) v8B | Licensed |
+| Statistics Canada | Postal Code Conversion File (**PCCF**) v7E | Licensed |
 | Canadian Urban Environmental Health Research Consortium (CANUE) | Local Climate Zones & PM2.5 (smoke) by Postcode | Request via project creation in CANUE (free) |
 
 ### R packages {#r-packages}
