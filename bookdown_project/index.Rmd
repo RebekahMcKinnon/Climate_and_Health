@@ -120,5 +120,5 @@ if (length(to_install) > 0) {
 invisible(lapply(packages, library, character.only = TRUE))
 
 #configure mapview to use public imagery
-mapviewOptions(basemaps = c("OpenStreetMap", "Esri.WorldImagery", "Esri.WorldGrayCanvas"))
+mapviewOptions(basemaps = c("Esri.WorldGrayCanvas"))
 ```

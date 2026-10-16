@@ -479,7 +479,7 @@ for (k in seq_along(years)){
 }
 
 #get the hurricane matrix wide data
-hurricane_matrix <- hurricane_results[["result_25k_all"]][["wide"]] %>%
+hurricane_matrix <- hurricane_results[["result_0k_all"]][["wide"]] %>%
   relocate(all_of(paste0("month_", 0:24)), .after = last_col())
 
 #write the matrix
