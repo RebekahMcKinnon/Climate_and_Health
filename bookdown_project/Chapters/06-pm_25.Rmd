@@ -4,14 +4,13 @@ knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_proj
 
 # PM 2.5 {#pm25}
 
-The PM2.5 data can be used for checking the results of other data - mainly the wildfire data. Background pollution levels can be examined using this data, to determine if wildfire events have an effect on overall particulate matter circulating in the environment. 
+The PM2.5 data can be used for checking the results of other data - mainly the wildfire data. Background pollution levels can be examined using this data to determine if wildfire events have an effect on overall particulate matter circulating in the environment. 
 
 ## Environmental Data Preparation {#pm25-data-preparation}
 
-After downloading the data from [CANUE](index.html#datasets "Datasets"), the first step is to load the data from the files that were downloaded. 
+After downloading the data from [CANUE](index.html#datasets "Datasets"), the first step is to load the data from the files that were downloaded. This is PM2.5 data from the Canadian Optimized Statistical Smoke Model (CanOSSEM).
 
 ```{r pm25-data-cleaning, warning=FALSE, results='hide'}
-
 odhf_pm25 <- read.csv("./data/odhf_hospitals.csv", row.names = 1) %>%
   mutate(
     pm25_start = make_date(survey_year - 2, survey_month, 1),  #start 2 years before
@@ -20,7 +19,7 @@ odhf_pm25 <- read.csv("./data/odhf_hospitals.csv", row.names = 1) %>%
 head(odhf_pm25)
 
 #define years
-years <- 2017:2021
+years <- 2014:2021
 
 #define the base path
 base_path <- "./data/pm25/"
@@ -49,14 +48,9 @@ load_pm25_data <- function(year) {
 }
 
 pm25_all_years <- map_dfr(years, load_pm25_data) #load all the csvs
-#
-#turn month into a factor with correct order
-#pm25_all_years <- pm25_all_years %>%
-#  mutate(month = factor(month, levels = c("jan", "feb", "mar", "apr", "may", "jun",
-#                                          "jul", "aug", "sep", "oct", "nov", "dec")))
 
 #rename for later actions
-pm25_all_years <- pm25_all_years %>% rename(survey_year=year) %>% rename(survey_month=month)
+pm25_all_years <- pm25_all_years %>% rename(aq_survey_year=year) %>% rename(aq_survey_month=month)
 ```
 
 ## Date Lag {#pm25-date-lag}
@@ -78,12 +72,14 @@ expand_months <- function(d, hospital_id, survey_month, survey_year, postalcode)
 #apply the function
 #identifies how many months a given month is offset from the 0th month for that surveys survey date
 odhf_pm25$dates <- ymd(paste(odhf_pm25$survey_year, odhf_pm25$survey_month, "01", sep = "-")) + months(1) - days(1)
-#FOR EVERY UNIQUE survey AND SURVEY DATE COMBINATION <- this is key
+#FOR EVERY UNIQUE SURVEY AND SURVEY DATE COMBINATION <- this is key
 surveys_un <- unique(odhf_pm25, by = c("survey_id","dates"))
 surveys_un <- as.data.table(surveys_un)
 survey_expanded <- surveys_un[, expand_months(dates, hospital_id, survey_month, survey_year, postalcode), by = .(hospital_id, dates)]
 survey_expanded <- survey_expanded %>% select(-3)
 survey_expanded_pm25 <- survey_expanded %>% rename(year_month = date)
+#we are interested in the air quality during the offset years, not just the survey year
+survey_expanded_pm25$offset_year <- as.double(substr(as.character(survey_expanded_pm25$year_month), 1, 4))
 
 
 ```
@@ -95,16 +91,16 @@ Create a summary matrix of all the PM2.5 values for the months. Values are recor
 ```{r pm25-data-manipulation, warning=FALSE, results='hide'}
 #turn month into a factor with correct order
 pm25_all_years <- pm25_all_years %>%
-  select(postcode, province, survey_year, survey_month, pm25)
+  select(postcode, province, aq_survey_year, aq_survey_month, pm25)
 
 #join with the expanded survey info
 pm25_survey <- survey_expanded_pm25 %>% 
   left_join(
-    pm25_all_years %>% select(postcode, survey_year, survey_month, pm25),
-    by = c("postcode", "survey_year", "survey_month")
+    pm25_all_years %>% select(postcode, aq_survey_year, aq_survey_month, pm25),
+    by = join_by("postcode"=="postcode", "offset_year"=="aq_survey_year")
   ) %>%
   group_by(hospital_id, survey_year) %>%
-  mutate(pm25 = if (all(is.na(pm25))) NA_real_ else first(na.omit(pm25))) %>%
+  #mutate(pm25 = if (all(is.na(pm25))) NA_real_ else first(na.omit(pm25))) %>%
   ungroup()
 
 #summarise into the matrix of 1's and 0's
