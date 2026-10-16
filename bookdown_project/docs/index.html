@@ -68,14 +68,6 @@
 <script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
-<link href="libs/Intersecting_Fires-CSS-0.0.1/Intersecting_Fires_home-button.css" rel="stylesheet" />
-<link href="libs/Hospital_Location-CSS-0.0.1/Hospital_Location_home-button.css" rel="stylesheet" />
-<link href="libs/Hospital_Buffer__25km_-CSS-0.0.1/Hospital_Buffer__25km__home-button.css" rel="stylesheet" />
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/Intersecting_Floods-CSS-0.0.1/Intersecting_Floods_home-button.css" rel="stylesheet" />
-<link href="libs/Intersecting_Hurricane__Michael_-CSS-0.0.1/Intersecting_Hurricane__Michael__home-button.css" rel="stylesheet" />
-<link href="libs/Closest_Station-CSS-0.0.1/Closest_Station_home-button.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -294,6 +286,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td>Point (vector)</td>
 </tr>
 <tr class="even">
+<td>National Oceanic and Atmospheric Administration - National Hurricane Center</td>
+<td>NHC GIS Archive (<a href="https://www.nhc.noaa.gov/gis/archive_besttrack.php?year=">nhc.noaa.gov</a>)</td>
+<td>Point &amp; Polygon (vector)</td>
+</tr>
+<tr class="odd">
 <td>Statistics Canada</td>
 <td>Open Database of Hospital Facilities (<a href="https://open.canada.ca/data/en/dataset/a1bcd4ee-8e57-499b-9c6f-94f6902fdf32">open.canada.ca</a>)</td>
 <td>Point (vector)</td>
@@ -395,7 +392,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-15"><a href="index.html#cb1-15" tabindex="-1"></a>}</span>
 <span id="cb1-16"><a href="index.html#cb1-16" tabindex="-1"></a></span>
 <span id="cb1-17"><a href="index.html#cb1-17" tabindex="-1"></a><span class="co"># Load all packages</span></span>
-<span id="cb1-18"><a href="index.html#cb1-18" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">lapply</span>(packages, library, <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<span id="cb1-18"><a href="index.html#cb1-18" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">lapply</span>(packages, library, <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-19"><a href="index.html#cb1-19" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="index.html#cb1-20" tabindex="-1"></a><span class="co">#configure mapview to use public imagery</span></span>
+<span id="cb1-21"><a href="index.html#cb1-21" tabindex="-1"></a><span class="fu">mapviewOptions</span>(<span class="at">basemaps =</span> <span class="fu">c</span>(<span class="st">&quot;OpenStreetMap&quot;</span>, <span class="st">&quot;Esri.WorldImagery&quot;</span>, <span class="st">&quot;Esri.WorldGrayCanvas&quot;</span>))</span></code></pre></div>
 
 </div>
 </div>
