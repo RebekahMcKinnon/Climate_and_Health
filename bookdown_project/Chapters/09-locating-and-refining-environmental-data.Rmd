@@ -1,7 +1,3 @@
-```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_project')
-```
-
 # Environmental Exposures {#environmental-exposures}
 
 ## Introduction {#introduction-environmental-data}

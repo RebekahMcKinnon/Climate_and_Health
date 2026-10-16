@@ -241,10 +241,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="pm25" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">7</span> PM 2.5<a href="06-pm_25.html#pm25" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The PM2.5 data can be used for checking the results of other data - mainly the wildfire data. Background pollution levels can be examined using this data, to determine if wildfire events have an effect on overall particulate matter circulating in the environment.</p>
+<p>The PM2.5 data can be used for checking the results of other data - mainly the wildfire data. Background pollution levels can be examined using this data to determine if wildfire events have an effect on overall particulate matter circulating in the environment.</p>
 <div id="pm25-data-preparation" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Environmental Data Preparation<a href="06-pm_25.html#pm25-data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>After downloading the data from <a href="index.html#datasets" title="Datasets">CANUE</a>, the first step is to load the data from the files that were downloaded.</p>
+<p>After downloading the data from <a href="index.html#datasets" title="Datasets">CANUE</a>, the first step is to load the data from the files that were downloaded. This is PM2.5 data from the Canadian Optimized Statistical Smoke Model (CanOSSEM).</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="06-pm_25.html#cb45-1" tabindex="-1"></a>odhf_pm25 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/odhf_hospitals.csv&quot;</span>, <span class="at">row.names =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb45-2"><a href="06-pm_25.html#cb45-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb45-3"><a href="06-pm_25.html#cb45-3" tabindex="-1"></a>    <span class="at">pm25_start =</span> <span class="fu">make_date</span>(survey_year <span class="sc">-</span> <span class="dv">2</span>, survey_month, <span class="dv">1</span>),  <span class="co">#start 2 years before</span></span>
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb45-6"><a href="06-pm_25.html#cb45-6" tabindex="-1"></a><span class="fu">head</span>(odhf_pm25)</span>
 <span id="cb45-7"><a href="06-pm_25.html#cb45-7" tabindex="-1"></a></span>
 <span id="cb45-8"><a href="06-pm_25.html#cb45-8" tabindex="-1"></a><span class="co">#define years</span></span>
-<span id="cb45-9"><a href="06-pm_25.html#cb45-9" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">2017</span><span class="sc">:</span><span class="dv">2021</span></span>
+<span id="cb45-9"><a href="06-pm_25.html#cb45-9" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">2014</span><span class="sc">:</span><span class="dv">2021</span></span>
 <span id="cb45-10"><a href="06-pm_25.html#cb45-10" tabindex="-1"></a></span>
 <span id="cb45-11"><a href="06-pm_25.html#cb45-11" tabindex="-1"></a><span class="co">#define the base path</span></span>
 <span id="cb45-12"><a href="06-pm_25.html#cb45-12" tabindex="-1"></a>base_path <span class="ot">&lt;-</span> <span class="st">&quot;./data/pm25/&quot;</span></span>
@@ -282,14 +282,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb45-35"><a href="06-pm_25.html#cb45-35" tabindex="-1"></a>}</span>
 <span id="cb45-36"><a href="06-pm_25.html#cb45-36" tabindex="-1"></a></span>
 <span id="cb45-37"><a href="06-pm_25.html#cb45-37" tabindex="-1"></a>pm25_all_years <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(years, load_pm25_data) <span class="co">#load all the csvs</span></span>
-<span id="cb45-38"><a href="06-pm_25.html#cb45-38" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb45-39"><a href="06-pm_25.html#cb45-39" tabindex="-1"></a><span class="co">#turn month into a factor with correct order</span></span>
-<span id="cb45-40"><a href="06-pm_25.html#cb45-40" tabindex="-1"></a><span class="co">#pm25_all_years &lt;- pm25_all_years %&gt;%</span></span>
-<span id="cb45-41"><a href="06-pm_25.html#cb45-41" tabindex="-1"></a><span class="co">#  mutate(month = factor(month, levels = c(&quot;jan&quot;, &quot;feb&quot;, &quot;mar&quot;, &quot;apr&quot;, &quot;may&quot;, &quot;jun&quot;,</span></span>
-<span id="cb45-42"><a href="06-pm_25.html#cb45-42" tabindex="-1"></a><span class="co">#                                          &quot;jul&quot;, &quot;aug&quot;, &quot;sep&quot;, &quot;oct&quot;, &quot;nov&quot;, &quot;dec&quot;)))</span></span>
-<span id="cb45-43"><a href="06-pm_25.html#cb45-43" tabindex="-1"></a></span>
-<span id="cb45-44"><a href="06-pm_25.html#cb45-44" tabindex="-1"></a><span class="co">#rename for later actions</span></span>
-<span id="cb45-45"><a href="06-pm_25.html#cb45-45" tabindex="-1"></a>pm25_all_years <span class="ot">&lt;-</span> pm25_all_years <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">survey_year=</span>year) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">survey_month=</span>month)</span></code></pre></div>
+<span id="cb45-38"><a href="06-pm_25.html#cb45-38" tabindex="-1"></a></span>
+<span id="cb45-39"><a href="06-pm_25.html#cb45-39" tabindex="-1"></a><span class="co">#rename for later actions</span></span>
+<span id="cb45-40"><a href="06-pm_25.html#cb45-40" tabindex="-1"></a>pm25_all_years <span class="ot">&lt;-</span> pm25_all_years <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">aq_survey_year=</span>year) <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">aq_survey_month=</span>month)</span></code></pre></div>
 </div>
 <div id="pm25-date-lag" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Date Lag<a href="06-pm_25.html#pm25-date-lag" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -308,28 +303,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb46-12"><a href="06-pm_25.html#cb46-12" tabindex="-1"></a><span class="co">#apply the function</span></span>
 <span id="cb46-13"><a href="06-pm_25.html#cb46-13" tabindex="-1"></a><span class="co">#identifies how many months a given month is offset from the 0th month for that surveys survey date</span></span>
 <span id="cb46-14"><a href="06-pm_25.html#cb46-14" tabindex="-1"></a>odhf_pm25<span class="sc">$</span>dates <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">paste</span>(odhf_pm25<span class="sc">$</span>survey_year, odhf_pm25<span class="sc">$</span>survey_month, <span class="st">&quot;01&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>)) <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>)</span>
-<span id="cb46-15"><a href="06-pm_25.html#cb46-15" tabindex="-1"></a><span class="co">#FOR EVERY UNIQUE survey AND SURVEY DATE COMBINATION &lt;- this is key</span></span>
+<span id="cb46-15"><a href="06-pm_25.html#cb46-15" tabindex="-1"></a><span class="co">#FOR EVERY UNIQUE SURVEY AND SURVEY DATE COMBINATION &lt;- this is key</span></span>
 <span id="cb46-16"><a href="06-pm_25.html#cb46-16" tabindex="-1"></a>surveys_un <span class="ot">&lt;-</span> <span class="fu">unique</span>(odhf_pm25, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;survey_id&quot;</span>,<span class="st">&quot;dates&quot;</span>))</span>
 <span id="cb46-17"><a href="06-pm_25.html#cb46-17" tabindex="-1"></a>surveys_un <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(surveys_un)</span>
 <span id="cb46-18"><a href="06-pm_25.html#cb46-18" tabindex="-1"></a>survey_expanded <span class="ot">&lt;-</span> surveys_un[, <span class="fu">expand_months</span>(dates, hospital_id, survey_month, survey_year, postalcode), by <span class="ot">=</span> .(hospital_id, dates)]</span>
 <span id="cb46-19"><a href="06-pm_25.html#cb46-19" tabindex="-1"></a>survey_expanded <span class="ot">&lt;-</span> survey_expanded <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="dv">3</span>)</span>
-<span id="cb46-20"><a href="06-pm_25.html#cb46-20" tabindex="-1"></a>survey_expanded_pm25 <span class="ot">&lt;-</span> survey_expanded <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">year_month =</span> date)</span></code></pre></div>
+<span id="cb46-20"><a href="06-pm_25.html#cb46-20" tabindex="-1"></a>survey_expanded_pm25 <span class="ot">&lt;-</span> survey_expanded <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">year_month =</span> date)</span>
+<span id="cb46-21"><a href="06-pm_25.html#cb46-21" tabindex="-1"></a><span class="co">#we are interested in the air quality during the offset years, not just the survey year</span></span>
+<span id="cb46-22"><a href="06-pm_25.html#cb46-22" tabindex="-1"></a>survey_expanded_pm25<span class="sc">$</span>offset_year <span class="ot">&lt;-</span> <span class="fu">as.double</span>(<span class="fu">substr</span>(<span class="fu">as.character</span>(survey_expanded_pm25<span class="sc">$</span>year_month), <span class="dv">1</span>, <span class="dv">4</span>))</span></code></pre></div>
 </div>
 <div id="pm25-data-manipulation" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Data Manipulation<a href="06-pm_25.html#pm25-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Create a summary matrix of all the PM2.5 values for the months. Values are recorded as single-year averages and are generalized to the entire year in this block. This process matches postal codes, so some values may appear as NA if there are no matches.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="06-pm_25.html#cb47-1" tabindex="-1"></a><span class="co">#turn month into a factor with correct order</span></span>
 <span id="cb47-2"><a href="06-pm_25.html#cb47-2" tabindex="-1"></a>pm25_all_years <span class="ot">&lt;-</span> pm25_all_years <span class="sc">%&gt;%</span></span>
-<span id="cb47-3"><a href="06-pm_25.html#cb47-3" tabindex="-1"></a>  <span class="fu">select</span>(postcode, province, survey_year, survey_month, pm25)</span>
+<span id="cb47-3"><a href="06-pm_25.html#cb47-3" tabindex="-1"></a>  <span class="fu">select</span>(postcode, province, aq_survey_year, aq_survey_month, pm25)</span>
 <span id="cb47-4"><a href="06-pm_25.html#cb47-4" tabindex="-1"></a></span>
 <span id="cb47-5"><a href="06-pm_25.html#cb47-5" tabindex="-1"></a><span class="co">#join with the expanded survey info</span></span>
 <span id="cb47-6"><a href="06-pm_25.html#cb47-6" tabindex="-1"></a>pm25_survey <span class="ot">&lt;-</span> survey_expanded_pm25 <span class="sc">%&gt;%</span> </span>
 <span id="cb47-7"><a href="06-pm_25.html#cb47-7" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb47-8"><a href="06-pm_25.html#cb47-8" tabindex="-1"></a>    pm25_all_years <span class="sc">%&gt;%</span> <span class="fu">select</span>(postcode, survey_year, survey_month, pm25),</span>
-<span id="cb47-9"><a href="06-pm_25.html#cb47-9" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;postcode&quot;</span>, <span class="st">&quot;survey_year&quot;</span>, <span class="st">&quot;survey_month&quot;</span>)</span>
+<span id="cb47-8"><a href="06-pm_25.html#cb47-8" tabindex="-1"></a>    pm25_all_years <span class="sc">%&gt;%</span> <span class="fu">select</span>(postcode, aq_survey_year, aq_survey_month, pm25),</span>
+<span id="cb47-9"><a href="06-pm_25.html#cb47-9" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">join_by</span>(<span class="st">&quot;postcode&quot;</span><span class="sc">==</span><span class="st">&quot;postcode&quot;</span>, <span class="st">&quot;offset_year&quot;</span><span class="sc">==</span><span class="st">&quot;aq_survey_year&quot;</span>)</span>
 <span id="cb47-10"><a href="06-pm_25.html#cb47-10" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb47-11"><a href="06-pm_25.html#cb47-11" tabindex="-1"></a>  <span class="fu">group_by</span>(hospital_id, survey_year) <span class="sc">%&gt;%</span></span>
-<span id="cb47-12"><a href="06-pm_25.html#cb47-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pm25 =</span> <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">is.na</span>(pm25))) <span class="cn">NA_real_</span> <span class="cf">else</span> <span class="fu">first</span>(<span class="fu">na.omit</span>(pm25))) <span class="sc">%&gt;%</span></span>
+<span id="cb47-12"><a href="06-pm_25.html#cb47-12" tabindex="-1"></a>  <span class="co">#mutate(pm25 = if (all(is.na(pm25))) NA_real_ else first(na.omit(pm25))) %&gt;%</span></span>
 <span id="cb47-13"><a href="06-pm_25.html#cb47-13" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
 <span id="cb47-14"><a href="06-pm_25.html#cb47-14" tabindex="-1"></a></span>
 <span id="cb47-15"><a href="06-pm_25.html#cb47-15" tabindex="-1"></a><span class="co">#summarise into the matrix of 1&#39;s and 0&#39;s</span></span>
@@ -452,76 +449,76 @@ month_24
 7.375472
 </td>
 <td style="text-align:right;">
-7.375472
+6.811128
 </td>
 <td style="text-align:right;">
-7.375472
+6.811128
 </td>
 <td style="text-align:right;">
-7.375472
+6.811128
 </td>
 <td style="text-align:right;">
-7.375472
+6.811128
 </td>
 <td style="text-align:right;">
-7.375472
+6.811128
 </td>
 <td style="text-align:right;">
-7.375472
+6.811128
 </td>
 <td style="text-align:right;">
-7.375472
+6.811128
 </td>
 <td style="text-align:right;">
-7.375472
+6.811128
 </td>
 <td style="text-align:right;">
-7.375472
+6.811128
 </td>
 <td style="text-align:right;">
-7.375472
+6.811128
 </td>
 <td style="text-align:right;">
-7.375472
+6.811128
 </td>
 <td style="text-align:right;">
-7.375472
+6.811128
 </td>
 <td style="text-align:right;">
-7.375472
+6.862588
 </td>
 <td style="text-align:right;">
-7.375472
+6.862588
 </td>
 <td style="text-align:right;">
-7.375472
+6.862588
 </td>
 <td style="text-align:right;">
-7.375472
+6.862588
 </td>
 <td style="text-align:right;">
-7.375472
+6.862588
 </td>
 <td style="text-align:right;">
-7.375472
+6.862588
 </td>
 <td style="text-align:right;">
-7.375472
+6.862588
 </td>
 <td style="text-align:right;">
-7.375472
+6.862588
 </td>
 <td style="text-align:right;">
-7.375472
+6.862588
 </td>
 <td style="text-align:right;">
-7.375472
+6.862588
 </td>
 <td style="text-align:right;">
-7.375472
+6.862588
 </td>
 <td style="text-align:right;">
-7.375472
+6.862588
 </td>
 </tr>
 <tr>
@@ -538,76 +535,76 @@ month_24
 7.362664
 </td>
 <td style="text-align:right;">
-7.362664
+6.763104
 </td>
 <td style="text-align:right;">
-7.362664
+6.763104
 </td>
 <td style="text-align:right;">
-7.362664
+6.763104
 </td>
 <td style="text-align:right;">
-7.362664
+6.763104
 </td>
 <td style="text-align:right;">
-7.362664
+6.763104
 </td>
 <td style="text-align:right;">
-7.362664
+6.763104
 </td>
 <td style="text-align:right;">
-7.362664
+6.763104
 </td>
 <td style="text-align:right;">
-7.362664
+6.763104
 </td>
 <td style="text-align:right;">
-7.362664
+6.763104
 </td>
 <td style="text-align:right;">
-7.362664
+6.763104
 </td>
 <td style="text-align:right;">
-7.362664
+6.763104
 </td>
 <td style="text-align:right;">
-7.362664
+6.763104
 </td>
 <td style="text-align:right;">
-7.362664
+6.643763
 </td>
 <td style="text-align:right;">
-7.362664
+6.643763
 </td>
 <td style="text-align:right;">
-7.362664
+6.643763
 </td>
 <td style="text-align:right;">
-7.362664
+6.643763
 </td>
 <td style="text-align:right;">
-7.362664
+6.643763
 </td>
 <td style="text-align:right;">
-7.362664
+6.643763
 </td>
 <td style="text-align:right;">
-7.362664
+6.643763
 </td>
 <td style="text-align:right;">
-7.362664
+6.643763
 </td>
 <td style="text-align:right;">
-7.362664
+6.643763
 </td>
 <td style="text-align:right;">
-7.362664
+6.643763
 </td>
 <td style="text-align:right;">
-7.362664
+6.643763
 </td>
 <td style="text-align:right;">
-7.362664
+6.643763
 </td>
 </tr>
 <tr>
@@ -621,79 +618,79 @@ month_24
 2021
 </td>
 <td style="text-align:right;">
-NA
+7.240280
 </td>
 <td style="text-align:right;">
-NA
+7.240280
 </td>
 <td style="text-align:right;">
-NA
+7.240280
 </td>
 <td style="text-align:right;">
-NA
+7.240280
 </td>
 <td style="text-align:right;">
-NA
+7.240280
 </td>
 <td style="text-align:right;">
-NA
+7.240280
 </td>
 <td style="text-align:right;">
-NA
+7.240280
 </td>
 <td style="text-align:right;">
-NA
+7.240280
 </td>
 <td style="text-align:right;">
-NA
+6.639601
 </td>
 <td style="text-align:right;">
-NA
+6.639601
 </td>
 <td style="text-align:right;">
-NA
+6.639601
 </td>
 <td style="text-align:right;">
-NA
+6.639601
 </td>
 <td style="text-align:right;">
-NA
+6.639601
 </td>
 <td style="text-align:right;">
-NA
+6.639601
 </td>
 <td style="text-align:right;">
-NA
+6.639601
 </td>
 <td style="text-align:right;">
-NA
+6.639601
 </td>
 <td style="text-align:right;">
-NA
+6.639601
 </td>
 <td style="text-align:right;">
-NA
+6.639601
 </td>
 <td style="text-align:right;">
-NA
+6.639601
 </td>
 <td style="text-align:right;">
-NA
+6.639601
 </td>
 <td style="text-align:right;">
-NA
+6.479448
 </td>
 <td style="text-align:right;">
-NA
+6.479448
 </td>
 <td style="text-align:right;">
-NA
+6.479448
 </td>
 <td style="text-align:right;">
-NA
+6.479448
 </td>
 <td style="text-align:right;">
-NA
+6.479448
 </td>
 </tr>
 <tr>
@@ -707,79 +704,79 @@ NA
 2018
 </td>
 <td style="text-align:right;">
-NA
+6.064346
 </td>
 <td style="text-align:right;">
-NA
+6.064346
 </td>
 <td style="text-align:right;">
-NA
+6.064346
 </td>
 <td style="text-align:right;">
-NA
+6.064346
 </td>
 <td style="text-align:right;">
-NA
+6.064346
 </td>
 <td style="text-align:right;">
-NA
+6.064346
 </td>
 <td style="text-align:right;">
-NA
+6.064346
 </td>
 <td style="text-align:right;">
-NA
+6.064346
 </td>
 <td style="text-align:right;">
-NA
+6.335329
 </td>
 <td style="text-align:right;">
-NA
+6.335329
 </td>
 <td style="text-align:right;">
-NA
+6.335329
 </td>
 <td style="text-align:right;">
-NA
+6.335329
 </td>
 <td style="text-align:right;">
-NA
+6.335329
 </td>
 <td style="text-align:right;">
-NA
+6.335329
 </td>
 <td style="text-align:right;">
-NA
+6.335329
 </td>
 <td style="text-align:right;">
-NA
+6.335329
 </td>
 <td style="text-align:right;">
-NA
+6.335329
 </td>
 <td style="text-align:right;">
-NA
+6.335329
 </td>
 <td style="text-align:right;">
-NA
+6.335329
 </td>
 <td style="text-align:right;">
-NA
+6.335329
 </td>
 <td style="text-align:right;">
-NA
+6.392860
 </td>
 <td style="text-align:right;">
-NA
+6.392860
 </td>
 <td style="text-align:right;">
-NA
+6.392860
 </td>
 <td style="text-align:right;">
-NA
+6.392860
 </td>
 <td style="text-align:right;">
-NA
+6.392860
 </td>
 </tr>
 <tr>
@@ -793,79 +790,79 @@ NA
 2021
 </td>
 <td style="text-align:right;">
-NA
+7.474715
 </td>
 <td style="text-align:right;">
-NA
+7.474715
 </td>
 <td style="text-align:right;">
-NA
+7.474715
 </td>
 <td style="text-align:right;">
-NA
+7.121773
 </td>
 <td style="text-align:right;">
-NA
+7.121773
 </td>
 <td style="text-align:right;">
-NA
+7.121773
 </td>
 <td style="text-align:right;">
-NA
+7.121773
 </td>
 <td style="text-align:right;">
-NA
+7.121773
 </td>
 <td style="text-align:right;">
-NA
+7.121773
 </td>
 <td style="text-align:right;">
-NA
+7.121773
 </td>
 <td style="text-align:right;">
-NA
+7.121773
 </td>
 <td style="text-align:right;">
-NA
+7.121773
 </td>
 <td style="text-align:right;">
-NA
+7.121773
 </td>
 <td style="text-align:right;">
-NA
+7.121773
 </td>
 <td style="text-align:right;">
-NA
+7.121773
 </td>
 <td style="text-align:right;">
-NA
+6.769289
 </td>
 <td style="text-align:right;">
-NA
+6.769289
 </td>
 <td style="text-align:right;">
-NA
+6.769289
 </td>
 <td style="text-align:right;">
-NA
+6.769289
 </td>
 <td style="text-align:right;">
-NA
+6.769289
 </td>
 <td style="text-align:right;">
-NA
+6.769289
 </td>
 <td style="text-align:right;">
-NA
+6.769289
 </td>
 <td style="text-align:right;">
-NA
+6.769289
 </td>
 <td style="text-align:right;">
-NA
+6.769289
 </td>
 <td style="text-align:right;">
-NA
+6.769289
 </td>
 </tr>
 <tr>
@@ -879,79 +876,79 @@ NA
 2020
 </td>
 <td style="text-align:right;">
-NA
+6.910065
 </td>
 <td style="text-align:right;">
-NA
+6.910065
 </td>
 <td style="text-align:right;">
-NA
+6.910065
 </td>
 <td style="text-align:right;">
-NA
+6.910065
 </td>
 <td style="text-align:right;">
-NA
+6.910065
 </td>
 <td style="text-align:right;">
-NA
+6.910065
 </td>
 <td style="text-align:right;">
-NA
+6.910065
 </td>
 <td style="text-align:right;">
-NA
+6.910065
 </td>
 <td style="text-align:right;">
-NA
+6.910065
 </td>
 <td style="text-align:right;">
-NA
+6.910065
 </td>
 <td style="text-align:right;">
-NA
+6.910065
 </td>
 <td style="text-align:right;">
-NA
+6.910065
 </td>
 <td style="text-align:right;">
-NA
+6.815265
 </td>
 <td style="text-align:right;">
-NA
+6.815265
 </td>
 <td style="text-align:right;">
-NA
+6.815265
 </td>
 <td style="text-align:right;">
-NA
+6.815265
 </td>
 <td style="text-align:right;">
-NA
+6.815265
 </td>
 <td style="text-align:right;">
-NA
+6.815265
 </td>
 <td style="text-align:right;">
-NA
+6.815265
 </td>
 <td style="text-align:right;">
-NA
+6.815265
 </td>
 <td style="text-align:right;">
-NA
+6.815265
 </td>
 <td style="text-align:right;">
-NA
+6.815265
 </td>
 <td style="text-align:right;">
-NA
+6.815265
 </td>
 <td style="text-align:right;">
-NA
+6.815265
 </td>
 <td style="text-align:right;">
-NA
+6.717656
 </td>
 </tr>
 </tbody>

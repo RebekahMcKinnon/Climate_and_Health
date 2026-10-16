@@ -75,6 +75,7 @@ The following R packages are required to run the code in this book:
 -   `cmdstanr`
 -   `arrow`
 -   `sfarrow`
+-   `dotenv`
 
 **Data visualization and mapping**
 
@@ -107,7 +108,7 @@ packages <- c(
   "readr", "purrr", "furrr", "stringr", "readxl", "writexl",
   "ggplot2", "maps", "rvest", "httr", "tm", "SnowballC", "proxy", "cmdstanr",
   "sf", "geosphere", "fs", "knitr", "kableExtra", "arrow", "sfarrow",
-  "weathercan", "furrr", "tidyverse", "terra", "mapview"
+  "weathercan", "furrr", "tidyverse", "terra", "mapview", "dotenv"
 )
 
 # Install any that are missing

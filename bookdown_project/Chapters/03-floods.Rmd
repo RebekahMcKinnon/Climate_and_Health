@@ -1,7 +1,3 @@
-```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_project')
-```
-
 # Floods {#floods}
 
 Floods are a common environmental hazard in Canada. Numerous flooding events have been reported in popular media and studied in literature.

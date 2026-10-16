@@ -1,7 +1,3 @@
-```{r setup-pm25, include=FALSE}
-knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_project')
-```
-
 # PM 2.5 {#pm25}
 
 The PM2.5 data can be used for checking the results of other data - mainly the wildfire data. Background pollution levels can be examined using this data to determine if wildfire events have an effect on overall particulate matter circulating in the environment. 

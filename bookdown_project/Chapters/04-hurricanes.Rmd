@@ -1,7 +1,3 @@
-```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_project')
-```
-
 # Hurricanes {#hurricanes}
 
 Hurricanes are a consistent coastal threat that is increasingly exacerbated by climate change. Hospitals on the east coast of Canada are threatened by exposure to hurricane events that bring damaging wind, power outages, and extreme rain.
@@ -259,7 +255,6 @@ First we load all the storms.
 ```{r hurricanes-load-storms, warning=FALSE}
 #where all the processed files are
 storms_dir <- r"(./data/HurricaneRawData/nhc_best_tracks/processed)"
-setwd('C:/Users/matth/Climate_and_Health/bookdown_project')
 #get all the radii shapefiles
 #I settled on radii, because its the reach of the wind
 cols <- c("event_id", "event_r_id", "storm_id")

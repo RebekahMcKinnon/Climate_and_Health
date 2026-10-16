@@ -1,5 +1,6 @@
-```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir = 'C:/Users/matth/Climate_and_Health/bookdown_project')
+```{r setup, include=FALSE, eval=FALSE}
+load_dot_env("../.env")
+knitr::opts_knit$set(root.dir = Sys.getenv("PROJECT_ROOT_DIR"))
 ```
 
 
