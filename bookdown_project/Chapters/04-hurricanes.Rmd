@@ -252,7 +252,7 @@ for (shp_path in shp_files) {
 
 ## Compute Intersections {#hurricanes-intersections}
 
-Now that the hurricane files are prepared properly, the associated points data of interest, (in this case hospitals), can be used within the files. The point files in this example have a series of months and years in columns when surveys were conducted, a latitude and longitude column where we can identify
+Now that the hurricane files are prepared properly, the associated point-of-interest data, (in this case hospitals), can be used within the files. The point files in this example have a series of months and years in columns when surveys were conducted, a latitude and longitude column for location identification, 
 
 First we load all the storms.
 
@@ -302,7 +302,7 @@ survey_month_col <- "survey_month"
 #to keep
 cols <- c("geometry", "event_id", "event_r_id", "storm_id")
 #buffer distances in metres to go around point of interest
-bufs <- c(25000)#, 0, 50000, 100000)
+bufs <- c(0)#, 0, 50000, 100000)
 #years of survey date batches for naming conventions (only one batch in this tutorial)
 years <- c('all')
 #this is paried with the above years, should match up!
@@ -507,7 +507,7 @@ intersecting_storm <- filter(all_storms_within_range, event_r_id == "al142018101
 #go with one of the hospitals that interesects
 hospital_of_interest <- (filter(hurricane_matrix, survey_id==1248)) %>% st_as_sf(coords=c("long", "lat"), crs = st_crs(4326))
 #display the intersecting buffer
-hospital_buffer <- st_buffer(hospital_of_interest, 25000)
+#hospital_buffer <- st_buffer(hospital_of_interest, 25000)
 
 #create the map elements
 mapview(
@@ -523,11 +523,11 @@ mapview(
   col.regions = "red",
   cex = 6,
   layer.name = "Hospital Location"
-) +
-mapview(
-  hospital_buffer,
-  col.regions = "green",
-  alpha.regions = 0.1,
-  layer.name = "Hospital Buffer (25km)"
-)
+) #+
+# mapview(
+#   hospital_buffer,
+#   col.regions = "green",
+#   alpha.regions = 0.1,
+#   layer.name = "Hospital Buffer (25km)"
+# )
 ```
